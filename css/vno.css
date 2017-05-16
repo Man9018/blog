@@ -6247,7 +6247,7 @@ i.fa.fa-spinner.fa-spin {
   vertical-align: middle;
 }
 .panel-title {
-  margin: 0 0 5px 0;
+  margin: 15px auto;
   font-size: 1.8em;
   letter-spacing: 4px;
   color: #fff;
@@ -6670,7 +6670,7 @@ input[type="tel"]:-ms-input-placeholder {
     width: 120px;
   }
   .panel-title {
-    font-size: 2em;
+    font-size: 1.6em;
   }
   .panel-subtitle {
     font-size: 1em;
