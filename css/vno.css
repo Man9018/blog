@@ -5992,7 +5992,7 @@ h5 {
 }
 h1 {
   margin-top: 0;
-  font-size: 2.4em;
+  font-size: 1.8em;
   line-height: 1.2em;
   letter-spacing: 0.05em;
 }
@@ -6248,7 +6248,7 @@ i.fa.fa-spinner.fa-spin {
 }
 .panel-title {
   margin: 0 0 5px 0;
-  font-size: 2.5em;
+  font-size: 1.8em;
   letter-spacing: 4px;
   color: #fff;
 }
@@ -6334,9 +6334,6 @@ i.fa.fa-spinner.fa-spin {
 }
 .panel-inverted a {
   color: #fff;
-}
-.cover-navigation {
-  margin-top: 42px;
 }
 .cover-navigation--social {
   margin-left: 30px;
@@ -6668,9 +6665,9 @@ input[type="search"]:-ms-input-placeholder,
 input[type="tel"]:-ms-input-placeholder {
   color: #ccc;
 }
-@media all and (max-width: 1100px) {
+@media all and (min-width: 1100px) {
   .panel-cover__logo {
-    width: 70px;
+    width: 120px;
   }
   .panel-title {
     font-size: 2em;
@@ -6732,7 +6729,7 @@ input[type="tel"]:-ms-input-placeholder {
     padding: 70px 0 30px 0;
   }
   .panel-cover.panel-cover--collapsed .panel-cover__logo {
-    width: 60px;
+    width: 110px;
     border-width: 2px;
   }
   .panel-cover.panel-cover--collapsed .panel-cover__description {
