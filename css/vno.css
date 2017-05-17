@@ -6522,8 +6522,7 @@ i {
 .post-list__post-title {
   margin-top: 0;
   margin-bottom: 0.2em;
-  font-size: 1.5em;
-  line-height: 1.3em;
+  font: 500 1.5em/1.3em;
 }
 .post-list__post-title a {
   color: #333;
