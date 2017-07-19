@@ -260,7 +260,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/16/Basic-Algorithm-Scripting/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/19/Basic Algorithm Scripting - 2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Anron">
@@ -282,8 +282,169 @@
             
               
                 
-                <a class="post-title-link" href="/2017/07/16/Basic-Algorithm-Scripting/" itemprop="url">
-                  Basic Algorithm Scripting / (基础算法)
+                <a class="post-title-link" href="/2017/07/19/Basic Algorithm Scripting - 2/" itemprop="url">
+                  Basic Algorithm Scripting / 数组方法深入研究之二 (基础算法)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-19T19:12:09+08:00">
+                2017-07-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="http://jbcdn2.b0.upaiyun.com/2014/10/9184208f96827c412ab7d3570590ef76.jpg" alt="算法"></p>
+<blockquote>
+<p>数组方法的深入学习</p>
+</blockquote>
+<h2 id="Chunky-Monkey-分割数组"><a href="#Chunky-Monkey-分割数组" class="headerlink" title="Chunky Monkey(分割数组)"></a>Chunky Monkey(分割数组)</h2><p>猴子吃香蕉, 分割数组,把一个数组arr按照指定的数组大小<code>size</code>分割成若干个数组块。<br>例如:<br> &#8195;&#8195;hunk([1,2,3,4],2) =&gt; [[1,2],[3,4]];<br> &#8195;&#8195;chunk([1,2,3,4,5],2) =&gt; [[1,2],[3,4],[5]];</p>
+<blockquote>
+<p>思路</p>
+</blockquote>
+<p>&#8195;这道题重点主要是每<code>size</code>个值分割一个数组,这里我们可以使用以下几种方法来解题.</p>
+<ol>
+<li>while + splice</li>
+<li>for + slice</li>
+<li>while + slice</li>
+</ol>
+<p>第一种<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// while + splice</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">chunk</span>(<span class="params">arr, size</span>) </span>&#123;</div><div class="line">  <span class="comment">// 定义一个新数组和用来临时存放分割的空数组.</span></div><div class="line">  <span class="keyword">var</span> a = [], t = [], i = <span class="number">0</span>,</div><div class="line">      len = arr.length;</div><div class="line"></div><div class="line">  <span class="keyword">while</span> (i &lt; len)&#123;</div><div class="line">    t = arr.splice(<span class="number">0</span>, size);</div><div class="line">    a.push(t);</div><div class="line">    i += size;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> a;</div><div class="line">&#125;</div><div class="line"></div><div class="line">chunk([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>], <span class="number">3</span>);</div></pre></td></tr></table></figure></p>
+<p>&#8195;在这里值得注意的是,<code>len</code>保存<code>arr.length</code>的快照是必须的..因为splice会修改原来原来的数组.</p>
+<p>第二种<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// for + splice</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">chunk</span>(<span class="params">arr, size</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> a = [], t = [], len = arr.length;</div><div class="line"></div><div class="line">  <span class="comment">// 数组中的个数小于size或者size是小于等于0的也就没有必要分割了</span></div><div class="line">  <span class="keyword">if</span> (len &lt;= size || size &lt;= <span class="number">0</span>) &#123;</div><div class="line">    <span class="keyword">return</span> arr;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="comment">// 它的重点主要是数组中的值的数量</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>;i &lt; len; i += size) &#123;</div><div class="line">      <span class="comment">// 查询指定数</span></div><div class="line">      t = arr.slice(i, i + size);</div><div class="line">      a.push(t);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> a;</div><div class="line">&#125;</div><div class="line"></div><div class="line">chunk([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>], <span class="number">3</span>);</div></pre></td></tr></table></figure></p>
+<p>第三种<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// while + slice</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">chunk</span>(<span class="params">arr, size</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> a = [], t = [], i = <span class="number">0</span>,</div><div class="line">      len = arr.length;</div><div class="line"></div><div class="line">  <span class="keyword">while</span> (i &lt; len) &#123;</div><div class="line">    <span class="comment">// 查询的值</span></div><div class="line">    t = arr.slice(i, i += size);</div><div class="line">    a.push(t);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> a;</div><div class="line">&#125;</div><div class="line"></div><div class="line">chunk([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>], <span class="number">3</span>);</div></pre></td></tr></table></figure></p>
+<h2 id="Falsy-Bouncer-过滤数组假值"><a href="#Falsy-Bouncer-过滤数组假值" class="headerlink" title="Falsy Bouncer(过滤数组假值)"></a>Falsy Bouncer(过滤数组假值)</h2><p>删除数组中的所有假值。在JavaScript中，假值有false、null、0、””、undefined 和 NaN。</p>
+<blockquote>
+<p>思路</p>
+</blockquote>
+<p>&#8195;这道题比较有意思..一开始我走进了一个误区,想着单纯<code>return x !== false &amp;&amp; ...</code>这样简单的返回就可以了,后来发现在处理<code>NaN</code>时会很麻烦..<code>isNaN()</code>还会把英文字符串也给过滤掉,再加上多个<code>&amp;&amp;</code>使得代码会变得繁乱,可读性不高.<br>&#8195;然后查阅了一番资料后,才注意到平时被忽略<code>Boolean()</code>的一些特性对于处理这种类型的问题简直不能太合适.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bouncer</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">  <span class="comment">// 请把你的代码写在这里</span></div><div class="line">  <span class="keyword">var</span> a = arr.filter(<span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">Boolean</span>(x);</div><div class="line">  &#125;);</div><div class="line">  </div><div class="line">  <span class="keyword">return</span> a;</div><div class="line">&#125;</div><div class="line"></div><div class="line">bouncer([<span class="number">7</span>, <span class="string">"ate"</span>, <span class="string">""</span>, <span class="literal">false</span>, <span class="number">9</span>]);</div></pre></td></tr></table></figure>
+<p>&#8195;<strong>摘至<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Boolean" target="_blank" rel="external">MDN.Boolean</a> 的描述: </strong></p>
+<blockquote>
+<p>如果Boolean构造函数的参数不是一个布尔值,则该参数会被转换成一个布尔值.<strong>如果参数是 0, -0,  null, false, NaN, undefined, 或者空字符串 (“”),生成的Boolean对象的值为false. </strong>其他任何值,包括任何对象或者字符串”false”, 都会创建一个值为true的Boolean对象.</p>
+</blockquote>
+<h2 id="Seek-and-Destroy-摧毁指定数组"><a href="#Seek-and-Destroy-摧毁指定数组" class="headerlink" title="Seek and Destroy (摧毁指定数组)"></a>Seek and Destroy (摧毁指定数组)</h2><p>实现一个摧毁(destroyer)函数，第一个参数是待摧毁的数组，其余的参数是待摧毁的值。</p>
+<blockquote>
+<p>实现原理</p>
+</blockquote>
+<p>&#8195;<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/filter" target="_blank" rel="external">filter()</a> 为数组中的每个元素调用一次 <code>callback</code>函数，并利用所有使得 <code>callback</code> 返回 true 或 等价于 true 的值 的元素创建一个<strong>新数组.</strong><br>&#8195;<code>filter()</code>从头至尾遍历数组,<strong>若回调函数返回的是true(通过测试),就存入新数组中.若返回的是false,则过滤掉.</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">destroyer</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">  <span class="comment">// 先将第一个参数隔开,定义一个储存着待移除的空数组</span></div><div class="line">  <span class="keyword">var</span> args = <span class="built_in">arguments</span>[<span class="number">0</span>], removeArgs = [];</div><div class="line"></div><div class="line">  <span class="comment">// 要被删除的参数装进'removeArgs'里</span></div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt; <span class="built_in">arguments</span>.length; i++) &#123;</div><div class="line">    removeArgs.push(<span class="built_in">arguments</span>[i]);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 遍历'args',若'removeArgs'中不存在'value',应该返回-1.反之返回false被过滤掉.</span></div><div class="line">  <span class="keyword">return</span> args.filter(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> removeArgs.indexOf(value) === <span class="number">-1</span>;</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">destroyer([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="number">2</span>, <span class="number">3</span>);</div></pre></td></tr></table></figure>
+<h2 id="Where-do-I-belong-数组排序并找出元素索引"><a href="#Where-do-I-belong-数组排序并找出元素索引" class="headerlink" title="Where do I belong (数组排序并找出元素索引)"></a>Where do I belong (数组排序并找出元素索引)</h2><p>先给数组排序，然后找到指定的值在数组的位置，最后返回位置对应的索引。  </p>
+<p>&#8195;举例：where([1,2,3,4], 1.5) 应该返回 1。因为1.5插入到数组[1,2,3,4]后变成[1,1.5,2,3,4]，而1.5对应的索引值就是1。  </p>
+<p>&#8195; 同理，where([20,3,5], 19) 应该返回 2。因为数组会先排序为 [3,5,20]，19插入到数组[3,5,20]后变成[3,5,19,20]，而19对应的索引值就是2。  </p>
+<blockquote>
+<p>思路</p>
+</blockquote>
+<p>&#8195;这个没啥好说的了..将第二个参数<code>push</code>进数组中,再进行排序.排序后通过<code>indexOf()</code>来实现功能.<strong>不过需要注意的是<code>sort</code>默认是按照’Unicode’编码进行排序的.</strong></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/16/Basic Algorithm Scripting - 1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Anron">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://tc.ffsky.net/images/2017/05/16/0780b8f83fed50d5dd538ae90aa20b06.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="兔子の部屋 *´ㅅ`)""">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/07/16/Basic Algorithm Scripting - 1/" itemprop="url">
+                  Basic Algorithm Scripting / 数组方法深入研究之一 (基础算法)
                 </a>
               
             
@@ -387,158 +548,6 @@
 <p>思路</p>
 </blockquote>
 <p>&#8195;slice截取字符串.substr(),indexOf()和lastIndexOf()办法同理.<br><a href="https://www.w3cplus.com/javascript/confirm-the-ending.html" target="_blank" rel="external">https://www.w3cplus.com/javascript/confirm-the-ending.html</a> 大漠老师有一篇文章对此使用有着更详细的说明.</p>
-<h2 id="Chunky-Monkey-分割数组"><a href="#Chunky-Monkey-分割数组" class="headerlink" title="Chunky Monkey(分割数组)"></a>Chunky Monkey(分割数组)</h2><p>猴子吃香蕉, 分割数组,把一个数组arr按照指定的数组大小<code>size</code>分割成若干个数组块。<br>例如:<br>    hunk([1,2,3,4],2)=[[1,2],[3,4]];<br>    chunk([1,2,3,4,5],2)=[[1,2],[3,4],[5]];</p>
-<blockquote>
-<p>思路</p>
-</blockquote>
-<p>&#8195;这道题重点主要是每<code>size</code>个值分割一个数组,这里我们可以使用以下几种方法来解题.</p>
-<ol>
-<li>while + splice</li>
-<li>for + slice</li>
-<li>while + slice</li>
-</ol>
-<p>第一种<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// while + splice</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">chunk</span>(<span class="params">arr, size</span>) </span>&#123;</div><div class="line">  <span class="comment">// 定义一个新数组和用来临时存放分割的空数组.</span></div><div class="line">  <span class="keyword">var</span> a = [], t = [], i = <span class="number">0</span>,</div><div class="line">      len = arr.length;</div><div class="line"></div><div class="line">  <span class="keyword">while</span> (i &lt; len)&#123;</div><div class="line">    t = arr.splice(<span class="number">0</span>, size);</div><div class="line">    a.push(t);</div><div class="line">    i += size;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> a;</div><div class="line">&#125;</div><div class="line"></div><div class="line">chunk([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>], <span class="number">3</span>);</div></pre></td></tr></table></figure></p>
-<p>&#8195;在这里值得注意的是,<code>len</code>保存<code>arr.length</code>的快照是必须的..因为splice会修改原来原来的数组.</p>
-<p>第二种<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// for + splice</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">chunk</span>(<span class="params">arr, size</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> a = [], t = [], len = arr.length;</div><div class="line"></div><div class="line">  <span class="comment">// 数组中的个数小于size或者size是小于等于0的也就没有必要分割了</span></div><div class="line">  <span class="keyword">if</span> (len &lt;= size || size &lt;= <span class="number">0</span>) &#123;</div><div class="line">    <span class="keyword">return</span> arr;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="comment">// 它的重点主要是数组中的值的数量</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>;i &lt; len; i += size) &#123;</div><div class="line">      <span class="comment">// 查询指定数</span></div><div class="line">      t = arr.slice(i, i + size);</div><div class="line">      a.push(t);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> a;</div><div class="line">&#125;</div><div class="line"></div><div class="line">chunk([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>], <span class="number">3</span>);</div></pre></td></tr></table></figure></p>
-<p>第三种<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// while + slice</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">chunk</span>(<span class="params">arr, size</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> a = [], t = [], i = <span class="number">0</span>,</div><div class="line">      len = arr.length;</div><div class="line"></div><div class="line">  <span class="keyword">while</span> (i &lt; len) &#123;</div><div class="line">    <span class="comment">// 查询的值</span></div><div class="line">    t = arr.slice(i, i += size);</div><div class="line">    a.push(t);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> a;</div><div class="line">&#125;</div><div class="line"></div><div class="line">chunk([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>], <span class="number">3</span>);</div></pre></td></tr></table></figure></p>
-<h2 id="Falsy-Bouncer-过滤数组假值"><a href="#Falsy-Bouncer-过滤数组假值" class="headerlink" title="Falsy Bouncer(过滤数组假值)"></a>Falsy Bouncer(过滤数组假值)</h2><p>删除数组中的所有假值。在JavaScript中，假值有false、null、0、””、undefined 和 NaN。</p>
-<blockquote>
-<p>思路<br>&#8195;这道题比较有意思..一开始我走进了一个误区,想着单纯<code>return x !== false &amp;&amp; ...</code>这样简单的返回就可以了,后来发现在处理<code>NaN</code>时会很麻烦..<code>isNaN()</code>还会把英文字符串也给过滤掉,再加上多个<code>&amp;&amp;</code>使得代码会变得繁乱,可读性不高.<br>&#8195;然后查阅了一番资料后,才注意到平时被忽略<code>Boolean()</code>的一些特性对于处理这种类型的问题简直不能太合适.</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bouncer</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">  <span class="comment">// 请把你的代码写在这里</span></div><div class="line">  <span class="keyword">var</span> a = arr.filter(<span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">Boolean</span>(x);</div><div class="line">  &#125;);</div><div class="line">  </div><div class="line">  <span class="keyword">return</span> a;</div><div class="line">&#125;</div><div class="line"></div><div class="line">bouncer([<span class="number">7</span>, <span class="string">"ate"</span>, <span class="string">""</span>, <span class="literal">false</span>, <span class="number">9</span>]);</div></pre></td></tr></table></figure>
-<p>&#8195;<strong>摘至<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Boolean" target="_blank" rel="external">MDN.Boolean</a> 的描述: </strong></p>
-<blockquote>
-<p>如果Boolean构造函数的参数不是一个布尔值,则该参数会被转换成一个布尔值.<strong>如果参数是 0, -0,  null, false, NaN, undefined, 或者空字符串 (“”),生成的Boolean对象的值为false. </strong>其他任何值,包括任何对象或者字符串”false”, 都会创建一个值为true的Boolean对象.</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/14/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Anron">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://tc.ffsky.net/images/2017/05/16/0780b8f83fed50d5dd538ae90aa20b06.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="兔子の部屋 *´ㅅ`)""">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/05/14/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-14T10:41:52+08:00">
-                2017-05-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
 
           
         

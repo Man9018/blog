@@ -89,14 +89,14 @@
 
 <meta name="description" content="一些基础的算法  Palindromes(回文处理)Palindromes称之为回文。在中文文当中是指倒着念和顺着念都是相同的，前后对称.  正则表达式 replace()  1234567function palindrome(str) &amp;#123;  var string = str.replace(/[\W_]/g,&apos;&apos;).toLowerCase();  var replaceStr =">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Basic Algorithm Scripting &#x2F; (基础算法)">
-<meta property="og:url" content="http://yoursite.com/2017/07/16/Basic-Algorithm-Scripting/index.html">
+<meta property="og:title" content="Basic Algorithm Scripting &#x2F; 数组方法深入研究之一 (基础算法)">
+<meta property="og:url" content="http://yoursite.com/2017/07/16/Basic Algorithm Scripting - 1/index.html">
 <meta property="og:site_name" content="兔子の部屋 *´ㅅ`)&quot;&quot;">
 <meta property="og:description" content="一些基础的算法  Palindromes(回文处理)Palindromes称之为回文。在中文文当中是指倒着念和顺着念都是相同的，前后对称.  正则表达式 replace()  1234567function palindrome(str) &amp;#123;  var string = str.replace(/[\W_]/g,&apos;&apos;).toLowerCase();  var replaceStr =">
 <meta property="og:image" content="http://jbcdn2.b0.upaiyun.com/2014/10/9184208f96827c412ab7d3570590ef76.jpg">
-<meta property="og:updated_time" content="2017-07-18T11:52:43.028Z">
+<meta property="og:updated_time" content="2017-07-19T12:19:47.190Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Basic Algorithm Scripting &#x2F; (基础算法)">
+<meta name="twitter:title" content="Basic Algorithm Scripting &#x2F; 数组方法深入研究之一 (基础算法)">
 <meta name="twitter:description" content="一些基础的算法  Palindromes(回文处理)Palindromes称之为回文。在中文文当中是指倒着念和顺着念都是相同的，前后对称.  正则表达式 replace()  1234567function palindrome(str) &amp;#123;  var string = str.replace(/[\W_]/g,&apos;&apos;).toLowerCase();  var replaceStr =">
 <meta name="twitter:image" content="http://jbcdn2.b0.upaiyun.com/2014/10/9184208f96827c412ab7d3570590ef76.jpg">
 
@@ -126,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/07/16/Basic-Algorithm-Scripting/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/07/16/Basic Algorithm Scripting - 1/"/>
 
 
 
 
 
-  <title> Basic Algorithm Scripting / (基础算法) | 兔子の部屋 *´ㅅ`)"" </title>
+  <title> Basic Algorithm Scripting / 数组方法深入研究之一 (基础算法) | 兔子の部屋 *´ㅅ`)"" </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -261,7 +261,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/16/Basic-Algorithm-Scripting/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/16/Basic Algorithm Scripting - 1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Anron">
@@ -282,7 +282,7 @@
             
             
               
-                Basic Algorithm Scripting / (基础算法)
+                Basic Algorithm Scripting / 数组方法深入研究之一 (基础算法)
               
             
           </h1>
@@ -383,29 +383,6 @@
 <p>思路</p>
 </blockquote>
 <p>&#8195;slice截取字符串.substr(),indexOf()和lastIndexOf()办法同理.<br><a href="https://www.w3cplus.com/javascript/confirm-the-ending.html" target="_blank" rel="external">https://www.w3cplus.com/javascript/confirm-the-ending.html</a> 大漠老师有一篇文章对此使用有着更详细的说明.</p>
-<h2 id="Chunky-Monkey-分割数组"><a href="#Chunky-Monkey-分割数组" class="headerlink" title="Chunky Monkey(分割数组)"></a>Chunky Monkey(分割数组)</h2><p>猴子吃香蕉, 分割数组,把一个数组arr按照指定的数组大小<code>size</code>分割成若干个数组块。<br>例如:<br>    hunk([1,2,3,4],2)=[[1,2],[3,4]];<br>    chunk([1,2,3,4,5],2)=[[1,2],[3,4],[5]];</p>
-<blockquote>
-<p>思路</p>
-</blockquote>
-<p>&#8195;这道题重点主要是每<code>size</code>个值分割一个数组,这里我们可以使用以下几种方法来解题.</p>
-<ol>
-<li>while + splice</li>
-<li>for + slice</li>
-<li>while + slice</li>
-</ol>
-<p>第一种<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// while + splice</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">chunk</span>(<span class="params">arr, size</span>) </span>&#123;</div><div class="line">  <span class="comment">// 定义一个新数组和用来临时存放分割的空数组.</span></div><div class="line">  <span class="keyword">var</span> a = [], t = [], i = <span class="number">0</span>,</div><div class="line">      len = arr.length;</div><div class="line"></div><div class="line">  <span class="keyword">while</span> (i &lt; len)&#123;</div><div class="line">    t = arr.splice(<span class="number">0</span>, size);</div><div class="line">    a.push(t);</div><div class="line">    i += size;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> a;</div><div class="line">&#125;</div><div class="line"></div><div class="line">chunk([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>], <span class="number">3</span>);</div></pre></td></tr></table></figure></p>
-<p>&#8195;在这里值得注意的是,<code>len</code>保存<code>arr.length</code>的快照是必须的..因为splice会修改原来原来的数组.</p>
-<p>第二种<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// for + splice</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">chunk</span>(<span class="params">arr, size</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> a = [], t = [], len = arr.length;</div><div class="line"></div><div class="line">  <span class="comment">// 数组中的个数小于size或者size是小于等于0的也就没有必要分割了</span></div><div class="line">  <span class="keyword">if</span> (len &lt;= size || size &lt;= <span class="number">0</span>) &#123;</div><div class="line">    <span class="keyword">return</span> arr;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="comment">// 它的重点主要是数组中的值的数量</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>;i &lt; len; i += size) &#123;</div><div class="line">      <span class="comment">// 查询指定数</span></div><div class="line">      t = arr.slice(i, i + size);</div><div class="line">      a.push(t);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> a;</div><div class="line">&#125;</div><div class="line"></div><div class="line">chunk([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>], <span class="number">3</span>);</div></pre></td></tr></table></figure></p>
-<p>第三种<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// while + slice</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">chunk</span>(<span class="params">arr, size</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> a = [], t = [], i = <span class="number">0</span>,</div><div class="line">      len = arr.length;</div><div class="line"></div><div class="line">  <span class="keyword">while</span> (i &lt; len) &#123;</div><div class="line">    <span class="comment">// 查询的值</span></div><div class="line">    t = arr.slice(i, i += size);</div><div class="line">    a.push(t);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> a;</div><div class="line">&#125;</div><div class="line"></div><div class="line">chunk([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>], <span class="number">3</span>);</div></pre></td></tr></table></figure></p>
-<h2 id="Falsy-Bouncer-过滤数组假值"><a href="#Falsy-Bouncer-过滤数组假值" class="headerlink" title="Falsy Bouncer(过滤数组假值)"></a>Falsy Bouncer(过滤数组假值)</h2><p>删除数组中的所有假值。在JavaScript中，假值有false、null、0、””、undefined 和 NaN。</p>
-<blockquote>
-<p>思路<br>&#8195;这道题比较有意思..一开始我走进了一个误区,想着单纯<code>return x !== false &amp;&amp; ...</code>这样简单的返回就可以了,后来发现在处理<code>NaN</code>时会很麻烦..<code>isNaN()</code>还会把英文字符串也给过滤掉,再加上多个<code>&amp;&amp;</code>使得代码会变得繁乱,可读性不高.<br>&#8195;然后查阅了一番资料后,才注意到平时被忽略<code>Boolean()</code>的一些特性对于处理这种类型的问题简直不能太合适.</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bouncer</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">  <span class="comment">// 请把你的代码写在这里</span></div><div class="line">  <span class="keyword">var</span> a = arr.filter(<span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">Boolean</span>(x);</div><div class="line">  &#125;);</div><div class="line">  </div><div class="line">  <span class="keyword">return</span> a;</div><div class="line">&#125;</div><div class="line"></div><div class="line">bouncer([<span class="number">7</span>, <span class="string">"ate"</span>, <span class="string">""</span>, <span class="literal">false</span>, <span class="number">9</span>]);</div></pre></td></tr></table></figure>
-<p>&#8195;<strong>摘至<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Boolean" target="_blank" rel="external">MDN.Boolean</a> 的描述: </strong></p>
-<blockquote>
-<p>如果Boolean构造函数的参数不是一个布尔值,则该参数会被转换成一个布尔值.<strong>如果参数是 0, -0,  null, false, NaN, undefined, 或者空字符串 (“”),生成的Boolean对象的值为false. </strong>其他任何值,包括任何对象或者字符串”false”, 都会创建一个值为true的Boolean对象.</p>
-</blockquote>
 
       
     </div>
@@ -454,6 +431,22 @@
         
       
 
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/19/Basic Algorithm Scripting - 2/" rel="prev" title="Basic Algorithm Scripting / 数组方法深入研究之二 (基础算法)">
+                Basic Algorithm Scripting / 数组方法深入研究之二 (基础算法) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
 
       
@@ -522,7 +515,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -599,7 +592,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Palindromes-回文处理"><span class="nav-number">1.</span> <span class="nav-text">Palindromes(回文处理)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Title-Case-a-Sentence-首个单词字母大写"><span class="nav-number">2.</span> <span class="nav-text">Title Case a Sentence(首个单词字母大写)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Return-Largest-Numbers-in-Arrays-返回数组最大的数字"><span class="nav-number">3.</span> <span class="nav-text">Return Largest Numbers in Arrays(返回数组最大的数字)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Confirm-the-Ending-检查字符串结尾"><span class="nav-number">4.</span> <span class="nav-text">Confirm the Ending(检查字符串结尾)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Repeat-a-string-repeat-a-string-重复输出字符串"><span class="nav-number">5.</span> <span class="nav-text">Repeat a string repeat a string(重复输出字符串)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chunky-Monkey-分割数组"><span class="nav-number">6.</span> <span class="nav-text">Chunky Monkey(分割数组)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Falsy-Bouncer-过滤数组假值"><span class="nav-number">7.</span> <span class="nav-text">Falsy Bouncer(过滤数组假值)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Palindromes-回文处理"><span class="nav-number">1.</span> <span class="nav-text">Palindromes(回文处理)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Title-Case-a-Sentence-首个单词字母大写"><span class="nav-number">2.</span> <span class="nav-text">Title Case a Sentence(首个单词字母大写)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Return-Largest-Numbers-in-Arrays-返回数组最大的数字"><span class="nav-number">3.</span> <span class="nav-text">Return Largest Numbers in Arrays(返回数组最大的数字)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Confirm-the-Ending-检查字符串结尾"><span class="nav-number">4.</span> <span class="nav-text">Confirm the Ending(检查字符串结尾)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Repeat-a-string-repeat-a-string-重复输出字符串"><span class="nav-number">5.</span> <span class="nav-text">Repeat a string repeat a string(重复输出字符串)</span></a></li></ol></div>
             
 
           </div>
