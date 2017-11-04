@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -103,7 +103,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
@@ -212,6 +212,26 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
@@ -228,6 +248,16 @@
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
           </a>
         </li>
       
@@ -250,6 +280,136 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Anron">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://tc.ffsky.net/images/2017/05/16/0780b8f83fed50d5dd538ae90aa20b06.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="兔子の部屋 *´ㅅ`)""">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/" itemprop="url">
+                  通过sourcetree实现远程仓库与本地仓库关联
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-03T21:55:50+08:00">
+                2017-11-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&emsp;&emsp;sourceTree 是当下比较流行的git客户端,简化了如何与Git存储库进行交互，从而可以专注于编码, 可以通过简单的Git GUI可视化来管理仓库, 提高效率.</p>
+<p><img src="http://tc.ffsky.net/images/2017/11/03/a8ad904c186d87984da6a60b9f95f023.png" alt="sourcetree"></p>
+<p>&emsp;&emsp;题归正转, 今天我们来说说如何通过sourcetree来将本地仓库与远程仓库关联.</p>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>&emsp;首先把本地仓库初始化.</p>
+<p><img src="https://ws1.sinaimg.cn/large/e48206bbgy1fl5wume90gj20nl01zdfq.jpg" alt="init"></p>
+<p>&emsp;再添加到sourcetree上<br><img src="https://ws1.sinaimg.cn/large/e48206bbgy1fl5wuo5jz1j21250hxq58.jpg" alt="add"></p>
+<p>&emsp;进入github.com -&gt; your profile -&gt; repositories(仓库) -&gt; New<br><img src="https://ws1.sinaimg.cn/large/e48206bbgy1fl5wueipbbj20p00gcwfb.jpg" alt="add-2"></p>
+<p>&emsp;填写仓库信息, 复制仓库链接<br><img src="https://ws1.sinaimg.cn/large/e48206bbgy1fl5wup0b9ej20re0lj40c.jpg" alt="add-3"><br><img src="https://ws1.sinaimg.cn/large/e48206bbgy1fl5wunssdlj20z40fe3zz.jpg" alt="add-4"></p>
+<p>&emsp;设置 -&gt; 添加 -&gt; 填写信息 -&gt; 确定<br><img src="https://ws1.sinaimg.cn/large/e48206bbgy1fl5wuo5jz1j21250hxq58.jpg" alt="add-1"><br><img src="https://ws1.sinaimg.cn/large/e48206bbgy1fl5wunjlctj20ma0aqab7.jpg" alt="add-5"></p>
+<p>&emsp;然后就可以提交到github了~<br><img src="https://ws1.sinaimg.cn/large/e48206bbgy1fl5wup3i81j212q0k40uv.jpg" alt="add-6"></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -638,7 +798,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -646,6 +806,15 @@
 
           
 
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
           
 
         </nav>
@@ -737,7 +906,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Mist
   </a>
 </div>
 

@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="sourcetree,git," />
 
 
 
@@ -87,15 +87,27 @@
 
 
 
-<meta name="description" content="Share their favorite things.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="兔子の部屋 *´ㅅ`)&quot;&quot;">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta name="description" content="&amp;emsp;&amp;emsp;sourceTree 是当下比较流行的git客户端,简化了如何与Git存储库进行交互，从而可以专注于编码, 可以通过简单的Git GUI可视化来管理仓库, 提高效率.  &amp;emsp;&amp;emsp;题归正转, 今天我们来说说如何通过sourcetree来将本地仓库与远程仓库关联. 步骤&amp;emsp;首先把本地仓库初始化.  &amp;emsp;再添加到sourcetree上 &amp;emsp;">
+<meta name="keywords" content="sourcetree,git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通过sourcetree实现远程仓库与本地仓库关联">
+<meta property="og:url" content="http://yoursite.com/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/index.html">
 <meta property="og:site_name" content="兔子の部屋 *´ㅅ`)&quot;&quot;">
-<meta property="og:description" content="Share their favorite things.">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;sourceTree 是当下比较流行的git客户端,简化了如何与Git存储库进行交互，从而可以专注于编码, 可以通过简单的Git GUI可视化来管理仓库, 提高效率.  &amp;emsp;&amp;emsp;题归正转, 今天我们来说说如何通过sourcetree来将本地仓库与远程仓库关联. 步骤&amp;emsp;首先把本地仓库初始化.  &amp;emsp;再添加到sourcetree上 &amp;emsp;">
+<meta property="og:image" content="http://tc.ffsky.net/images/2017/11/03/a8ad904c186d87984da6a60b9f95f023.png">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/e48206bbgy1fl5wume90gj20nl01zdfq.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/e48206bbgy1fl5wuo5jz1j21250hxq58.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/e48206bbgy1fl5wueipbbj20p00gcwfb.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/e48206bbgy1fl5wup0b9ej20re0lj40c.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/e48206bbgy1fl5wunssdlj20z40fe3zz.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/e48206bbgy1fl5wuo5jz1j21250hxq58.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/e48206bbgy1fl5wunjlctj20ma0aqab7.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/e48206bbgy1fl5wup3i81j212q0k40uv.jpg">
+<meta property="og:updated_time" content="2017-11-04T04:03:50.364Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="兔子の部屋 *´ㅅ`)&quot;&quot;">
-<meta name="twitter:description" content="Share their favorite things.">
+<meta name="twitter:title" content="通过sourcetree实现远程仓库与本地仓库关联">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;sourceTree 是当下比较流行的git客户端,简化了如何与Git存储库进行交互，从而可以专注于编码, 可以通过简单的Git GUI可视化来管理仓库, 提高效率.  &amp;emsp;&amp;emsp;题归正转, 今天我们来说说如何通过sourcetree来将本地仓库与远程仓库关联. 步骤&amp;emsp;首先把本地仓库初始化.  &amp;emsp;再添加到sourcetree上 &amp;emsp;">
+<meta name="twitter:image" content="http://tc.ffsky.net/images/2017/11/03/a8ad904c186d87984da6a60b9f95f023.png">
 
 
 
@@ -123,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/"/>
 
 
 
 
 
-  <title> 归档 | 兔子の部屋 *´ㅅ`)"" </title>
+  <title> 通过sourcetree实现远程仓库与本地仓库关联 | 兔子の部屋 *´ㅅ`)"" </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -164,7 +176,7 @@
     
   
 
-  <div class="container sidebar-position-left  page-archive  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -278,140 +290,183 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 3 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
-
-      
-      
-      
-
-      
-        
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
-        </div>
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/" itemprop="url">
-              
-                <span itemprop="name">通过sourcetree实现远程仓库与本地仓库关联</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-03T21:55:50+08:00"
-              content="2017-11-03" >
-          11-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/07/19/Basic Algorithm Scripting - 2/" itemprop="url">
-              
-                <span itemprop="name">Basic Algorithm Scripting / 数组方法深入研究之二 (基础算法)</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-07-19T19:12:09+08:00"
-              content="2017-07-19" >
-          07-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/07/16/Basic Algorithm Scripting - 1/" itemprop="url">
-              
-                <span itemprop="name">Basic Algorithm Scripting / 数组方法深入研究之一 (基础算法)</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-07-16T15:09:34+08:00"
-              content="2017-07-16" >
-          07-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
 
   
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Anron">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://tc.ffsky.net/images/2017/05/16/0780b8f83fed50d5dd538ae90aa20b06.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="兔子の部屋 *´ㅅ`)""">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                通过sourcetree实现远程仓库与本地仓库关联
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-03T21:55:50+08:00">
+                2017-11-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&emsp;&emsp;sourceTree 是当下比较流行的git客户端,简化了如何与Git存储库进行交互，从而可以专注于编码, 可以通过简单的Git GUI可视化来管理仓库, 提高效率.</p>
+<p><img src="http://tc.ffsky.net/images/2017/11/03/a8ad904c186d87984da6a60b9f95f023.png" alt="sourcetree"></p>
+<p>&emsp;&emsp;题归正转, 今天我们来说说如何通过sourcetree来将本地仓库与远程仓库关联.</p>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>&emsp;首先把本地仓库初始化.</p>
+<p><img src="https://ws1.sinaimg.cn/large/e48206bbgy1fl5wume90gj20nl01zdfq.jpg" alt="init"></p>
+<p>&emsp;再添加到sourcetree上<br><img src="https://ws1.sinaimg.cn/large/e48206bbgy1fl5wuo5jz1j21250hxq58.jpg" alt="add"></p>
+<p>&emsp;进入github.com -&gt; your profile -&gt; repositories(仓库) -&gt; New<br><img src="https://ws1.sinaimg.cn/large/e48206bbgy1fl5wueipbbj20p00gcwfb.jpg" alt="add-2"></p>
+<p>&emsp;填写仓库信息, 复制仓库链接<br><img src="https://ws1.sinaimg.cn/large/e48206bbgy1fl5wup0b9ej20re0lj40c.jpg" alt="add-3"><br><img src="https://ws1.sinaimg.cn/large/e48206bbgy1fl5wunssdlj20z40fe3zz.jpg" alt="add-4"></p>
+<p>&emsp;设置 -&gt; 添加 -&gt; 填写信息 -&gt; 确定<br><img src="https://ws1.sinaimg.cn/large/e48206bbgy1fl5wuo5jz1j21250hxq58.jpg" alt="add-1"><br><img src="https://ws1.sinaimg.cn/large/e48206bbgy1fl5wunjlctj20ma0aqab7.jpg" alt="add-5"></p>
+<p>&emsp;然后就可以提交到github了~<br><img src="https://ws1.sinaimg.cn/large/e48206bbgy1fl5wup3i81j212q0k40uv.jpg" alt="add-6"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Anron WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/sourcetree/" rel="tag"># sourcetree</a>
+          
+            <a href="/tags/git/" rel="tag"># git</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/19/Basic Algorithm Scripting - 2/" rel="next" title="Basic Algorithm Scripting / 数组方法深入研究之二 (基础算法)">
+                <i class="fa fa-chevron-left"></i> Basic Algorithm Scripting / 数组方法深入研究之二 (基础算法)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -419,6 +474,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -438,8 +497,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://tc.ffsky.net/images/2017/05/16/0780b8f83fed50d5dd538ae90aa20b06.jpg"
@@ -530,6 +598,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤"><span class="nav-number">1.</span> <span class="nav-text">步骤</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -642,11 +726,9 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
 
 
   
