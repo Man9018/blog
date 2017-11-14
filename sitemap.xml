@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/07/19/Basic%20Algorithm%20Scripting%20-%202/</loc>
+    
+    <lastmod>2017-11-14T01:48:42.715Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/07/16/Basic%20Algorithm%20Scripting%20-%201/</loc>
+    
+    <lastmod>2017-11-14T01:45:19.740Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/about/index.html</loc>
     
     <lastmod>2017-11-14T01:01:34.472Z</lastmod>
@@ -12,20 +26,6 @@
     <loc>http://yoursite.com/2017/11/06/Basic%20Algorithm%20Scripting%20-%203/</loc>
     
     <lastmod>2017-11-06T04:30:32.170Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/07/16/Basic%20Algorithm%20Scripting%20-%201/</loc>
-    
-    <lastmod>2017-11-04T15:52:35.801Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/07/19/Basic%20Algorithm%20Scripting%20-%202/</loc>
-    
-    <lastmod>2017-11-04T15:51:58.163Z</lastmod>
     
   </url>
   
