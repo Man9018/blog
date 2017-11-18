@@ -4,6 +4,52 @@
 
     
   <url>
+    <loc>http://yoursite.com/blog/2017/11/17/Javascript%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90-%E8%A3%81%E5%89%AA%E5%9B%BE%E7%89%87%E6%95%88%E6%9E%9C/</loc>
+    <lastmod>2017-11-18T14:09:31.411Z</lastmod>
+    <data>
+        <display>
+        <title>Javascript深入理解-裁剪图片效果</title>
+        <pubTime>2017-11-17T08:31:03.000Z</pubTime>
+        
+        <tag>javascript</tag>
+         
+        <tag>原理解析</tag>
+         
+         
+           
+             
+              <breadCrumb title="javascript" url="http://yoursite.com/blog/categories/javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/blog/2017/11/06/Basic%20Algorithm%20Scripting%20-%203/</loc>
+    <lastmod>2017-11-18T14:09:16.199Z</lastmod>
+    <data>
+        <display>
+        <title>数组方法深入研究之三 (基础算法)</title>
+        <pubTime>2017-11-06T04:03:28.613Z</pubTime>
+        
+        <tag>算法</tag>
+         
+        <tag>ffc</tag>
+         
+        <tag>test</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="http://yoursite.com/blog/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/blog/2017/07/19/Basic%20Algorithm%20Scripting%20-%202/</loc>
     <lastmod>2017-11-14T01:48:42.715Z</lastmod>
     <data>
@@ -51,30 +97,6 @@
     </url>
 
     
-    
-  <url>
-    <loc>http://yoursite.com/blog/2017/11/06/Basic%20Algorithm%20Scripting%20-%203/</loc>
-    <lastmod>2017-11-06T04:30:32.170Z</lastmod>
-    <data>
-        <display>
-        <title>数组方法深入研究之三 (基础算法)</title>
-        <pubTime>2017-11-06T04:03:28.613Z</pubTime>
-        
-        <tag>算法</tag>
-         
-        <tag>ffc</tag>
-         
-        <tag>test</tag>
-         
-         
-           
-             
-              <breadCrumb title="算法" url="http://yoursite.com/blog/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
   <url>
     <loc>http://yoursite.com/blog/2017/11/03/%E9%80%9A%E8%BF%87sourcetree%E5%AE%9E%E7%8E%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E4%B8%8E%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E5%85%B3%E8%81%94/</loc>

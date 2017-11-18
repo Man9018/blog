@@ -99,7 +99,7 @@
 <meta property="og:site_name" content="usake - 实验台">
 <meta property="og:description" content="今天让继续来学习数组方法的用法~">
 <meta property="og:image" content="http://yoursite.com/blog/2017/11/06/Basic%20Algorithm%20Scripting%20-%203/code.png">
-<meta property="og:updated_time" content="2017-11-06T04:30:32.170Z">
+<meta property="og:updated_time" content="2017-11-18T14:09:16.199Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数组方法深入研究之三 (基础算法)">
 <meta name="twitter:description" content="今天让继续来学习数组方法的用法~">
@@ -431,6 +431,8 @@
 </blockquote>
 <p>&emsp;&emsp;传递给一个包含两个数字的数组。返回这两个数字和<strong>它们之间所有数字的和</strong>。最小的数字并非总在最前面。<br>比如传递<code>[1, 4]</code>会返回<code>10</code>, 即<code>1 + 2 + 3 + 4</code>.</p>
 <h3 id="非数组方法"><a href="#非数组方法" class="headerlink" title="非数组方法"></a>非数组方法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">sumAll</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> max = <span class="built_in">Math</span>.max.apply(<span class="literal">null</span>, arr);</div><div class="line">  <span class="keyword">var</span> min = <span class="built_in">Math</span>.min.apply(<span class="literal">null</span>,arr);</div><div class="line">  <span class="keyword">var</span> num = max - min;</div><div class="line">  <span class="keyword">var</span> total = min;</div><div class="line"></div><div class="line">  <span class="keyword">while</span>(num) &#123;</div><div class="line">    num--;</div><div class="line">    total += ++min;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> total;</div><div class="line">&#125;</div><div class="line"></div><div class="line">sumAll([<span class="number">1</span>, <span class="number">1</span>]);</div></pre></td></tr></table></figure>
+<p><strong> &lt;– 未待续 –&gt; </strong></p>
+
       
     </div>
 
@@ -501,6 +503,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2017/11/17/Javascript深入解析-裁剪图片效果/" rel="prev" title="Javascript深入理解-裁剪图片效果">
+                Javascript深入理解-裁剪图片效果 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -617,7 +623,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -628,7 +634,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/blog/categories/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -639,7 +645,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
