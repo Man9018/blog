@@ -81,6 +81,8 @@
 
 
 
+  <link rel="alternate" href="/blog/atom.xml" title="usake - 实验台" type="application/atom+xml" />
+
 
 
 
@@ -97,6 +99,7 @@
 <meta property="og:url" content="http://yoursite.com/tags/git/index.html">
 <meta property="og:site_name" content="usake - 实验台">
 <meta property="og:description" content="Share their favorite things.">
+<meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="usake - 实验台">
 <meta name="twitter:description" content="Share their favorite things.">
@@ -386,7 +389,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -408,7 +411,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -416,6 +419,13 @@
 
         </nav>
 
+        
+          <div class="feed-link motion-element">
+            <a href="/blog/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
         
 
         <div class="links-of-author motion-element">
