@@ -4,11 +4,26 @@
 
     
   <url>
-    <loc>http://yoursite.com/blog/2017/11/17/Javascript%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90-%E8%A3%81%E5%89%AA%E5%9B%BE%E7%89%87%E6%95%88%E6%9E%9C/</loc>
-    <lastmod>2017-11-21T01:50:30.512Z</lastmod>
+    <loc>http://yoursite.com/blog/2017/11/23/%E5%9C%A8Chrome%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E8%BE%93%E5%85%A5URL%E5%9B%9E%E8%BD%A6%E5%90%8E%EF%BC%8C%E4%B8%AD%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/</loc>
+    <lastmod>2017-11-26T14:51:15.262Z</lastmod>
     <data>
         <display>
-        <title>Javascript深入理解-裁剪图片效果</title>
+        <title>在浏览器地址输入URL回车后，中间发生了什么？</title>
+        <pubTime>2017-11-23T09:07:47.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/blog/2017/11/17/Javascript%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90-%E8%A3%81%E5%89%AA%E5%9B%BE%E7%89%87%E6%95%88%E6%9E%9C/</loc>
+    <lastmod>2017-11-22T01:31:49.065Z</lastmod>
+    <data>
+        <display>
+        <title>Javascript深入理解-裁剪图片效果(选取框)</title>
         <pubTime>2017-11-17T08:31:03.000Z</pubTime>
         
         <tag>javascript</tag>
