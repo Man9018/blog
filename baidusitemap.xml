@@ -4,12 +4,12 @@
 
     
   <url>
-    <loc>http://yoursite.com/blog/2017/11/29/%E6%B5%85%E8%B0%88Normalize%E4%B8%8Ereset/</loc>
-    <lastmod>2017-11-29T05:40:09.641Z</lastmod>
+    <loc>http://yoursite.com/blog/2017/10/15/%E6%B5%85%E8%B0%88Normalize%E4%B8%8Ereset/</loc>
+    <lastmod>2017-11-29T09:40:43.997Z</lastmod>
     <data>
         <display>
         <title>浅谈Normalize与reset</title>
-        <pubTime>2017-11-29T01:03:28.000Z</pubTime>
+        <pubTime>2017-10-15T01:03:28.000Z</pubTime>
         
         <tag>CSS</tag>
          
@@ -18,6 +18,23 @@
              
               <breadCrumb title="CSS" url="http://yoursite.com/blog/categories/CSS/"/>
           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/blog/2017/11/29/Vue-v-for-%E9%81%8D%E5%8E%86%E7%BB%91%E5%AE%9Atoggle-icon-%E5%8A%A8%E6%80%81%E5%88%87%E6%8D%A2action/</loc>
+    <lastmod>2017-11-29T09:38:39.847Z</lastmod>
+    <data>
+        <display>
+        <title>Vue "v-for"遍历绑定toggle icon, 动态切换action</title>
+        <pubTime>2017-11-29T09:12:43.000Z</pubTime>
+        
+        <tag>vue</tag>
+         
+         
+           
         </display>
     </data>
     </url>
@@ -57,9 +74,9 @@
         <title>谈谈npm包里的 install --save 和 install --save-dev之间的区别</title>
         <pubTime>2017-11-27T05:32:28.000Z</pubTime>
         
-        <tag>npm</tag>
-         
         <tag>JavaScript</tag>
+         
+        <tag>npm</tag>
          
          
            
