@@ -75,7 +75,7 @@
 <link href="/blog/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="sourcetree,git," />
+  <meta name="keywords" content="npm,JavaScript," />
 
 
 
@@ -93,28 +93,22 @@
 
 
 
-<meta name="description" content="&amp;emsp;&amp;emsp;sourceTree 是当下比较流行的git客户端,简化了如何与Git存储库进行交互，从而可以专注于编码, 可以通过简单的Git GUI可视化来管理仓库, 提高效率.  &amp;emsp;&amp;emsp;题归正转, 今天我们来说说如何通过sourcetree来将本地仓库与远">
-<meta name="keywords" content="sourcetree,git">
+<meta name="description" content="当我们使用npm进行开发时经常能遇到需要安装依赖包, 那么npm install --save和npm install --save-dev之间到底有什么区别呢? 现在来探究一番.">
+<meta name="keywords" content="npm,JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="通过sourcetree实现远程仓库与本地仓库关联">
-<meta property="og:url" content="http://yoursite.com/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/index.html">
+<meta property="og:title" content="谈谈npm包里的 install --save 和 install --save-dev之间的区别">
+<meta property="og:url" content="http://yoursite.com/2017/11/27/谈谈npm包里的 install --save 和 install --save-dev之间的区别/index.html">
 <meta property="og:site_name" content="usake - 实验台">
-<meta property="og:description" content="&amp;emsp;&amp;emsp;sourceTree 是当下比较流行的git客户端,简化了如何与Git存储库进行交互，从而可以专注于编码, 可以通过简单的Git GUI可视化来管理仓库, 提高效率.  &amp;emsp;&amp;emsp;题归正转, 今天我们来说说如何通过sourcetree来将本地仓库与远程仓库关联.">
+<meta property="og:description" content="当我们使用npm进行开发时经常能遇到需要安装依赖包, 那么npm install --save和npm install --save-dev之间到底有什么区别呢? 现在来探究一番.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://tc.ffsky.net/images/2017/11/03/a8ad904c186d87984da6a60b9f95f023.png">
-<meta property="og:image" content="http://yoursite.com/blog/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/init.png">
-<meta property="og:image" content="http://yoursite.com/blog/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/add.png">
-<meta property="og:image" content="http://yoursite.com/blog/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/add-02.png">
-<meta property="og:image" content="http://yoursite.com/blog/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/add-03.png">
-<meta property="og:image" content="http://yoursite.com/blog/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/add-04.png">
-<meta property="og:image" content="http://yoursite.com/blog/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/add-01.png">
-<meta property="og:image" content="http://yoursite.com/blog/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/add-05.png">
-<meta property="og:image" content="http://yoursite.com/blog/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/add-06.png">
-<meta property="og:updated_time" content="2017-11-04T15:47:26.334Z">
+<meta property="og:image" content="http://yoursite.com/blog/2017/11/27/谈谈npm包里的%20install%20--save%20和%20install%20--save-dev之间的区别/npm.jpg">
+<meta property="og:image" content="http://yoursite.com/blog/2017/11/27/谈谈npm包里的%20install%20--save%20和%20install%20--save-dev之间的区别/dev.png">
+<meta property="og:image" content="http://yoursite.com/blog/2017/11/27/谈谈npm包里的%20install%20--save%20和%20install%20--save-dev之间的区别/dep.png">
+<meta property="og:updated_time" content="2017-11-27T05:58:05.896Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="通过sourcetree实现远程仓库与本地仓库关联">
-<meta name="twitter:description" content="&amp;emsp;&amp;emsp;sourceTree 是当下比较流行的git客户端,简化了如何与Git存储库进行交互，从而可以专注于编码, 可以通过简单的Git GUI可视化来管理仓库, 提高效率.  &amp;emsp;&amp;emsp;题归正转, 今天我们来说说如何通过sourcetree来将本地仓库与远程仓库关联.">
-<meta name="twitter:image" content="http://tc.ffsky.net/images/2017/11/03/a8ad904c186d87984da6a60b9f95f023.png">
+<meta name="twitter:title" content="谈谈npm包里的 install --save 和 install --save-dev之间的区别">
+<meta name="twitter:description" content="当我们使用npm进行开发时经常能遇到需要安装依赖包, 那么npm install --save和npm install --save-dev之间到底有什么区别呢? 现在来探究一番.">
+<meta name="twitter:image" content="http://yoursite.com/blog/2017/11/27/谈谈npm包里的%20install%20--save%20和%20install%20--save-dev之间的区别/npm.jpg">
 
 
 
@@ -142,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/11/27/谈谈npm包里的 install --save 和 install --save-dev之间的区别/"/>
 
 
 
 
 
-  <title> 通过sourcetree实现远程仓库与本地仓库关联 | usake - 实验台 </title>
+  <title> 谈谈npm包里的 install --save 和 install --save-dev之间的区别 | usake - 实验台 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -329,7 +323,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2017/11/27/谈谈npm包里的 install --save 和 install --save-dev之间的区别/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Anron">
@@ -350,7 +344,7 @@
             
             
               
-                通过sourcetree实现远程仓库与本地仓库关联
+                谈谈npm包里的 install --save 和 install --save-dev之间的区别
               
             
           </h1>
@@ -365,8 +359,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-03T21:55:50+08:00">
-                2017-11-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-27T13:32:28+08:00">
+                2017-11-27
               </time>
             
 
@@ -376,28 +370,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/Git/" itemprop="url" rel="index">
-                    <span itemprop="name">Git</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -406,9 +378,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/blog/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/#comments" itemprop="discussionUrl">
+                <a href="/blog/2017/11/27/谈谈npm包里的 install --save 和 install --save-dev之间的区别/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/11/27/谈谈npm包里的 install --save 和 install --save-dev之间的区别/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -434,17 +406,12 @@
       
 
       
-        <p>&emsp;&emsp;sourceTree 是当下比较流行的git客户端,简化了如何与Git存储库进行交互，从而可以专注于编码, 可以通过简单的Git GUI可视化来管理仓库, 提高效率.</p>
-<p><img src="http://tc.ffsky.net/images/2017/11/03/a8ad904c186d87984da6a60b9f95f023.png" alt="sourcetree"></p>
-<p>&emsp;&emsp;题归正转, 今天我们来说说如何通过sourcetree来将本地仓库与远程仓库关联.</p>
-<a id="more"></a>
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>&emsp;首先把本地仓库初始化.</p>
-<img src="/blog/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/init.png">
-<p>&emsp;再添加到sourcetree上<br><img src="/blog/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/add.png"></p>
-<p>&emsp;进入github.com -&gt; your profile -&gt; repositories(仓库) -&gt; New<br><img src="/blog/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/add-02.png"></p>
-<p>&emsp;填写仓库信息, 复制仓库链接<br><img src="/blog/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/add-03.png"><br><img src="/blog/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/add-04.png"></p>
-<p>&emsp;设置 -&gt; 添加 -&gt; 填写信息 -&gt; 确定<br><img src="/blog/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/add-01.png"><br><img src="/blog/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/add-05.png"></p>
-<p>&emsp;然后就可以提交到github了~<br><img src="/blog/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/add-06.png"></p>
+        <img src="/blog/2017/11/27/谈谈npm包里的%20install%20--save%20和%20install%20--save-dev之间的区别/npm.jpg">
+<p>当我们使用<code>npm</code>进行开发时经常能遇到需要安装依赖包, 那么<code>npm install --save</code>和<code>npm install --save-dev</code>之间到底有什么区别呢? 现在来探究一番.<br><a id="more"></a></p>
+<h3 id="–save-dev"><a href="#–save-dev" class="headerlink" title="–save-dev"></a>–save-dev</h3><p>实际上<code>--save-dev</code>是开发时候所依赖的东西，如我们想添加自动添加前缀, 那么就安装<code>autoprefixer</code>到开发依赖去. 也就是编译打包后<code>autoprefixer</code>已经帮我们添加了相应的浏览器前缀, 那么我们之后就不需要依赖他了. 所以<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install babel --save-dev</div></pre></td></tr></table></figure></p>
+<p>在这里我们可以看到已经放进<code>package.json</code>中的<code>devDependencies</code>(生产依赖)中去了.<br><img src="/blog/2017/11/27/谈谈npm包里的%20install%20--save%20和%20install%20--save-dev之间的区别/dev.png"></p>
+<h3 id="–save"><a href="#–save" class="headerlink" title="–save"></a>–save</h3><p><code>--save</code>就是你发布之后还依赖的东西。 如果编译打包后还需要依赖的库, 如<code>vue</code>, 所以就放进了<code>dependencies</code>中.<br><img src="/blog/2017/11/27/谈谈npm包里的%20install%20--save%20和%20install%20--save-dev之间的区别/dep.png"></p>
+<p>两者需要安装的依赖其实都可以在<code>package.json</code>中手动输入相应的库和版本号, 然后使用<code>npm install</code>就能进行安装<code>package.json</code>中的所有依赖了~</p>
 
       
     </div>
@@ -490,9 +457,9 @@
       
         <div class="post-tags">
           
-            <a href="/blog/tags/sourcetree/" rel="tag"># sourcetree</a>
+            <a href="/blog/tags/npm/" rel="tag"># npm</a>
           
-            <a href="/blog/tags/git/" rel="tag"># git</a>
+            <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
           
         </div>
       
@@ -505,8 +472,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2017/07/19/Basic Algorithm Scripting - 2/" rel="next" title="数组方法深入研究之二 (基础算法)">
-                <i class="fa fa-chevron-left"></i> 数组方法深入研究之二 (基础算法)
+              <a href="/blog/2017/11/23/在Chrome浏览器地址输入URL回车后，中间发生了什么？/" rel="next" title="在浏览器地址输入URL回车后，中间发生了什么？">
+                <i class="fa fa-chevron-left"></i> 在浏览器地址输入URL回车后，中间发生了什么？
               </a>
             
           </div>
@@ -515,8 +482,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/2017/11/06/Basic Algorithm Scripting - 3/" rel="prev" title="数组方法深入研究之三 (基础算法)">
-                数组方法深入研究之三 (基础算法) <i class="fa fa-chevron-right"></i>
+              <a href="/blog/2017/11/29/浅谈Normalize与reset/" rel="prev" title="浅谈Normalize与reset">
+                浅谈Normalize与reset <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -769,7 +736,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤"><span class="nav-number">1.</span> <span class="nav-text">步骤</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#–save-dev"><span class="nav-number">1.</span> <span class="nav-text">–save-dev</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#–save"><span class="nav-number">2.</span> <span class="nav-text">–save</span></a></li></ol></div>
             
 
           </div>
@@ -911,9 +878,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/';
-          this.page.identifier = '2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/';
-          this.page.title = '通过sourcetree实现远程仓库与本地仓库关联';
+          this.page.url = 'http://yoursite.com/2017/11/27/谈谈npm包里的 install --save 和 install --save-dev之间的区别/';
+          this.page.identifier = '2017/11/27/谈谈npm包里的 install --save 和 install --save-dev之间的区别/';
+          this.page.title = '谈谈npm包里的 install --save 和 install --save-dev之间的区别';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://.disqus.com/embed.js';
