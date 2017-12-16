@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Vue项目中Axios报错Promise未定义及IE10报语法错误的解决方案]]></title>
+    <url>%2Fblog%2F2017%2F12%2F15%2FVue%E9%A1%B9%E7%9B%AE%E4%B8%ADAxios%E6%8A%A5%E9%94%99Pomise%E6%9C%AA%E5%AE%9A%E4%B9%89%E5%8F%8AIE10%E6%8A%A5%E8%AF%AD%E6%B3%95%E9%94%99%E8%AF%AF%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%2F</url>
+    <content type="text"><![CDATA[关于IE11及以下版本无法使用Promise还有IE10下报错的问题 Promise未定义 ?在使用Axios开发时, IE11及以下版本报错会报Promise未定义的错误. 这是因为axios本质上是封装了ES6语法的promise,而promise在IE上并不兼容. 然而说到js兼容, 这时候我们又能联想到babel.. 没错, babel中有一个工具叫做babel-Polyfill, 它会仿效一个完整的ES2015+环境，并意图运行于一个应用中而不是一个库/工具. 其实食用的方式也很简单. 我们将babel-polyfill装进我们项目依赖中. 这里值得注意的是, 安装的时候需要安装到dependency(生产依赖)中, 而不是devDependency(开发依赖)(tips.关于两者的区别, 我以前的文章有专门讲过, 感兴趣的可以看一下) 1npm install --save babel-polyfill 首先在mian.js的顶部引入import &quot;babel-polyfill&quot;;确保能够最先加载, 随后我们在build目录下webpack.config.js修改配置, 将app使用babel-polyfill进行编译. 这时候我们再重新编译, 就会发现promise未定义的错误就以及消失了12345module.exports = &#123; entry: &#123; app: ["babel-polyfill", './src/main.js'] &#125;&#125; 你以为文章到这里就结束了吗…. 随即我们切换到IE10下进行测试. 你会发现, 又冒出了一个报错.. Emmm, 解决一个又来一个, 惊不惊喜意不意外? 语法错误当你在IE10下看到提示语法错误的时, 这时候你就得去检查检查package.json下 webpack-dev-server版本是否高于2.6.1. 出现这个报错主要是因为项目中使用了const等语法, 然而IE11以下并不认得ES6语法语法.这个问题只有在开发模式才会出现, 只要es6转码后，打包放到服务器上，就没有问题了. 如果你想在开发阶段在IE10下测试你的代码, 你可以选择降低版本到2.6.1上, 问题就解决了.]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+        <tag>IE兼容性错误</tag>
+        <tag>解决方案</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[浅谈前端所能做的SEO]]></title>
     <url>%2Fblog%2F2017%2F12%2F05%2F%E6%B5%85%E8%B0%88%E5%89%8D%E7%AB%AF%E6%89%80%E8%83%BD%E5%81%9A%E7%9A%84SEO%2F</url>
     <content type="text"><![CDATA[SEO, 就是搜索引擎优化(Search Engine Optimization)的缩写, SEO优化是专门利用搜索引擎的搜索规则来提高网站在搜索引擎内的自然排名的一种方式. 能对搜索引擎的小蜘蛛更加友好. 那么前端能做哪些SEO的优化呢? SEO基础三要素我们进入某个网页打开调试工具, 在&lt;head&gt;标签里我们能的看到&lt;title&gt;标签, keywords和description的&lt;meta&gt;标签. 就是最基础的SEO三要素. 其中&lt;title&gt;标签代表着页面的标题, &lt;meta keywords&gt;是网站的关键字, &lt;meta Description&gt;则是网页的描述, 即对这些关联字进行了扩展.昂, 现在我们知道了这三要素可以SEO优化, 那我们就疯狂的在关键字里加一堆上去, 越多越好?当然, 并不是这样的.这些都有限制的, 内容不可过长, 也不能过分的堆砌关键字, 每个页面的description也应该不同. 比如下方张老师的博客为例. 网站构造布局优化对网站布局进行SEO优化, 控制首页链接数量, 扁平化的目录层次(最多三层目录层次), 然后对导航SEO优化. 编写语义化代码我们常说, 要养成编写语义化代码的习惯. 那什么是语义化呢? 就是既要人看得懂, 也要机器能理解你的代码.其实我们常用的HTML标签很多都是带语义化的. 如: H1 ~ H6都是用于表示标题 UL标签多用于无序列表 Ol标签用于有序列表 DL标签用于定义数据列表 Em, strong表示强调等 站内优化 &lt;a&gt; - 标签优化, 外链上加上rel=”nofollow”, 让小蜘蛛别往外面爬 &lt;h1&gt; - 正文标题使用h1 &lt;img&gt; - 标签使用alt说明, alt对图片起着一个注释的作用 &lt;strong&gt;``&lt;em&gt;与&lt;b&gt;``&lt;i&gt;标签&lt;strong&gt;是权重标签的代表, 在搜索引擎中能够得到高度的重视, 他能突出关键词, &lt;b&gt;与&lt;strong&gt;的效果是一样的, 但是在SEO中并不会起到很好的效果, 因此不推荐使用.&lt;em&gt;表示斜体, 权重标签的重要度仅次于&lt;strong&gt;. 一些布局小技巧 重要内容HTML代码放在最前面, 小蜘蛛抓取HTML内容是按照文档流从上往下抓取的. 利用这个特点, 我们可以将重要的HTML放在上面, 然后可以通过CSS来进行布局. 重要的内容尽量不要用JS输出, 小蜘蛛看不懂JavaScript~ 尽少使用iframe框架. 小蜘蛛是不会读取里面的网页的 谨慎使用display: none; 小蜘蛛会过滤掉display: none里的内容 不断的精简代码, 能使用一个标签就不要用两个标签 总结SEO其实面对的是搜索引擎, 然后搜索引擎再将搜索的结果, 根据权重展现给用户. 文中讲的只是一些基础的知识, 除此之外还有robots.txt, 站外友链等, 这里就不详谈了. 平时前端er日常工作中应该培养好的编程习惯, 了解了SEO的规则, 可以隐性给自己页面提升质量呢~]]></content>
@@ -17,9 +30,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[谈谈npm包里的 install --save 和 install --save-dev之间的区别]]></title>
+    <title><![CDATA[npm包中的 install --save 和 install --save-dev之间到底有区别]]></title>
     <url>%2Fblog%2F2017%2F11%2F27%2F%E8%B0%88%E8%B0%88npm%E5%8C%85%E9%87%8C%E7%9A%84%20install%20--save%20%E5%92%8C%20install%20--save-dev%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%2F</url>
-    <content type="text"><![CDATA[当我们使用npm进行开发时经常能遇到需要安装依赖包, 那么npm install --save和npm install --save-dev之间到底有什么区别呢? 现在来探究一番. –save-dev实际上--save-dev是开发时候所依赖的东西，如我们想添加自动添加前缀, 那么就安装autoprefixer到开发依赖去. 也就是编译打包后autoprefixer已经帮我们添加了相应的浏览器前缀, 那么我们之后就不需要依赖他了. 所以1npm install babel --save-dev 在这里我们可以看到已经放进package.json中的devDependencies(生产依赖)中去了. –save--save就是你发布之后还依赖的东西。 如果编译打包后还需要依赖的库, 如vue, 所以就放进了dependencies中. 两者需要安装的依赖其实都可以在package.json中手动输入相应的库和版本号, 然后使用npm install就能进行安装package.json中的所有依赖了~]]></content>
+    <content type="text"><![CDATA[当我们使用npm进行开发时经常能遇到需要安装依赖包, 那么npm install --save和npm install --save-dev之间到底有什么区别呢? 现在来探究一番. install –save-dev实际上--save-dev是开发时候所依赖的东西，如我们想添加自动添加前缀, 那么就安装autoprefixer到开发依赖去. 也就是编译打包后autoprefixer已经帮我们添加了相应的浏览器前缀, 那么我们之后就不需要依赖他了. 所以1npm install babel --save-dev 在这里我们可以看到已经放进package.json中的devDependencies(开发依赖)中去了. install –save--save就是你发布之后还依赖的东西。 如果编译打包后还需要依赖的库, 如vue, 所以就放进了dependencies中(生产依赖). 两者需要安装的依赖其实都可以在package.json中手动输入相应的库和版本号, 然后使用npm install就能进行安装package.json中的所有依赖了~]]></content>
       <tags>
         <tag>JavaScript</tag>
         <tag>npm</tag>

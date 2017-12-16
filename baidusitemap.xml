@@ -4,6 +4,49 @@
 
     
   <url>
+    <loc>http://yoursite.com/blog/2017/12/15/Vue%E9%A1%B9%E7%9B%AE%E4%B8%ADAxios%E6%8A%A5%E9%94%99Pomise%E6%9C%AA%E5%AE%9A%E4%B9%89%E5%8F%8AIE10%E6%8A%A5%E8%AF%AD%E6%B3%95%E9%94%99%E8%AF%AF%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</loc>
+    <lastmod>2017-12-16T12:06:46.747Z</lastmod>
+    <data>
+        <display>
+        <title>Vue项目中Axios报错Promise未定义及IE10报语法错误的解决方案</title>
+        <pubTime>2017-12-15T09:06:21.000Z</pubTime>
+        
+        <tag>vue</tag>
+         
+        <tag>IE兼容性错误</tag>
+         
+        <tag>解决方案</tag>
+         
+         
+           
+             
+              <breadCrumb title="vue" url="http://yoursite.com/blog/categories/vue/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/blog/2017/11/27/%E8%B0%88%E8%B0%88npm%E5%8C%85%E9%87%8C%E7%9A%84%20install%20--save%20%E5%92%8C%20install%20--save-dev%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
+    <lastmod>2017-12-15T15:49:40.351Z</lastmod>
+    <data>
+        <display>
+        <title>npm包中的 install --save 和 install --save-dev之间到底有区别</title>
+        <pubTime>2017-11-27T05:32:28.000Z</pubTime>
+        
+        <tag>JavaScript</tag>
+         
+        <tag>npm</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/blog/2017/12/05/%E6%B5%85%E8%B0%88%E5%89%8D%E7%AB%AF%E6%89%80%E8%83%BD%E5%81%9A%E7%9A%84SEO/</loc>
     <lastmod>2017-12-05T12:32:49.359Z</lastmod>
     <data>
@@ -78,25 +121,6 @@
              
               <breadCrumb title="算法" url="http://yoursite.com/blog/categories/%E7%AE%97%E6%B3%95/"/>
           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/blog/2017/11/27/%E8%B0%88%E8%B0%88npm%E5%8C%85%E9%87%8C%E7%9A%84%20install%20--save%20%E5%92%8C%20install%20--save-dev%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
-    <lastmod>2017-11-27T05:58:05.896Z</lastmod>
-    <data>
-        <display>
-        <title>谈谈npm包里的 install --save 和 install --save-dev之间的区别</title>
-        <pubTime>2017-11-27T05:32:28.000Z</pubTime>
-        
-        <tag>JavaScript</tag>
-         
-        <tag>npm</tag>
-         
-         
-           
         </display>
     </data>
     </url>
