@@ -75,7 +75,7 @@
 <link href="/blog/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="git,代码冲突," />
 
 
 
@@ -93,16 +93,20 @@
 
 
 
-<meta name="description" content="将零散的知识碎片融合在一块~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="usake - 实验台">
-<meta property="og:url" content="http://yoursite.com/categories/算法/index.html">
+<meta name="description" content="常用git与远程仓库进行交互, 难免会遇到冲突的问题. 现在来了解一下, 当出现这种情况时, 该要如何处理.">
+<meta name="keywords" content="git,代码冲突">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git pull远程仓库代码冲突">
+<meta property="og:url" content="http://yoursite.com/2017/12/18/git-pull远程仓库代码冲突/index.html">
 <meta property="og:site_name" content="usake - 实验台">
-<meta property="og:description" content="将零散的知识碎片融合在一块~">
+<meta property="og:description" content="常用git与远程仓库进行交互, 难免会遇到冲突的问题. 现在来了解一下, 当出现这种情况时, 该要如何处理.">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/blog/2017/12/18/git-pull远程仓库代码冲突/banner.jpg">
+<meta property="og:updated_time" content="2017-12-18T14:33:54.322Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="usake - 实验台">
-<meta name="twitter:description" content="将零散的知识碎片融合在一块~">
+<meta name="twitter:title" content="git pull远程仓库代码冲突">
+<meta name="twitter:description" content="常用git与远程仓库进行交互, 难免会遇到冲突的问题. 现在来了解一下, 当出现这种情况时, 该要如何处理.">
+<meta name="twitter:image" content="http://yoursite.com/blog/2017/12/18/git-pull远程仓库代码冲突/banner.jpg">
 
 
 
@@ -130,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/算法/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/12/18/git-pull远程仓库代码冲突/"/>
 
 
 
 
 
-  <title> 分类: 算法 | usake - 实验台 </title>
+  <title> git pull远程仓库代码冲突 | usake - 实验台 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -171,7 +175,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -307,103 +311,230 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        算法
-        <small>分类</small>
-      </h2>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/blog/2017/11/06/Basic Algorithm Scripting - 3/" itemprop="url">
-              
-                <span itemprop="name">数组方法深入研究之三 (基础算法)</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-06T12:03:28+08:00"
-              content="2017-11-06" >
-          11-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/blog/2017/07/19/Basic Algorithm Scripting - 2/" itemprop="url">
-              
-                <span itemprop="name">数组方法深入研究之二 (基础算法)</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-07-19T19:12:09+08:00"
-              content="2017-07-19" >
-          07-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/blog/2017/07/16/Basic Algorithm Scripting - 1/" itemprop="url">
-              
-                <span itemprop="name">数组方法深入研究之一 (基础算法)</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-07-16T15:09:34+08:00"
-              content="2017-07-16" >
-          07-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </section>
 
   
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2017/12/18/git-pull远程仓库代码冲突/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Anron">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://tc.ffsky.net/images/2017/05/16/0780b8f83fed50d5dd538ae90aa20b06.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="usake - 实验台">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                git pull远程仓库代码冲突
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-18T17:11:24+08:00">
+                2017-12-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2017/12/18/git-pull远程仓库代码冲突/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/12/18/git-pull远程仓库代码冲突/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <img src="/blog/2017/12/18/git-pull远程仓库代码冲突/banner.jpg">
+<p>常用git与远程仓库进行交互, 难免会遇到冲突的问题. 现在来了解一下, 当出现这种情况时, 该要如何处理.<br><a id="more"></a></p>
+<h2 id="起始"><a href="#起始" class="headerlink" title="起始"></a>起始</h2><p>代码冲突, 无非就是同时有两个人在改动同一个文件所造成的冲突. 当你使用<code>git pull</code>后, <code>git</code>会提示你:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ git pull</div><div class="line">error: Your <span class="built_in">local</span> changes to the following files would be overwritten by merge:</div><div class="line">        src/components/page/file.vue</div><div class="line">Please commit your changes or stash them before you merge.</div><div class="line">Aborting</div><div class="line">Updating 8e191be..c301cdc</div></pre></td></tr></table></figure></p>
+<p>这时候你可以使用<code>git stash</code>将本地修改存储起来. 使用<code>git status</code>查看, 是不是干净啦~<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ git stash</div><div class="line">Saved working directory and index state WIP on master: 8e191be Merge branch <span class="string">'master'</span> of https://github.com/anran758/<span class="built_in">test</span></div><div class="line">HEAD is now at 8e191be Merge branch <span class="string">'master'</span> of https://github.com/anran758/<span class="built_in">test</span></div><div class="line">$ git status</div><div class="line"><span class="comment"># On branch master</span></div><div class="line">nothing to commit, working directory clean</div></pre></td></tr></table></figure></p>
+<p>这时再使用将远程仓库的代码pull下来<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">  $ git pull</div><div class="line">Updating 8e191be..c301cdc</div><div class="line">Fast-forward</div><div class="line"> src/base/fonts/iconfont.eot                        | B<span class="keyword">in</span> 7320 -&gt; 7548 bytes</div><div class="line"> src/components/page/file.vue      |  10 +-</div><div class="line"> create mode 100644 static/font_503074_8sfhbdjlucjtt9/iconfont.eot</div></pre></td></tr></table></figure></p>
+<p>现在要查看现有的储藏, 可以使用<code>git stash list</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git stash list</div><div class="line">stash@&#123;0&#125;: WIP on master: 8e191be Merge branch <span class="string">'master'</span> of https://github.com/anran758/<span class="built_in">test</span></div></pre></td></tr></table></figure></p>
+<p>这时我们还原储藏的内容, 使用命令<code>git stash pop &#39;stash@{0}&#39;</code>. <strong>注意这里的要使用引号<code>&#39;stash@{0}&#39;</code>, 因为shell正在使用扩展里的内容, 否则会报一个</strong><code>unknown option: -encodedCommand</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ git stash pop <span class="string">'stash@&#123;0&#125;'</span></div><div class="line">Auto-merging src/components/page/file.vue</div><div class="line">On branch master</div><div class="line">Your branch is up-to-date with <span class="string">'origin/master'</span>.</div><div class="line">Changes not staged <span class="keyword">for</span> commit:</div><div class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to update what will be committed)</div><div class="line">  (use <span class="string">"git checkout -- &lt;file&gt;..."</span> to discard changes <span class="keyword">in</span> working directory)</div><div class="line"></div><div class="line">        modified:   src/components/page/film.vue</div><div class="line"></div><div class="line">no changes added to commit (use <span class="string">"git add"</span> and/or <span class="string">"git commit -a"</span>)</div></pre></td></tr></table></figure></p>
+<p>之后就可以使用<code>git diff</code>或者利用图形工具, 如sourceTree(可视化git), vscode编辑器上对比代码, 手动解决冲突即可.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Anron WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/git/" rel="tag"># git</a>
+          
+            <a href="/blog/tags/代码冲突/" rel="tag"># 代码冲突</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2017/12/16/使用命令行创建-gitkeep文件/" rel="next" title="使用命令行创建.gitkeep文件">
+                <i class="fa fa-chevron-left"></i> 使用命令行创建.gitkeep文件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -411,6 +542,17 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -430,8 +572,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://tc.ffsky.net/images/2017/05/16/0780b8f83fed50d5dd538ae90aa20b06.jpg"
@@ -572,6 +723,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起始"><span class="nav-number">1.</span> <span class="nav-text">起始</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -678,6 +845,10 @@
   
 
   
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
@@ -695,6 +866,18 @@
       <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/12/18/git-pull远程仓库代码冲突/';
+          this.page.identifier = '2017/12/18/git-pull远程仓库代码冲突/';
+          this.page.title = 'git pull远程仓库代码冲突';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   

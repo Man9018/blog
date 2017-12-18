@@ -6,7 +6,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-12-16T12:06:46.747Z</updated>
+  <updated>2017-12-18T14:33:54.322Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,47 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>git pull远程仓库代码冲突</title>
+    <link href="http://yoursite.com/2017/12/18/git-pull%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E4%BB%A3%E7%A0%81%E5%86%B2%E7%AA%81/"/>
+    <id>http://yoursite.com/2017/12/18/git-pull远程仓库代码冲突/</id>
+    <published>2017-12-18T09:11:24.000Z</published>
+    <updated>2017-12-18T14:33:54.322Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/blog/2017/12/18/git-pull远程仓库代码冲突/banner.jpg"><p>常用git与远程仓库进行交互, 难免会遇到冲突的问题. 现在来了解一下, 当出现这种情况时, 该要如何处理.<br><a id="more"></a></p><h2 id="起始"><a href="#起始" class="headerlink" title="起始"></a>起始</h2><p>代码冲突, 无非就是同时有两个人在改动同一个文件所造成的冲突. 当你使用<code>git pull</code>后, <code>git</code>会提示你:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ git pull</div><div class="line">error: Your <span class="built_in">local</span> changes to the following files would be overwritten by merge:</div><div class="line">        src/components/page/file.vue</div><div class="line">Please commit your changes or stash them before you merge.</div><div class="line">Aborting</div><div class="line">Updating 8e191be..c301cdc</div></pre></td></tr></table></figure></p><p>这时候你可以使用<code>git stash</code>将本地修改存储起来. 使用<code>git status</code>查看, 是不是干净啦~<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ git stash</div><div class="line">Saved working directory and index state WIP on master: 8e191be Merge branch <span class="string">'master'</span> of https://github.com/anran758/<span class="built_in">test</span></div><div class="line">HEAD is now at 8e191be Merge branch <span class="string">'master'</span> of https://github.com/anran758/<span class="built_in">test</span></div><div class="line">$ git status</div><div class="line"><span class="comment"># On branch master</span></div><div class="line">nothing to commit, working directory clean</div></pre></td></tr></table></figure></p><p>这时再使用将远程仓库的代码pull下来<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">  $ git pull</div><div class="line">Updating 8e191be..c301cdc</div><div class="line">Fast-forward</div><div class="line"> src/base/fonts/iconfont.eot                        | B<span class="keyword">in</span> 7320 -&gt; 7548 bytes</div><div class="line"> src/components/page/file.vue      |  10 +-</div><div class="line"> create mode 100644 static/font_503074_8sfhbdjlucjtt9/iconfont.eot</div></pre></td></tr></table></figure></p><p>现在要查看现有的储藏, 可以使用<code>git stash list</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git stash list</div><div class="line">stash@&#123;0&#125;: WIP on master: 8e191be Merge branch <span class="string">'master'</span> of https://github.com/anran758/<span class="built_in">test</span></div></pre></td></tr></table></figure></p><p>这时我们还原储藏的内容, 使用命令<code>git stash pop &#39;stash@{0}&#39;</code>. <strong>注意这里的要使用引号<code>&#39;stash@{0}&#39;</code>, 因为shell正在使用扩展里的内容, 否则会报一个</strong><code>unknown option: -encodedCommand</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ git stash pop <span class="string">'stash@&#123;0&#125;'</span></div><div class="line">Auto-merging src/components/page/file.vue</div><div class="line">On branch master</div><div class="line">Your branch is up-to-date with <span class="string">'origin/master'</span>.</div><div class="line">Changes not staged <span class="keyword">for</span> commit:</div><div class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to update what will be committed)</div><div class="line">  (use <span class="string">"git checkout -- &lt;file&gt;..."</span> to discard changes <span class="keyword">in</span> working directory)</div><div class="line"></div><div class="line">        modified:   src/components/page/film.vue</div><div class="line"></div><div class="line">no changes added to commit (use <span class="string">"git add"</span> and/or <span class="string">"git commit -a"</span>)</div></pre></td></tr></table></figure></p><p>之后就可以使用<code>git diff</code>或者利用图形工具, 如sourceTree(可视化git), vscode编辑器上对比代码, 手动解决冲突即可.</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/blog/2017/12/18/git-pull远程仓库代码冲突/banner.jpg&quot;&gt;
+&lt;p&gt;常用git与远程仓库进行交互, 难免会遇到冲突的问题. 现在来了解一下, 当出现这种情况时, 该要如何处理.&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="git" scheme="http://yoursite.com/tags/git/"/>
+    
+      <category term="代码冲突" scheme="http://yoursite.com/tags/%E4%BB%A3%E7%A0%81%E5%86%B2%E7%AA%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用命令行创建.gitkeep文件</title>
+    <link href="http://yoursite.com/2017/12/16/%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%88%9B%E5%BB%BA-gitkeep%E6%96%87%E4%BB%B6/"/>
+    <id>http://yoursite.com/2017/12/16/使用命令行创建-gitkeep文件/</id>
+    <published>2017-12-16T14:30:04.000Z</published>
+    <updated>2017-12-17T07:57:14.767Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+      <category term="cmd" scheme="http://yoursite.com/tags/cmd/"/>
+    
+      <category term="Githubg" scheme="http://yoursite.com/tags/Githubg/"/>
+    
+  </entry>
   
   <entry>
     <title>Vue项目中Axios报错Promise未定义及IE10报语法错误的解决方案</title>
@@ -146,9 +187,9 @@
       <category term="javascript" scheme="http://yoursite.com/categories/javascript/"/>
     
     
-      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
-    
       <category term="实战" scheme="http://yoursite.com/tags/%E5%AE%9E%E6%88%98/"/>
+    
+      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
     
   </entry>
   
@@ -226,9 +267,9 @@
       <category term="Git" scheme="http://yoursite.com/categories/Git/"/>
     
     
-      <category term="sourcetree" scheme="http://yoursite.com/tags/sourcetree/"/>
-    
       <category term="git" scheme="http://yoursite.com/tags/git/"/>
+    
+      <category term="sourcetree" scheme="http://yoursite.com/tags/sourcetree/"/>
     
   </entry>
   
