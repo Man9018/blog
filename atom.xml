@@ -6,7 +6,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-12-18T14:33:54.322Z</updated>
+  <updated>2017-12-23T15:55:51.538Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于点击下拉菜单字体模糊及可能造成boder上下一像素宽度不一的坑</title>
+    <link href="http://yoursite.com/2017/12/23/%E5%85%B3%E4%BA%8E%E7%82%B9%E5%87%BB%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95%E6%A8%A1%E7%B3%8A%E5%8F%8A%E5%8F%AF%E8%83%BD%E9%80%A0%E6%88%90boder%E4%B8%8A%E4%B8%8B%E4%B8%80%E5%83%8F%E7%B4%A0%E5%AE%BD%E5%BA%A6%E4%B8%8D%E4%B8%80%E7%9A%84%E5%9D%91/"/>
+    <id>http://yoursite.com/2017/12/23/关于点击下拉菜单模糊及可能造成boder上下一像素宽度不一的坑/</id>
+    <published>2017-12-23T15:22:32.000Z</published>
+    <updated>2017-12-23T15:55:51.538Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/blog/2017/12/23/关于点击下拉菜单模糊及可能造成boder上下一像素宽度不一的坑/transition.gif"><p>关于点击下拉菜单会造成文字模糊及<code>boder 1px</code>上下和左右宽度不一致的问题.<br><a id="more"></a></p><h2 id="起始"><a href="#起始" class="headerlink" title="起始"></a>起始</h2><p>朋友叫帮忙看代码~ 问题是这样的, 当点击下拉菜单时, 整个页面的组件都变模糊一下. 然后border上下的边框能隐约看到会大概溢出那么一点(但是没到一个像素).</p><p>因为使用了<code>element</code>组件, 大概能想到中间加有<code>transition</code>, 对问题进行排查后发现<code>transform</code>这个属性会对后代元素能产生影响, 将属性删除, 问题解决. 具体影响的原理, 现在占个坑, 以后再深入挖掘…</p><h2 id="Bug相关的图"><a href="#Bug相关的图" class="headerlink" title="Bug相关的图"></a>Bug相关的图</h2><img src="/blog/2017/12/23/关于点击下拉菜单模糊及可能造成boder上下一像素宽度不一的坑/bug.gif" title="点击后能明显看到整个组件模糊了"><img src="/blog/2017/12/23/关于点击下拉菜单模糊及可能造成boder上下一像素宽度不一的坑/img-1.jpg" title="正常下的1像素"><img src="/blog/2017/12/23/关于点击下拉菜单模糊及可能造成boder上下一像素宽度不一的坑/img-2.jpg" title="1像素下还有一点点的溢出">]]></content>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/blog/2017/12/23/关于点击下拉菜单模糊及可能造成boder上下一像素宽度不一的坑/transition.gif&quot;&gt;
+&lt;p&gt;关于点击下拉菜单会造成文字模糊及&lt;code&gt;boder 1px&lt;/code&gt;上下和左右宽度不一致的问题.&lt;br&gt;
+    
+    </summary>
+    
+      <category term="CSS" scheme="http://yoursite.com/categories/CSS/"/>
+    
+    
+      <category term="transition" scheme="http://yoursite.com/tags/transition/"/>
+    
+      <category term="transform" scheme="http://yoursite.com/tags/transform/"/>
+    
+      <category term="布局bug" scheme="http://yoursite.com/tags/%E5%B8%83%E5%B1%80bug/"/>
+    
+  </entry>
   
   <entry>
     <title>git pull远程仓库代码冲突</title>
@@ -192,9 +219,9 @@
       <category term="javascript" scheme="http://yoursite.com/categories/javascript/"/>
     
     
-      <category term="实战" scheme="http://yoursite.com/tags/%E5%AE%9E%E6%88%98/"/>
-    
       <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+    
+      <category term="实战" scheme="http://yoursite.com/tags/%E5%AE%9E%E6%88%98/"/>
     
   </entry>
   

@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[关于点击下拉菜单字体模糊及可能造成boder上下一像素宽度不一的坑]]></title>
+    <url>%2Fblog%2F2017%2F12%2F23%2F%E5%85%B3%E4%BA%8E%E7%82%B9%E5%87%BB%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95%E6%A8%A1%E7%B3%8A%E5%8F%8A%E5%8F%AF%E8%83%BD%E9%80%A0%E6%88%90boder%E4%B8%8A%E4%B8%8B%E4%B8%80%E5%83%8F%E7%B4%A0%E5%AE%BD%E5%BA%A6%E4%B8%8D%E4%B8%80%E7%9A%84%E5%9D%91%2F</url>
+    <content type="text"><![CDATA[关于点击下拉菜单会造成文字模糊及boder 1px上下和左右宽度不一致的问题. 起始朋友叫帮忙看代码~ 问题是这样的, 当点击下拉菜单时, 整个页面的组件都变模糊一下. 然后border上下的边框能隐约看到会大概溢出那么一点(但是没到一个像素). 因为使用了element组件, 大概能想到中间加有transition, 对问题进行排查后发现transform这个属性会对后代元素能产生影响, 将属性删除, 问题解决. 具体影响的原理, 现在占个坑, 以后再深入挖掘… Bug相关的图]]></content>
+      <categories>
+        <category>CSS</category>
+      </categories>
+      <tags>
+        <tag>transition</tag>
+        <tag>transform</tag>
+        <tag>布局bug</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[git pull远程仓库代码冲突]]></title>
     <url>%2Fblog%2F2017%2F12%2F18%2Fgit-pull%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E4%BB%A3%E7%A0%81%E5%86%B2%E7%AA%81%2F</url>
     <content type="text"><![CDATA[常用git与远程仓库进行交互, 难免会遇到冲突的问题. 现在来了解一下, 当出现这种情况时, 该要如何处理. 起始代码冲突, 无非就是同时有两个人在改动同一个文件所造成的冲突. 当你使用git pull后, git会提示你:123456$ git pullerror: Your local changes to the following files would be overwritten by merge: src/components/page/file.vuePlease commit your changes or stash them before you merge.AbortingUpdating 8e191be..c301cdc 这时候你可以使用git stash将本地修改存储起来. 使用git status查看, 是不是干净啦~123456$ git stashSaved working directory and index state WIP on master: 8e191be Merge branch 'master' of https://github.com/anran758/testHEAD is now at 8e191be Merge branch 'master' of https://github.com/anran758/test$ git status# On branch masternothing to commit, working directory clean 这时再使用将远程仓库的代码pull下来123456 $ git pullUpdating 8e191be..c301cdcFast-forward src/base/fonts/iconfont.eot | Bin 7320 -&gt; 7548 bytes src/components/page/file.vue | 10 +- create mode 100644 static/font_503074_8sfhbdjlucjtt9/iconfont.eot 现在要查看现有的储藏, 可以使用git stash list12$ git stash liststash@&#123;0&#125;: WIP on master: 8e191be Merge branch 'master' of https://github.com/anran758/test 这时我们还原储藏的内容, 使用命令git stash pop &#39;stash@{0}&#39;. 注意这里的要使用引号&#39;stash@{0}&#39;, 因为shell正在使用扩展里的内容, 否则会报一个unknown option: -encodedCommand1234567891011$ git stash pop 'stash@&#123;0&#125;'Auto-merging src/components/page/file.vueOn branch masterYour branch is up-to-date with 'origin/master'.Changes not staged for commit: (use "git add &lt;file&gt;..." to update what will be committed) (use "git checkout -- &lt;file&gt;..." to discard changes in working directory) modified: src/components/page/film.vueno changes added to commit (use "git add" and/or "git commit -a") 之后就可以使用git diff或者利用图形工具, 如sourceTree(可视化git), vscode编辑器上对比代码, 手动解决冲突即可.]]></content>
@@ -69,8 +82,8 @@
         <category>javascript</category>
       </categories>
       <tags>
-        <tag>实战</tag>
         <tag>JavaScript</tag>
+        <tag>实战</tag>
       </tags>
   </entry>
   <entry>
