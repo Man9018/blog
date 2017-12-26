@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[新手不知道的JavaScript技巧 - 条件语句的简写技巧]]></title>
+    <url>%2Fblog%2F2017%2F12%2F26%2F%E6%96%B0%E6%89%8B%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84%E6%8A%80%E5%B7%A7-if%E8%AF%AD%E5%8F%A5%E7%9A%84%E5%88%A4%E5%AE%9A%2F</url>
+    <content type="text"><![CDATA[可能入坑不久的同学还会用着if (value !== null || Value !== undefined)这样的判断语句, 而实际上只要理解判定的规则, 善用规则, 就能大大的提高代码的可读性. 接下来让我们深入学习一下. 开始大多编程语言中最为常用的一个语句就是if语句, 这种条件语句是通过判断指定表达式的值来决定执行还是跳过某些语句. 它的语法如下: 123if (Expression) &#123; statement&#125; 其中Expression(表达式/条件)可以是任意表达式或者值. 首先它会解析表达式的值 如果表达式是无法解析的, 会报ReferenceError的错误并停止. 如果不是则继续. 判断值的引用类型, 如果是布尔值, 字符串和符号则继续. null和undefined永远都返回 false. 将值传入toBoolean(exprValue)根据下面的规则转换为布尔值. value Boolean 未定义(Undefined) false 空值(null) false 布尔值(Boolean) 返回参数本身 数字(Number) 如果参数是+0, -0或NaN，则返回false; 否则返回true 字符串(String) 如果参数是空字符串(长度为零)，则返回false; 否则返回true Symbol 返回 true Object 返回 true 这里我们得出undefined, null, NaN, 空字符串, 和数字 0 都是过不了条件语块的规则, 因此我们可以利用这一点来对代码进行简写. 1234567891011121314151617181920212223var userName = 'hello';var flag = false;// bad codeif (value != undefined) &#123; ...&#125;// bad codeif (value !== undefined || value !== null || value !== false) &#123; ...&#125;// good codeif (userName) &#123; something...&#125;// flag锁, 利用取反转换布尔值if (!flag) &#123; flag = true; something...&#125; 相同的, 也没有必要去使用==规范不推荐的方式去隐式转换类型, 这种规则同样适用于三目运算符, switch等条件运算中去… 这样看起来是不是自己的代码整洁多了呢~ 后记才疏学浅, 如果有什么说的不对或者需要改进的地方, 可以给我留言大家一起交流. 原创不易, 如果文章对你有帮助的话就随手点个赞鼓励一下呗~ 参考资料ECMA-262 官方文档http://www.ecma-international.org/ecma-262/6.0/#sec-if-statement]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>JavaScript原理分析</tag>
+        <tag>技巧</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[初窥WebSockets]]></title>
     <url>%2Fblog%2F2017%2F12%2F25%2F%E5%88%9D%E7%AA%A5Web-Sockets%2F</url>
     <content type="text"><![CDATA[要说最令人津津乐道的新浏览器的API, 就数Web Sockets了. 接下来了解一下这个备受争议的API吧~ 什么是Web Socket?Web Socket是HTML5出来的一个持久化新协议. 它的目标是在一个单独的持久链接上提供全双工, 让客户端和服务器之间的数据交换变得更加简单. Web Socket是基于HTTP协议来建立连接. 由于使用了自定义的协议, 因此它的URL模式策略也与标准的HTTP不同, 未加密的http://对应着ws://, 而加密的连接的https://也变成https://. 那使用Web Socket的好处是什么? 能够在客户端和服务器之间发送非常少的数据, 而不用担心HTTP那样字节级的开销. 由于传递的数据很小, 表面看起来会很适用于移动端. 主动性大家都知道, 标准HTTP请求是具有被动性的, 如ajax轮询:客户端: “lalala, 帮我看一下我快递有变动吗?”服务端: “没呢, 没变化”客户端: “那现在呢?”服务端: “也还没..”客户端: “那现在呢?”服务端: “还没…”客户端: “那现在呢?”服务端: “好啦好啦, 物流发生变化了, 你看到这里这里了”客户端: “那开始派送了吗?”服务端: “还没…”这样的缺点是什么… ajax轮询需要服务器有很快的处理速度和资源, 而频繁过多的请求可能会报503 Server Unavailable的错误了. 而升级为Websocket后, 这时候服务器会主动把东西反馈给你, 如:客户端: “哥们, 咱建立Websocket协议, 需要chat，Websocket协议版本：17（HTTP Request）”服务端：”ok，确认，已升级为Websocket协议(HTTP Protocols Switched)”客户端: “那有啥事的话跟我讲噢”服务端: “balbalbal”服务端: “balbalbal”服务端: “hhhhhhhhhh”服务端: “笑死啦2333333”就变成了这样，只需要经过一次HTTP请求，就可以做到源源不断的信息传送了。（在程序设计中，这种设计叫做回调，即：你有信息了再来通知我，而不是我傻乎乎的每次跑来问你, 这里场景就适用于聊天室之类的） 没有同源限制，客户端可以与任意服务器通信(不用担心跨域) 现状与短处既然它存在这种优势为什么如今还是使用的不多呢?HTML5新API嘛… 说到HTML5就不得不考虑到兼容性的问题, WebSocket在各浏览器的兼容性不一致这是问题其一. 前文有提过. 相对于PC端, websocket的客户端和服务器之间发送非常少的数据, 表面看起来的确移动端会更有优势. 但是目前以国内的环境来说, 反而不好用. 当网络不稳定的时候开销尤其大. 看到这里或许会有人问, 啊? 你之前不是说只需要1次HTTP请求就可以做信息传送了蛮?? 是的, 没错. 大家可能会玩过像阴阳师这样的游戏? 网络一闪, 就会让你重新登录.而长轮询断一次只会卡一秒, 而websocket断了则要重新从认证开始, 那当网络不稳定时, 那开销可想而知. 其次就是性能上并没有绝对的优势, 所以当前主流还是标准的HTTP比较多, 而websocket, 据我所知当下适用的场景也只有手游上的使用了. 后记websocket的路还很长, 虽然现在使用的不多, 但以后还是可以保留小小的期待. 上文提及资料有部分是来源于网上. 有部分是去咨询了相关的dalao. 才疏学浅若有违权, 或者说的不对的地方望各位指出. 参考资料:WebSocket 是什么原理？为什么可以实现持久连接？ - Ovear的回答 - 知乎https://www.zhihu.com/question/20215561/answer/40316953]]></content>
