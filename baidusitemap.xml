@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://yoursite.com/blog/2017/10/15/%E6%B5%85%E8%B0%88Normalize%E4%B8%8Ereset/</loc>
+    <lastmod>2017-12-30T13:47:51.981Z</lastmod>
+    <data>
+        <display>
+        <title>浅谈Normalize与reset</title>
+        <pubTime>2017-10-15T01:03:28.000Z</pubTime>
+        
+        <tag>CSS</tag>
+         
+         
+           
+             
+              <breadCrumb title="CSS" url="http://yoursite.com/blog/categories/CSS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/blog/2017/12/26/%E6%96%B0%E6%89%8B%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84%E6%8A%80%E5%B7%A7-if%E8%AF%AD%E5%8F%A5%E7%9A%84%E5%88%A4%E5%AE%9A/</loc>
     <lastmod>2017-12-26T07:13:55.535Z</lastmod>
     <data>
@@ -168,26 +188,6 @@
          
          
            
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/blog/2017/10/15/%E6%B5%85%E8%B0%88Normalize%E4%B8%8Ereset/</loc>
-    <lastmod>2017-11-29T09:40:43.997Z</lastmod>
-    <data>
-        <display>
-        <title>浅谈Normalize与reset</title>
-        <pubTime>2017-10-15T01:03:28.000Z</pubTime>
-        
-        <tag>CSS</tag>
-         
-         
-           
-             
-              <breadCrumb title="CSS" url="http://yoursite.com/blog/categories/CSS/"/>
-          
         </display>
     </data>
     </url>
