@@ -153,7 +153,7 @@
 <meta property="og:image" content="https://assets-cdn.github.com/images/icons/emoji/unicode/1f507.png?v7">
 <meta property="og:image" content="https://assets-cdn.github.com/images/icons/emoji/unicode/1f6b8.png?v7">
 <meta property="og:image" content="https://assets-cdn.github.com/images/icons/emoji/unicode/1f3d7.png?v7">
-<meta property="og:updated_time" content="2017-12-31T15:26:55.507Z">
+<meta property="og:updated_time" content="2018-01-05T05:29:12.511Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git emoji使用指南">
 <meta name="twitter:description" content="emoji源于日语词汇“絵文字”, 想必大家对它都挺熟悉的吧, 其拟人化的生动形象，已经成为当下流行的表情之一. 接下来讲一下如何规范的在git中使用emoji提高我们项目的可读性吧~">
@@ -179,6 +179,9 @@
       indexName: '',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    emojis: {
+      className: 'github-emoji'
     }
   };
 </script>
@@ -444,17 +447,6 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/blog/2017/12/31/Git-emoji使用指南/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/12/31/Git-emoji使用指南/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -479,8 +471,8 @@
       
         <img src="/blog/2017/12/31/Git-emoji使用指南/banner.png">
 <p>emoji源于日语词汇“絵文字”, 想必大家对它都挺熟悉的吧, 其拟人化的生动形象，已经成为当下流行的表情之一. 接下来讲一下如何规范的在<code>git</code>中使用emoji提高我们项目的可读性吧~<a id="more"></a></p>
-<h4 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h4><p>在<code>git commit</code>上加入emoji的二进制符号, 格式为<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:emoji1: :emoji2: 本次提交的主要内容</div></pre></td></tr></table></figure></p>
-<p>如初次提交:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git commit -m <span class="string">"<img class="github-emoji" style="" title="tada" alt="tada" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f389.png?v7" height="20" width="20"> Initialize Repo"</span></div></pre></td></tr></table></figure></p>
+<h4 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h4><p>在<code>git commit</code>上加入emoji的二进制符号, 格式为<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:emoji1: :emoji2: 本次提交的主要内容</span><br></pre></td></tr></table></figure></p>
+<p>如初次提交:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m <span class="string">"<img class="github-emoji" title="tada" alt="tada" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f389.png?v7" height="20" width="20"> Initialize Repo"</span></span><br></pre></td></tr></table></figure></p>
 <h4 id="相关规范"><a href="#相关规范" class="headerlink" title="相关规范"></a>相关规范</h4><p>emoji 表情在提交代码的时候也不能乱用，否则容易造成误解. 因此开源项目<a href="https://gitmoji.carloscuesta.me/" target="_blank" rel="noopener">gitmoji</a>专门规定了在 github 提交代码时应当遵循的 emoji 规范：</p>
 <table>
 <thead>
@@ -492,253 +484,253 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="tada" alt="tada" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f389.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;tada&quot; alt=&quot;tada&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f389.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="tada" alt="tada" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f389.png?v7" height="20" width="20">(喝彩)</td>
+<td style="text-align:left"><code>: tada:</code></td>
 <td style="text-align:left">初始提交</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="art" alt="art" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f3a8.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;art&quot; alt=&quot;art&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f3a8.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="art" alt="art" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f3a8.png?v7" height="20" width="20">(调色板)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;art&quot; alt=&quot;art&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f3a8.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">改进代码的结构/格式</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="zap" alt="zap" src="https://assets-cdn.github.com/images/icons/emoji/unicode/26a1.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;zap&quot; alt=&quot;zap&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/26a1.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="zap" alt="zap" src="https://assets-cdn.github.com/images/icons/emoji/unicode/26a1.png?v7" height="20" width="20">(闪电)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;zap&quot; alt=&quot;zap&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/26a1.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">提高性能</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="fire" alt="fire" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f525.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;fire&quot; alt=&quot;fire&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f525.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="fire" alt="fire" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f525.png?v7" height="20" width="20">(火焰)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;fire&quot; alt=&quot;fire&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f525.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">删除代码或文件</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="bug" alt="bug" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f41b.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;bug&quot; alt=&quot;bug&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f41b.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="bug" alt="bug" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f41b.png?v7" height="20" width="20">(bug)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;bug&quot; alt=&quot;bug&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f41b.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">修复一个错误</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="ambulance" alt="ambulance" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f691.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;ambulance&quot; alt=&quot;ambulance&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f691.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="ambulance" alt="ambulance" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f691.png?v7" height="20" width="20">(紧急救护车)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;ambulance&quot; alt=&quot;ambulance&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f691.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">关键修补程序</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="sparkles" alt="sparkles" src="https://assets-cdn.github.com/images/icons/emoji/unicode/2728.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;sparkles&quot; alt=&quot;sparkles&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/2728.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="sparkles" alt="sparkles" src="https://assets-cdn.github.com/images/icons/emoji/unicode/2728.png?v7" height="20" width="20">(闪亮)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;sparkles&quot; alt=&quot;sparkles&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/2728.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">引用新功能</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="memo" alt="memo" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4dd.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;memo&quot; alt=&quot;memo&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f4dd.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="memo" alt="memo" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4dd.png?v7" height="20" width="20">(备忘录)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;memo&quot; alt=&quot;memo&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f4dd.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">编写文档</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="rocket" alt="rocket" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f680.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;rocket&quot; alt=&quot;rocket&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f680.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="rocket" alt="rocket" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f680.png?v7" height="20" width="20">(火箭)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;rocket&quot; alt=&quot;rocket&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f680.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">部署新功能</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="recycle" alt="recycle" src="https://assets-cdn.github.com/images/icons/emoji/unicode/267b.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;recycle&quot; alt=&quot;recycle&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/267b.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="recycle" alt="recycle" src="https://assets-cdn.github.com/images/icons/emoji/unicode/267b.png?v7" height="20" width="20">(重构)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;recycle&quot; alt=&quot;recycle&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/267b.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">代码重构</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="lipstick" alt="lipstick" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f484.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;lipstick&quot; alt=&quot;lipstick&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f484.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="lipstick" alt="lipstick" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f484.png?v7" height="20" width="20">(口红)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;lipstick&quot; alt=&quot;lipstick&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f484.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">更新UI和样式文件</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="white_check_mark" alt="white_check_mark" src="https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;white_check_mark&quot; alt=&quot;white_check_mark&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="white_check_mark" alt="white_check_mark" src="https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png?v7" height="20" width="20">(复选框)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;white_check_mark&quot; alt=&quot;white_check_mark&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">添加测试</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="apple" alt="apple" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f34e.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;apple&quot; alt=&quot;apple&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f34e.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="apple" alt="apple" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f34e.png?v7" height="20" width="20">(苹果)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;apple&quot; alt=&quot;apple&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f34e.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">修复MacOS上的问题</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="penguin" alt="penguin" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f427.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;penguin&quot; alt=&quot;penguin&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f427.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="penguin" alt="penguin" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f427.png?v7" height="20" width="20">(企鹅)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;penguin&quot; alt=&quot;penguin&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f427.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">修复Linux上的问题</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="checkered_flag" alt="checkered_flag" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f3c1.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;checkered_flag&quot; alt=&quot;checkered_flag&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f3c1.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="checkered_flag" alt="checkered_flag" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f3c1.png?v7" height="20" width="20">(旗子)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;checkered_flag&quot; alt=&quot;checkered_flag&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f3c1.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">修复Windows上的问题</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="robot" alt="robot" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f916.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;robot&quot; alt=&quot;robot&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f916.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="robot" alt="robot" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f916.png?v7" height="20" width="20">(机器人)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;robot&quot; alt=&quot;robot&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f916.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">解决Android上的问题</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="green_apple" alt="green_apple" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f34f.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;green_apple&quot; alt=&quot;green_apple&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f34f.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="green_apple" alt="green_apple" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f34f.png?v7" height="20" width="20">(绿苹果)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;green_apple&quot; alt=&quot;green_apple&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f34f.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">解决iOS上的问题</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="bookmark" alt="bookmark" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f516.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;bookmark&quot; alt=&quot;bookmark&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f516.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="bookmark" alt="bookmark" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f516.png?v7" height="20" width="20">(书签)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;bookmark&quot; alt=&quot;bookmark&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f516.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">发布/版本标签</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="rotating_light" alt="rotating_light" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f6a8.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;rotating_light&quot; alt=&quot;rotating_light&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f6a8.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="rotating_light" alt="rotating_light" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f6a8.png?v7" height="20" width="20">(警告灯)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;rotating_light&quot; alt=&quot;rotating_light&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f6a8.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">移除 linter 警告</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="construction" alt="construction" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f6a7.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;construction&quot; alt=&quot;construction&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f6a7.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="construction" alt="construction" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f6a7.png?v7" height="20" width="20">(施工)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;construction&quot; alt=&quot;construction&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f6a7.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">工作正在进行中</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="green_heart" alt="green_heart" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f49a.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;green_heart&quot; alt=&quot;green_heart&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f49a.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="green_heart" alt="green_heart" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f49a.png?v7" height="20" width="20">(绿心)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;green_heart&quot; alt=&quot;green_heart&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f49a.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">修复CI构建</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="arrow_down" alt="arrow_down" src="https://assets-cdn.github.com/images/icons/emoji/unicode/2b07.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;arrow_down&quot; alt=&quot;arrow_down&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/2b07.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="arrow_down" alt="arrow_down" src="https://assets-cdn.github.com/images/icons/emoji/unicode/2b07.png?v7" height="20" width="20">(下降)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;arrow_down&quot; alt=&quot;arrow_down&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/2b07.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">降级依赖关系</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="arrow_up" alt="arrow_up" src="https://assets-cdn.github.com/images/icons/emoji/unicode/2b06.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;arrow_up&quot; alt=&quot;arrow_up&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/2b06.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="arrow_up" alt="arrow_up" src="https://assets-cdn.github.com/images/icons/emoji/unicode/2b06.png?v7" height="20" width="20">(上升)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;arrow_up&quot; alt=&quot;arrow_up&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/2b06.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">升级依赖关系</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="pushpin" alt="pushpin" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4cc.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;pushpin&quot; alt=&quot;pushpin&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f4cc.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="pushpin" alt="pushpin" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4cc.png?v7" height="20" width="20">(图钉)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;pushpin&quot; alt=&quot;pushpin&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f4cc.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">将依赖关系固定到特定的版本</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="construction_worker" alt="construction_worker" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f477.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;construction_worker&quot; alt=&quot;construction_worker&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f477.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="construction_worker" alt="construction_worker" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f477.png?v7" height="20" width="20">(工人)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;construction_worker&quot; alt=&quot;construction_worker&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f477.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">添加CI构建系统</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="chart_with_upwards_trend" alt="chart_with_upwards_trend" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4c8.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;chart_with_upwards_trend&quot; alt=&quot;chart_with_upwards_trend&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f4c8.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
-<td style="text-align:left">工作正在进行中</td>
+<td style="text-align:left"><img class="github-emoji" title="chart_with_upwards_trend" alt="chart_with_upwards_trend" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4c8.png?v7" height="20" width="20">(上升趋势)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;chart_with_upwards_trend&quot; alt=&quot;chart_with_upwards_trend&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f4c8.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left">添加分析或跟踪代码</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="heavy_minus_sign" alt="heavy_minus_sign" src="https://assets-cdn.github.com/images/icons/emoji/unicode/2796.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;heavy_minus_sign&quot; alt=&quot;heavy_minus_sign&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/2796.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="heavy_minus_sign" alt="heavy_minus_sign" src="https://assets-cdn.github.com/images/icons/emoji/unicode/2796.png?v7" height="20" width="20">(减号)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;heavy_minus_sign&quot; alt=&quot;heavy_minus_sign&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/2796.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">删除依赖项</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="whale" alt="whale" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f433.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;whale&quot; alt=&quot;whale&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f433.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="whale" alt="whale" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f433.png?v7" height="20" width="20">(鲸鱼)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;whale&quot; alt=&quot;whale&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f433.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">关于Docker的工作</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="heavy_plus_sign" alt="heavy_plus_sign" src="https://assets-cdn.github.com/images/icons/emoji/unicode/2795.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;heavy_plus_sign&quot; alt=&quot;heavy_plus_sign&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/2795.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="heavy_plus_sign" alt="heavy_plus_sign" src="https://assets-cdn.github.com/images/icons/emoji/unicode/2795.png?v7" height="20" width="20">(加号)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;heavy_plus_sign&quot; alt=&quot;heavy_plus_sign&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/2795.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">添加一个依赖项</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="wrench" alt="wrench" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f527.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;wrench&quot; alt=&quot;wrench&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f527.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="wrench" alt="wrench" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f527.png?v7" height="20" width="20">(扳手)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;wrench&quot; alt=&quot;wrench&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f527.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">更改配置文件</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="pencil2" alt="pencil2" src="https://assets-cdn.github.com/images/icons/emoji/unicode/270f.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;pencil2&quot; alt=&quot;pencil2&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/270f.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="pencil2" alt="pencil2" src="https://assets-cdn.github.com/images/icons/emoji/unicode/270f.png?v7" height="20" width="20">(铅笔)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;pencil2&quot; alt=&quot;pencil2&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/270f.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">修正错别字</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="hankey" alt="hankey" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a9.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;hankey&quot; alt=&quot;hankey&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a9.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="hankey" alt="hankey" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a9.png?v7" height="20" width="20">(hankey)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;hankey&quot; alt=&quot;hankey&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a9.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">编写需要改进的不好的代码</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="rewind" alt="rewind" src="https://assets-cdn.github.com/images/icons/emoji/unicode/23ea.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;rewind&quot; alt=&quot;rewind&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/23ea.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="rewind" alt="rewind" src="https://assets-cdn.github.com/images/icons/emoji/unicode/23ea.png?v7" height="20" width="20">(回退)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;rewind&quot; alt=&quot;rewind&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/23ea.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">恢复更改</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="globe_with_meridians" alt="globe_with_meridians" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f310.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;globe_with_meridians&quot; alt=&quot;globe_with_meridians&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f310.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="globe_with_meridians" alt="globe_with_meridians" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f310.png?v7" height="20" width="20">(国际化)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;globe_with_meridians&quot; alt=&quot;globe_with_meridians&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f310.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">国际化和本地化</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="twisted_rightwards_arrows" alt="twisted_rightwards_arrows" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f500.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;twisted_rightwards_arrows&quot; alt=&quot;twisted_rightwards_arrows&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f500.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
-<td style="text-align:left">工作正在进行中</td>
+<td style="text-align:left"><img class="github-emoji" title="twisted_rightwards_arrows" alt="twisted_rightwards_arrows" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f500.png?v7" height="20" width="20">(合并)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;twisted_rightwards_arrows&quot; alt=&quot;twisted_rightwards_arrows&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f500.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left">合并分支</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="package" alt="package" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4e6.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;package&quot; alt=&quot;package&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f4e6.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="package" alt="package" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4e6.png?v7" height="20" width="20">(打包)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;package&quot; alt=&quot;package&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f4e6.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">更新编译的文件或包</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="alien" alt="alien" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f47d.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;alien&quot; alt=&quot;alien&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f47d.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="alien" alt="alien" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f47d.png?v7" height="20" width="20">(外星人)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;alien&quot; alt=&quot;alien&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f47d.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">由于外部API更改而更新代码</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="truck" alt="truck" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f69a.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;truck&quot; alt=&quot;truck&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f69a.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="truck" alt="truck" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f69a.png?v7" height="20" width="20">(移动搬家)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;truck&quot; alt=&quot;truck&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f69a.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">移动或重命名文件</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="page_facing_up" alt="page_facing_up" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4c4.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;page_facing_up&quot; alt=&quot;page_facing_up&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f4c4.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="page_facing_up" alt="page_facing_up" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4c4.png?v7" height="20" width="20">(页面)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;page_facing_up&quot; alt=&quot;page_facing_up&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f4c4.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">添加或更新许可证</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="boom" alt="boom" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a5.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;boom&quot; alt=&quot;boom&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a5.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="boom" alt="boom" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a5.png?v7" height="20" width="20">(爆炸性)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;boom&quot; alt=&quot;boom&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a5.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">介绍突破性变化</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="bento" alt="bento" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f371.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;bento&quot; alt=&quot;bento&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f371.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="bento" alt="bento" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f371.png?v7" height="20" width="20">(便当)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;bento&quot; alt=&quot;bento&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f371.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">添加或更新资产</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="ok_hand" alt="ok_hand" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f44c.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;ok_hand&quot; alt=&quot;ok_hand&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f44c.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="ok_hand" alt="ok_hand" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f44c.png?v7" height="20" width="20">(好的手势)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;ok_hand&quot; alt=&quot;ok_hand&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f44c.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">由于代码审阅更改而更新代码</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="wheelchair" alt="wheelchair" src="https://assets-cdn.github.com/images/icons/emoji/unicode/267f.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;wheelchair&quot; alt=&quot;wheelchair&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/267f.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="wheelchair" alt="wheelchair" src="https://assets-cdn.github.com/images/icons/emoji/unicode/267f.png?v7" height="20" width="20">(无障碍)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;wheelchair&quot; alt=&quot;wheelchair&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/267f.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">改善无障碍</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="bulb" alt="bulb" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a1.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;bulb&quot; alt=&quot;bulb&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a1.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="bulb" alt="bulb" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a1.png?v7" height="20" width="20">(灯泡)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;bulb&quot; alt=&quot;bulb&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a1.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">记录源代码</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="speech_balloon" alt="speech_balloon" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4ac.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;speech_balloon&quot; alt=&quot;speech_balloon&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f4ac.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="speech_balloon" alt="speech_balloon" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4ac.png?v7" height="20" width="20">(文字框)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;speech_balloon&quot; alt=&quot;speech_balloon&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f4ac.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">更新文字和文字</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="card_file_box" alt="card_file_box" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f5c3.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;card_file_box&quot; alt=&quot;card_file_box&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f5c3.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="card_file_box" alt="card_file_box" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f5c3.png?v7" height="20" width="20">(存档箱)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;card_file_box&quot; alt=&quot;card_file_box&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f5c3.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">执行与数据库相关的更改</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="loud_sound" alt="loud_sound" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f50a.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;loud_sound&quot; alt=&quot;loud_sound&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f50a.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="loud_sound" alt="loud_sound" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f50a.png?v7" height="20" width="20">(声响)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;loud_sound&quot; alt=&quot;loud_sound&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f50a.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">添加日志</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="mute" alt="mute" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f507.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;mute&quot; alt=&quot;mute&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f507.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="mute" alt="mute" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f507.png?v7" height="20" width="20">(静音)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;mute&quot; alt=&quot;mute&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f507.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">删除日志</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="children_crossing" alt="children_crossing" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f6b8.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;children_crossing&quot; alt=&quot;children_crossing&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f6b8.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="children_crossing" alt="children_crossing" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f6b8.png?v7" height="20" width="20">(用户)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;children_crossing&quot; alt=&quot;children_crossing&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f6b8.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">改善用户体验/可用性</td>
 </tr>
 <tr>
-<td style="text-align:left"><img class="github-emoji" style="" title="building_construction" alt="building_construction" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f3d7.png?v7" height="20" width="20"></td>
-<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot; style=&quot;&quot; title=&quot;building_construction&quot; alt=&quot;building_construction&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f3d7.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
+<td style="text-align:left"><img class="github-emoji" title="building_construction" alt="building_construction" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f3d7.png?v7" height="20" width="20">(建筑)</td>
+<td style="text-align:left"><code>&lt;img class=&quot;github-emoji&quot;  title=&quot;building_construction&quot; alt=&quot;building_construction&quot; src=&quot;https://assets-cdn.github.com/images/icons/emoji/unicode/1f3d7.png?v7&quot; height=&quot;20&quot; width=&quot;20&quot; /&gt;</code></td>
 <td style="text-align:left">进行架构更改</td>
 </tr>
 </tbody>
@@ -815,6 +807,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/blog/2018/01/05/浅谈对MVC与MVVM的理解/" rel="prev" title="浅谈对MVC与MVVM的理解">
+                浅谈对MVC与MVVM的理解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -877,13 +873,22 @@
           
   <div class="comments" id="comments">
     
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
-    
+      <div id="container"></div>
+      <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+      <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+      <script>
+        var gitment = new Gitment({
+          id: window.location.pathname,
+          owner: 'anran758',
+          repo: 'gitment-comments',
+          oauth: {
+            client_id: 'a35e4aa0db5b5a7bcc2f',
+            client_secret: 'a19ef2a9debab8747a6e723c1eff1141213fe101'
+          }
+        });
+        gitment.render('container');
+      </script>
+
   </div>
 
 
@@ -930,7 +935,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1087,8 +1092,8 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1192,26 +1197,6 @@
 
   
 
-
-  
-
-    
-      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
-    
-
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2017/12/31/Git-emoji使用指南/';
-          this.page.identifier = '2017/12/31/Git-emoji使用指南/';
-          this.page.title = 'Git emoji使用指南';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      </script>
-    
 
   
 

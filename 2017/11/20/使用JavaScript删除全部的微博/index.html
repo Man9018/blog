@@ -131,6 +131,9 @@
       indexName: '',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    emojis: {
+      className: 'github-emoji'
     }
   };
 </script>
@@ -396,17 +399,6 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/blog/2017/11/20/使用JavaScript删除全部的微博/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/11/20/使用JavaScript删除全部的微博/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -435,7 +427,7 @@
 <h2 id="原理分析"><a href="#原理分析" class="headerlink" title="原理分析"></a>原理分析</h2><p>首先这次只是单纯的想通过JavaScript批量删除全部微博代替手动而已, 那么就简单了. 我们只需要模仿点击删除的动作.</p>
 <p>找到删除微博的key, 选中DOM元素, 这里我们可以看到菜单<strong>a标签</strong>中有一个属性<code>action-type=&quot;fl_menu</code>, 在控制台进使用<code>document.querySelectorAll</code>进行测试输出, 可以看到是一个<code>NodeList</code>的类数组, 分别对应着页面每一个<code>fl_menu</code>.<br><img src="/blog/2017/11/20/使用JavaScript删除全部的微博/DOM-1.png" title="Menu的DOM节点"><br><img src="/blog/2017/11/20/使用JavaScript删除全部的微博/DOM-2.png" title="输出到控制台"></p>
 <p>点击<code>menu</code>弹出下拉菜单, 继续用同样的方法分析节点, 找出一个表示用于删除的属性. 一般来说, 一个合格的程序员都懂得编写语义化的代码, 这里先推测<code>action-type=&quot;feed_list_delete</code>这个属性是专属删除微博的属性, 使用<code>document.querySelector</code>将代码在控制台上测试输出. 获取到页面中第一个delete DOM, 模拟点击后弹出一个确定框, 再次使用相同的方法确定即可.<br><br></p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>一般网站都会限制用户频繁操作, 这里我们使用<code>setTimeout</code>, 测试一个weibo能够容忍的一个操作频率(可能还跟网速有关).<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.onload = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">// 经测试, 750ms是一个较快较稳定的频率, 效率过快会弹警告.</span></div><div class="line">  <span class="keyword">var</span> timer = setTimeout(Delete, <span class="number">750</span>);</div><div class="line">  <span class="keyword">var</span> item = <span class="number">0</span>;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">Delete</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">/* 这里需要停止定时器等待加载, 请求XHR进行加载剩余微博.</span></div><div class="line">     * 这里是微博的一个限制, 当页面中不存在相应的DOM, 就进行页面刷新.</div><div class="line">     */</div><div class="line">    <span class="keyword">if</span> (item &gt; <span class="number">15</span>) &#123;</div><div class="line">      item = <span class="number">0</span>;</div><div class="line">      clearTimeout(timer);</div><div class="line">      <span class="keyword">return</span> timer = setTimeout(Delete, <span class="number">15000</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 模拟点击</span></div><div class="line">    <span class="built_in">document</span>.querySelector(<span class="string">'a[action-type="fl_menu"]'</span>).click();</div><div class="line">    <span class="built_in">document</span>.querySelector(<span class="string">'a[action-type="feed_list_delete"]'</span>).click();</div><div class="line">    <span class="built_in">document</span>.querySelector(<span class="string">'a[action-type="ok"]'</span>).click();</div><div class="line"></div><div class="line">    ++item;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">`已成功删除了<span class="subst">$&#123;item&#125;</span>项`</span>);</div><div class="line">    timer = setTimeout(Delete, <span class="number">750</span>);</div><div class="line">  &#125;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure></p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>一般网站都会限制用户频繁操作, 这里我们使用<code>setTimeout</code>, 测试一个weibo能够容忍的一个操作频率(可能还跟网速有关).<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 经测试, 750ms是一个较快较稳定的频率, 效率过快会弹警告.</span></span><br><span class="line">  <span class="keyword">var</span> timer = setTimeout(Delete, <span class="number">750</span>);</span><br><span class="line">  <span class="keyword">var</span> item = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">Delete</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">/* 这里需要停止定时器等待加载, 请求XHR进行加载剩余微博.</span></span><br><span class="line"><span class="comment">     * 这里是微博的一个限制, 当页面中不存在相应的DOM, 就进行页面刷新.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">if</span> (item &gt; <span class="number">15</span>) &#123;</span><br><span class="line">      item = <span class="number">0</span>;</span><br><span class="line">      clearTimeout(timer);</span><br><span class="line">      <span class="keyword">return</span> timer = setTimeout(Delete, <span class="number">15000</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 模拟点击</span></span><br><span class="line">    <span class="built_in">document</span>.querySelector(<span class="string">'a[action-type="fl_menu"]'</span>).click();</span><br><span class="line">    <span class="built_in">document</span>.querySelector(<span class="string">'a[action-type="feed_list_delete"]'</span>).click();</span><br><span class="line">    <span class="built_in">document</span>.querySelector(<span class="string">'a[action-type="ok"]'</span>).click();</span><br><span class="line"></span><br><span class="line">    ++item;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`已成功删除了<span class="subst">$&#123;item&#125;</span>项`</span>);</span><br><span class="line">    timer = setTimeout(Delete, <span class="number">750</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这样我们想要的效果就实现了.省去了一条一条删的人力, 又能运用到自己所学的知识. 其实代码代码也很简单, 无非是用到了<code>setTimeout</code>重复去递归调用而已. 要注意的是<code>querySelector</code>, 和<code>querySelector</code>都是IE9+的API, 在这里没有去考虑对IE的兼容, 并且也没有必要.</p>
 
       
@@ -573,13 +565,22 @@
           
   <div class="comments" id="comments">
     
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
-    
+      <div id="container"></div>
+      <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+      <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+      <script>
+        var gitment = new Gitment({
+          id: window.location.pathname,
+          owner: 'anran758',
+          repo: 'gitment-comments',
+          oauth: {
+            client_id: 'a35e4aa0db5b5a7bcc2f',
+            client_secret: 'a19ef2a9debab8747a6e723c1eff1141213fe101'
+          }
+        });
+        gitment.render('container');
+      </script>
+
   </div>
 
 
@@ -626,7 +627,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -783,8 +784,8 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -888,26 +889,6 @@
 
   
 
-
-  
-
-    
-      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
-    
-
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2017/11/20/使用JavaScript删除全部的微博/';
-          this.page.identifier = '2017/11/20/使用JavaScript删除全部的微博/';
-          this.page.title = '使用JavaScript删除全部的微博';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      </script>
-    
 
   
 
