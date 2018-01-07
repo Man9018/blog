@@ -400,7 +400,7 @@
       
         <img src="/blog/2017/11/27/谈谈npm包里的%20install%20--save%20和%20install%20--save-dev之间的区别/npm.jpg">
 <p>当我们使用<code>npm</code>进行开发时经常能遇到需要安装依赖包, 那么<code>npm install --save</code>和<code>npm install --save-dev</code>之间到底有什么区别呢? 现在来探究一番.<br><a id="more"></a></p>
-<h3 id="install-–save-dev"><a href="#install-–save-dev" class="headerlink" title="install –save-dev"></a>install –save-dev</h3><p>实际上<code>--save-dev</code>是开发时候所依赖的东西，如我们想添加自动添加前缀, 那么就安装<code>autoprefixer</code>到开发依赖去. 也就是编译打包后<code>autoprefixer</code>已经帮我们添加了相应的浏览器前缀, 那么我们之后就不需要依赖他了. 所以<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install babel --save-dev</span><br></pre></td></tr></table></figure></p>
+<h3 id="install-–save-dev"><a href="#install-–save-dev" class="headerlink" title="install –save-dev"></a>install –save-dev</h3><p>实际上<code>--save-dev</code>是开发时候所依赖的东西，如我们想添加自动添加前缀, 那么就安装<code>autoprefixer</code>到开发依赖去. 也就是编译打包后<code>autoprefixer</code>已经帮我们添加了相应的浏览器前缀, 那么我们之后就不需要依赖他了. 所以<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install babel --save-dev</div></pre></td></tr></table></figure></p>
 <p>在这里我们可以看到已经放进<code>package.json</code>中的<code>devDependencies</code>(开发依赖)中去了.<br><img src="/blog/2017/11/27/谈谈npm包里的%20install%20--save%20和%20install%20--save-dev之间的区别/dev.png"></p>
 <h3 id="install-–save"><a href="#install-–save" class="headerlink" title="install –save"></a>install –save</h3><p><code>--save</code>就是你发布之后还依赖的东西。 如果编译打包后还需要依赖的库, 如<code>vue</code>, 所以就放进了<code>dependencies</code>中(生产依赖).<br><img src="/blog/2017/11/27/谈谈npm包里的%20install%20--save%20和%20install%20--save-dev之间的区别/dep.png"></p>
 <p>两者需要安装的依赖其实都可以在<code>package.json</code>中手动输入相应的库和版本号, 然后使用<code>npm install</code>就能进行安装<code>package.json</code>中的所有依赖了~</p>
@@ -602,7 +602,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -624,7 +624,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags/index.html">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

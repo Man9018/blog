@@ -75,10 +75,12 @@
 <link href="/blog/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="算法,ffc,test," />
+  <meta name="keywords" content="JavaScript,vue,性能优化," />
 
 
 
+
+  
 
 
   <link rel="alternate" href="/blog/atom.xml" title="usake - 实验台" type="application/atom+xml" />
@@ -93,20 +95,21 @@
 
 
 
-<meta name="description" content="一些基础的算法练习">
-<meta name="keywords" content="算法,ffc,test">
+<meta name="description" content="随着项目依赖的增加, 在配合开发的时候听到后端同学的抱怨 build 时间长, 及其影响开发效率和心情. 然后翻阅了相关的资料开启Vue优化之路~">
+<meta name="keywords" content="JavaScript,vue,性能优化">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数组方法深入研究之一 (基础算法)">
-<meta property="og:url" content="http://yoursite.com/2017/07/16/Basic Algorithm Scripting - 1/index.html">
+<meta property="og:title" content="优化Vue项目的构建速度">
+<meta property="og:url" content="http://yoursite.com/2018/01/06/优化Vue项目的构建速度/index.html">
 <meta property="og:site_name" content="usake - 实验台">
-<meta property="og:description" content="一些基础的算法练习">
+<meta property="og:description" content="随着项目依赖的增加, 在配合开发的时候听到后端同学的抱怨 build 时间长, 及其影响开发效率和心情. 然后翻阅了相关的资料开启Vue优化之路~">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/e48206bbgy1flhd6wd575j21040o3tb8.jpg">
-<meta property="og:updated_time" content="2017-11-14T01:45:19.740Z">
+<meta property="og:image" content="http://yoursite.com/blog/2018/01/06/优化Vue项目的构建速度/banner.png">
+<meta property="og:image" content="http://yoursite.com/blog/2018/01/06/优化Vue项目的构建速度/run-build.png">
+<meta property="og:updated_time" content="2018-01-07T14:42:39.125Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数组方法深入研究之一 (基础算法)">
-<meta name="twitter:description" content="一些基础的算法练习">
-<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/e48206bbgy1flhd6wd575j21040o3tb8.jpg">
+<meta name="twitter:title" content="优化Vue项目的构建速度">
+<meta name="twitter:description" content="随着项目依赖的增加, 在配合开发的时候听到后端同学的抱怨 build 时间长, 及其影响开发效率和心情. 然后翻阅了相关的资料开启Vue优化之路~">
+<meta name="twitter:image" content="http://yoursite.com/blog/2018/01/06/优化Vue项目的构建速度/banner.png">
 
 
 
@@ -137,13 +140,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/07/16/Basic Algorithm Scripting - 1/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/01/06/优化Vue项目的构建速度/"/>
 
 
 
 
 
-  <title> 数组方法深入研究之一 (基础算法) | usake - 实验台 </title>
+  <title> 优化Vue项目的构建速度 | usake - 实验台 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -324,7 +327,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2017/07/16/Basic Algorithm Scripting - 1/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018/01/06/优化Vue项目的构建速度/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Anron">
@@ -345,7 +348,7 @@
             
             
               
-                数组方法深入研究之一 (基础算法)
+                优化Vue项目的构建速度
               
             
           </h1>
@@ -360,8 +363,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-16T15:09:34+08:00">
-                2017-07-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-06T20:19:15+08:00">
+                2018-01-06
               </time>
             
 
@@ -383,8 +386,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
+                  <a href="/blog/categories/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
                   </a>
                 </span>
 
@@ -418,57 +421,28 @@
       
 
       
-        <p><img src="https://ws1.sinaimg.cn/large/e48206bbgy1flhd6wd575j21040o3tb8.jpg" alt="coding"></p>
-<blockquote>
-<p>一些基础的算法练习</p>
-</blockquote>
+        <img src="/blog/2018/01/06/优化Vue项目的构建速度/banner.png">
+<p>随着项目依赖的增加, 在配合开发的时候听到后端同学的抱怨 build 时间长, 及其影响开发效率和心情. 然后翻阅了相关的资料开启Vue优化之路~</p>
 <a id="more"></a>
-<h2 id="Palindromes-回文处理"><a href="#Palindromes-回文处理" class="headerlink" title="Palindromes(回文处理)"></a>Palindromes(回文处理)</h2><p>Palindromes称之为回文。在中文文当中是指倒着念和顺着念都是相同的，前后对称.</p>
-<ul>
-<li>正则表达式</li>
-<li>replace()</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">palindrome</span>(<span class="params">str</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> string = str.replace(<span class="regexp">/[\W_]/g</span>,<span class="string">''</span>).toLowerCase();</div><div class="line">  <span class="keyword">var</span> replaceStr = string.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>);</div><div class="line">  <span class="keyword">return</span> replaceStr === string;</div><div class="line">&#125;</div><div class="line"></div><div class="line">palindrome(<span class="string">"eye"</span>);    <span class="comment">// true</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>思路</p>
-</blockquote>
-<p>&#8195;首先对字符串进行处理..去掉字符串多余的标点符号和空格，然后把字符串转化成小写.<br>&#8195;<code>split</code>把字符串拆分为一个字符串组成的数组.<code>reverse</code>反转数组顺序,<code>join</code>拼接字符串.</p>
-<h2 id="Title-Case-a-Sentence-首个单词字母大写"><a href="#Title-Case-a-Sentence-首个单词字母大写" class="headerlink" title="Title Case a Sentence(首个单词字母大写)"></a>Title Case a Sentence(首个单词字母大写)</h2><p>句中单词首字母大写,确保字符串的每个单词首字母都大写，其余部分小写。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">titleCase</span>(<span class="params">str</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> str.toLowerCase().replace(<span class="regexp">/( |^)[a-z]/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params">L</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> L.toUpperCase();</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">titleCase(<span class="string">"I'm a little tea pot"</span>);    <span class="comment">// I'm A Little Tea Pot</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>思路</p>
-</blockquote>
-<p>&#8195;首先把字符串转换为小写,再用正则匹配带空格或者就字母开头的首个字母<code>replace</code>替换成大写字母.</p>
-<h2 id="Return-Largest-Numbers-in-Arrays-返回数组最大的数字"><a href="#Return-Largest-Numbers-in-Arrays-返回数组最大的数字" class="headerlink" title="Return Largest Numbers in Arrays(返回数组最大的数字)"></a>Return Largest Numbers in Arrays(返回数组最大的数字)</h2><p>找出多个数组中的最大数,并返回一个新数组</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">largestOfFour</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">  <span class="comment">// 请把你的代码写在这里</span></div><div class="line">  <span class="keyword">var</span> count = [];</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length; i ++) &#123;</div><div class="line">      <span class="keyword">var</span> a = arr[i].sort(<span class="function"><span class="keyword">function</span> (<span class="params">a,b</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> b-a;</div><div class="line">      &#125;);</div><div class="line">      count.push(a[<span class="number">0</span>]);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> count;</div><div class="line">&#125;</div><div class="line"></div><div class="line">largestOfFour([[<span class="number">4</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">3</span>], [<span class="number">13</span>, <span class="number">27</span>, <span class="number">18</span>, <span class="number">26</span>], [<span class="number">32</span>, <span class="number">35</span>, <span class="number">37</span>, <span class="number">39</span>], [<span class="number">1000</span>, <span class="number">1001</span>, <span class="number">857</span>, <span class="number">1</span>]]);    <span class="comment">// [5,27,39,1001]</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>思路</p>
-</blockquote>
-<p>&#8195;新定义一个数组,遍历传进来的数组进行从大到小排序,将排序后最大的数<code>push</code>进新的数组<code>count</code>最后再返回.</p>
-<h2 id="Confirm-the-Ending-检查字符串结尾"><a href="#Confirm-the-Ending-检查字符串结尾" class="headerlink" title="Confirm the Ending(检查字符串结尾)"></a>Confirm the Ending(检查字符串结尾)</h2><p>检查字符串结尾,判断一个字符串(str)是否以指定的字符串(target)结尾。<br>如果是，返回true;如果不是，返回false。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">confirmEnding</span>(<span class="params">str, target</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> l = str.length - target.length;</div><div class="line">  <span class="keyword">if</span> (str.substr(l) === target) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">confirmEnding(<span class="string">"Connor"</span>, <span class="string">"n"</span>);                         <span class="comment">// false</span></div><div class="line">confirmEnding(<span class="string">"Bastian"</span>, <span class="string">"n"</span>);                        <span class="comment">// true</span></div><div class="line">confirmEnding(<span class="string">"He has to give me a new name"</span>, <span class="string">"me"</span>);  <span class="comment">// true</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>思路</p>
-</blockquote>
-<p>&#8195;乍一看好像挺麻烦的样子,容我们深入一看却发现好像并没有想象中的麻烦..<br>&#8195;这里用上了<code>String.prototype.substr()</code>而参数start是一个字符的索引,把字符串<code>str.length - target.length</code>就可以对比结尾字符串是否一样了.</p>
-<h2 id="Repeat-a-string-repeat-a-string-重复输出字符串"><a href="#Repeat-a-string-repeat-a-string-重复输出字符串" class="headerlink" title="Repeat a string repeat a string(重复输出字符串)"></a>Repeat a string repeat a string(重复输出字符串)</h2><p>重复一个指定的字符串 num次，如果num是一个负数则返回一个空字符串。</p>
-<p>&#8195;对于这种题目可以使用两种方法解决:</p>
-<ul>
-<li>递归</li>
-<li>while循环</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 第一种使用递归</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">repeat</span>(<span class="params">str, num</span>) </span>&#123;</div><div class="line">  <span class="comment">// 请把你的代码写在这里</span></div><div class="line">  <span class="keyword">if</span> (num &lt; <span class="number">0</span>)&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (num === <span class="number">1</span>) &#123;</div><div class="line">    <span class="keyword">return</span> str;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="keyword">return</span> str + repeat(str, num - <span class="number">1</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">repeat(<span class="string">"abc"</span>, <span class="number">3</span>);   <span class="comment">// "abcabcabc"</span></div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 第二种使用while</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">repeat</span>(<span class="params">str, num</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> s = <span class="string">''</span>;</div><div class="line">  <span class="keyword">while</span>(num &gt; <span class="number">0</span>)&#123;</div><div class="line">    s += str;</div><div class="line">    num --;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> s;</div><div class="line">&#125;</div><div class="line"></div><div class="line">repeat(<span class="string">"abc"</span>, <span class="number">3</span>);</div></pre></td></tr></table></figure>
-<blockquote>
-<p>思路</p>
-</blockquote>
-<p>&#8195;递归一般放进<code>if()</code>判断语句中,是一种通过重复地调用函数本身,逐次减少num的值来实现效果.<br>第二种使用了<code>while</code>语句,每调用一次就递减1,直至<code>num &gt; 0</code>.</p>
-<p>Truncate a string(截断字符串)<br>截断字符串,如果字符串的长度比指定的参数num长，则把多余的部分用…来表示。<br>插入到字符串尾部的三个点号也会计入字符串的长度。如果指定的参数num小于或等于3，则添加的三个点号不会计入字符串的长度。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">truncate</span>(<span class="params">str, num</span>) </span>&#123;</div><div class="line">  <span class="comment">// 首先判断num的值是不是大于字符串的长度,若是,那就没有必要省略了.</span></div><div class="line">  <span class="keyword">if</span>(num &gt;= str.length) &#123;</div><div class="line">    <span class="keyword">return</span> str;</div><div class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (num &lt;= <span class="number">3</span>) &#123;</div><div class="line">    <span class="keyword">return</span> str.slice(<span class="number">0</span>,num) + <span class="string">"..."</span>;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="keyword">return</span> str.slice(<span class="number">0</span>,num<span class="number">-3</span>) + <span class="string">"..."</span>;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">truncate(<span class="string">"A-tisket a-tasket A green and yellow basket"</span>, <span class="string">"A-tisket a-tasket A green and yellow basket"</span>.length);</div></pre></td></tr></table></figure>
-<blockquote>
-<p>思路</p>
-</blockquote>
-<p>&#8195;slice截取字符串.substr(),indexOf()和lastIndexOf()办法同理.<br><a href="https://www.w3cplus.com/javascript/confirm-the-ending.html" target="_blank" rel="noopener">https://www.w3cplus.com/javascript/confirm-the-ending.html</a> 大漠老师有一篇文章对此使用有着更详细的说明.</p>
+<p>##项目依赖管理</p>
+<p>首先检查一下依赖, 去掉对项目没用的依赖, 然后注意开发依赖跟生产依赖不能弄混. 如<code>scss</code>, <code>scss-loader</code>要放在开发依赖中, 因为编译后就不需要了的.. 这一点我以前也有文章提过<a href="https://anran758.github.io/blog/2017/11/27/%E8%B0%88%E8%B0%88npm%E5%8C%85%E9%87%8C%E7%9A%84%20install%20--save%20%E5%92%8C%20install%20--save-dev%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB/" target="_blank" rel="noopener">两者的区别</a>, 有兴趣的同学可以去看看.</p>
+<p>##优化配置</p>
+<p>修改<code>config/index.js</code>下的文件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 开发环境dev下, 设置为`eval`能提高最快速度, 但是缺点是不能正确显示行号, Debug会有点影响</span></div><div class="line">devtool: <span class="string">'eval'</span></div><div class="line"></div><div class="line"><span class="comment">// 关闭生产环境的sourceMap, 不懂是啥的话可以看下面的文章</span></div><div class="line"><span class="comment">// 阮一峰 - JavaScript Source Map 详解</span></div><div class="line"><span class="comment">// http://www.ruanyifeng.com/blog/2013/01/javascript_source_map.html</span></div><div class="line">productionSourceMap: <span class="literal">false</span></div></pre></td></tr></table></figure>
+<p>在<code>src/mian.js</code>关闭生产环境下的调试信息</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 关闭生产环境下的调试信息</span></div><div class="line"><span class="keyword">const</span> isDebugMode = process.env.NODE_ENV !== <span class="string">"production"</span>;</div><div class="line">Vue.config.debug = isDebugMode;</div><div class="line">Vue.config.devtools = isDebugMode;</div><div class="line">Vue.config.productionTip = isDebugMode;</div></pre></td></tr></table></figure>
+<h3 id="启动-DllPlugin"><a href="#启动-DllPlugin" class="headerlink" title="启动 DllPlugin"></a>启动 DllPlugin</h3><p>在<code>build</code>文件夹中新增<code>webpac.dll.config.js</code>的js文件. 我们将第三方库抽取出来, 打包<code>dll</code>代码.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">"path"</span>);</div><div class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">"webpack"</span>);</div><div class="line"></div><div class="line"><span class="comment">// 抽取第三方库</span></div><div class="line"><span class="keyword">const</span> vendors = [</div><div class="line">      <span class="string">"vue/dist/vue.common.js"</span>,</div><div class="line">      <span class="string">"vue-router"</span>,</div><div class="line">      <span class="string">"babel-polyfill"</span>,</div><div class="line">      <span class="string">"axios"</span>,</div><div class="line">      <span class="string">"element-ui"</span>,</div><div class="line">      <span class="string">"mint-ui"</span></div><div class="line">    ]</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">entry</span>: &#123;</div><div class="line">    <span class="attr">vendor</span>: vendors</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">path</span>: path.join(__dirname, <span class="string">"../static/js"</span>),</div><div class="line">    <span class="attr">filename</span>: <span class="string">"[name].dll.js"</span>,</div><div class="line">    <span class="attr">library</span>: <span class="string">"[name]_[hash]"</span> <span class="comment">// vendor.dll.js中暴露出的全局变量名</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">plugins</span>: [</div><div class="line">    <span class="keyword">new</span> webpack.DllPlugin(&#123;</div><div class="line">      <span class="attr">path</span>: path.join(__dirname, <span class="string">"."</span>, <span class="string">"[name]-manifest.json"</span>),</div><div class="line"></div><div class="line">      <span class="comment">// 此处需要和 output.library 的值一致</span></div><div class="line">      name: <span class="string">"[name]_[hash]"</span>,</div><div class="line">      <span class="attr">context</span>: __dirname</div><div class="line">    &#125;),</div><div class="line">    <span class="keyword">new</span> webpack.optimize.UglifyJsPlugin(&#123;</div><div class="line">      <span class="attr">compress</span>: &#123;</div><div class="line">        <span class="attr">warnings</span>: <span class="literal">false</span></div><div class="line">      &#125;</div><div class="line">    &#125;)</div><div class="line">  ]</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>然后我们写一个快捷的调用方式, 在<code>package.json</code>的<code>script</code>上添加一行代码:<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  "scripts": &#123;</div><div class="line">    // other code...</div><div class="line">    "dll": "webpack --config ./build/webpack.dll.config.js"</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这样就可以直接在命令行使用<code>npm run dll</code>, 生成<code>vendor-manifest.json</code>和<code>vendor.dll.js</code>, 前者是库文件的<code>node_modle</code>路径和<code>webpack</code>打包id的映射. 后者是我们打包后的代码库.<br></p>
+<p>随后这里我们再安装<code>html-webpack-include-assets-plugin</code>和<code>copy-webpack-plugin</code>这两个插件.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm insatll --save-dev html-webpack-include-assets-plugin copy-webpack-plugin</div></pre></td></tr></table></figure></p>
+<p><code>copy-webpack-plugin</code>是因为项目的需要，我们需要copy到指定的目录下.<code>html-webpack-include-assets-plugin</code>是将<code>vendor.dll.js</code>插入到<code>index.html</code>里.</p>
+<p>这里值得一提的是, 虽然我们可以直接在根目录的<code>index.html</code>里插入<code>script</code>, 但实际上并不妥当的. 当你<code>npm run dev</code>后, 你会发现在控制台那一行红色的报错, 告诉着你东西找不到, 虽然不影响开发, 但你会看得很难受.</p>
+<p>紧接着我们在<code>webpack.prod.conf.js</code>上引用我们添加的依赖, 再添加以下代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// config 是 config/index.js 里的配置</span></div><div class="line"><span class="comment">// utils.assetsPath 也是 build/utils.js的配置</span></div><div class="line"><span class="comment">// 这里这样写是为了跟项目统一</span></div><div class="line">plugins: [</div><div class="line">  <span class="keyword">new</span> webpack.DllReferencePlugin(&#123;</div><div class="line">    <span class="attr">context</span>: __dirname,</div><div class="line">    <span class="attr">manifest</span>: <span class="built_in">require</span>(<span class="string">'./vendor-manifest.json'</span>)</div><div class="line">  &#125;),</div><div class="line">  <span class="comment">// copy custom static assets</span></div><div class="line">  <span class="keyword">new</span> CopyWebpackPlugin([</div><div class="line">    &#123;</div><div class="line">      <span class="attr">from</span>: path.resolve(__dirname, <span class="string">'../static'</span>),</div><div class="line">      <span class="attr">to</span>: config.build.assetsSubDirectory,</div><div class="line">      <span class="attr">ignore</span>: [<span class="string">'.*'</span>]</div><div class="line">    &#125;</div><div class="line">  ]),</div><div class="line">  <span class="comment">// 将 vendor.dll.js 插入HTML里</span></div><div class="line">  <span class="keyword">new</span> HtmlWebpackIncludeAssetsPlugin(&#123;</div><div class="line">    <span class="attr">assets</span>: [utils.assetsPath(<span class="string">'js/vendor.dll.js'</span>)],</div><div class="line">    <span class="attr">files</span>: [<span class="string">'index.html'</span>],</div><div class="line">    <span class="attr">append</span>: <span class="literal">false</span></div><div class="line">  &#125;),</div><div class="line">]</div></pre></td></tr></table></figure></p>
+<p>在命令行进行打包<code>npm run build</code>, 可以看到构建的速度大大的提高啦, 我们的优化也告一段落了~<br><img src="/blog/2018/01/06/优化Vue项目的构建速度/run-build.png"></p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>最后再优化时说说踩的坑, 给后来人一些提示.</p>
+<p><code>Uncaught ReferenceError: vendor_library is not defined</code> - 检查HTML里是否插入<code>vendor.dll.js</code>, 文件是否加载成功, 或者检查是否有路径问题.</p>
+<p>一些打包后hash不变仍然会被清除重新打包 … 这是因为<code>vue-cli</code>默认配置会直接清空<code>dist</code>文件夹里的所有文件, 你提前放一些js文件进去也是没有用的.</p>
 
       
     </div>
@@ -514,11 +488,11 @@
       
         <div class="post-tags">
           
-            <a href="/blog/tags/算法/" rel="tag"># 算法</a>
+            <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
           
-            <a href="/blog/tags/ffc/" rel="tag"># ffc</a>
+            <a href="/blog/tags/vue/" rel="tag"># vue</a>
           
-            <a href="/blog/tags/test/" rel="tag"># test</a>
+            <a href="/blog/tags/性能优化/" rel="tag"># 性能优化</a>
           
         </div>
       
@@ -531,15 +505,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/blog/2018/01/05/浅谈对MVC与MVVM的理解/" rel="next" title="浅谈对MVC与MVVM的理解">
+                <i class="fa fa-chevron-left"></i> 浅谈对MVC与MVVM的理解
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2017/07/19/Basic Algorithm Scripting - 2/" rel="prev" title="数组方法深入研究之二 (基础算法)">
-                数组方法深入研究之二 (基础算法) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -800,7 +774,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Palindromes-回文处理"><span class="nav-number">1.</span> <span class="nav-text">Palindromes(回文处理)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Title-Case-a-Sentence-首个单词字母大写"><span class="nav-number">2.</span> <span class="nav-text">Title Case a Sentence(首个单词字母大写)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Return-Largest-Numbers-in-Arrays-返回数组最大的数字"><span class="nav-number">3.</span> <span class="nav-text">Return Largest Numbers in Arrays(返回数组最大的数字)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Confirm-the-Ending-检查字符串结尾"><span class="nav-number">4.</span> <span class="nav-text">Confirm the Ending(检查字符串结尾)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Repeat-a-string-repeat-a-string-重复输出字符串"><span class="nav-number">5.</span> <span class="nav-text">Repeat a string repeat a string(重复输出字符串)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#启动-DllPlugin"><span class="nav-number">1.</span> <span class="nav-text">启动 DllPlugin</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number"></span> <span class="nav-text">后记</span></a></div>
             
 
           </div>

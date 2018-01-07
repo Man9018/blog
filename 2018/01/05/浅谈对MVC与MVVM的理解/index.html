@@ -93,14 +93,22 @@
 
 
 
+<meta name="description" content="开发中我们常听说MVC, MVP, MVVM这些好像很高端的名词, 那么你了解他实际上是什么东西吗? 下面谈谈对它们的理解.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浅谈对MVC与MVVM的理解">
 <meta property="og:url" content="http://yoursite.com/2018/01/05/浅谈对MVC与MVVM的理解/index.html">
 <meta property="og:site_name" content="usake - 实验台">
+<meta property="og:description" content="开发中我们常听说MVC, MVP, MVVM这些好像很高端的名词, 那么你了解他实际上是什么东西吗? 下面谈谈对它们的理解.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-05T02:32:14.999Z">
+<meta property="og:image" content="http://yoursite.com/blog/2018/01/05/浅谈对MVC与MVVM的理解/banner.jpg">
+<meta property="og:image" content="http://yoursite.com/blog/2018/01/05/浅谈对MVC与MVVM的理解/mvc.jpg">
+<meta property="og:image" content="http://yoursite.com/blog/2018/01/05/浅谈对MVC与MVVM的理解/mvvm.jpg">
+<meta property="og:image" content="http://yoursite.com/blog/2018/01/05/浅谈对MVC与MVVM的理解/vue-1.png">
+<meta property="og:updated_time" content="2018-01-07T15:14:58.067Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈对MVC与MVVM的理解">
+<meta name="twitter:description" content="开发中我们常听说MVC, MVP, MVVM这些好像很高端的名词, 那么你了解他实际上是什么东西吗? 下面谈谈对它们的理解.">
+<meta name="twitter:image" content="http://yoursite.com/blog/2018/01/05/浅谈对MVC与MVVM的理解/banner.jpg">
 
 
 
@@ -390,8 +398,27 @@
       
 
       
-        
-<a id="more"></a>
+        <img src="/blog/2018/01/05/浅谈对MVC与MVVM的理解/banner.jpg">
+<p>开发中我们常听说MVC, MVP, MVVM这些好像很高端的名词, 那么你了解他实际上是什么东西吗? 下面谈谈对它们的理解.<br><a id="more"></a></p>
+<h3 id="1-MVC"><a href="#1-MVC" class="headerlink" title="1. MVC"></a>1. MVC</h3><p>其实上面所提的三者都是一种软件架构模式(或者说是一种概念), 其中<strong>MVC</strong>的历史最为长远.</p>
+<p>MVC模式可以分成以下三种, 就是模型(module), 界面(View), 控制器(controller). 三者之间的关系.</p>
+<img src="/blog/2018/01/05/浅谈对MVC与MVVM的理解/mvc.jpg" title="各部件通信方式">
+<p>MVC的好处在于</p>
+<ol>
+<li>视图控制模型分离降低耦合性</li>
+<li>提高代码重用性和可维护性</li>
+<li>因为是单向模块化, 不同层各施其职，互不干涉</li>
+</ol>
+<p>有优点再说说缺点: </p>
+<ol>
+<li>清晰的构架以代码的复杂性为代价, 对小项目优可能反而降低开发效率. </li>
+<li><code>Controller</code>层代码难以复用的, 到后面会变得臃肿.</li>
+<li>运行效率相对较低, 太过于复杂反而不太适合中小型项目</li>
+</ol>
+<h3 id="MVVM"><a href="#MVVM" class="headerlink" title="MVVM"></a>MVVM</h3><p>MVVM(Module-View-ViewModule)的出现主要是为了解决在开发过程中<code>Controller</code>越来越庞大的问题, 它将<code>Controller</code>替换成了<code>ViewModule</code>, 同时改变了通讯模式, 这是MVVM相对于MVC改进的核心思想.</p>
+<img src="/blog/2018/01/05/浅谈对MVC与MVVM的理解/mvvm.jpg">
+<p>其中MVVM的显著特点就是双向绑定. <code>view</code>的变动会自动更新到<code>Model</code>中. 其中当下很流行的Vue框架就是采用了这个模式. 下图的就能很清晰的看的懂ViewModel是如何做的.<br><img src="/blog/2018/01/05/浅谈对MVC与MVVM的理解/vue-1.png"></p>
+
       
     </div>
 
@@ -452,6 +479,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018/01/06/优化Vue项目的构建速度/" rel="prev" title="优化Vue项目的构建速度">
+                优化Vue项目的构建速度 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -552,8 +583,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://tc.ffsky.net/images/2017/05/16/0780b8f83fed50d5dd538ae90aa20b06.jpg"
@@ -568,7 +608,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -590,7 +630,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags/index.html">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -693,6 +733,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-MVC"><span class="nav-number">1.</span> <span class="nav-text">1. MVC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MVVM"><span class="nav-number">2.</span> <span class="nav-text">MVVM</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

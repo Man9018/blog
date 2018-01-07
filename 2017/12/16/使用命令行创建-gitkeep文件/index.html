@@ -403,7 +403,7 @@
 <h2 id="创建文件"><a href="#创建文件" class="headerlink" title="创建文件"></a>创建文件</h2><blockquote>
 <p>“哥, 能发个’.gitkeep’给我蛮? 项目中的弄丢了..”<br>  “啊? 直接创建一个不就完啦?”<br>  “创建不了呀!!系统不准, 会报错提示必须输入文件名”<br>  “噢~是有这个限制的, 你用命令行吧”<br>  “搜了圈, 好像没有找到在windows创建的方法诶, “<br>  “? ? ?”  </p>
 </blockquote>
-<p>没错, 上面这场景就是让我写这篇博客的主要起因…其实windows下环境创建<code>.</code>开头的文件只能通过命令行的方法, 而且方式也很简单. 只需要输入一行命令即可..<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">type</span> <span class="built_in">NUL</span> &gt; .gitkeep</span><br></pre></td></tr></table></figure></p>
+<p>没错, 上面这场景就是让我写这篇博客的主要起因…其实windows下环境创建<code>.</code>开头的文件只能通过命令行的方法, 而且方式也很简单. 只需要输入一行命令即可..<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">type</span> <span class="built_in">NUL</span> &gt; .gitkeep</div></pre></td></tr></table></figure></p>
 <p>这段代码的意思就是创建一个空文件重定向到名为<code>.gitkeep</code>的文件中.</p>
 <h2 id="gitignore与gitkeep"><a href="#gitignore与gitkeep" class="headerlink" title="gitignore与gitkeep"></a>gitignore与gitkeep</h2><p>在脚手架构建的项目中, 你也总能在根目录看到名为<code>.giitignore</code>的文件, 那么它和<code>gitkeep</code>又有什么关联呢? 前文有提过, <code>.gitkeep</code>只是约定俗成的一个名称, 而<code>.gitignore</code>是一个特殊文件, 如果你有什么不想提交上去的东西, 如配置了表单密码的配置文件呀什么的, 你可以写进这个文件中, <code>git</code>会自动的忽略掉它.</p>
 <blockquote>
@@ -613,7 +613,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -635,7 +635,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags/index.html">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

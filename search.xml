@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[优化Vue项目的构建速度]]></title>
+    <url>%2Fblog%2F2018%2F01%2F06%2F%E4%BC%98%E5%8C%96Vue%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%9E%84%E5%BB%BA%E9%80%9F%E5%BA%A6%2F</url>
+    <content type="text"><![CDATA[随着项目依赖的增加, 在配合开发的时候听到后端同学的抱怨 build 时间长, 及其影响开发效率和心情. 然后翻阅了相关的资料开启Vue优化之路~ ##项目依赖管理 首先检查一下依赖, 去掉对项目没用的依赖, 然后注意开发依赖跟生产依赖不能弄混. 如scss, scss-loader要放在开发依赖中, 因为编译后就不需要了的.. 这一点我以前也有文章提过两者的区别, 有兴趣的同学可以去看看. ##优化配置 修改config/index.js下的文件 1234567// 开发环境dev下, 设置为`eval`能提高最快速度, 但是缺点是不能正确显示行号, Debug会有点影响devtool: 'eval'// 关闭生产环境的sourceMap, 不懂是啥的话可以看下面的文章// 阮一峰 - JavaScript Source Map 详解// http://www.ruanyifeng.com/blog/2013/01/javascript_source_map.htmlproductionSourceMap: false 在src/mian.js关闭生产环境下的调试信息 12345// 关闭生产环境下的调试信息const isDebugMode = process.env.NODE_ENV !== "production";Vue.config.debug = isDebugMode;Vue.config.devtools = isDebugMode;Vue.config.productionTip = isDebugMode; 启动 DllPlugin在build文件夹中新增webpac.dll.config.js的js文件. 我们将第三方库抽取出来, 打包dll代码. 12345678910111213141516171819202122232425262728293031323334353637const path = require("path");const webpack = require("webpack");// 抽取第三方库const vendors = [ "vue/dist/vue.common.js", "vue-router", "babel-polyfill", "axios", "element-ui", "mint-ui" ]module.exports = &#123; entry: &#123; vendor: vendors &#125;, output: &#123; path: path.join(__dirname, "../static/js"), filename: "[name].dll.js", library: "[name]_[hash]" // vendor.dll.js中暴露出的全局变量名 &#125;, plugins: [ new webpack.DllPlugin(&#123; path: path.join(__dirname, ".", "[name]-manifest.json"), // 此处需要和 output.library 的值一致 name: "[name]_[hash]", context: __dirname &#125;), new webpack.optimize.UglifyJsPlugin(&#123; compress: &#123; warnings: false &#125; &#125;) ]&#125;; 然后我们写一个快捷的调用方式, 在package.json的script上添加一行代码:123456&#123; "scripts": &#123; // other code... "dll": "webpack --config ./build/webpack.dll.config.js" &#125;&#125; 这样就可以直接在命令行使用npm run dll, 生成vendor-manifest.json和vendor.dll.js, 前者是库文件的node_modle路径和webpack打包id的映射. 后者是我们打包后的代码库. 随后这里我们再安装html-webpack-include-assets-plugin和copy-webpack-plugin这两个插件.1npm insatll --save-dev html-webpack-include-assets-plugin copy-webpack-plugin copy-webpack-plugin是因为项目的需要，我们需要copy到指定的目录下.html-webpack-include-assets-plugin是将vendor.dll.js插入到index.html里. 这里值得一提的是, 虽然我们可以直接在根目录的index.html里插入script, 但实际上并不妥当的. 当你npm run dev后, 你会发现在控制台那一行红色的报错, 告诉着你东西找不到, 虽然不影响开发, 但你会看得很难受. 紧接着我们在webpack.prod.conf.js上引用我们添加的依赖, 再添加以下代码1234567891011121314151617181920212223// config 是 config/index.js 里的配置// utils.assetsPath 也是 build/utils.js的配置// 这里这样写是为了跟项目统一plugins: [ new webpack.DllReferencePlugin(&#123; context: __dirname, manifest: require('./vendor-manifest.json') &#125;), // copy custom static assets new CopyWebpackPlugin([ &#123; from: path.resolve(__dirname, '../static'), to: config.build.assetsSubDirectory, ignore: ['.*'] &#125; ]), // 将 vendor.dll.js 插入HTML里 new HtmlWebpackIncludeAssetsPlugin(&#123; assets: [utils.assetsPath('js/vendor.dll.js')], files: ['index.html'], append: false &#125;),] 在命令行进行打包npm run build, 可以看到构建的速度大大的提高啦, 我们的优化也告一段落了~ 后记最后再优化时说说踩的坑, 给后来人一些提示. Uncaught ReferenceError: vendor_library is not defined - 检查HTML里是否插入vendor.dll.js, 文件是否加载成功, 或者检查是否有路径问题. 一些打包后hash不变仍然会被清除重新打包 … 这是因为vue-cli默认配置会直接清空dist文件夹里的所有文件, 你提前放一些js文件进去也是没有用的.]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>vue</tag>
+        <tag>性能优化</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[浅谈对MVC与MVVM的理解]]></title>
     <url>%2Fblog%2F2018%2F01%2F05%2F%E6%B5%85%E8%B0%88%E5%AF%B9MVC%E4%B8%8EMVVM%E7%9A%84%E7%90%86%E8%A7%A3%2F</url>
-    <content type="text"><![CDATA[]]></content>
+    <content type="text"><![CDATA[开发中我们常听说MVC, MVP, MVVM这些好像很高端的名词, 那么你了解他实际上是什么东西吗? 下面谈谈对它们的理解. 1. MVC其实上面所提的三者都是一种软件架构模式(或者说是一种概念), 其中MVC的历史最为长远. MVC模式可以分成以下三种, 就是模型(module), 界面(View), 控制器(controller). 三者之间的关系. MVC的好处在于 视图控制模型分离降低耦合性 提高代码重用性和可维护性 因为是单向模块化, 不同层各施其职，互不干涉 有优点再说说缺点: 清晰的构架以代码的复杂性为代价, 对小项目优可能反而降低开发效率. Controller层代码难以复用的, 到后面会变得臃肿. 运行效率相对较低, 太过于复杂反而不太适合中小型项目 MVVMMVVM(Module-View-ViewModule)的出现主要是为了解决在开发过程中Controller越来越庞大的问题, 它将Controller替换成了ViewModule, 同时改变了通讯模式, 这是MVVM相对于MVC改进的核心思想. 其中MVVM的显著特点就是双向绑定. view的变动会自动更新到Model中. 其中当下很流行的Vue框架就是采用了这个模式. 下图的就能很清晰的看的懂ViewModel是如何做的.]]></content>
   </entry>
   <entry>
     <title><![CDATA[Git emoji使用指南]]></title>

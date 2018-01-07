@@ -426,8 +426,8 @@
 <h2 id="Promise未定义"><a href="#Promise未定义" class="headerlink" title="Promise未定义 ?"></a>Promise未定义 ?</h2><p>在使用Axios开发时, IE11及以下版本报错会报<code>Promise未定义</code>的错误. 这是因为<code>axios</code>本质上是封装了ES6语法的<code>promise</code>,而<code>promise</code>在IE上并不兼容.<br><img src="/blog/2017/12/15/Vue项目中Axios报错Pomise未定义及IE10报语法错误的解决方案/promise-1.png" title="IE11下的错误"></p>
 <p>然而说到js兼容, 这时候我们又能联想到<code>babel</code>.. 没错, <code>babel</code>中有一个工具叫做<a href="https://babeljs.cn/docs/usage/polyfill/" target="_blank" rel="noopener">babel-Polyfill</a>, 它会仿效一个完整的<code>ES2015+</code>环境，并意图运行于一个应用中而不是一个库/工具. 其实食用的方式也很简单.</p>
 <p>我们将<code>babel-polyfill</code>装进我们项目依赖中. <em>这里值得注意的是, 安装的时候需要安装到<code>dependency</code>(生产依赖)中, 而不是<code>devDependency</code>(开发依赖)</em><br>(tips.关于两者的区别, 我以前的文章有专门讲过, 感兴趣的可以看一下)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save babel-polyfill</span><br></pre></td></tr></table></figure>
-<p>首先在<code>mian.js</code>的<strong>顶部</strong>引入<code>import &quot;babel-polyfill&quot;;</code>确保能够最先加载, 随后我们在<code>build</code>目录下<code>webpack.config.js</code>修改配置, 将app使用<code>babel-polyfill</code>进行编译. 这时候我们再重新编译, 就会发现<code>promise未定义</code>的错误就以及消失了<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line">      app: [<span class="string">"babel-polyfill"</span>, <span class="string">'./src/main.js'</span>]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save babel-polyfill</div></pre></td></tr></table></figure>
+<p>首先在<code>mian.js</code>的<strong>顶部</strong>引入<code>import &quot;babel-polyfill&quot;;</code>确保能够最先加载, 随后我们在<code>build</code>目录下<code>webpack.config.js</code>修改配置, 将app使用<code>babel-polyfill</code>进行编译. 这时候我们再重新编译, 就会发现<code>promise未定义</code>的错误就以及消失了<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">entry</span>: &#123;</div><div class="line">      <span class="attr">app</span>: [<span class="string">"babel-polyfill"</span>, <span class="string">'./src/main.js'</span>]</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>你以为文章到这里就结束了吗…. 随即我们切换到IE10下进行测试. 你会发现, 又冒出了一个报错.. Emmm, 解决一个又来一个, 惊不惊喜意不意外?<br><img src="/blog/2017/12/15/Vue项目中Axios报错Pomise未定义及IE10报语法错误的解决方案/IE10-1.png" title="IE10下语法错误"></p>
 <h2 id="语法错误"><a href="#语法错误" class="headerlink" title="语法错误"></a>语法错误</h2><p>当你在IE10下看到提示语法错误的时, 这时候你就得去检查检查<code>package.json</code>下 <code>webpack-dev-server</code>版本是否高于<code>2.6.1</code>. 出现这个报错主要是因为项目中使用了<code>const</code>等语法, 然而IE11以下并不认得ES6语法语法.这个问题只有在开发模式才会出现, 只要es6转码后，打包放到服务器上，就没有问题了. </p>
 <p>如果你想在开发阶段在IE10下测试你的代码, 你可以选择降低版本到<code>2.6.1</code>上, 问题就解决了.<br><img src="/blog/2017/12/15/Vue项目中Axios报错Pomise未定义及IE10报语法错误的解决方案/IE10-2.png"></p>
@@ -631,7 +631,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -653,7 +653,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags/index.html">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

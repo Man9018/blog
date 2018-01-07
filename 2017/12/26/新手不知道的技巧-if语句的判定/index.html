@@ -422,7 +422,7 @@
 <p>可能入坑不久的同学还会用着<code>if (value !== null || Value !== undefined)</code>这样的判断语句, 而实际上只要理解判定的规则, 善用规则, 就能大大的提高代码的可读性. 接下来让我们深入学习一下.</p>
 <a id="more"></a>
 <h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>大多编程语言中最为常用的一个语句就是<code>if</code>语句, 这种条件语句是通过判断指定表达式的值来决定执行还是跳过某些语句. 它的语法如下:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Expression) &#123;</span><br><span class="line">  statement</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (Expression) &#123;</div><div class="line">  statement</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>其中<strong>Expression(表达式/条件)</strong>可以是任意表达式或者值.</p>
 <ol>
 <li>首先它会解析表达式的值</li>
@@ -469,7 +469,7 @@
 </tbody>
 </table>
 <p>这里我们得出<code>undefined</code>, <code>null</code>, <code>NaN</code>, 空字符串, 和数字 0 都是过不了条件语块的规则, 因此我们可以利用这一点来对代码进行简写.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> userName = <span class="string">'hello'</span>;</span><br><span class="line"><span class="keyword">var</span> flag = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// bad code</span></span><br><span class="line"><span class="keyword">if</span> (value != <span class="literal">undefined</span>) &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// bad code</span></span><br><span class="line"><span class="keyword">if</span> (value !== <span class="literal">undefined</span> || value !== <span class="literal">null</span> || value !== <span class="literal">false</span>) &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// good code</span></span><br><span class="line"><span class="keyword">if</span> (userName) &#123;</span><br><span class="line">  something...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// flag锁, 利用取反转换布尔值</span></span><br><span class="line"><span class="keyword">if</span> (!flag) &#123;</span><br><span class="line">  flag = <span class="literal">true</span>;</span><br><span class="line">  something...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> userName = <span class="string">'hello'</span>;</div><div class="line"><span class="keyword">var</span> flag = <span class="literal">false</span>;</div><div class="line"></div><div class="line"><span class="comment">// bad code</span></div><div class="line"><span class="keyword">if</span> (value != <span class="literal">undefined</span>) &#123;</div><div class="line">  ...</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// bad code</span></div><div class="line"><span class="keyword">if</span> (value !== <span class="literal">undefined</span> || value !== <span class="literal">null</span> || value !== <span class="literal">false</span>) &#123;</div><div class="line">  ...</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// good code</span></div><div class="line"><span class="keyword">if</span> (userName) &#123;</div><div class="line">  something...</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// flag锁, 利用取反转换布尔值</span></div><div class="line"><span class="keyword">if</span> (!flag) &#123;</div><div class="line">  flag = <span class="literal">true</span>;</div><div class="line">  something...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>相同的, 也没有必要去使用<code>==</code>规范不推荐的方式去隐式转换类型, 这种规则同样适用于<code>三目运算符</code>, <code>switch</code>等条件运算中去… 这样看起来是不是自己的代码整洁多了呢~</p>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>才疏学浅, 如果有什么说的不对或者需要改进的地方, 可以给我留言大家一起交流. 原创不易, 如果文章对你有帮助的话就随手点个赞鼓励一下呗~</p>
 <p><strong>参考资料</strong><br>ECMA-262 官方文档<br><a href="http://www.ecma-international.org/ecma-262/6.0/#sec-if-statement" target="_blank" rel="noopener">http://www.ecma-international.org/ecma-262/6.0/#sec-if-statement</a></p>
@@ -673,7 +673,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -695,7 +695,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags/index.html">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
