@@ -6,7 +6,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-01-17T04:58:26.373Z</updated>
+  <updated>2018-01-24T16:50:40.927Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JQuery是被淘汰了吗?为什么我们要选用 Vue/React/Angular 进行开发</title>
+    <link href="http://yoursite.com/2018/01/23/JavaScript-%E4%BD%A0%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E6%94%BE%E5%BC%83JQuery%E8%80%8C%E9%80%89%E7%94%A8Vue-React-Angular%E8%BF%9B%E8%A1%8C%E5%BC%80%E5%8F%91/"/>
+    <id>http://yoursite.com/2018/01/23/JavaScript-你为什么会放弃JQuery而选用Vue-React-Angular进行开发/</id>
+    <published>2018-01-23T12:43:24.000Z</published>
+    <updated>2018-01-24T16:50:40.927Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/blog/2018/01/23/JavaScript-你为什么会放弃JQuery而选用Vue-React-Angular进行开发/banner.png"><p>JQuery, 曾经从事网页工作者的标配, 以前还没有前端的概念, 但不懂JQuery几乎是会被嘲讽的. 而当下的使用量却逐年降低, 更多的用户转向新兴的 React/Angular/Vue . 今天我们来聊聊, 相比JQuery成熟庞大生态圈, 为什么我们现在开始逐步的放弃 JQuery.</p><a id="more"></a><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>截止至笔者写这篇文章为止(2018.1), 前端开发的大趋势主要是以下几点:</p><ul><li>旧浏览器逐渐被淘汰(比如IE8及以下, 主流框架已经放弃了支持)</li><li>移动端需求的增加</li><li>用户体验要求变得更高</li><li>前端架构从传统的后台 MVC 向 RESTFul API + 前端 MV* 迁移</li></ul><p>众所周知. JQuery只是一个DOM和ajax的封装库. 现在前端项目的日益发展导致JQuery已经不足以承载太多的复杂项目了. JQuery能兼容各种低版本的浏览器这一大优势也在旧浏览器淘汰的路上逐步减弱. 越来越多的开发者开始拥抱新型框架, 它们使前端不太需要关心DOM了, 只需要关心状态.</p><h2 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h2><p>因为我目前主要使用的是Vue的技术栈, 就来说说为什么要选择 Vue 吧.<br>首先, Vue.js是一个库, 并不是一个真正框架(或者说是一个UI层面的框架). 它相比其他两个主流框架 (React/Angular) 来说 Vue 的学习成本相对来说会比较低. 其次 vue 的作者是国人<a href="https://weibo.com/arttechdesign?topnav=1&wvr=6&topsug=1" rel="noopener" target="_blank">尤雨溪</a>, 因此它对中文的支持会更友好一点(说句题外话, 偶尔能看到有老外吐槽. Vue.js的源码偶尔能看到中文的注释2333).</p><p>Vue是渐进式框架, 它主要关注的是视图管理. 其核心思想主要是数据驱动和组件化. vue的优势主要有以下几点:</p><ol><li><p>侵入性低<br>不对整体构架做过多约束, 方便与其他库或是已有的前端技术栈整合. 比如说当前的项目就是在使用JQuery, 我们也可以将项目移入vue里, 然后逐步的进行改良.</p></li><li><p>vue鼓励模块化<br>因为组件系统是 Vue 的另一个重要概念, 因为它是一种抽象，允许我们使用小型、独立和通常可复用的组件构建大型应用. 这将有利于将界面代码自然分割成更容易维护的模块. 简而言之就是模块化开发, 减少代码的重复性和提高复用性.<br>vue.js比较推荐的是基于commonJs的一个模块方案. 通过webpack这样的模块构建工具, 将一个组件的模块, css和js都写在同一个文件里. Vue本身也有自己脚手架叫做<code>vue-cli</code>, 通过脚手架来帮助我们自动构建项目, 再使用npm进行包管理也是使项目模块化的一种.</p></li><li><p>Vue的语法糖和各种修饰符使得编写JS变得更加的容易. 同时使用一些依赖库, 比如<code>babel</code>使我们能大胆的使用ES6的语法糖. 原先需要封装一个函数的命令, 现在只用一句代码就能解决了. 大大的提高效率.</p></li><li><p>Vue也有自己的生态系统和一个活跃的社区.</p></li></ol><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>JQuery作为曾经的霸主, 现在市场使用的份额仍然不小. 原因主要是一些老旧的项目仍然在使用着. 其次, 有些时候我们也会遇到需要频繁操作DOM的场景, 再加上JQuery庞大的生态圈. 有很多完善的插件仍然可以使用. 因此, JQuery虽然过时了, 但在未来几年中, 也必然还会有它的份额存在.</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/blog/2018/01/23/JavaScript-你为什么会放弃JQuery而选用Vue-React-Angular进行开发/banner.png&quot;&gt;&lt;p&gt;JQuery, 曾经从事网页工作者的标配, 以前还没有前端的概念, 但不懂JQuery几乎是会被嘲讽的. 而当下的使用量却逐年降低, 更多的用户转向新兴的 React/Angular/Vue . 今天我们来聊聊, 相比JQuery成熟庞大生态圈, 为什么我们现在开始逐步的放弃 JQuery.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="http://yoursite.com/categories/JavaScript/"/>
+    
+    
+      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+    
+      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
+    
+      <category term="框架" scheme="http://yoursite.com/tags/%E6%A1%86%E6%9E%B6/"/>
+    
+      <category term="杂谈" scheme="http://yoursite.com/tags/%E6%9D%82%E8%B0%88/"/>
+    
+  </entry>
   
   <entry>
     <title>性能优化 - 回流与重绘</title>
@@ -337,7 +365,7 @@
     <link href="http://yoursite.com/2017/11/29/Vue-v-for-%E9%81%8D%E5%8E%86%E7%BB%91%E5%AE%9Atoggle-icon-%E5%8A%A8%E6%80%81%E5%88%87%E6%8D%A2action/"/>
     <id>http://yoursite.com/2017/11/29/Vue-v-for-遍历绑定toggle-icon-动态切换action/</id>
     <published>2017-11-29T09:12:43.000Z</published>
-    <updated>2018-01-08T08:48:16.467Z</updated>
+    <updated>2018-01-21T03:59:55.353Z</updated>
     
     <content type="html"><![CDATA[<img src="/blog/2017/11/29/Vue-v-for-遍历绑定toggle-icon-动态切换action/vue.jpg"><p>在Vue中实现动态绑定toggle action</p><a id="more"></a><p>在遍历<code>li</code>标签时, 动态绑定点击事件, 当点击其中一个<code>item</code>时调用函数. 函数内判断是否处于<code>action</code>状态, 是则清除class, 从实现toggle的效果~ 按照这个思路也可以扩展为下拉菜单.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line">&lt;template&gt;</div><div class="line">  &lt;div class=&quot;hello&quot;&gt;</div><div class="line">    &lt;ul class=&quot;list&quot;&gt;</div><div class="line">      &lt;li v-for=&quot;(item, index) in itemList&quot;</div><div class="line">          @click=&quot;openItem(index)&quot;</div><div class="line">           :key=&quot;item.id&quot;</div><div class="line">      &gt;</div><div class="line">        &#123;&#123; item.desc &#125;&#125;</div><div class="line">        &lt;span class=&quot;icon&quot; :class=&quot;&#123;&apos;action&apos;: actionItem === index&#125;&quot;&gt;&lt;/span&gt;</div><div class="line">      &lt;/li&gt;</div><div class="line">    &lt;/ul&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">&lt;/template&gt;</div><div class="line"></div><div class="line">&lt;script&gt;</div><div class="line">export default &#123;</div><div class="line">  data () &#123;</div><div class="line">    return &#123;</div><div class="line">      itemList: [</div><div class="line">        &#123;desc: &apos;item1&apos;&#125;,</div><div class="line">        &#123;desc: &apos;item2&apos;&#125;,</div><div class="line">        &#123;desc: &apos;item3&apos;&#125;</div><div class="line">      ],</div><div class="line">      actionItem: null</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  methods: &#123;</div><div class="line">    openItem (index) &#123;</div><div class="line">      if (this.actionItem === index) &#123;</div><div class="line">        this.actionItem = null</div><div class="line">      &#125; else &#123;</div><div class="line">        this.actionItem = index</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">&lt;/script&gt;</div><div class="line"></div><div class="line">&lt;!-- Add &quot;scoped&quot; attribute to limit CSS to this component only --&gt;</div><div class="line">&lt;style scoped&gt;</div><div class="line">.list &#123;</div><div class="line">  width: 500px;</div><div class="line">  padding: 0;</div><div class="line">  margin: 0 auto;</div><div class="line">  text-align: left;</div><div class="line">&#125;</div><div class="line">.list li &#123;</div><div class="line">  position: relative;</div><div class="line">  margin: 14px 0;</div><div class="line">  padding: 10px;</div><div class="line">  border-bottom: 1px solid #ccc;</div><div class="line">  list-style: none;</div><div class="line">  cursor: pointer;</div><div class="line">&#125;</div><div class="line">.list .icon &#123;</div><div class="line">  position: absolute;</div><div class="line">  right: 10px;</div><div class="line">  width: 0;</div><div class="line">  height: 0px;</div><div class="line">  border: 10px solid;</div><div class="line">  border-color: #aaa transparent transparent transparent;</div><div class="line">&#125;</div><div class="line">.list .action &#123;</div><div class="line">  border-color: rgb(254,0,0);</div><div class="line">  border-radius: 50%;</div><div class="line">&#125;</div><div class="line">&lt;/style&gt;</div></pre></td></tr></table></figure><p>初次点击, <code>action</code>触发, 再次点击清除<code>action</code><br><img src="/blog/2017/11/29/Vue-v-for-遍历绑定toggle-icon-动态切换action/vue-1.png"></p>]]></content>
     
@@ -347,6 +375,10 @@
     
     </summary>
     
+      <category term="vue" scheme="http://yoursite.com/categories/vue/"/>
+    
+    
+      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
     
       <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
     
@@ -465,30 +497,6 @@
       <category term="test" scheme="http://yoursite.com/tags/test/"/>
     
       <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>通过sourcetree实现远程仓库与本地仓库关联</title>
-    <link href="http://yoursite.com/2017/11/03/%E9%80%9A%E8%BF%87sourcetree%E5%AE%9E%E7%8E%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E4%B8%8E%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E5%85%B3%E8%81%94/"/>
-    <id>http://yoursite.com/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/</id>
-    <published>2017-11-03T13:55:50.809Z</published>
-    <updated>2017-11-04T15:47:26.334Z</updated>
-    
-    <content type="html"><![CDATA[<p>&emsp;&emsp;sourceTree 是当下比较流行的git客户端,简化了如何与Git存储库进行交互，从而可以专注于编码, 可以通过简单的Git GUI可视化来管理仓库, 提高效率.</p><p><img src="http://tc.ffsky.net/images/2017/11/03/a8ad904c186d87984da6a60b9f95f023.png" alt="sourcetree"></p><p>&emsp;&emsp;题归正转, 今天我们来说说如何通过sourcetree来将本地仓库与远程仓库关联.</p><a id="more"></a><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>&emsp;首先把本地仓库初始化.</p><img src="/blog/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/init.png"><p>&emsp;再添加到sourcetree上<br><img src="/blog/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/add.png"></p><p>&emsp;进入github.com -&gt; your profile -&gt; repositories(仓库) -&gt; New<br><img src="/blog/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/add-02.png"></p><p>&emsp;填写仓库信息, 复制仓库链接<br><img src="/blog/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/add-03.png"><br><img src="/blog/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/add-04.png"></p><p>&emsp;设置 -&gt; 添加 -&gt; 填写信息 -&gt; 确定<br><img src="/blog/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/add-01.png"><br><img src="/blog/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/add-05.png"></p><p>&emsp;然后就可以提交到github了~<br><img src="/blog/2017/11/03/通过sourcetree实现远程仓库与本地仓库关联/add-06.png"></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&amp;emsp;&amp;emsp;sourceTree 是当下比较流行的git客户端,简化了如何与Git存储库进行交互，从而可以专注于编码, 可以通过简单的Git GUI可视化来管理仓库, 提高效率.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;http://tc.ffsky.net/images/2017/11/03/a8ad904c186d87984da6a60b9f95f023.png&quot; alt=&quot;sourcetree&quot;&gt;&lt;/p&gt;&lt;p&gt;&amp;emsp;&amp;emsp;题归正转, 今天我们来说说如何通过sourcetree来将本地仓库与远程仓库关联.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Git" scheme="http://yoursite.com/categories/Git/"/>
-    
-    
-      <category term="git" scheme="http://yoursite.com/tags/git/"/>
-    
-      <category term="sourcetree" scheme="http://yoursite.com/tags/sourcetree/"/>
     
   </entry>
   
