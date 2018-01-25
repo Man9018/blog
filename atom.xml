@@ -6,7 +6,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-01-24T16:50:40.927Z</updated>
+  <updated>2018-01-25T14:33:58.563Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,39 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>JQuery是被淘汰了吗?为什么我们要选用 Vue/React/Angular 进行开发</title>
+    <title>走进 web 移动端开发</title>
+    <link href="http://yoursite.com/2018/01/25/web-%E8%B5%B0%E8%BF%9Bweb%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/"/>
+    <id>http://yoursite.com/2018/01/25/web-走进web移动开发/</id>
+    <published>2018-01-25T08:28:57.000Z</published>
+    <updated>2018-01-25T14:33:58.563Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/blog/2018/01/25/web-走进web移动开发/banner.jpg"><p>近年来, 人们逐渐倾向移动端的使用. 越来越多的人使用手机/平板来上网. 既然有需求, 那就自然会有市场~ 作为一个身在一线的前端工程师在工作中也难免会遇到这种场景/需求. 下面就分享一下对于移动端的一些学习笔记~<br><a id="more"></a></p><h2 id="移动端基础的知识"><a href="#移动端基础的知识" class="headerlink" title="移动端基础的知识"></a>移动端基础的知识</h2><p>移动端的屏幕相比PC来说多的太多了, 因此我们不能只是使用传统的px, 首先来认识一下我们常用的单位吧.</p><ul><li>Px: css pixels 逻辑像素, 浏览器使用的抽象单位</li><li>dp, pt: device independent pixels 设备无关像素</li><li>dpr devicePixelRatio 设备像素缩放比</li></ul><p>它们之间的计算公式是: <code>1px = (dpr)² * dp</code></p><p>这里我们用IPhone 5为例, 我们知道, iPhone 5 的<code>dpr</code>为2, 根据上面的公式, 我们能得出:<br>平面上: <code>1px = (2)² * dp</code> =&gt; <code>1px = 4dp(四个物理像素)</code><br>但我们在实际的开发中, 更多的是按照长度(维度)来换算:<br>维度上: <code>1px = dpr * dp</code> =&gt; <code>1px = 2 * dp</code><br>因此在移动端开发的时候. 我们拿到UI的设计图, 设计图(IPhone5)的尺寸是<code>640 * 1136</code>. 这是因为<code>dpr</code>的缘故. 因此我们需要在开发时, 将原先的宽度除于2才行.</p><p>还有我们常说的<code>Retina</code>屏又是什么? <code>Retina屏(高清屏幕)</code>就是<code>dpr &lt;= 2</code>.</p><h3 id="viewport"><a href="#viewport" class="headerlink" title="viewport"></a>viewport</h3><p>viewport, 就是视图窗口. 其中它在手机上又分为一下两个窗口.</p><ul><li>Visual viewport(可视窗口)</li><li>Layout viewport(布局窗口)</li></ul><p>最下面一层就是<code>layout viewport</code>, 上面一层就是<code>visual viewport</code>, <code>visual viewport</code>可以控制窗口的缩放(salce), 能看得到更多底层的<code>layout viewport</code>的东西.</p><img src="/blog/2018/01/25/web-走进web移动开发/viewport.png" title="两者的关系"><p>这里值得注意的是, <code>layout viewport</code>的宽度是大于浏览器可视区域的宽度的.</p><h3 id="Meta标签"><a href="#Meta标签" class="headerlink" title="Meta标签"></a>Meta标签</h3><p>如果我们没有限制<code>viewport</code>的缩放比的话. 我们通过获取<code>window.innerWidth(布局窗口) / document.body.clientWidth</code>的缩放比得知, 设备会根据页面的大小, 自动的去调整缩放比. 这就会不符合我们的预期.</p><p>这时我们可以通过<code>Meta</code>标签来控制<code>viewport</code>. 它的语法如下:</p><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"name=value,name=value"</span>&gt;</span></div></pre></td></tr></table></figure><p>参数如下:</p><ul><li>width: 设置布局 viewport 的特定值(“device-width”)</li><li>initial-scale: 设置页面的初始缩放</li><li>minimum-sacle: 最少缩放</li><li>maximum-scale: 最大缩放</li><li>user-scalable: 用户能否缩放</li></ul><p>目前主流的编辑器在使用<code>emmet</code>生成基本<code>HTML</code>模板时都会自带插入一句<br></p><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></div></pre></td></tr></table></figure><p></p><p>而有时候我们不希望用户能控制页面的搜索, 那我们就可以设置<code>user-scalable</code>为<code>no</code>, 百度就是如下的做法:<br></p><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0, user-scalable=no"</span>&gt;</span></div></pre></td></tr></table></figure><p></p><h2 id="移动端布局"><a href="#移动端布局" class="headerlink" title="移动端布局"></a>移动端布局</h2><p>移动端的布局就能不像PC端一样用固定宽度了, 因为移动端有太多不同的屏幕分辨率了.. 因此现在主流的布局方式还是响应式布局和flex布局. 未来还有Grid布局, 不过现在普及度不够高暂时放放, 以后有机会单独开一篇.</p><h3 id="响应式布局"><a href="#响应式布局" class="headerlink" title="响应式布局"></a>响应式布局</h3><p><em>响应式布局</em>实际上是一个设计理念, 它是多项技术的综合体. 其核心就是<em>媒体查询(@media)</em>.</p><p>响应式网站的优点主要有:</p><ul><li>减少工作量: 代码, 设计, 内容只需要一份. 多出的工作也仅仅是js和css样式的调整.</li><li>相对来说会节省时间</li><li>每个设备都能得到正确的设计</li></ul><p>相反, 它也带有一些副作用(缺点):</p><ul><li>由于我们是响应式布局, 需要加载更多的样式和脚本资源</li><li>设计比较难精准定位和控制</li><li><em>media</em>实际上是css3的玩意, 对老版本浏览器兼容不好(特指IE)</li></ul><p>接着我们继续看看响应式设计着重的几个点吧:</p><ol><li><p>关于响应式设计中<em>针对不同分辨率</em>的媒体查询设计, 可以看我Repo中的<a href="https://github.com/anran758/Front-End-Lab/tree/master/CSS#common-responsive" target="_blank" rel="noopener">这一块</a>.</p></li><li><p><em>百分比布局</em><br>仅仅使用媒体查询来适应不同的固定宽度设计, 只会从一组css 到另一组css的切换. 两组之间没有任何平滑渐变. 当没有命中媒体查询时, 表现就会不可控.</p><p>就比如说iPhone又出了个iPad mini, 这个设备的宽度介于iphone和ipad之间. 这样就有可能会导致布局的错乱, 我们应该要尽量避免这种情况发生.</p></li><li><p><em>弹性图片</em><br>很简单也很常见的思路. 图片设置宽度100%, 外层一个div包裹着, div设置宽度, 可以随着媒体查询改变宽度 从而实现自适应</p><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">img</span> &#123;</div><div class="line">  <span class="attribute">max-width</span>: <span class="number">100%</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></li><li><p>当页面达到手机屏幕宽度的时候, 我们可以考虑放弃一些传统页面的设计思想. 力求页面简单, 简洁(手机屏幕小). 因此需要作出以下处理:</p><ul><li>同比例缩减元素尺寸</li><li>调整页面结构布局</li><li>隐藏冗余的元素<br>除此之外, 应该将经常需要切换位置元素使用「绝对定位」, 减少重绘提高渲染性能.</li></ul></li></ol><h3 id="Flex布局"><a href="#Flex布局" class="headerlink" title="Flex布局"></a>Flex布局</h3><p><code>Flexbox</code>的出现是为了解决复杂的web布局，因为这种布局方式很灵活。容器的子元素可以任意方向进行排列. 有效的针对不同屏幕宽度大小的情况下，让元素自动有效合理处理布局结构。</p><p><code>Flex</code>在移动布局上已经运用的很广泛了. 比如我们常见的垂直居中, 原先需要好几行代码的效果, 现在就一行<code>align-items: center</code>就能解决了, 十分便利.</p><p><code>Flex</code>网上已经有太多的详细教程了. 考虑到篇幅限制, 这边也就不再过多的赘述了. 不过值得一提的是, <code>Flexbox</code>是有新旧两个版本的, 新的是<code>display: flex</code>, 旧的(2009年的语法)是<code>display: box</code>; 两者作用都差不多, 只是使用的属性名有些差异, 如果要兼容低版本的浏览器的话可以考虑后者.</p><p><strong>扩展阅读:</strong><br>[张鑫旭]CSS box-flex属性，然后弹性盒子模型简介: <a href="http://www.zhangxinxu.com/wordpress/?p=1338" target="_blank" rel="noopener">http://www.zhangxinxu.com/wordpress/?p=1338</a><br>Flex入门: <a href="http://ife.baidu.com/note/detail/id/952" target="_blank" rel="noopener">http://ife.baidu.com/note/detail/id/952</a><br>Flexbox详解: <a href="https://segmentfault.com/a/1190000002910324" target="_blank" rel="noopener">https://segmentfault.com/a/1190000002910324</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/blog/2018/01/25/web-走进web移动开发/banner.jpg&quot;&gt;&lt;p&gt;近年来, 人们逐渐倾向移动端的使用. 越来越多的人使用手机/平板来上网. 既然有需求, 那就自然会有市场~ 作为一个身在一线的前端工程师在工作中也难免会遇到这种场景/需求. 下面就分享一下对于移动端的一些学习笔记~&lt;br&gt;
+    
+    </summary>
+    
+      <category term="移动开发" scheme="http://yoursite.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+    
+      <category term="解决方案" scheme="http://yoursite.com/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+    
+      <category term="移动端" scheme="http://yoursite.com/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/"/>
+    
+      <category term="css" scheme="http://yoursite.com/tags/css/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>为什么我们要选用 Vue/React/Angular 进行开发</title>
     <link href="http://yoursite.com/2018/01/23/JavaScript-%E4%BD%A0%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E6%94%BE%E5%BC%83JQuery%E8%80%8C%E9%80%89%E7%94%A8Vue-React-Angular%E8%BF%9B%E8%A1%8C%E5%BC%80%E5%8F%91/"/>
     <id>http://yoursite.com/2018/01/23/JavaScript-你为什么会放弃JQuery而选用Vue-React-Angular进行开发/</id>
     <published>2018-01-23T12:43:24.000Z</published>
-    <updated>2018-01-24T16:50:40.927Z</updated>
+    <updated>2018-01-25T14:06:14.109Z</updated>
     
     <content type="html"><![CDATA[<img src="/blog/2018/01/23/JavaScript-你为什么会放弃JQuery而选用Vue-React-Angular进行开发/banner.png"><p>JQuery, 曾经从事网页工作者的标配, 以前还没有前端的概念, 但不懂JQuery几乎是会被嘲讽的. 而当下的使用量却逐年降低, 更多的用户转向新兴的 React/Angular/Vue . 今天我们来聊聊, 相比JQuery成熟庞大生态圈, 为什么我们现在开始逐步的放弃 JQuery.</p><a id="more"></a><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>截止至笔者写这篇文章为止(2018.1), 前端开发的大趋势主要是以下几点:</p><ul><li>旧浏览器逐渐被淘汰(比如IE8及以下, 主流框架已经放弃了支持)</li><li>移动端需求的增加</li><li>用户体验要求变得更高</li><li>前端架构从传统的后台 MVC 向 RESTFul API + 前端 MV* 迁移</li></ul><p>众所周知. JQuery只是一个DOM和ajax的封装库. 现在前端项目的日益发展导致JQuery已经不足以承载太多的复杂项目了. JQuery能兼容各种低版本的浏览器这一大优势也在旧浏览器淘汰的路上逐步减弱. 越来越多的开发者开始拥抱新型框架, 它们使前端不太需要关心DOM了, 只需要关心状态.</p><h2 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h2><p>因为我目前主要使用的是Vue的技术栈, 就来说说为什么要选择 Vue 吧.<br>首先, Vue.js是一个库, 并不是一个真正框架(或者说是一个UI层面的框架). 它相比其他两个主流框架 (React/Angular) 来说 Vue 的学习成本相对来说会比较低. 其次 vue 的作者是国人<a href="https://weibo.com/arttechdesign?topnav=1&wvr=6&topsug=1" rel="noopener" target="_blank">尤雨溪</a>, 因此它对中文的支持会更友好一点(说句题外话, 偶尔能看到有老外吐槽. Vue.js的源码偶尔能看到中文的注释2333).</p><p>Vue是渐进式框架, 它主要关注的是视图管理. 其核心思想主要是数据驱动和组件化. vue的优势主要有以下几点:</p><ol><li><p>侵入性低<br>不对整体构架做过多约束, 方便与其他库或是已有的前端技术栈整合. 比如说当前的项目就是在使用JQuery, 我们也可以将项目移入vue里, 然后逐步的进行改良.</p></li><li><p>vue鼓励模块化<br>因为组件系统是 Vue 的另一个重要概念, 因为它是一种抽象，允许我们使用小型、独立和通常可复用的组件构建大型应用. 这将有利于将界面代码自然分割成更容易维护的模块. 简而言之就是模块化开发, 减少代码的重复性和提高复用性.<br>vue.js比较推荐的是基于commonJs的一个模块方案. 通过webpack这样的模块构建工具, 将一个组件的模块, css和js都写在同一个文件里. Vue本身也有自己脚手架叫做<code>vue-cli</code>, 通过脚手架来帮助我们自动构建项目, 再使用npm进行包管理也是使项目模块化的一种.</p></li><li><p>Vue的语法糖和各种修饰符使得编写JS变得更加的容易. 同时使用一些依赖库, 比如<code>babel</code>使我们能大胆的使用ES6的语法糖. 原先需要封装一个函数的命令, 现在只用一句代码就能解决了. 大大的提高效率.</p></li><li><p>Vue也有自己的生态系统和一个活跃的社区.</p></li></ol><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>JQuery作为曾经的霸主, 现在市场使用的份额仍然不小. 原因主要是一些老旧的项目仍然在使用着. 其次, 有些时候我们也会遇到需要频繁操作DOM的场景, 再加上JQuery庞大的生态圈. 有很多完善的插件仍然可以使用. 因此, JQuery虽然过时了, 但在未来几年中, 也必然还会有它的份额存在.</p>]]></content>
     
@@ -469,34 +497,6 @@
       <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
     
       <category term="原理解析" scheme="http://yoursite.com/tags/%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数组方法深入研究之三 (基础算法)</title>
-    <link href="http://yoursite.com/2017/11/06/Basic%20Algorithm%20Scripting%20-%203/"/>
-    <id>http://yoursite.com/2017/11/06/Basic Algorithm Scripting - 3/</id>
-    <published>2017-11-06T04:03:28.613Z</published>
-    <updated>2018-01-08T08:37:29.592Z</updated>
-    
-    <content type="html"><![CDATA[<img src="/blog/2017/11/06/Basic%20Algorithm%20Scripting%20-%203/code.jpg"><p>今天让继续来学习数组方法的用法~</p><a id="more"></a><h2 id="Sum-All-Numbers-in-a-Range"><a href="#Sum-All-Numbers-in-a-Range" class="headerlink" title="Sum All Numbers in a Range"></a>Sum All Numbers in a Range</h2><blockquote><p>题目描述</p></blockquote><p>&emsp;&emsp;传递给一个包含两个数字的数组。返回这两个数字和<strong>它们之间所有数字的和</strong>。最小的数字并非总在最前面。<br>比如传递<code>[1, 4]</code>会返回<code>10</code>, 即<code>1 + 2 + 3 + 4</code>.</p><h3 id="非数组方法"><a href="#非数组方法" class="headerlink" title="非数组方法"></a>非数组方法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">sumAll</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> max = <span class="built_in">Math</span>.max.apply(<span class="literal">null</span>, arr);</div><div class="line">  <span class="keyword">var</span> min = <span class="built_in">Math</span>.min.apply(<span class="literal">null</span>,arr);</div><div class="line">  <span class="keyword">var</span> num = max - min;</div><div class="line">  <span class="keyword">var</span> total = min;</div><div class="line"></div><div class="line">  <span class="keyword">while</span>(num) &#123;</div><div class="line">    num--;</div><div class="line">    total += ++min;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> total;</div><div class="line">&#125;</div><div class="line"></div><div class="line">sumAll([<span class="number">1</span>, <span class="number">1</span>]);</div></pre></td></tr></table></figure><p><strong>&lt;– 未待续~ 有空再深挖 –&gt;</strong></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;img src=&quot;/blog/2017/11/06/Basic%20Algorithm%20Scripting%20-%203/code.jpg&quot;&gt;&lt;p&gt;今天让继续来学习数组方法的用法~&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
-      <category term="ffc" scheme="http://yoursite.com/tags/ffc/"/>
-    
-      <category term="test" scheme="http://yoursite.com/tags/test/"/>
-    
-      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
     
   </entry>
   
