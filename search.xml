@@ -1,6 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[VSCode: 从零开始配置前端环境]]></title>
+    <url>%2Fblog%2F2018%2F02%2F06%2FVSCode-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E9%85%8D%E7%BD%AE%E5%89%8D%E7%AB%AF%E7%8E%AF%E5%A2%83%2F</url>
+    <content type="text"><![CDATA[我们在进行开发工作时，选择一个好的IDE能提高不少的工作效率, 其中vscode就是一个很好的选择.概述vscode有着自己的插件商城, 并且有成熟良好的生态圈, 足够满足我们日常开发的所需的东西. 同时vscode提供了很多便捷的自定义配置，还很贴心的给每行设置都加上了备注.除此之外，vscode对中文的支持也挺好，对于啃英语有些吃力的同学会比较友善(虽然作为一个程序员, 英语的学习也很重要呀~).另外vscode内置git管理系统, 也就是说我们在写完代码后无需再另开一个bash来提交代码, 直接编辑器上完成审阅代码差异, 提交代码这些工作. 还可以直接在编辑器上进行代码调试, 不过这些不在本文的讨论中.主题One Monokai Theme我们每天在跟编辑器打交道, 因此编辑器的颜值也是很重要的~ 在扩展商城里, 我们可以去挑选一些自己喜欢的主题, 让我们在coding时变得更加舒服. 目前笔者使用的One Monokai, 它的一些配色和主题个人还是蛮喜欢的. 同学们也可以去尝试其他的主题~但值得注意的是, 下载主题后还需要用户设置上设置使用的主题.扩展插件善用插件的力量能很大的提升我们的开发效率. 下面是一些自己常用插件跟大家分享一下.其他编辑器的快捷键如果你觉得换一个编辑器又要重新设置自己熟悉的快捷键(或者说记住vscode本身的快捷键)很麻烦的话, 没关系~ vscode为你准备了其他编辑器快捷键插件, 节省你宝贵的时间成本. 笔者曾经也是从 sublime 无障碍转向 vscode 从此一去不复返~Open-In-Browser由于 VSCode 没有提供直接在浏览器中打开文件的内置界面，所以此插件在快捷菜单中添加了在默认浏览器查看文件选项. 在windows下, 可以使用快捷键ctrl + k d快速的打开.CSS Peek使用此插件，你可以追踪至样式表中 CSS 类和 ids 定义的地方。当你在 HTML 文件中右键单击选择器时，选择“ Go to Definition 和 Peek definition ”选项，它便会给你发送样式设置的 CSS 代码。PrettierPrettier 是目前 Web 开发中最受欢迎的代码格式化程序。安装了这个插件，它就能够自动应用 Prettier，并将整个 JS 和 CSS 文档快速格式化为统一的代码样式。SVG Viewer前端开发中, 无可避免会遇到查看svg的地方, 这时这个插件就能配上了用场.Minify这是一款用于压缩合并 JavaScript 和 CSS 文件的应用程序。它提供了大量自定义的设置，以及自动压缩保存并导出为.min文件的选项。它能够分别通过 uglify-js、clean-css 和 html-minifier，与 JavaScript、CSS 和 HTML 协同工作。Auto Close Tag这个扩展是为XML，PHP，Vue，JavaScript，TypeScript，JSX，TSX等其他语言启用的。同时它是可配置的。输入标签的右括号后，结束标签将被自动插入。Auto Rename Tag自动重命名配对的HTML / XML标记, 这在修改标签名上一点挺便捷的.JavaScript (ES6) code snippetses6已经是经常运用在我们的项目中了, 该扩展包含用于 Vscode 编辑器的ES6语法的JavaScript代码片段.（同时支持JavaScript和TypeScript）。ESLint嘿, 要养成一个良好的编程习惯, ESLint就是一个不错的选择. 它会根据某种风格来纠正你的不好的习惯. 值得注意的是, 使用的话需要在全局安装有ESlintEditorConfigEditor Config 可以让你团队开发时统一约定好一种规范. 这个主流的编辑器都支持.Vetur格式化, 格式化.vue文件, 官方维护.Vue 2 Snippets这个插件基于最新的Vue官方语法高亮文件添加了Syntax Highlight, 并且依据Vue 2的 API 添加了Code Snippets`. 挺不错的一个扩展.language-stylusstylus语法高亮, 还有其他的预处理器的插件这里不展开讲.用户配置分享一下自己目前的配置, 可以根据项目所需或者自己的习惯进行调整.1234567891011121314151617181920212223242526272829303132333435&#123; "workbench.colorTheme": "One Monokai", "sublimeTextKeymap.promptV3Features": true, // 编辑器 "editor.multiCursorModifier": "ctrlCmd", "editor.snippetSuggestions": "top", "editor.renderWhitespace": "all", "editor.formatOnPaste": true, "editor.wordWrap": "on", "editor.fontSize": 12, "editor.tabSize": 2, // 文件资源管理 "explorer.confirmDragAndDrop": false, "explorer.confirmDelete": false, // 终端 "terminal.integrated.cursorBlinking": true, "terminal.integrated.cursorStyle": "line", "emmet.includeLanguages": &#123; "vue-html": "html" &#125;, // 文件 "files.eol": "\n", "files.associations": &#123; "*.vue": "vue" &#125;, // 窗口 "window.zoomLevel": 1, // 使用 vscode-typescript 来整理代码 "vetur.format.defaultFormatter.js": "vscode-typescript", "vetur.format.defaultFormatter.ts": "vscode-typescript", "javascript.format.insertSpaceBeforeFunctionParenthesis": true, // 可能是让 CPU 炸了的罪魁祸首 "search.followSymlinks": false, "html.format.extraLiners": ""&#125;总结实际上促使自己写这篇文章的源头, 仅仅是因为某个不可抗拒的因素, 导致系统重装.. 重装环境简直让人绝望呀~ 因此借着这个机会基础一下, 如果有遗漏哪个部分, 后来还会继续加进来吧~参考链接精选！15 个必备的 VSCode 插件（前端类）]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+        <tag>vscode</tag>
+        <tag>tools</tag>
+        <tag>环境配置</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[数组方法深入研究之三 (基础算法)]]></title>
+    <url>%2Fblog%2F2018%2F02%2F06%2FBasic%20Algorithm%20Scripting%20-%203%2F</url>
+    <content type="text"><![CDATA[今天让继续来学习数组方法的用法~Sum All Numbers in a Range题目描述&emsp;&emsp;传递给一个包含两个数字的数组。返回这两个数字和它们之间所有数字的和。最小的数字并非总在最前面。比如传递[1, 4]会返回10, 即1 + 2 + 3 + 4.非数组方法1234567891011121314 function sumAll(arr) &#123; var max = Math.max.apply(null, arr); var min = Math.min.apply(null,arr); var num = max - min; var total = min; while(num) &#123; num--; total += ++min; &#125; return total;&#125;sumAll([1, 1]);&lt;– 未待续~ 有空再深挖 –&gt;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>ffc</tag>
+        <tag>test</tag>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[数组方法深入研究之一 (基础算法)]]></title>
+    <url>%2Fblog%2F2018%2F02%2F06%2FBasic%20Algorithm%20Scripting%20-%201%2F</url>
+    <content type="text"><![CDATA[一些基础的算法练习Palindromes(回文处理)Palindromes称之为回文。在中文文当中是指倒着念和顺着念都是相同的，前后对称.正则表达式replace()1234567function palindrome(str) &#123; var string = str.replace(/[\W_]/g,'').toLowerCase(); var replaceStr = string.split('').reverse().join(''); return replaceStr === string;&#125;palindrome("eye"); // true思路&#8195;首先对字符串进行处理..去掉字符串多余的标点符号和空格，然后把字符串转化成小写.&#8195;split把字符串拆分为一个字符串组成的数组.reverse反转数组顺序,join拼接字符串.Title Case a Sentence(首个单词字母大写)句中单词首字母大写,确保字符串的每个单词首字母都大写，其余部分小写。1234567function titleCase(str) &#123; return str.toLowerCase().replace(/( |^)[a-z]/g, function(L) &#123; return L.toUpperCase(); &#125;);&#125;titleCase("I'm a little tea pot"); // I'm A Little Tea Pot思路&#8195;首先把字符串转换为小写,再用正则匹配带空格或者就字母开头的首个字母replace替换成大写字母.Return Largest Numbers in Arrays(返回数组最大的数字)找出多个数组中的最大数,并返回一个新数组12345678910111213function largestOfFour(arr) &#123; // 请把你的代码写在这里 var count = []; for (var i = 0; i &lt; arr.length; i ++) &#123; var a = arr[i].sort(function (a,b) &#123; return b-a; &#125;); count.push(a[0]); &#125; return count;&#125;largestOfFour([[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]); // [5,27,39,1001]思路&#8195;新定义一个数组,遍历传进来的数组进行从大到小排序,将排序后最大的数push进新的数组count最后再返回.Confirm the Ending(检查字符串结尾)检查字符串结尾,判断一个字符串(str)是否以指定的字符串(target)结尾。如果是，返回true;如果不是，返回false。123456789101112function confirmEnding(str, target) &#123; var l = str.length - target.length; if (str.substr(l) === target) &#123; return true; &#125; else &#123; return false; &#125;&#125;confirmEnding("Connor", "n"); // falseconfirmEnding("Bastian", "n"); // trueconfirmEnding("He has to give me a new name", "me"); // true思路&#8195;乍一看好像挺麻烦的样子,容我们深入一看却发现好像并没有想象中的麻烦..&#8195;这里用上了String.prototype.substr()而参数start是一个字符的索引,把字符串str.length - target.length就可以对比结尾字符串是否一样了.Repeat a string repeat a string(重复输出字符串)重复一个指定的字符串 num次，如果num是一个负数则返回一个空字符串。&#8195;对于这种题目可以使用两种方法解决:递归while循环12345678910111213// 第一种使用递归function repeat(str, num) &#123; // 请把你的代码写在这里 if (num &lt; 0)&#123; return ""; &#125; else if (num === 1) &#123; return str; &#125; else &#123; return str + repeat(str, num - 1); &#125;&#125;repeat("abc", 3); // "abcabcabc"1234567891011// 第二种使用whilefunction repeat(str, num) &#123; var s = ''; while(num &gt; 0)&#123; s += str; num --; &#125; return s;&#125;repeat("abc", 3);思路&#8195;递归一般放进if()判断语句中,是一种通过重复地调用函数本身,逐次减少num的值来实现效果.第二种使用了while语句,每调用一次就递减1,直至num &gt; 0.Truncate a string(截断字符串)截断字符串,如果字符串的长度比指定的参数num长，则把多余的部分用…来表示。插入到字符串尾部的三个点号也会计入字符串的长度。如果指定的参数num小于或等于3，则添加的三个点号不会计入字符串的长度。12345678910111213function truncate(str, num) &#123; // 首先判断num的值是不是大于字符串的长度,若是,那就没有必要省略了. if(num &gt;= str.length) &#123; return str; &#125; else if (num &lt;= 3) &#123; return str.slice(0,num) + "..."; &#125; else &#123; return str.slice(0,num-3) + "..."; &#125;&#125;truncate("A-tisket a-tasket A green and yellow basket", "A-tisket a-tasket A green and yellow basket".length);思路&#8195;slice截取字符串.substr(),indexOf()和lastIndexOf()办法同理.https://www.w3cplus.com/javascript/confirm-the-ending.html 大漠老师有一篇文章对此使用有着更详细的说明.]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>ffc</tag>
+        <tag>test</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[数组方法深入研究之二 (基础算法)]]></title>
+    <url>%2Fblog%2F2018%2F02%2F06%2FBasic%20Algorithm%20Scripting%20-%202%2F</url>
+    <content type="text"><![CDATA[数组方法的深入学习Chunky Monkey(分割数组)猴子吃香蕉, 分割数组,把一个数组arr按照指定的数组大小size分割成若干个数组块。例如:&#8195;&#8195;hunk([1,2,3,4],2) =&gt; [[1,2],[3,4]];&#8195;&#8195;chunk([1,2,3,4,5],2) =&gt; [[1,2],[3,4],[5]];思路&#8195;这道题重点主要是每size个值分割一个数组,这里我们可以使用以下几种方法来解题.while + splicefor + slicewhile + slice第一种12345678910111213141516// while + splicefunction chunk(arr, size) &#123; // 定义一个新数组和用来临时存放分割的空数组. var a = [], t = [], i = 0, len = arr.length; while (i &lt; len)&#123; t = arr.splice(0, size); a.push(t); i += size; &#125; return a;&#125;chunk([0, 1, 2, 3, 4, 5], 3);&#8195;在这里值得注意的是,len保存arr.length的快照是必须的..因为splice会修改原来原来的数组.第二种12345678910111213141516171819// for + splicefunction chunk(arr, size) &#123; var a = [], t = [], len = arr.length; // 数组中的个数小于size或者size是小于等于0的也就没有必要分割了 if (len &lt;= size || size &lt;= 0) &#123; return arr; &#125; else &#123; // 它的重点主要是数组中的值的数量 for (var i = 0;i &lt; len; i += size) &#123; // 查询指定数 t = arr.slice(i, i + size); a.push(t); &#125; &#125; return a;&#125;chunk([0, 1, 2, 3, 4, 5], 3);第三种1234567891011121314// while + slicefunction chunk(arr, size) &#123; var a = [], t = [], i = 0, len = arr.length; while (i &lt; len) &#123; // 查询的值 t = arr.slice(i, i += size); a.push(t); &#125; return a;&#125;chunk([0, 1, 2, 3, 4, 5], 3);Falsy Bouncer(过滤数组假值)删除数组中的所有假值。在JavaScript中，假值有false、null、0、””、undefined 和 NaN。思路&#8195;这道题比较有意思..一开始我走进了一个误区,想着单纯return x !== false &amp;&amp; ...这样简单的返回就可以了,后来发现在处理NaN时会很麻烦..isNaN()还会把英文字符串也给过滤掉,再加上多个&amp;&amp;使得代码会变得繁乱,可读性不高.&#8195;然后查阅了一番资料后,才注意到平时被忽略Boolean()的一些特性对于处理这种类型的问题简直不能太合适.12345678910function bouncer(arr) &#123; // 请把你的代码写在这里 var a = arr.filter(function(x) &#123; return Boolean(x); &#125;); return a;&#125;bouncer([7, "ate", "", false, 9]);&#8195;摘至MDN.Boolean 的描述:如果Boolean构造函数的参数不是一个布尔值,则该参数会被转换成一个布尔值.如果参数是 0, -0, null, false, NaN, undefined, 或者空字符串 (“”),生成的Boolean对象的值为false. 其他任何值,包括任何对象或者字符串”false”, 都会创建一个值为true的Boolean对象.Seek and Destroy (摧毁指定数组)实现一个摧毁(destroyer)函数，第一个参数是待摧毁的数组，其余的参数是待摧毁的值。实现原理&#8195;filter() 为数组中的每个元素调用一次 callback函数，并利用所有使得 callback 返回 true 或 等价于 true 的值 的元素创建一个新数组.&#8195;filter()从头至尾遍历数组,若回调函数返回的是true(通过测试),就存入新数组中.若返回的是false,则过滤掉.12345678910111213141516function destroyer(arr) &#123; // 先将第一个参数隔开,定义一个储存着待移除的空数组 var args = arguments[0], removeArgs = []; // 要被删除的参数装进'removeArgs'里 for (var i = 1; i &lt; arguments.length; i++) &#123; removeArgs.push(arguments[i]); &#125; // 遍历'args',若'removeArgs'中不存在'value',应该返回-1.反之返回false被过滤掉. return args.filter(function(value) &#123; return removeArgs.indexOf(value) === -1; &#125;);&#125;destroyer([1, 2, 3, 1, 2, 3], 2, 3);Where do I belong (数组排序并找出元素索引)先给数组排序，然后找到指定的值在数组的位置，最后返回位置对应的索引。&#8195;举例：where([1,2,3,4], 1.5) 应该返回 1。因为1.5插入到数组[1,2,3,4]后变成[1,1.5,2,3,4]，而1.5对应的索引值就是1。&#8195; 同理，where([20,3,5], 19) 应该返回 2。因为数组会先排序为 [3,5,20]，19插入到数组[3,5,20]后变成[3,5,19,20]，而19对应的索引值就是2。思路&#8195;这个没啥好说的了..将第二个参数push进数组中,再进行排序.排序后通过indexOf()来实现功能.不过需要注意的是sort默认是按照’Unicode’编码进行排序的.Caesars Cipher (凯撒密码)风靡全球的凯撒密码Caesar cipher，又叫移位密码。移位密码也就是密码中的字母会按照指定的数量来做移位。一个常见的案例就是ROT13密码，字母会移位13个位置。由’A’ ↔ ‘N’, ‘B’ ↔ ‘O’，以此类推。写一个ROT13函数，实现输入加密字符串，输出解密字符串。所有的字母都是大写，不要转化任何非字母形式的字符(例如：空格，标点符号)，遇到这些特殊字符，跳过它们。思路&#8195;本次练习用到String.charCodeAt()和String.fromCharCode(),首先来查询字符串的Unicode字符.&#8195;根据Unicode表我们得知:小于65和大于90对应的就是数字和小写字符a-z大于等于65和小于等于77对应的就是大写字符A-M (13位)大于等于78和小于等于90对应的就是大写字符N-Z&#8195;ROT13的功能就是移位,如果序号小于78(A-M字母)，使用String.fromCharCode()转换成该序号加13的字符,反之减13.1234567891011121314151617181920212223function rot13(str) &#123; // LBH QVQ VG! var newStr = []; for (var i = 0;i &lt; str.length;i ++) &#123; // 查询每个字符串的Unicode编号 var temp = str.charCodeAt(i); // 非大写字母,空格,数字等都不转换 if (temp &lt; 65 || temp &gt; 91) &#123; newStr.push(str.charAt(i)); continue; // 大于77(N-Z),就转换成该序号 - 13的字符串. &#125; else if (temp &gt; 77) &#123; newStr.push(String.fromCharCode(temp - 13)); // 小于78(A-M),就转换成该序号 + 13的字符串 &#125; else &#123; newStr.push(String.fromCharCode(temp + 13)); &#125; &#125; return newStr.join('');&#125;rot13("SERR PBQR PNZC"); // 你可以修改这一行来测试你的代码]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>ffc</tag>
+        <tag>test</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[通过sourcetree实现远程仓库与本地仓库关联]]></title>
+    <url>%2Fblog%2F2018%2F02%2F06%2F%E9%80%9A%E8%BF%87sourcetree%E5%AE%9E%E7%8E%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E4%B8%8E%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E5%85%B3%E8%81%94%2F</url>
+    <content type="text"><![CDATA[&emsp;&emsp;sourceTree 是当下比较流行的git客户端,简化了如何与Git存储库进行交互，从而可以专注于编码, 可以通过简单的Git GUI可视化来管理仓库, 提高效率.&emsp;&emsp;题归正转, 今天我们来说说如何通过sourcetree来将本地仓库与远程仓库关联.步骤&emsp;首先把本地仓库初始化.&emsp;再添加到sourcetree上&emsp;进入github.com -&gt; your profile -&gt; repositories(仓库) -&gt; New&emsp;填写仓库信息, 复制仓库链接&emsp;设置 -&gt; 添加 -&gt; 填写信息 -&gt; 确定&emsp;然后就可以提交到github了~]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>sourcetree</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[你可能不知道的console]]></title>
     <url>%2Fblog%2F2018%2F01%2F30%2FDebug-%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6console%2F</url>
     <content type="text"><![CDATA[打断点和console.log是我们前端调试中, 使用最为频繁的一种. 但实际上console API 可不仅仅用来查看某个值或者某个变量是否存在, 它还有更多的用法是不为人知的.概述console 对象提供对浏览器控制台的接入。不同浏览器上它的工作方式是不一样的. 其次它是一个全局对象, 我们先在控制台将console打印出来, 看看它里面都有些什么东西, 再来一一讲解吧.Methodlogconsole.log就是向web控制台输出一条信息. 参数可以是变量, 数字, 字符串等.123456// 常规下var name = 'Jack'console.log('Hello') // Helloconsole.log(name) // Jackconsole.log(`Hello, $&#123;name&#125;`) // Hello, Jack除此之外, 还支持格式化输出.1234var name = 'Jack'console.log('Hi, %s. what are you doing', name) // Hi, Jack. what are you doingconsole.log('%c I am some great text', 'font-size: 50px;') // 假装 50px: Hi, Jack. what are you doing下面是它所支持的参数, 学习C语言的同学有没有感觉扑面而来的熟悉感呀~占位符描述%s字符串%d or %i整数%s打印字符串%f浮点数%c样式代码这里连知乎, 百度等大厂也用console来做招聘广告或做些有意思的事~ info, warn, error这三者实际上在我们开发时也时常出现. 现在主流的一些框架, 比如说Eslint, 就封装了相关方法. 当你语法出现不规范的地方, 就会根据错误来弹出指定的提示框来提示你.12345678// Infoconsole.info('Hi, This is message')// warning 警告console.warn('On, Your operation may cause a security breach!')// Error 报错console.error('Shit! Variable does not exist!')实际效果:tableconsole.table只接受一个数组或者对象, 可以接受一个额外的参数来描述表格的列数.它会把数据通过表格的形式打印出来, 这样我们看数据的时候就能直观了很多:1234567var array = [ &#123; name: 'Jack', age: 12 &#125;, &#123; name: 'Tome', age: 18 &#125;, &#123; name: 'baka', age: 15 &#125;]console.table(array)groupconsole.group和console.groupWEnd就像一对标签一样. group在控制台创建一个新的分组, 输出到控制台上的内容都会被添加一个缩进, 表示该内容属于当前分组, 直到调用console.groupEnd()之后, 当前分组才结束.12345678910111213var boys = [ &#123; name: 'Jack', age: 12 &#125;, &#123; name: 'Tome', age: 18 &#125;, &#123; name: 'baka', age: 15 &#125;]boys.forEach(item =&gt; &#123; console.group(`$&#123;item.name&#125;`) console.log(`This is $&#123;item.name&#125;`); console.log(`$&#123;item.name&#125; is $&#123;item.age&#125; years old`); console.log(`$&#123;item.name&#125; is $&#123;item.age * 7&#125; years old`); console.groupEnd(`$&#123;item.name&#125;`)&#125;)dirconsole.dir —— 在控制台中显示指定JavaScript对象的属性，并通过类似文件树样式的交互列表我们知道console.log实际上是可以输出DOM节点的, 但有时候我们只想知道 DOM 属性的话, 这里就可以使用dir来输出DOM对象.1234var head = document.getElementById('head')console.log(head)console.dir(head)值得注意的是. MDN提醒我们, 这个特性是非标准, 尽量不要在生产模式下使用.countcount, 如同字面意思一样. count()会输出每一次被调用的次数. 该方法的兼容性也需要注意, 不适用于生产模式.12345678console.count('Steve')console.count('Steve')console.count('zeo')console.count('Steve')console.count('zeo')console.count('Steve')console.count('zeo')console.count('Steve')clearclear, 顾名思义就是清除. 看到别人那乱七八糟的用于调试的log或者info时, 这时只想要保留自己的调试信息. 那么console.clear()就可以为你解决这个烦恼, “一键清空”前面控制台所有的信息, 从头再来(雾)12// something infoconsole.clear()time启动一个计时器（timer）来跟踪某一个操作的占用时长。每一个计时器必须拥有唯一的名字。 页面中最多能同时运行10,000个计时器。跟group一样, time也是配套的。 当以此计时器名字为参数调用 console.timeEnd() 时，浏览器将以毫秒为单位，输出对应计时器所经过的时间.比如我们起一个fetch:1234567console.time('fetching data')fetch('https://api.github.com/users/anran758') .then(data =&gt; data.json()) .then(data =&gt; &#123; console.timeEnd('fetching data') console.log(data) &#125;)oh, 这样我们就轻易的知道了这次我们请求花费了多少时间啦~assertconsole.assert()还是蛮有意思的. 它第一个参数接受一个断言(声明), 第二个参数是一个message. 如果断言为false，则将一个错误消息写入控制台。如果断言是true，就当做没发生。语法如下:1console.assert(assertion, message [, subst1, ..., substN]);这里的断言不一定是false才会触发错误. 我特意去测试了一下, 触发的规则也跟if的判断里的逻辑相反. 只要是断言是0, NaN, undefined, false, null, 空字符串&#39;&#39;就会激活报错.12345678910111213// Assertion failed: Here is the "name" can not be emptyvar str = '';console.assert(str, 'Here is the "str" can not be empty')// Assertion failed: 0 is not allowed!var num = 0console.assert(0, '0 is not allowed!')// Assertion failed: That is wrong!console.assert(1 === 2, 'That is wrong!')// 什么都不会发生console.assert(1 === 1, 'That is wrong!')总结在适当的地方使用恰当的方法能使调试变得更清晰. 发现身边很多小伙伴都只了解log的方法, 正好最近看到了这方面的知识, 总结了一下, 活用于开发中能使效率变得更好~参考资料:MDN - Console: https://developer.mozilla.org/zh-CN/docs/Web/API/Console从console.log说起（上）: http://www.alloyteam.com/2013/11/console-log/javascript30: https://courses.wesbos.com/account/access/5a658ec8a6b56c55273b4078/view/194129876]]></content>
@@ -8,9 +74,9 @@
         <category>debug</category>
       </categories>
       <tags>
+        <tag>tools</tag>
         <tag>debug</tag>
         <tag>Javascript</tag>
-        <tag>tools</tag>
         <tag>console</tag>
       </tags>
   </entry>
@@ -51,9 +117,9 @@
       </categories>
       <tags>
         <tag>JavaScript</tag>
-        <tag>性能优化</tag>
         <tag>HTML</tag>
         <tag>DOM</tag>
+        <tag>性能优化</tag>
       </tags>
   </entry>
   <entry>
@@ -241,32 +307,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[数组方法深入研究之三 (基础算法)]]></title>
-    <url>%2Fblog%2F2017%2F11%2F06%2FBasic%20Algorithm%20Scripting%20-%203%2F</url>
-    <content type="text"><![CDATA[今天让继续来学习数组方法的用法~Sum All Numbers in a Range题目描述&emsp;&emsp;传递给一个包含两个数字的数组。返回这两个数字和它们之间所有数字的和。最小的数字并非总在最前面。比如传递[1, 4]会返回10, 即1 + 2 + 3 + 4.非数组方法1234567891011121314 function sumAll(arr) &#123; var max = Math.max.apply(null, arr); var min = Math.min.apply(null,arr); var num = max - min; var total = min; while(num) &#123; num--; total += ++min; &#125; return total;&#125;sumAll([1, 1]);&lt;– 未待续~ 有空再深挖 –&gt;]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>算法</tag>
-        <tag>ffc</tag>
-        <tag>test</tag>
-        <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[通过sourcetree实现远程仓库与本地仓库关联]]></title>
-    <url>%2Fblog%2F2017%2F11%2F03%2F%E9%80%9A%E8%BF%87sourcetree%E5%AE%9E%E7%8E%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E4%B8%8E%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E5%85%B3%E8%81%94%2F</url>
-    <content type="text"><![CDATA[&emsp;&emsp;sourceTree 是当下比较流行的git客户端,简化了如何与Git存储库进行交互，从而可以专注于编码, 可以通过简单的Git GUI可视化来管理仓库, 提高效率.&emsp;&emsp;题归正转, 今天我们来说说如何通过sourcetree来将本地仓库与远程仓库关联.步骤&emsp;首先把本地仓库初始化.&emsp;再添加到sourcetree上&emsp;进入github.com -&gt; your profile -&gt; repositories(仓库) -&gt; New&emsp;填写仓库信息, 复制仓库链接&emsp;设置 -&gt; 添加 -&gt; 填写信息 -&gt; 确定&emsp;然后就可以提交到github了~]]></content>
-      <categories>
-        <category>Git</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>sourcetree</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[浅谈Normalize与reset]]></title>
     <url>%2Fblog%2F2017%2F10%2F15%2F%E6%B5%85%E8%B0%88Normalize%E4%B8%8Ereset%2F</url>
     <content type="text"><![CDATA[前言: 在一次开发的时候, 发现团队中的小伙伴对normalize与reset都持有不同分歧. 趁着这事来谈谈, normalize与reset都有什么区别, 该如何取舍.resetreset, 顾名思义就是重置的意思. 最早的一份CSS reset来自Tantek的undohtml.css, Tantek根据自己的需要，对浏览器的默认样式进行了一些重置。早期的浏览器支持和理解的CSS规范不同，导致渲染页面时效果不一致，会出现很多兼容性问题, reset 的作用是让各个浏览器的CSS样式有一个统一的基准，而这个基准更多的就是“清零”.此后国内出现* {margin: 0, padding: 0}这种暴力清除全部样式的reset出现.normalizeNormalize, 从字面上也理解也就是使其正常化. 这是css reset的一个代替方案.Normalize相对「平和」, 注重通用的方案，重置掉该重置的样式，保留有用的user agent样式，同时进行一些 bug 的修复，这点是 reset 所缺乏的。创造normalize.css的目的主要是:保护有用的浏览器默认样式而不是完全去掉它们一般化的样式：为大部分HTML元素提供修复浏览器自身的bug并保证各浏览器的一致性优化CSS可用性：用一些小技巧解释代码：用注释和详细的文档来相比两者的利弊那么相对来说, 两者之间又有什么区别呢? 这里引用一下知乎用户的回答.CSS Reset 是革命党，CSS Reset 里最激进那一派提倡不管你小子有用没用，通通给我脱了那身衣服，凭什么你 body 出生就穿一圈 margin，凭什么你姓 h 的比别人吃得胖，凭什么你 ul 戴一胳膊珠子。于是 *{margin:0;} 等等运动，把人家全拍扁了。看似是众生平等了，实则是浪费了资源又占不到便宜，有求于人家的时候还得贱贱地给加回去，实在需要人家的默认样式了怎么办？人家锅都扔炉子里烧了，自己看着办吧Normalize.css 是改良派。他们提倡，各个元素都有其存在的道理，简单粗暴地一视同仁是不好的。body 那一圈确实挤压了页面的生存空间，那就改掉。士农工商，谁有谁的作用，给他们制定个规范，确保他们在任何浏览器里都干好自己的活儿。然而在实际项目中, 为了还原设计图我们并不需要这种自带特性, 因此可以根据项目的需求将我们常用的标签进格式化, 但也不是跟传统的reset那样粗暴.因为传统的reset的很多清除默认样式是无意义的, 是浪费性能的. 就比如&lt;li&gt;, 人家生来就没有margin padding, 干嘛非要给人家加个margin: 0上去呀??? h1~h6标签虽然有margin没有padding呀! 也不要一棒子全打死啦! 其实这是不严谨的态度.以下的代码可以作为针对项目需求的进行调整. 这样看下去是不是舒服简洁多了呢? 也减少了很多无意义的性能损耗何乐而不为呢.1234567891011121314151617181920212223242526 body, dl, dd, h1, h2, h3, h4, h5, h6, p, form, ol, ul &#123; margin: 0;&#125;ol, ul &#123; padding: 0; list-style: none;&#125;a &#123; text-decoration: none;&#125;body &#123; font: 14px/1.6 Monda,PingFang SC,Microsoft YaHei,sans-serif;&#125;.clearfix:before,.clearfix:after &#123; content: " "; display: block;&#125;.clearfix:after &#123; clear: both;&#125;参考资料:Normalize.css 与传统的 CSS Reset 有哪些区别？normalize、reset与base关于CSS Reset 那些事（一）之 历史演变与Normalize.css]]></content>
@@ -287,32 +327,6 @@
       <tags>
         <tag>JavaScript</tag>
         <tag>正则表达式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[数组方法深入研究之二 (基础算法)]]></title>
-    <url>%2Fblog%2F2017%2F07%2F19%2FBasic%20Algorithm%20Scripting%20-%202%2F</url>
-    <content type="text"><![CDATA[数组方法的深入学习Chunky Monkey(分割数组)猴子吃香蕉, 分割数组,把一个数组arr按照指定的数组大小size分割成若干个数组块。例如:&#8195;&#8195;hunk([1,2,3,4],2) =&gt; [[1,2],[3,4]];&#8195;&#8195;chunk([1,2,3,4,5],2) =&gt; [[1,2],[3,4],[5]];思路&#8195;这道题重点主要是每size个值分割一个数组,这里我们可以使用以下几种方法来解题.while + splicefor + slicewhile + slice第一种12345678910111213141516// while + splicefunction chunk(arr, size) &#123; // 定义一个新数组和用来临时存放分割的空数组. var a = [], t = [], i = 0, len = arr.length; while (i &lt; len)&#123; t = arr.splice(0, size); a.push(t); i += size; &#125; return a;&#125;chunk([0, 1, 2, 3, 4, 5], 3);&#8195;在这里值得注意的是,len保存arr.length的快照是必须的..因为splice会修改原来原来的数组.第二种12345678910111213141516171819// for + splicefunction chunk(arr, size) &#123; var a = [], t = [], len = arr.length; // 数组中的个数小于size或者size是小于等于0的也就没有必要分割了 if (len &lt;= size || size &lt;= 0) &#123; return arr; &#125; else &#123; // 它的重点主要是数组中的值的数量 for (var i = 0;i &lt; len; i += size) &#123; // 查询指定数 t = arr.slice(i, i + size); a.push(t); &#125; &#125; return a;&#125;chunk([0, 1, 2, 3, 4, 5], 3);第三种1234567891011121314// while + slicefunction chunk(arr, size) &#123; var a = [], t = [], i = 0, len = arr.length; while (i &lt; len) &#123; // 查询的值 t = arr.slice(i, i += size); a.push(t); &#125; return a;&#125;chunk([0, 1, 2, 3, 4, 5], 3);Falsy Bouncer(过滤数组假值)删除数组中的所有假值。在JavaScript中，假值有false、null、0、””、undefined 和 NaN。思路&#8195;这道题比较有意思..一开始我走进了一个误区,想着单纯return x !== false &amp;&amp; ...这样简单的返回就可以了,后来发现在处理NaN时会很麻烦..isNaN()还会把英文字符串也给过滤掉,再加上多个&amp;&amp;使得代码会变得繁乱,可读性不高.&#8195;然后查阅了一番资料后,才注意到平时被忽略Boolean()的一些特性对于处理这种类型的问题简直不能太合适.12345678910function bouncer(arr) &#123; // 请把你的代码写在这里 var a = arr.filter(function(x) &#123; return Boolean(x); &#125;); return a;&#125;bouncer([7, "ate", "", false, 9]);&#8195;摘至MDN.Boolean 的描述:如果Boolean构造函数的参数不是一个布尔值,则该参数会被转换成一个布尔值.如果参数是 0, -0, null, false, NaN, undefined, 或者空字符串 (“”),生成的Boolean对象的值为false. 其他任何值,包括任何对象或者字符串”false”, 都会创建一个值为true的Boolean对象.Seek and Destroy (摧毁指定数组)实现一个摧毁(destroyer)函数，第一个参数是待摧毁的数组，其余的参数是待摧毁的值。实现原理&#8195;filter() 为数组中的每个元素调用一次 callback函数，并利用所有使得 callback 返回 true 或 等价于 true 的值 的元素创建一个新数组.&#8195;filter()从头至尾遍历数组,若回调函数返回的是true(通过测试),就存入新数组中.若返回的是false,则过滤掉.12345678910111213141516function destroyer(arr) &#123; // 先将第一个参数隔开,定义一个储存着待移除的空数组 var args = arguments[0], removeArgs = []; // 要被删除的参数装进'removeArgs'里 for (var i = 1; i &lt; arguments.length; i++) &#123; removeArgs.push(arguments[i]); &#125; // 遍历'args',若'removeArgs'中不存在'value',应该返回-1.反之返回false被过滤掉. return args.filter(function(value) &#123; return removeArgs.indexOf(value) === -1; &#125;);&#125;destroyer([1, 2, 3, 1, 2, 3], 2, 3);Where do I belong (数组排序并找出元素索引)先给数组排序，然后找到指定的值在数组的位置，最后返回位置对应的索引。&#8195;举例：where([1,2,3,4], 1.5) 应该返回 1。因为1.5插入到数组[1,2,3,4]后变成[1,1.5,2,3,4]，而1.5对应的索引值就是1。&#8195; 同理，where([20,3,5], 19) 应该返回 2。因为数组会先排序为 [3,5,20]，19插入到数组[3,5,20]后变成[3,5,19,20]，而19对应的索引值就是2。思路&#8195;这个没啥好说的了..将第二个参数push进数组中,再进行排序.排序后通过indexOf()来实现功能.不过需要注意的是sort默认是按照’Unicode’编码进行排序的.Caesars Cipher (凯撒密码)风靡全球的凯撒密码Caesar cipher，又叫移位密码。移位密码也就是密码中的字母会按照指定的数量来做移位。一个常见的案例就是ROT13密码，字母会移位13个位置。由’A’ ↔ ‘N’, ‘B’ ↔ ‘O’，以此类推。写一个ROT13函数，实现输入加密字符串，输出解密字符串。所有的字母都是大写，不要转化任何非字母形式的字符(例如：空格，标点符号)，遇到这些特殊字符，跳过它们。思路&#8195;本次练习用到String.charCodeAt()和String.fromCharCode(),首先来查询字符串的Unicode字符.&#8195;根据Unicode表我们得知:小于65和大于90对应的就是数字和小写字符a-z大于等于65和小于等于77对应的就是大写字符A-M (13位)大于等于78和小于等于90对应的就是大写字符N-Z&#8195;ROT13的功能就是移位,如果序号小于78(A-M字母)，使用String.fromCharCode()转换成该序号加13的字符,反之减13.1234567891011121314151617181920212223function rot13(str) &#123; // LBH QVQ VG! var newStr = []; for (var i = 0;i &lt; str.length;i ++) &#123; // 查询每个字符串的Unicode编号 var temp = str.charCodeAt(i); // 非大写字母,空格,数字等都不转换 if (temp &lt; 65 || temp &gt; 91) &#123; newStr.push(str.charAt(i)); continue; // 大于77(N-Z),就转换成该序号 - 13的字符串. &#125; else if (temp &gt; 77) &#123; newStr.push(String.fromCharCode(temp - 13)); // 小于78(A-M),就转换成该序号 + 13的字符串 &#125; else &#123; newStr.push(String.fromCharCode(temp + 13)); &#125; &#125; return newStr.join('');&#125;rot13("SERR PBQR PNZC"); // 你可以修改这一行来测试你的代码]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>算法</tag>
-        <tag>ffc</tag>
-        <tag>test</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[数组方法深入研究之一 (基础算法)]]></title>
-    <url>%2Fblog%2F2017%2F07%2F16%2FBasic%20Algorithm%20Scripting%20-%201%2F</url>
-    <content type="text"><![CDATA[一些基础的算法练习Palindromes(回文处理)Palindromes称之为回文。在中文文当中是指倒着念和顺着念都是相同的，前后对称.正则表达式replace()1234567function palindrome(str) &#123; var string = str.replace(/[\W_]/g,'').toLowerCase(); var replaceStr = string.split('').reverse().join(''); return replaceStr === string;&#125;palindrome("eye"); // true思路&#8195;首先对字符串进行处理..去掉字符串多余的标点符号和空格，然后把字符串转化成小写.&#8195;split把字符串拆分为一个字符串组成的数组.reverse反转数组顺序,join拼接字符串.Title Case a Sentence(首个单词字母大写)句中单词首字母大写,确保字符串的每个单词首字母都大写，其余部分小写。1234567function titleCase(str) &#123; return str.toLowerCase().replace(/( |^)[a-z]/g, function(L) &#123; return L.toUpperCase(); &#125;);&#125;titleCase("I'm a little tea pot"); // I'm A Little Tea Pot思路&#8195;首先把字符串转换为小写,再用正则匹配带空格或者就字母开头的首个字母replace替换成大写字母.Return Largest Numbers in Arrays(返回数组最大的数字)找出多个数组中的最大数,并返回一个新数组12345678910111213function largestOfFour(arr) &#123; // 请把你的代码写在这里 var count = []; for (var i = 0; i &lt; arr.length; i ++) &#123; var a = arr[i].sort(function (a,b) &#123; return b-a; &#125;); count.push(a[0]); &#125; return count;&#125;largestOfFour([[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]); // [5,27,39,1001]思路&#8195;新定义一个数组,遍历传进来的数组进行从大到小排序,将排序后最大的数push进新的数组count最后再返回.Confirm the Ending(检查字符串结尾)检查字符串结尾,判断一个字符串(str)是否以指定的字符串(target)结尾。如果是，返回true;如果不是，返回false。123456789101112function confirmEnding(str, target) &#123; var l = str.length - target.length; if (str.substr(l) === target) &#123; return true; &#125; else &#123; return false; &#125;&#125;confirmEnding("Connor", "n"); // falseconfirmEnding("Bastian", "n"); // trueconfirmEnding("He has to give me a new name", "me"); // true思路&#8195;乍一看好像挺麻烦的样子,容我们深入一看却发现好像并没有想象中的麻烦..&#8195;这里用上了String.prototype.substr()而参数start是一个字符的索引,把字符串str.length - target.length就可以对比结尾字符串是否一样了.Repeat a string repeat a string(重复输出字符串)重复一个指定的字符串 num次，如果num是一个负数则返回一个空字符串。&#8195;对于这种题目可以使用两种方法解决:递归while循环12345678910111213// 第一种使用递归function repeat(str, num) &#123; // 请把你的代码写在这里 if (num &lt; 0)&#123; return ""; &#125; else if (num === 1) &#123; return str; &#125; else &#123; return str + repeat(str, num - 1); &#125;&#125;repeat("abc", 3); // "abcabcabc"1234567891011// 第二种使用whilefunction repeat(str, num) &#123; var s = ''; while(num &gt; 0)&#123; s += str; num --; &#125; return s;&#125;repeat("abc", 3);思路&#8195;递归一般放进if()判断语句中,是一种通过重复地调用函数本身,逐次减少num的值来实现效果.第二种使用了while语句,每调用一次就递减1,直至num &gt; 0.Truncate a string(截断字符串)截断字符串,如果字符串的长度比指定的参数num长，则把多余的部分用…来表示。插入到字符串尾部的三个点号也会计入字符串的长度。如果指定的参数num小于或等于3，则添加的三个点号不会计入字符串的长度。12345678910111213function truncate(str, num) &#123; // 首先判断num的值是不是大于字符串的长度,若是,那就没有必要省略了. if(num &gt;= str.length) &#123; return str; &#125; else if (num &lt;= 3) &#123; return str.slice(0,num) + "..."; &#125; else &#123; return str.slice(0,num-3) + "..."; &#125;&#125;truncate("A-tisket a-tasket A green and yellow basket", "A-tisket a-tasket A green and yellow basket".length);思路&#8195;slice截取字符串.substr(),indexOf()和lastIndexOf()办法同理.https://www.w3cplus.com/javascript/confirm-the-ending.html 大漠老师有一篇文章对此使用有着更详细的说明.]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>算法</tag>
-        <tag>ffc</tag>
-        <tag>test</tag>
       </tags>
   </entry>
 </search>
