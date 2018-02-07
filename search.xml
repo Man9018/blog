@@ -8,9 +8,9 @@
         <category>tools</category>
       </categories>
       <tags>
+        <tag>tools</tag>
         <tag>vue</tag>
         <tag>vscode</tag>
-        <tag>tools</tag>
         <tag>环境配置</tag>
       </tags>
   </entry>
@@ -74,9 +74,9 @@
         <category>debug</category>
       </categories>
       <tags>
-        <tag>tools</tag>
         <tag>debug</tag>
         <tag>Javascript</tag>
+        <tag>tools</tag>
         <tag>console</tag>
       </tags>
   </entry>
@@ -117,9 +117,9 @@
       </categories>
       <tags>
         <tag>JavaScript</tag>
+        <tag>性能优化</tag>
         <tag>HTML</tag>
         <tag>DOM</tag>
-        <tag>性能优化</tag>
       </tags>
   </entry>
   <entry>
