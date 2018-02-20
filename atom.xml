@@ -45,30 +45,6 @@
   </entry>
   
   <entry>
-    <title>通过sourcetree实现远程仓库与本地仓库关联</title>
-    <link href="http://yoursite.com/2018/02/06/%E9%80%9A%E8%BF%87sourcetree%E5%AE%9E%E7%8E%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E4%B8%8E%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E5%85%B3%E8%81%94/"/>
-    <id>http://yoursite.com/2018/02/06/通过sourcetree实现远程仓库与本地仓库关联/</id>
-    <published>2018-02-06T07:33:21.180Z</published>
-    <updated>2017-11-04T15:47:26.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>&emsp;&emsp;sourceTree 是当下比较流行的git客户端,简化了如何与Git存储库进行交互，从而可以专注于编码, 可以通过简单的Git GUI可视化来管理仓库, 提高效率.</p><p><img src="http://tc.ffsky.net/images/2017/11/03/a8ad904c186d87984da6a60b9f95f023.png" alt="sourcetree"></p><p>&emsp;&emsp;题归正转, 今天我们来说说如何通过sourcetree来将本地仓库与远程仓库关联.</p><a id="more"></a><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>&emsp;首先把本地仓库初始化.</p><img src="/blog/2018/02/06/通过sourcetree实现远程仓库与本地仓库关联/init.png"><p>&emsp;再添加到sourcetree上<br><img src="/blog/2018/02/06/通过sourcetree实现远程仓库与本地仓库关联/add.png"></p><p>&emsp;进入github.com -&gt; your profile -&gt; repositories(仓库) -&gt; New<br><img src="/blog/2018/02/06/通过sourcetree实现远程仓库与本地仓库关联/add-02.png"></p><p>&emsp;填写仓库信息, 复制仓库链接<br><img src="/blog/2018/02/06/通过sourcetree实现远程仓库与本地仓库关联/add-03.png"><br><img src="/blog/2018/02/06/通过sourcetree实现远程仓库与本地仓库关联/add-04.png"></p><p>&emsp;设置 -&gt; 添加 -&gt; 填写信息 -&gt; 确定<br><img src="/blog/2018/02/06/通过sourcetree实现远程仓库与本地仓库关联/add-01.png"><br><img src="/blog/2018/02/06/通过sourcetree实现远程仓库与本地仓库关联/add-05.png"></p><p>&emsp;然后就可以提交到github了~<br><img src="/blog/2018/02/06/通过sourcetree实现远程仓库与本地仓库关联/add-06.png"></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&amp;emsp;&amp;emsp;sourceTree 是当下比较流行的git客户端,简化了如何与Git存储库进行交互，从而可以专注于编码, 可以通过简单的Git GUI可视化来管理仓库, 提高效率.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;http://tc.ffsky.net/images/2017/11/03/a8ad904c186d87984da6a60b9f95f023.png&quot; alt=&quot;sourcetree&quot;&gt;&lt;/p&gt;&lt;p&gt;&amp;emsp;&amp;emsp;题归正转, 今天我们来说说如何通过sourcetree来将本地仓库与远程仓库关联.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Git" scheme="http://yoursite.com/categories/Git/"/>
-    
-    
-      <category term="git" scheme="http://yoursite.com/tags/git/"/>
-    
-      <category term="sourcetree" scheme="http://yoursite.com/tags/sourcetree/"/>
-    
-  </entry>
-  
-  <entry>
     <title>你可能不知道的console</title>
     <link href="http://yoursite.com/2018/01/30/Debug-%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6console/"/>
     <id>http://yoursite.com/2018/01/30/Debug-深入研究console/</id>
@@ -511,6 +487,24 @@
       <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
     
       <category term="npm" scheme="http://yoursite.com/tags/npm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在浏览器地址输入URL回车后，中间发生了什么？</title>
+    <link href="http://yoursite.com/2017/11/23/%E5%9C%A8Chrome%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E8%BE%93%E5%85%A5URL%E5%9B%9E%E8%BD%A6%E5%90%8E%EF%BC%8C%E4%B8%AD%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/"/>
+    <id>http://yoursite.com/2017/11/23/在Chrome浏览器地址输入URL回车后，中间发生了什么？/</id>
+    <published>2017-11-23T09:07:47.000Z</published>
+    <updated>2017-11-26T14:51:15.000Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/blog/2017/11/23/在Chrome浏览器地址输入URL回车后，中间发生了什么？/chrome.jpg"><p>最近在面试的时候遇到了一道比较经典的面试题, 在Chrome浏览器地址栏输入url, 回车之后会发生什么事?<br>题目很经典, 自己也懂些大概. 不过抱着探究原理的精神. 也查询了相关的知识, 今天就来探讨一下, 浏览器的处理过程是怎么样的~<br><a id="more"></a></p><h2 id="Start"><a href="#Start" class="headerlink" title="Start"></a>Start</h2><p>当我们在地址栏输入网址时, 其实就是要向服务器请求我们想要的资源.</p><h3 id="1-解析Url"><a href="#1-解析Url" class="headerlink" title="1. 解析Url"></a>1. 解析Url</h3><p>首先开始解析Url, 分析输入的Url还是搜索关键字</p><h3 id="2-DNS查询"><a href="#2-DNS查询" class="headerlink" title="2. DNS查询"></a>2. DNS查询</h3><p><strong>2.1. 浏览器缓存</strong> 然后浏览器开始检测域名是否还存在缓存中, 如果缓存没有就<code>gethostbyname</code>库函数进行查询.</p><p><strong>2.2 Hosts文件</strong> <code>gethostbyname</code>函数在试图进行DNS解析之前首先检查域名是否在本地 Hosts 里.</p><p><strong>2.3 本地DNS服务器</strong> hosts 中也没有找到的话, 将会向DNS 服务器发送一条DNS查询请求.</p><p><strong>2.4 路由缓存</strong> 接着，前面的查询请求发向路由器，它一般会有自己的DNS缓存。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/blog/2017/11/23/在Chrome浏览器地址输入URL回车后，中间发生了什么？/chrome.jpg&quot;&gt;&lt;p&gt;最近在面试的时候遇到了一道比较经典的面试题, 在Chrome浏览器地址栏输入url, 回车之后会发生什么事?&lt;br&gt;题目很经典, 自己也懂些大概. 不过抱着探究原理的精神. 也查询了相关的知识, 今天就来探讨一下, 浏览器的处理过程是怎么样的~&lt;br&gt;
+    
+    </summary>
+    
     
   </entry>
   
