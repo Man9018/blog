@@ -4,8 +4,34 @@
 
     
   <url>
+    <loc>http://yoursite.com/blog/2018/03/11/%E5%85%B3%E4%BA%8E%E5%89%8D%E5%8F%B0GIF%E5%8A%A8%E5%9B%BE%E9%80%90%E4%B8%AA%E6%92%AD%E6%94%BE%E7%9A%84%E6%80%9D%E8%B7%AF/</loc>
+    <lastmod>2018-03-12T08:44:20.679Z</lastmod>
+    <data>
+        <display>
+        <title>关于移动端GIF动图逐个播放的思路</title>
+        <pubTime>2018-03-11T13:23:23.000Z</pubTime>
+        
+        <tag>javascript</tag>
+         
+        <tag>移动端</tag>
+         
+        <tag>gif</tag>
+         
+        <tag>canvas</tag>
+         
+         
+           
+             
+              <breadCrumb title="javascript" url="http://yoursite.com/blog/categories/javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/blog/2017/07/19/Basic%20Algorithm%20Scripting%20-%202/</loc>
-    <lastmod>2018-03-09T14:49:41.725Z</lastmod>
+    <lastmod>2018-03-12T03:57:02.569Z</lastmod>
     <data>
         <display>
         <title>数组方法深入研究之二 (基础算法)</title>
@@ -223,9 +249,9 @@
         <title>JavaScript-常用速查的正则表达式</title>
         <pubTime>2017-08-21T13:36:39.000Z</pubTime>
         
-        <tag>正则表达式</tag>
-         
         <tag>JavaScript</tag>
+         
+        <tag>正则表达式</tag>
          
          
            
