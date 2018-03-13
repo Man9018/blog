@@ -14,7 +14,8 @@ NexT.utils = NexT.$u = {
         var $imageWrapLink = $image.parent('a');
 
         if ($imageWrapLink.size() < 1) {
-          $imageWrapLink = $image.wrap('<a href="' + this.getAttribute('src') + '"></a>').parent('a');
+          var imageLink = ($image.attr('data-original')) ? this.getAttribute('data-original') : this.getAttribute('src');
+          $imageWrapLink = $image.wrap('<a href="' + imageLink + '"></a>').parent('a');
         }
 
         $imageWrapLink.addClass('fancybox fancybox.image');
@@ -39,8 +40,9 @@ NexT.utils = NexT.$u = {
 
   lazyLoadPostsImages: function () {
     $('#posts').find('img').lazyload({
-      placeholder: '/images/loading.gif',
-      effect: 'fadeIn'
+      // placeholder: '/images/loading.gif',
+      effect: 'fadeIn',
+      threshold: 0
     });
   },
 
@@ -67,7 +69,7 @@ NexT.utils = NexT.$u = {
       var docHeight = $(document).height();
       var winHeight = $(window).height();
       var scrollPercent = (scrollTop) / (docHeight - winHeight);
-      var scrollPercentRounded = Math.round(scrollPercent*100);
+      var scrollPercentRounded = Math.round(scrollPercent * 100);
       $('#scrollpercent>span').html(scrollPercentRounded);
     });
 
@@ -91,7 +93,7 @@ NexT.utils = NexT.$u = {
       'music.163.com',
       'www.tudou.com'
     ];
-    var pattern = new RegExp( SUPPORTED_PLAYERS.join('|') );
+    var pattern = new RegExp(SUPPORTED_PLAYERS.join('|'));
 
     $iframes.each(function () {
       var iframe = this;
@@ -132,7 +134,7 @@ NexT.utils = NexT.$u = {
         if (this.src.search('music.163.com') > 0) {
           newDimension = getDimension($iframe);
           var shouldRecalculateAspect = newDimension.width > oldDimension.width ||
-                                        newDimension.height < oldDimension.height;
+            newDimension.height < oldDimension.height;
 
           // 163 Music Player has a fixed height, so we need to reset the aspect radio
           if (shouldRecalculateAspect) {
@@ -142,14 +144,14 @@ NexT.utils = NexT.$u = {
       }
     });
 
-    function getDimension($element) {
+    function getDimension ($element) {
       return {
         width: $element.width(),
         height: $element.height()
       };
     }
 
-    function getAspectRadio(width, height) {
+    function getAspectRadio (width, height) {
       return height / width * 100;
     }
   },
