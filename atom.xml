@@ -6,7 +6,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-03-12T13:09:19.623Z</updated>
+  <updated>2018-03-24T13:10:59.349Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>详解图片的加载方式</title>
+    <link href="http://yoursite.com/2018/03/24/loading-pictures/"/>
+    <id>http://yoursite.com/2018/03/24/loading-pictures/</id>
+    <published>2018-03-24T06:02:50.000Z</published>
+    <updated>2018-03-24T13:10:59.349Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/blog/2018/03/24/loading-pictures/banner.png"><p>[大图预警，流量慎入！] 我们在浏览页面获取信息时, 细心的你可能会留意到, 不同网页的图片可能有不同的加载方式. 那么究竟是由什么决定图片的加载方式的呢? 然后不由的陷入了沉思(.jpg), 所谓耳听为虚, 就让自己来动手操作一下吧~</p><a id="more"></a><h2 id="加载方式"><a href="#加载方式" class="headerlink" title="加载方式"></a>加载方式</h2><p>目前所知的图片加载方式主要有两种: 一种是<strong>线性加载</strong>, 而另一种则是<strong>渐进式加载</strong>.</p><p><strong>线性加载</strong>其实我们已经很熟悉啦, 图片的加载方式由上至下, 一点一点的加载的方式. 同时也是最常见的方式. 如下为例:</p><img src="/blog/2018/03/24/loading-pictures/anima-1.gif"><p><strong>渐进式</strong>则如同名字一般, 它会先显示低分辨率的近似图像, 再逐步的增加图片分辨率(模糊到清晰). 这里容我卖个关子, 不上示例图先.</p><h2 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h2><p>那么到底是什么决定了图片的加载方式呢? 事实上, 加载方式在作图的时候就已经被定下来了.</p><p>比如在 Photoshop 中, 我们使用快捷键<code>ctrl + shift + alt + s</code>, 弹出储存为 Web 所用格式, 再选择<code>jpeg</code>格式后能看到下面有一个<strong>连续</strong>的选项(悬浮提示以多条路径下载), 这个选项的背后就是一个算法的接口，默认是不勾选的。渐进式使用的是小波变换, 而默认线性加载则是离散余弦变化算法. (关于算法的问题已经超出了本文的讨论范围, 这里姑且不谈.)</p><img src="/blog/2018/03/24/loading-pictures/img-1.jpg" title="Photoshop 界面"><p>浏览器在加载页面的时候, 读取图片的压缩算法, 再根据不同的压缩算法来选择相应的渲染算法.</p><h2 id="两者对比"><a href="#两者对比" class="headerlink" title="两者对比"></a>两者对比</h2><p>嗯, 看似很有道理的样子呢, 那实际效果如何呢? 来动手测试一下: 我准备了两张相同内容但不同加载方式的图片. 将控制台打开, 设置一个比较差的网速来对比两张图片的加载情况.</p><img src="/blog/2018/03/24/loading-pictures/diff-1.gif" title="jpg格式下, 两张图片加载对比"><p>what? 怎么好像跟想象中的有所出入? 仔细一瞧, 图一虽然从上至下的加载, 但同时它的清晰度也跟着变化. 而图二则没有这种的效果.</p><p>随后我想到了文件大小的限制的问题, 为了了解更详细加载过程, 我再次准备了两张<code>png</code>的格式, 只不过在ps上<code>png</code>格式需要勾选的选项变成是<strong>交错</strong>, 然后再次进行试验:</p><img src="/blog/2018/03/24/loading-pictures/diff-2.gif" title="png格式下, 两张图片加载对比"><p>啊哈… 由于图片本身也挺大的, 在这加载期间两者之间差距就体现出来了 —— 原来前面那只是因为算法前期结构的构建. 细心的同学还会看到, 虽然图一看上去最先加载完了图片, 但控制台里跳动<code>Size</code>和<code>Time</code>还在告诉我们, 浏览器仍然还没有下载渲染完这张图片, 安静的等待渲染完毕后, 你可能还会惊讶的发现: 什么? 图一竟然比图二还加载的时间还长一点?</p><p>是的, 得益于渐进式逐步加载的算法, 人们在视觉上会感觉渐进式相比线性更快一些, 虽然实际加载的时间可能还会长点, 但用户体验的确是上去.</p><p>然而并非所有浏览器都支持渐进式加载, 翻阅了一下资料, 发现早期张鑫旭dalao也写过类似的内容, 也可以参考一看: <a href="http://www.zhangxinxu.com/wordpress/2013/01/progressive-jpeg-image-and-so-on/" target="_blank" rel="noopener">渐进式jpeg(progressive jpeg)图片及其相关</a></p><h2 id="JavaScript的渐进式"><a href="#JavaScript的渐进式" class="headerlink" title="JavaScript的渐进式"></a>JavaScript的渐进式</h2><p>前文介绍渐进式的时候卖了个关子, 没上示例图是为啥呢~ 这是因为此物非彼物, 我们常看到的渐进式加载可能不是由图片本身算法的效果, 为了避免混淆才暂时不上. 文章看到这里, 有过开发经验的同学就会明白, 若真有这种需求, 我们总不能祈祷全部用户上传图片都是渐进式的吧, 这也不现实.</p><p>google 图片就是使用<code>javascript</code>来操作图片的渐进式. 在点击查看大图的时候, 预先加载一个缩略图, 同时图片底布有一条loading的效果. 加载完毕后就显示清晰的图片, 并且将 loading 隐藏起来. 我在控制台研究了一段时间, 没研究出具体的实现手法. 知道的dalao也不妨留言, 交流一下~</p><img src="/blog/2018/03/24/loading-pictures/google-1.gif" title="png格式下, 两张图片加载对比"><p>至于知乎的渐进式加载图片, 已经有知友分析过了, 实现方式跟我上一篇文章讲的东西思路也有相似之处, 只不过是针对方向不同~ 有兴趣的可以移步知友的回答: <a href="https://www.zhihu.com/question/55622930/answer/145475243" target="_blank" rel="noopener">新版知乎加载图片时从模糊到清晰的这个效果是如何做出来的？ - Tw93的回答</a></p><hr><p>最后如果有什么说的不对的或者, 欢迎dalao们指出批评~</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/blog/2018/03/24/loading-pictures/banner.png&quot;&gt;&lt;p&gt;[大图预警，流量慎入！] 我们在浏览页面获取信息时, 细心的你可能会留意到, 不同网页的图片可能有不同的加载方式. 那么究竟是由什么决定图片的加载方式的呢? 然后不由的陷入了沉思(.jpg), 所谓耳听为虚, 就让自己来动手操作一下吧~&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="other" scheme="http://yoursite.com/categories/other/"/>
+    
+    
+      <category term="image" scheme="http://yoursite.com/tags/image/"/>
+    
+      <category term="Photoshop" scheme="http://yoursite.com/tags/Photoshop/"/>
+    
+  </entry>
   
   <entry>
     <title>关于移动端GIF动图逐个播放的思路</title>
@@ -80,9 +104,9 @@
       <category term="tools" scheme="http://yoursite.com/categories/tools/"/>
     
     
-      <category term="tools" scheme="http://yoursite.com/tags/tools/"/>
-    
       <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
+    
+      <category term="tools" scheme="http://yoursite.com/tags/tools/"/>
     
       <category term="vscode" scheme="http://yoursite.com/tags/vscode/"/>
     
@@ -487,30 +511,6 @@
     
     
       <category term="SEO" scheme="http://yoursite.com/tags/SEO/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Vue 遍历绑定toggle icon, 动态切换action</title>
-    <link href="http://yoursite.com/2017/11/29/Vue-v-for-%E9%81%8D%E5%8E%86%E7%BB%91%E5%AE%9Atoggle-icon-%E5%8A%A8%E6%80%81%E5%88%87%E6%8D%A2action/"/>
-    <id>http://yoursite.com/2017/11/29/Vue-v-for-遍历绑定toggle-icon-动态切换action/</id>
-    <published>2017-11-29T09:12:43.000Z</published>
-    <updated>2018-01-21T03:59:55.000Z</updated>
-    
-    <content type="html"><![CDATA[<img src="/blog/2017/11/29/Vue-v-for-遍历绑定toggle-icon-动态切换action/vue.jpg"><p>在Vue中实现动态绑定toggle action</p><a id="more"></a><p>在遍历<code>li</code>标签时, 动态绑定点击事件, 当点击其中一个<code>item</code>时调用函数. 函数内判断是否处于<code>action</code>状态, 是则清除class, 从实现toggle的效果~ 按照这个思路也可以扩展为下拉菜单.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line">&lt;template&gt;</div><div class="line">  &lt;div class=&quot;hello&quot;&gt;</div><div class="line">    &lt;ul class=&quot;list&quot;&gt;</div><div class="line">      &lt;li v-for=&quot;(item, index) in itemList&quot;</div><div class="line">          @click=&quot;openItem(index)&quot;</div><div class="line">           :key=&quot;item.id&quot;</div><div class="line">      &gt;</div><div class="line">        &#123;&#123; item.desc &#125;&#125;</div><div class="line">        &lt;span class=&quot;icon&quot; :class=&quot;&#123;&apos;action&apos;: actionItem === index&#125;&quot;&gt;&lt;/span&gt;</div><div class="line">      &lt;/li&gt;</div><div class="line">    &lt;/ul&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">&lt;/template&gt;</div><div class="line"></div><div class="line">&lt;script&gt;</div><div class="line">export default &#123;</div><div class="line">  data () &#123;</div><div class="line">    return &#123;</div><div class="line">      itemList: [</div><div class="line">        &#123;desc: &apos;item1&apos;&#125;,</div><div class="line">        &#123;desc: &apos;item2&apos;&#125;,</div><div class="line">        &#123;desc: &apos;item3&apos;&#125;</div><div class="line">      ],</div><div class="line">      actionItem: null</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  methods: &#123;</div><div class="line">    openItem (index) &#123;</div><div class="line">      if (this.actionItem === index) &#123;</div><div class="line">        this.actionItem = null</div><div class="line">      &#125; else &#123;</div><div class="line">        this.actionItem = index</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">&lt;/script&gt;</div><div class="line"></div><div class="line">&lt;!-- Add &quot;scoped&quot; attribute to limit CSS to this component only --&gt;</div><div class="line">&lt;style scoped&gt;</div><div class="line">.list &#123;</div><div class="line">  width: 500px;</div><div class="line">  padding: 0;</div><div class="line">  margin: 0 auto;</div><div class="line">  text-align: left;</div><div class="line">&#125;</div><div class="line">.list li &#123;</div><div class="line">  position: relative;</div><div class="line">  margin: 14px 0;</div><div class="line">  padding: 10px;</div><div class="line">  border-bottom: 1px solid #ccc;</div><div class="line">  list-style: none;</div><div class="line">  cursor: pointer;</div><div class="line">&#125;</div><div class="line">.list .icon &#123;</div><div class="line">  position: absolute;</div><div class="line">  right: 10px;</div><div class="line">  width: 0;</div><div class="line">  height: 0px;</div><div class="line">  border: 10px solid;</div><div class="line">  border-color: #aaa transparent transparent transparent;</div><div class="line">&#125;</div><div class="line">.list .action &#123;</div><div class="line">  border-color: rgb(254,0,0);</div><div class="line">  border-radius: 50%;</div><div class="line">&#125;</div><div class="line">&lt;/style&gt;</div></pre></td></tr></table></figure><p>初次点击, <code>action</code>触发, 再次点击清除<code>action</code><br><img src="/blog/2017/11/29/Vue-v-for-遍历绑定toggle-icon-动态切换action/vue-1.png"></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;img src=&quot;/blog/2017/11/29/Vue-v-for-遍历绑定toggle-icon-动态切换action/vue.jpg&quot;&gt;&lt;p&gt;在Vue中实现动态绑定toggle action&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="vue" scheme="http://yoursite.com/categories/vue/"/>
-    
-    
-      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
-    
-      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
     
   </entry>
   
