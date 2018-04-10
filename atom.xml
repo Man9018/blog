@@ -6,7 +6,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-03-24T13:10:59.349Z</updated>
+  <updated>2018-04-10T16:00:43.453Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,24 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>浏览器与服务端的背后交互: 详解页面请求的过程</title>
+    <link href="http://yoursite.com/2018/04/06/URL-to-browser/"/>
+    <id>http://yoursite.com/2018/04/06/URL-to-browser/</id>
+    <published>2018-04-06T08:07:15.000Z</published>
+    <updated>2018-04-10T16:00:43.453Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近在恶补知识点, 想对自己的所学的知识作一个小总结. 虽说这类问题也是老生常谈啦, 但其覆盖的知识面却也值得一说, 今天就来谈谈我对”它们”的理解.</p><a id="more"></a><h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>我们将URL输入至浏览器的地址栏后回车, 首先浏览器就会开始检查 URL 是否合法, 若是不符合匹配规则, 将会以关联字进行搜索.</p><p>我们以掘金为例, 我在输入 URL 的时候粗心的输错了协议. 但Chrome浏览器不认识这玩意呀, 然后将我们带到了搜索页. 仿佛在说: “嘿, 兄弟. 虽然不太理解你想干嘛, 但是你可以看看这里有你想要的东西吗?”</p><img src="/blog/2018/04/06/URL-to-browser/img-1.png"><h2 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h2><p>嘿, 接下来我们需要了解一些DNS的概念. 那么DNS又是啥玩意呢?</p><p><strong>DNS</strong>, 也就是<strong>域名系统(Domain Name System)</strong>. 它所处于的角色就是将主机名映射到IP地址. 通常我们看到诸如 <a href="https://www.baidu.com/" target="_blank" rel="noopener">https://www.baidu.com/</a> 之类的网址, 被称之为域名. 我们向服务端请求资源时, 也可以直接输入目标IP, 并不一定需要通过域名才能访问到.<br>那为什么还是我们常看见的还是这些域名呢? 这是因为对于人们而言IP地址实际上并不是那么好记, 因为它是一长串的数字. 你不会觉得<code>111.13.101.208</code>会比<code>www.baidu.com</code>好记, 因为后者是我们所熟悉的拼音单词<br>.<br>然而我们请求的时候, IP地址又是必须要用的. 因此DNS就出现啦~ 换句话说, 域名对于服务端来说, 并不是必须的. 只不过是方便用户容易记住罢了~</p><img src="/blog/2018/04/06/URL-to-browser/anima-1.gif" title="通过IP地址来访问百度首页"><hr><p>ok, 咱们回归正题, 我把前面的错误纠正, 输入正确的URL =&gt; 浏览器开始解析DNS:</p><ul><li>首先每个浏览器都有自己的缓存, 浏览器会先检查自身的缓存的是否存在目标的DNS记录? 如果有则进行尝试连接.(chrome浏览器DNS采用预解析和TCP预连接的, 我们可以在地址栏输入 about:DNS 查看浏览器本地的DNS)</li><li>浏览器缓存没有找到, 进而会查找操作系统中的DNS. (windows可以在命令行使用 <code>ipconfig /displaydns</code>)</li><li>如果在本地DNS都没有找到的话, 则会查找<strong>hosts文件</strong>(域名解析文件), 它是负责将主机名映射到相应的IP地址. 随带一提, 我们在日常开发中常用到本地IP<code>127.0.0.1</code>默认就在<strong>hotst文件</strong>中映射了域名为<code>localhost</code>, 因此我们可以通过这个域名来访问<code>127.0.0.1</code>.</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近在恶补知识点, 想对自己的所学的知识作一个小总结. 虽说这类问题也是老生常谈啦, 但其覆盖的知识面却也值得一说, 今天就来谈谈我对”它们”的理解.&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>详解图片的加载方式</title>
@@ -162,11 +180,11 @@
     
       <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
     
-      <category term="解决方案" scheme="http://yoursite.com/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
-    
       <category term="移动端" scheme="http://yoursite.com/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/"/>
     
       <category term="css" scheme="http://yoursite.com/tags/css/"/>
+    
+      <category term="解决方案" scheme="http://yoursite.com/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
     
   </entry>
   
@@ -488,29 +506,9 @@
     
       <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
     
-      <category term="IE兼容性错误" scheme="http://yoursite.com/tags/IE%E5%85%BC%E5%AE%B9%E6%80%A7%E9%94%99%E8%AF%AF/"/>
-    
       <category term="解决方案" scheme="http://yoursite.com/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
     
-  </entry>
-  
-  <entry>
-    <title>浅谈前端所能做的SEO</title>
-    <link href="http://yoursite.com/2017/12/05/%E6%B5%85%E8%B0%88%E5%89%8D%E7%AB%AF%E6%89%80%E8%83%BD%E5%81%9A%E7%9A%84SEO/"/>
-    <id>http://yoursite.com/2017/12/05/浅谈前端所能做的SEO/</id>
-    <published>2017-12-05T08:19:17.000Z</published>
-    <updated>2018-01-09T02:19:28.000Z</updated>
-    
-    <content type="html"><![CDATA[<img src="/blog/2017/12/05/浅谈前端所能做的SEO/seo.png"><p>SEO, 就是搜索引擎优化(Search Engine Optimization)的缩写, SEO优化是专门利用搜索引擎的搜索规则来提高网站在搜索引擎内的自然排名的一种方式. 能对搜索引擎的小蜘蛛更加友好. 那么前端能做哪些SEO的优化呢?<br><a id="more"></a></p><h2 id="SEO基础三要素"><a href="#SEO基础三要素" class="headerlink" title="SEO基础三要素"></a>SEO基础三要素</h2><p>我们进入某个网页打开调试工具, 在<code>&lt;head&gt;</code>标签里我们能的看到<code>&lt;title&gt;</code>标签, <code>keywords</code>和<code>description</code>的<code>&lt;meta&gt;</code>标签. 就是最基础的SEO三要素.</p><p>其中<code>&lt;title&gt;</code>标签代表着页面的标题, <code>&lt;meta keywords&gt;</code>是网站的关键字, <code>&lt;meta Description&gt;</code>则是网页的描述, 即对这些关联字进行了扩展.<br>昂, 现在我们知道了这三要素可以SEO优化, 那我们就疯狂的在关键字里加一堆上去, 越多越好?当然, 并不是这样的.这些都有限制的, 内容不可过长, 也不能过分的堆砌关键字, 每个页面的<code>description</code>也应该不同. 比如下方张老师的博客为例.</p><img src="/blog/2017/12/05/浅谈前端所能做的SEO/head.png" title="张鑫旭老师的个人博客"><h3 id="网站构造布局优化"><a href="#网站构造布局优化" class="headerlink" title="网站构造布局优化"></a>网站构造布局优化</h3><p>对网站布局进行SEO优化, 控制首页链接数量, 扁平化的目录层次(最多三层目录层次), 然后对导航SEO优化.</p><h2 id="编写语义化代码"><a href="#编写语义化代码" class="headerlink" title="编写语义化代码"></a>编写语义化代码</h2><p>我们常说, 要养成编写语义化代码的习惯. 那什么是语义化呢? 就是既要人看得懂, 也要机器能理解你的代码.<br>其实我们常用的HTML标签很多都是带语义化的. 如:</p><ul><li>H1 ~ H6都是用于表示标题</li><li>UL标签多用于无序列表</li><li>Ol标签用于有序列表</li><li>DL标签用于定义数据列表</li><li>Em, strong表示强调等</li></ul><img src="/blog/2017/12/05/浅谈前端所能做的SEO/ul-1.png" title="掘金的这种HTML就是符合语义化"><h2 id="站内优化"><a href="#站内优化" class="headerlink" title="站内优化"></a>站内优化</h2><ul><li><code>&lt;a&gt;</code> - 标签优化, 外链上加上rel=”nofollow”, 让小蜘蛛别往外面爬</li><li><code>&lt;h1&gt;</code> - 正文标题使用h1</li><li><code>&lt;img&gt;</code> - 标签使用alt说明, alt对图片起着一个注释的作用</li><li><code>&lt;strong&gt;``&lt;em&gt;</code>与<code>&lt;b&gt;``&lt;i&gt;</code>标签<br><code>&lt;strong&gt;</code>是权重标签的代表, 在搜索引擎中能够得到高度的重视, 他能突出关键词, <code>&lt;b&gt;</code>与<code>&lt;strong&gt;</code>的效果是一样的, 但是在SEO中并不会起到很好的效果, 因此不推荐使用.<br><code>&lt;em&gt;</code>表示斜体, 权重标签的重要度仅次于<code>&lt;strong&gt;</code>.</li></ul><h2 id="一些布局小技巧"><a href="#一些布局小技巧" class="headerlink" title="一些布局小技巧"></a>一些布局小技巧</h2><ul><li>重要内容HTML代码放在最前面, 小蜘蛛抓取HTML内容是按照文档流从上往下抓取的. 利用这个特点, 我们可以将重要的HTML放在上面, 然后可以通过CSS来进行布局.</li><li>重要的内容尽量不要用JS输出, 小蜘蛛看不懂JavaScript~</li><li>尽少使用iframe框架. 小蜘蛛是不会读取里面的网页的</li><li>谨慎使用<code>display: none;</code> 小蜘蛛会过滤掉<code>display: none</code>里的内容</li><li>不断的精简代码, 能使用一个标签就不要用两个标签</li></ul><h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><p><a href="https://support.google.com/webmasters/answer/7451184?hl=zh-Hans" target="_blank" rel="noopener">Chrome - 搜索引擎优化 (SEO) 入门指南</a></p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>SEO其实面对的是搜索引擎, 然后搜索引擎再将搜索的结果, 根据权重展现给用户. 文中讲的只是一些基础的知识, 除此之外还有<code>robots.txt</code>, 站外友链等, 这里就不详谈了. 平时前端er日常工作中应该培养好的编程习惯, 了解了SEO的规则, 可以隐性给自己页面提升质量呢~</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;img src=&quot;/blog/2017/12/05/浅谈前端所能做的SEO/seo.png&quot;&gt;&lt;p&gt;SEO, 就是搜索引擎优化(Search Engine Optimization)的缩写, SEO优化是专门利用搜索引擎的搜索规则来提高网站在搜索引擎内的自然排名的一种方式. 能对搜索引擎的小蜘蛛更加友好. 那么前端能做哪些SEO的优化呢?&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="SEO" scheme="http://yoursite.com/tags/SEO/"/>
+      <category term="IE兼容性错误" scheme="http://yoursite.com/tags/IE%E5%85%BC%E5%AE%B9%E6%80%A7%E9%94%99%E8%AF%AF/"/>
     
   </entry>
   
