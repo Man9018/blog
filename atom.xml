@@ -6,7 +6,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-05-06T02:48:25.997Z</updated>
+  <updated>2018-05-06T02:50:54.795Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,13 +21,13 @@
     <link href="http://yoursite.com/2018/05/06/%E8%B0%88%E8%B0%88CSS3-Matrix-%E7%9A%84%E7%90%86%E8%A7%A3/"/>
     <id>http://yoursite.com/2018/05/06/谈谈CSS3-Matrix-的理解/</id>
     <published>2018-05-06T02:11:26.000Z</published>
-    <updated>2018-05-06T02:48:25.997Z</updated>
+    <updated>2018-05-06T02:50:54.795Z</updated>
     
-    <content type="html"><![CDATA[<p>CSS3的<code>transform</code>里有一个方法叫做<code>Matrix</code>，该需要六个参数，可以使用数学函数让元素进行旋转、缩放、移动以及倾斜元素。</p><p>光是看这名词好像有点吓人，仿佛又回想起当初被数学支配的恐惧。的确，相比那些<code>translate(25deg)</code>之类有着明确语义跟容易调用方法外，<code>Matrix</code>使用起来确实有些复杂~</p><a id="more"></a><p><code>Matrix</code>的参数分别有a, b, c, d, e, f六个参数，我们可以分别对应：</p><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">transform</span>: <span class="selector-tag">matrix</span>(<span class="selector-tag">X</span>轴的缩放， <span class="selector-tag">X</span>轴拉升, <span class="selector-tag">Y</span>轴的拉伸, <span class="selector-tag">Y</span>轴的缩放, <span class="selector-tag">X</span>轴的位移, <span class="selector-tag">Y</span>轴的位移);</div></pre></td></tr></table></figure><p>这样看上去好像好多了，我们常使用的几个方法也是可以通过Matrix来实现：</p><p>元素默认情况下的表现可以用<code>Matrix</code>来表示为：<code>matrix(1, 0, 0, 1, 0, 0)</code>;</p><p>通过上面的例子，我们很容易推测出缩放的公式为：<code>translate(sx, sy)</code>等于<code>matrix(sx, 0, 0, sy, 0, 0)</code>;</p><p>位移就更简单啦： <code>translate(tx, ty)</code>等于<code>matrix(1, 0, 0, 1, tx, ty)</code>;</p><p>拉升则是：<code>skew(degx, degy)</code>等于<code>matrix(1, degx, degy, 1, 0, 0)</code></p><p>旋转没有提供相应的参数，他需要套用数学的公式，毕竟这个方法名就是<code>矩阵</code>嘛：<code>rotate(deg)</code>等于<code>matrix(cos(deg),sin(deg), -sin(deg), cos(deg), 0, 0)</code></p><hr><p>那问题来了，为啥有简单易用的方法不用，我们非要搞这么麻烦的东西呢？这是因为很多时候我们需要高度精确定制动画时，那些简单的方法以及不能满足我们的需求啦~</p>]]></content>
+    <content type="html"><![CDATA[<img src="/blog/2018/05/06/谈谈CSS3-Matrix-的理解/banner.png"><p>CSS3的<code>transform</code>里有一个方法叫做<code>Matrix</code>，该需要六个参数，可以使用数学函数让元素进行旋转、缩放、移动以及倾斜元素。</p><p>光是看这名词好像有点吓人，仿佛又回想起当初被数学支配的恐惧。的确，相比那些<code>translate(25deg)</code>之类有着明确语义跟容易调用方法外，<code>Matrix</code>使用起来确实有些复杂~</p><a id="more"></a><p><code>Matrix</code>的参数分别有a, b, c, d, e, f六个参数，我们可以分别对应：</p><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">transform</span>: <span class="selector-tag">matrix</span>(<span class="selector-tag">X</span>轴的缩放， <span class="selector-tag">X</span>轴拉升, <span class="selector-tag">Y</span>轴的拉伸, <span class="selector-tag">Y</span>轴的缩放, <span class="selector-tag">X</span>轴的位移, <span class="selector-tag">Y</span>轴的位移);</div></pre></td></tr></table></figure><p>这样看上去好像好多了，我们常使用的几个方法也是可以通过Matrix来实现：</p><p>元素默认情况下的表现可以用<code>Matrix</code>来表示为：<code>matrix(1, 0, 0, 1, 0, 0)</code>;</p><p>通过上面的例子，我们很容易推测出缩放的公式为：<code>translate(sx, sy)</code>等于<code>matrix(sx, 0, 0, sy, 0, 0)</code>;</p><p>位移就更简单啦： <code>translate(tx, ty)</code>等于<code>matrix(1, 0, 0, 1, tx, ty)</code>;</p><p>拉升则是：<code>skew(degx, degy)</code>等于<code>matrix(1, degx, degy, 1, 0, 0)</code></p><p>旋转没有提供相应的参数，他需要套用数学的公式，毕竟这个方法名就是<code>矩阵</code>嘛：<code>rotate(deg)</code>等于<code>matrix(cos(deg),sin(deg), -sin(deg), cos(deg), 0, 0)</code></p><hr><p>那问题来了，为啥有简单易用的方法不用，我们非要搞这么麻烦的东西呢？这是因为很多时候我们需要高度精确定制动画时，那些简单的方法以及不能满足我们的需求啦~</p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;CSS3的&lt;code&gt;transform&lt;/code&gt;里有一个方法叫做&lt;code&gt;Matrix&lt;/code&gt;，该需要六个参数，可以使用数学函数让元素进行旋转、缩放、移动以及倾斜元素。&lt;/p&gt;&lt;p&gt;光是看这名词好像有点吓人，仿佛又回想起当初被数学支配的恐惧。的确，相比那些&lt;code&gt;translate(25deg)&lt;/code&gt;之类有着明确语义跟容易调用方法外，&lt;code&gt;Matrix&lt;/code&gt;使用起来确实有些复杂~&lt;/p&gt;
+      &lt;img src=&quot;/blog/2018/05/06/谈谈CSS3-Matrix-的理解/banner.png&quot;&gt;&lt;p&gt;CSS3的&lt;code&gt;transform&lt;/code&gt;里有一个方法叫做&lt;code&gt;Matrix&lt;/code&gt;，该需要六个参数，可以使用数学函数让元素进行旋转、缩放、移动以及倾斜元素。&lt;/p&gt;&lt;p&gt;光是看这名词好像有点吓人，仿佛又回想起当初被数学支配的恐惧。的确，相比那些&lt;code&gt;translate(25deg)&lt;/code&gt;之类有着明确语义跟容易调用方法外，&lt;code&gt;Matrix&lt;/code&gt;使用起来确实有些复杂~&lt;/p&gt;
     
     </summary>
     
