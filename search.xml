@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[常见的几种压缩图片的思路]]></title>
+    <url>%2Fblog%2F2018%2F05%2F08%2Fcanvas-compress-prictures%2F</url>
+    <content type="text"><![CDATA[在做H5开发时，难免会遇到需要上传图片的需求。那么一般都是如何去处理压缩的需求呢？这里简要的概述一下原理，做个笔记加深印象~目前主流对图片进行处理都是使用canvas技术~当我们碰到需要压缩图片的场景时，第一种我们就可以尝试控制图片的尺寸。因为图片的尺寸越大，里面包含的信息就越多，自然体积也随着增加了起来。我们可以做一个宽高的限制，超出就对其进行尺寸的缩放。那么限制最大值是多少呢？这个应该根据产品或者需求来调整。当然，裁剪图片也是一种思路，那么该如何去裁剪，让用户选择还是我们自定义？这也是需要考虑的一点。判断缩放的方法主要使用drawImage将图片导入canvas，如果图片超过了指定的宽高，就进行缩放图片。关于这一点，我觉得张鑫旭老师的这篇文章讲的已经足够简洁的了，感兴趣的同学可以看这边~第二种就是使用canvas提供的另一个接口：canvas.toDataURL(type, encoderOptions)。这是浏览器原生提供可以压缩图片的方法，该方法返回一个包含图片展示的data URI(也就是我们常说的base64)。它接受两个可选参数，我们可以使用type参数指定其类型，默认为PNG格式。encoderOptions则是压缩图片质量参数，区间在 0~1 之间。值得注意的是，压缩图片质量这个参数只对image/jpeg或image/webp有效。所幸的是，其他格式用不了压缩图片的参数，但浏览器还是会对图片进行压缩处理，剔除对 web 展示没啥用的元数据(虽然可能会涉及到版权纠纷的问题)。123var canvas = document.getElementById("canvas");// 中间处理的过程省略 ...var fullQuality = canvas.toDataURL("image/jpeg", 0.8);但单单是转为 base64 是不能满足我们一些需求的，这时我们可能会想要让它再转为对服务端友好的blob类型。这时我们就需要用到window.atob(), 将已经编译成 base64 的字符串解码为二进制。12345678910111213141516171819202122232425var type = fullQuality.split(',')[0].split(':')[1].split(';')[0];// 解码为二进制var binStr = atob(fullQuality.split(',')[1]);var length = binStr.length;// 创建一个缓存区，容器大小可以容纳 binStr.// 这个缓存区我们是不能直接操作的。var buffer = new ArrayBuffer(binStr);// 建立`Uint8Array`类型数组// 这样我们就可以通过对象的方法或者数组索引读写里面的数据啦//// var buff = new ArrayBuffer(4); =&gt; ArrayBuffer(4) &#123;&#125;// var arr = new Uint8Array(buff); =&gt; Uint8Array(4) [0, 0, 0, 0]// arr[2] = 8;// console.log(buff) =&gt; 缓存区和 Uint8Array 同时被修改了var arr = new Uint8Array(buffer);for (var i = 0; i &lt; length; i++) &#123; // 逐个查询 binStr 里的二进制 Unicode 编码，并存入类型数组中 arr[i] = binStr.charCodeAt(i);&#125;var blob = new Blob([buffer],&#123; type: type &#125;如果是想转为File类型的话，和上面的方法实现的也一致..123// https://developer.mozilla.org/en-US/docs/Web/API/File/File// 第一个参数传入 ArrayBuffer 也行，blob 也行..var file = new File([buff], "img.jpg", &#123; type: type &#125;);哇，转个类型都看起来好像挺麻烦的样子呢…那么有没有内置的方法呀？答案是有，canvas 里有个toBlob(callback, type, encoderOptions)的方法, 它接受三个参数，一个是将canvas转为blob后接受的回调函数、一个是指定的图片格式、另一个是图片质量，区间也在 0~1 之间。看起来这个方法似乎比上面那个更好用呢..然而残念的是，这货还受着兼容性影响，不在乎的兼容性的话倒是可以使用… 不然就需要上一种polyfill 的方式来实现~123456789101112canvas.toBlob(function (blob) &#123; // 接收转换后的 blob 类型 // 此时可以在函数里发起请求 $.ajax(&#123; url: baseURL + '/uploader/', data: &#123; act_id: actID, pic_1: blob &#125;, type: 'POST', success: function (data) &#123; // success &#125; &#125;);&#125;, 'image/png');]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[浅谈CSS3 Matrix 的使用]]></title>
     <url>%2Fblog%2F2018%2F05%2F06%2F%E8%B0%88%E8%B0%88CSS3-Matrix-%E7%9A%84%E7%90%86%E8%A7%A3%2F</url>
-    <content type="text"><![CDATA[CSS3的transform里有一个方法叫做Matrix，该需要六个参数，可以使用数学函数让元素进行旋转、缩放、移动以及倾斜元素。光是看这名词好像有点吓人，仿佛又回想起当初被数学支配的恐惧。的确，相比那些translate(25deg)之类有着明确语义跟容易调用方法外，Matrix使用起来确实有些复杂~Matrix的参数分别有a, b, c, d, e, f六个参数，我们可以分别对应：1transform: matrix(X轴的缩放， X轴拉升, Y轴的拉伸, Y轴的缩放, X轴的位移, Y轴的位移);这样看上去好像好多了，我们常使用的几个方法也是可以通过Matrix来实现：元素默认情况下的表现可以用Matrix来表示为：matrix(1, 0, 0, 1, 0, 0);通过上面的例子，我们很容易推测出缩放的公式为：translate(sx, sy)等于matrix(sx, 0, 0, sy, 0, 0);位移就更简单啦： translate(tx, ty)等于matrix(1, 0, 0, 1, tx, ty);拉升则是：skew(degx, degy)等于matrix(1, degx, degy, 1, 0, 0)旋转没有提供相应的参数，他需要套用数学的公式，毕竟这个方法名就是矩阵嘛：rotate(deg)等于matrix(cos(deg),sin(deg), -sin(deg), cos(deg), 0, 0)那问题来了，为啥有简单易用的方法不用，我们非要搞这么麻烦的东西呢？这是因为很多时候我们需要高度精确定制动画时，那些简单的方法以及不能满足我们的需求啦~]]></content>
+    <content type="text"><![CDATA[CSS3的transform里有一个方法叫做Matrix，该需要六个参数，可以使用数学函数让元素进行旋转、缩放、移动以及倾斜元素。光是看这名词好像有点吓人，仿佛又回想起当初被数学支配的恐惧。的确，相比那些translate(25deg)之类有着明确语义跟容易调用方法外，Matrix使用起来确实有些复杂~Matrix的参数分别有a, b, c, d, e, f六个参数，我们可以分别对应：1transform: matrix(X轴的缩放， X轴拉升, Y轴的拉伸, Y轴的缩放, X轴的位移, Y轴的位移);这样看上去好像好多了，我们常使用的几个方法也是可以通过Matrix来实现：元素默认情况下的表现可以用Matrix来表示为：matrix(1, 0, 0, 1, 0, 0);通过上面的例子，我们很容易推测出缩放的公式为：translate(sx, sy)等于matrix(sx, 0, 0, sy, 0, 0);位移就更简单啦： translate(tx, ty)等于matrix(1, 0, 0, 1, tx, ty);拉升则是：skew(degx, degy)等于matrix(1, tan(degx), tan(degy), 1, 0, 0)旋转没有提供相应的参数，他需要套用数学的公式，毕竟这个方法名就是矩阵嘛：rotate(deg)等于matrix(cos(deg),sin(deg), -sin(deg), cos(deg), 0, 0)那问题来了，为啥有简单易用的方法不用，我们非要搞这么麻烦的东西呢？这是因为很多时候我们需要高度精确定制动画时，那些简单的方法以及不能满足我们的需求啦~]]></content>
       <categories>
         <category>css</category>
       </categories>
@@ -99,9 +104,9 @@
       </categories>
       <tags>
         <tag>JavaScript</tag>
-        <tag>解决方案</tag>
         <tag>移动端</tag>
         <tag>css</tag>
+        <tag>解决方案</tag>
       </tags>
   </entry>
   <entry>
@@ -254,8 +259,8 @@
       </categories>
       <tags>
         <tag>vue</tag>
-        <tag>IE兼容性错误</tag>
         <tag>解决方案</tag>
+        <tag>IE兼容性错误</tag>
       </tags>
   </entry>
   <entry>

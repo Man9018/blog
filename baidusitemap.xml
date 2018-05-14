@@ -4,8 +4,23 @@
 
     
   <url>
+    <loc>http://yoursite.com/blog/2018/05/08/canvas-compress-prictures/</loc>
+    <lastmod>2018-05-14T12:23:30.734Z</lastmod>
+    <data>
+        <display>
+        <title>常见的几种压缩图片的思路</title>
+        <pubTime>2018-05-08T15:15:40.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/blog/2018/05/06/%E8%B0%88%E8%B0%88CSS3-Matrix-%E7%9A%84%E7%90%86%E8%A7%A3/</loc>
-    <lastmod>2018-05-06T02:50:54.795Z</lastmod>
+    <lastmod>2018-05-06T09:23:25.052Z</lastmod>
     <data>
         <display>
         <title>浅谈CSS3 Matrix 的使用</title>
@@ -235,11 +250,11 @@
         
         <tag>JavaScript</tag>
          
-        <tag>解决方案</tag>
-         
         <tag>移动端</tag>
          
         <tag>css</tag>
+         
+        <tag>解决方案</tag>
          
          
            
@@ -662,9 +677,9 @@
         
         <tag>vue</tag>
          
-        <tag>IE兼容性错误</tag>
-         
         <tag>解决方案</tag>
+         
+        <tag>IE兼容性错误</tag>
          
          
            
