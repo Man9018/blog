@@ -4,6 +4,32 @@
 
     
   <url>
+    <loc>http://yoursite.com/blog/2018/05/24/node-%E5%B0%86%E9%A1%B9%E7%9B%AE%E8%B5%84%E6%BA%90%E4%B8%8A%E4%BC%A0%E8%87%B3%E4%B8%83%E7%89%9BCDN/</loc>
+    <lastmod>2018-05-24T16:00:32.546Z</lastmod>
+    <data>
+        <display>
+        <title>将项目资源上传至七牛CDN</title>
+        <pubTime>2018-05-24T12:40:40.000Z</pubTime>
+        
+        <tag>Node</tag>
+         
+        <tag>Javascirpt</tag>
+         
+        <tag>七牛</tag>
+         
+        <tag>项目管理</tag>
+         
+         
+           
+             
+              <breadCrumb title="Node" url="http://yoursite.com/blog/categories/Node/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/blog/2018/05/08/canvas-compress-prictures/</loc>
     <lastmod>2018-05-14T12:23:30.734Z</lastmod>
     <data>
@@ -250,11 +276,11 @@
         
         <tag>JavaScript</tag>
          
+        <tag>解决方案</tag>
+         
         <tag>移动端</tag>
          
         <tag>css</tag>
-         
-        <tag>解决方案</tag>
          
          
            
@@ -349,9 +375,9 @@
         <title>JavaScript-常用速查的正则表达式</title>
         <pubTime>2017-08-21T13:36:39.000Z</pubTime>
         
-        <tag>JavaScript</tag>
-         
         <tag>正则表达式</tag>
+         
+        <tag>JavaScript</tag>
          
          
            
@@ -677,9 +703,9 @@
         
         <tag>vue</tag>
          
-        <tag>解决方案</tag>
-         
         <tag>IE兼容性错误</tag>
+         
+        <tag>解决方案</tag>
          
          
            
