@@ -4,6 +4,30 @@
 
     
   <url>
+    <loc>http://yoursite.com/blog/2018/06/28/how-to-use-echart/</loc>
+    <lastmod>2018-06-29T14:56:40.599Z</lastmod>
+    <data>
+        <display>
+        <title>Echarts 的食用方式</title>
+        <pubTime>2018-06-28T05:04:46.000Z</pubTime>
+        
+        <tag>JavaScript</tag>
+         
+        <tag>Echarts</tag>
+         
+        <tag>图表</tag>
+         
+         
+           
+             
+              <breadCrumb title="javascript" url="http://yoursite.com/blog/categories/javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/blog/2018/06/09/javascript-position-navigation/</loc>
     <lastmod>2018-06-09T15:18:11.802Z</lastmod>
     <data>
@@ -274,9 +298,9 @@
         
         <tag>tools</tag>
          
-        <tag>vscode</tag>
-         
         <tag>vue</tag>
+         
+        <tag>vscode</tag>
          
         <tag>环境配置</tag>
          
