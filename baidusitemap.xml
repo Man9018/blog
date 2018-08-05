@@ -4,6 +4,21 @@
 
     
   <url>
+    <loc>http://yoursite.com/blog/2018/08/05/array-of-classes/</loc>
+    <lastmod>2018-08-05T14:38:16.731Z</lastmod>
+    <data>
+        <display>
+        <title>什么是类数组，类数组是如何定义的？</title>
+        <pubTime>2018-08-05T09:44:41.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/blog/2018/06/28/how-to-use-echart/</loc>
     <lastmod>2018-06-29T15:49:24.564Z</lastmod>
     <data>
@@ -423,9 +438,9 @@
         <title>JavaScript-常用速查的正则表达式</title>
         <pubTime>2017-08-21T13:36:39.000Z</pubTime>
         
-        <tag>正则表达式</tag>
-         
         <tag>JavaScript</tag>
+         
+        <tag>正则表达式</tag>
          
          
            
