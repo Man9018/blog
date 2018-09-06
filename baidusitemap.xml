@@ -5,14 +5,41 @@
     
   <url>
     <loc>http://yoursite.com/blog/2018/08/05/array-of-classes/</loc>
-    <lastmod>2018-08-05T17:24:56.759Z</lastmod>
+    <lastmod>2018-09-06T07:04:07.934Z</lastmod>
     <data>
         <display>
         <title>什么是类数组，类数组是如何定义的？</title>
         <pubTime>2018-08-05T09:44:41.000Z</pubTime>
         
+        <tag>javascript</tag>
+         
          
            
+             
+              <breadCrumb title="javascript" url="http://yoursite.com/blog/categories/javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/blog/2017/12/31/Git-emoji%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</loc>
+    <lastmod>2018-09-06T06:58:09.934Z</lastmod>
+    <data>
+        <display>
+        <title>Git emoji使用指南</title>
+        <pubTime>2017-12-31T15:17:37.000Z</pubTime>
+        
+        <tag>git</tag>
+         
+        <tag>github</tag>
+         
+         
+           
+             
+              <breadCrumb title="git" url="http://yoursite.com/blog/categories/git/"/>
+          
         </display>
     </data>
     </url>
@@ -538,28 +565,6 @@
          
          
            
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/blog/2017/12/31/Git-emoji%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</loc>
-    <lastmod>2018-01-08T09:08:51.000Z</lastmod>
-    <data>
-        <display>
-        <title>Git emoji使用指南</title>
-        <pubTime>2017-12-31T15:17:37.000Z</pubTime>
-        
-        <tag>git</tag>
-         
-        <tag>github</tag>
-         
-         
-           
-             
-              <breadCrumb title="git" url="http://yoursite.com/blog/categories/git/"/>
-          
         </display>
     </data>
     </url>
