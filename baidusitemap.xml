@@ -4,8 +4,23 @@
 
     
   <url>
+    <loc>http://yoursite.com/blog/2019/02/11/miniprograms-download-image/</loc>
+    <lastmod>2019-02-11T15:11:38.442Z</lastmod>
+    <data>
+        <display>
+        <title>在微信小程序中保存网络图片</title>
+        <pubTime>2019-02-11T13:55:37.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/blog/2018/11/23/miniprogrmas-build-frame/</loc>
-    <lastmod>2018-12-16T13:44:54.782Z</lastmod>
+    <lastmod>2018-12-16T13:51:13.772Z</lastmod>
     <data>
         <display>
         <title>小程序开发笔记 - 小程序项目的结构设计</title>
@@ -248,6 +263,30 @@
 
     
   <url>
+    <loc>http://yoursite.com/blog/2017/07/19/Basic%20Algorithm%20Scripting%20-%202/</loc>
+    <lastmod>2018-03-12T03:57:02.000Z</lastmod>
+    <data>
+        <display>
+        <title>数组方法深入研究之二 (基础算法)</title>
+        <pubTime>2017-07-19T11:12:09.000Z</pubTime>
+        
+        <tag>算法</tag>
+         
+        <tag>ffc</tag>
+         
+        <tag>test</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="http://yoursite.com/blog/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/blog/2018/03/04/%E8%81%8A%E8%81%8A%E5%B8%B8%E8%A7%81%E7%9A%84%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/</loc>
     <lastmod>2018-03-08T13:51:21.000Z</lastmod>
     <data>
@@ -257,6 +296,30 @@
         
          
            
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/blog/2017/07/16/Basic%20Algorithm%20Scripting%20-%201/</loc>
+    <lastmod>2018-02-20T15:18:20.000Z</lastmod>
+    <data>
+        <display>
+        <title>数组方法深入研究之一 (基础算法)</title>
+        <pubTime>2017-07-16T07:09:34.000Z</pubTime>
+        
+        <tag>算法</tag>
+         
+        <tag>ffc</tag>
+         
+        <tag>test</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="http://yoursite.com/blog/categories/%E7%AE%97%E6%B3%95/"/>
+          
         </display>
     </data>
     </url>
@@ -519,6 +582,28 @@
          
          
            
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/blog/2017/12/31/Git-emoji%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97-DESKTOP-8U754NN/</loc>
+    <lastmod>2018-01-08T09:08:51.000Z</lastmod>
+    <data>
+        <display>
+        <title>Git emoji使用指南</title>
+        <pubTime>2017-12-31T15:17:37.000Z</pubTime>
+        
+        <tag>git</tag>
+         
+        <tag>github</tag>
+         
+         
+           
+             
+              <breadCrumb title="git" url="http://yoursite.com/blog/categories/git/"/>
+          
         </display>
     </data>
     </url>
