@@ -4,6 +4,32 @@
 
     
   <url>
+    <loc>http://yoursite.com/blog/2019/02/23/h5-cookie-lost/</loc>
+    <lastmod>2019-02-24T13:14:11.135Z</lastmod>
+    <data>
+        <display>
+        <title>H5微信支付所遇到的若干问题</title>
+        <pubTime>2019-02-23T11:35:35.000Z</pubTime>
+        
+        <tag>cookie</tag>
+         
+        <tag>h5</tag>
+         
+        <tag>微信</tag>
+         
+        <tag>微信支付</tag>
+         
+         
+           
+             
+              <breadCrumb title="h5" url="http://yoursite.com/blog/categories/h5/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/blog/2019/02/11/miniprograms-download-image/</loc>
     <lastmod>2019-02-11T15:11:38.442Z</lastmod>
     <data>
@@ -482,9 +508,9 @@
         <title>JavaScript-常用速查的正则表达式</title>
         <pubTime>2017-08-21T13:36:39.000Z</pubTime>
         
-        <tag>JavaScript</tag>
-         
         <tag>正则表达式</tag>
+         
+        <tag>JavaScript</tag>
          
          
            
