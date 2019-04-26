@@ -5,9 +5,9 @@
   
   <link href="/blog/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
-  <updated>2019-02-24T13:14:11.135Z</updated>
-  <id>http://yoursite.com/</id>
+  <link href="https://anran758.github.io/blog/"/>
+  <updated>2019-04-26T07:04:23.120Z</updated>
+  <id>https://anran758.github.io/blog/</id>
   
   <author>
     <name>Anron</name>
@@ -18,12 +18,12 @@
   
   <entry>
     <title>H5微信支付所遇到的若干问题</title>
-    <link href="http://yoursite.com/2019/02/23/h5-cookie-lost/"/>
-    <id>http://yoursite.com/2019/02/23/h5-cookie-lost/</id>
+    <link href="https://anran758.github.io/blog/2019/02/23/h5-cookie-lost/"/>
+    <id>https://anran758.github.io/blog/2019/02/23/h5-cookie-lost/</id>
     <published>2019-02-23T11:35:35.000Z</published>
-    <updated>2019-02-24T13:14:11.135Z</updated>
+    <updated>2019-04-26T07:04:23.120Z</updated>
     
-    <content type="html"><![CDATA[<p>最近做了个H5微信支付的需求，记录一下所遇到的一些问题。。</p><a id="more"></a><h2 id="cookie-丢失的问题"><a href="#cookie-丢失的问题" class="headerlink" title="cookie 丢失的问题"></a>cookie 丢失的问题</h2><p>在H5页面中，一开始我们是需要拿到微信用户的信息。因此需要调用获取用户的接口。<br>在第一次调用该接口时，需要有一个授权的过程。没有拿到用户信息的话，就需要调取授权让用户确认。</p><p>然后问题就来了~授权完成后，会发现后端是拿不到<code>cookie</code>信息。经过查询资料后发现原来还是跨域在作祟~<br>虽然我们解决了基本的跨域问题，即域名(origin)的不同。但是默认情况下跨域请求不会发送<code>cookie</code>.</p><p>这时前端需要设置<code>XHR</code>的<code>withCredentials: true</code>, 后端也需要配合设置<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Access-Control-Allow-Credentials" target="_blank" rel="noopener">Access-Control-Allow-Credentials</a>即可。</p><p>以 <code>axios</code> 为例, <code>withCredentials: true</code> 与 <code>data</code> 平级:</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> opt = &#123;</div><div class="line">  <span class="attr">url</span>: <span class="string">'/user'</span>,</div><div class="line">  <span class="attr">method</span>: <span class="string">'get'</span>,</div><div class="line">  <span class="attr">data</span>: &#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'jojo'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">withCredentials</span>: <span class="literal">false</span>,</div><div class="line">&#125;</div><div class="line"></div><div class="line">axios(opt).then(<span class="function"><span class="params">res</span> =&gt;</span> <span class="built_in">console</span>.log(res))</div></pre></td></tr></table></figure><p>这种情况一般是前后端项目不在同一个域名的情况下，且需要带凭证的场景需要设置<code>Credentials</code>。</p><h2 id="url未注册-url-not-registered"><a href="#url未注册-url-not-registered" class="headerlink" title="url未注册(url not registered)"></a>url未注册(url not registered)</h2><p>随后微信弹了一下<code>url not registered</code>的错误，检查支付目录已经正确的被配置。</p><h2 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h2><p>前端：</p><p><a href="https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=7_7&amp;index=6" target="_blank" rel="noopener">微信内H5调起支付</a></p><p>后端：</p><p><a href="https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=7_3" target="_blank" rel="noopener">jsapi 开发流程</a></p>]]></content>
+    <content type="html"><![CDATA[<p>最近做了个H5微信支付的需求，记录一下所遇到的一些问题。。</p><a id="more"></a><h2 id="cookie-丢失的问题"><a href="#cookie-丢失的问题" class="headerlink" title="cookie 丢失的问题"></a>cookie 丢失的问题</h2><p>在H5页面中，一开始我们是需要拿到微信用户的信息。因此需要调用获取用户的接口。<br>在第一次调用该接口时，需要有一个授权的过程。没有拿到用户信息的话，就需要调取授权让用户确认。</p><p>然后问题就来了~授权完成后，会发现后端是拿不到<code>cookie</code>信息。经过查询资料后发现原来还是跨域在作祟~<br>虽然我们解决了基本的跨域问题，即域名(origin)的不同。但是默认情况下跨域请求不会发送<code>cookie</code>.</p><p>这时前端需要设置<code>XHR</code>的<code>withCredentials: true</code>, 后端也需要配合设置<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Access-Control-Allow-Credentials" target="_blank" rel="noopener">Access-Control-Allow-Credentials</a>即可。</p><p>以 <code>axios</code> 为例, <code>withCredentials: true</code> 与 <code>data</code> 平级:</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> opt = &#123;</div><div class="line">  <span class="attr">url</span>: <span class="string">'/user'</span>,</div><div class="line">  <span class="attr">method</span>: <span class="string">'get'</span>,</div><div class="line">  <span class="attr">data</span>: &#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'jojo'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">withCredentials</span>: <span class="literal">false</span>,</div><div class="line">&#125;</div><div class="line"></div><div class="line">axios(opt).then(<span class="function"><span class="params">res</span> =&gt;</span> <span class="built_in">console</span>.log(res))</div></pre></td></tr></table></figure><p>这种情况一般是前后端项目不在同一个域名的情况下，且需要带凭证的场景需要设置<code>Credentials</code>。</p><h2 id="url未注册-url-not-registered"><a href="#url未注册-url-not-registered" class="headerlink" title="url未注册(url not registered)"></a>url未注册(url not registered)</h2><p>随后微信弹了一下<code>url not registered</code>的错误，检查支付目录已经正确的被配置。</p><h2 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h2><ul><li><a href="https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=7_7&amp;index=6" target="_blank" rel="noopener">微信内H5调起支付</a></li><li><a href="https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=7_3" target="_blank" rel="noopener">jsapi 开发流程</a></li></ul>]]></content>
     
     <summary type="html">
     
@@ -31,23 +31,23 @@
     
     </summary>
     
-      <category term="h5" scheme="http://yoursite.com/categories/h5/"/>
+      <category term="h5" scheme="https://anran758.github.io/blog/categories/h5/"/>
     
     
-      <category term="cookie" scheme="http://yoursite.com/tags/cookie/"/>
+      <category term="cookie" scheme="https://anran758.github.io/blog/tags/cookie/"/>
     
-      <category term="h5" scheme="http://yoursite.com/tags/h5/"/>
+      <category term="h5" scheme="https://anran758.github.io/blog/tags/h5/"/>
     
-      <category term="微信" scheme="http://yoursite.com/tags/%E5%BE%AE%E4%BF%A1/"/>
+      <category term="微信" scheme="https://anran758.github.io/blog/tags/%E5%BE%AE%E4%BF%A1/"/>
     
-      <category term="微信支付" scheme="http://yoursite.com/tags/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98/"/>
+      <category term="微信支付" scheme="https://anran758.github.io/blog/tags/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98/"/>
     
   </entry>
   
   <entry>
     <title>在微信小程序中保存网络图片</title>
-    <link href="http://yoursite.com/2019/02/11/miniprograms-download-image/"/>
-    <id>http://yoursite.com/2019/02/11/miniprograms-download-image/</id>
+    <link href="https://anran758.github.io/blog/2019/02/11/miniprograms-download-image/"/>
+    <id>https://anran758.github.io/blog/2019/02/11/miniprograms-download-image/</id>
     <published>2019-02-11T13:55:37.000Z</published>
     <updated>2019-02-11T15:11:38.442Z</updated>
     
@@ -64,8 +64,8 @@
   
   <entry>
     <title>小程序开发笔记 - 小程序项目的结构设计</title>
-    <link href="http://yoursite.com/2018/11/23/miniprogrmas-build-frame/"/>
-    <id>http://yoursite.com/2018/11/23/miniprogrmas-build-frame/</id>
+    <link href="https://anran758.github.io/blog/2018/11/23/miniprogrmas-build-frame/"/>
+    <id>https://anran758.github.io/blog/2018/11/23/miniprogrmas-build-frame/</id>
     <published>2018-11-23T07:15:48.000Z</published>
     <updated>2018-12-16T13:51:13.772Z</updated>
     
@@ -77,19 +77,19 @@
     
     </summary>
     
-      <category term="小程序开发" scheme="http://yoursite.com/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
+      <category term="小程序开发" scheme="https://anran758.github.io/blog/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
     
     
-      <category term="小程序开发" scheme="http://yoursite.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
+      <category term="小程序开发" scheme="https://anran758.github.io/blog/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
     
-      <category term="小程序开发笔记" scheme="http://yoursite.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
+      <category term="小程序开发笔记" scheme="https://anran758.github.io/blog/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
   <entry>
     <title>Echarts 的食用方式</title>
-    <link href="http://yoursite.com/2018/06/28/how-to-use-echart/"/>
-    <id>http://yoursite.com/2018/06/28/how-to-use-echart/</id>
+    <link href="https://anran758.github.io/blog/2018/06/28/how-to-use-echart/"/>
+    <id>https://anran758.github.io/blog/2018/06/28/how-to-use-echart/</id>
     <published>2018-06-28T05:04:46.000Z</published>
     <updated>2018-06-29T15:49:24.564Z</updated>
     
@@ -101,21 +101,21 @@
     
     </summary>
     
-      <category term="javascript" scheme="http://yoursite.com/categories/javascript/"/>
+      <category term="javascript" scheme="https://anran758.github.io/blog/categories/javascript/"/>
     
     
-      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+      <category term="JavaScript" scheme="https://anran758.github.io/blog/tags/JavaScript/"/>
     
-      <category term="Echarts" scheme="http://yoursite.com/tags/Echarts/"/>
+      <category term="Echarts" scheme="https://anran758.github.io/blog/tags/Echarts/"/>
     
-      <category term="图表" scheme="http://yoursite.com/tags/%E5%9B%BE%E8%A1%A8/"/>
+      <category term="图表" scheme="https://anran758.github.io/blog/tags/%E5%9B%BE%E8%A1%A8/"/>
     
   </entry>
   
   <entry>
     <title>锚点定位导航</title>
-    <link href="http://yoursite.com/2018/06/09/javascript-position-navigation/"/>
-    <id>http://yoursite.com/2018/06/09/javascript-position-navigation/</id>
+    <link href="https://anran758.github.io/blog/2018/06/09/javascript-position-navigation/"/>
+    <id>https://anran758.github.io/blog/2018/06/09/javascript-position-navigation/</id>
     <published>2018-06-09T08:15:32.000Z</published>
     <updated>2018-06-09T15:18:11.802Z</updated>
     
@@ -127,21 +127,21 @@
     
     </summary>
     
-      <category term="JavaScript" scheme="http://yoursite.com/categories/JavaScript/"/>
+      <category term="JavaScript" scheme="https://anran758.github.io/blog/categories/JavaScript/"/>
     
     
-      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+      <category term="JavaScript" scheme="https://anran758.github.io/blog/tags/JavaScript/"/>
     
-      <category term="业务组件" scheme="http://yoursite.com/tags/%E4%B8%9A%E5%8A%A1%E7%BB%84%E4%BB%B6/"/>
+      <category term="业务组件" scheme="https://anran758.github.io/blog/tags/%E4%B8%9A%E5%8A%A1%E7%BB%84%E4%BB%B6/"/>
     
-      <category term="jQuery" scheme="http://yoursite.com/tags/jQuery/"/>
+      <category term="jQuery" scheme="https://anran758.github.io/blog/tags/jQuery/"/>
     
   </entry>
   
   <entry>
     <title>将项目资源上传至七牛CDN</title>
-    <link href="http://yoursite.com/2018/05/24/node-%E5%B0%86%E9%A1%B9%E7%9B%AE%E8%B5%84%E6%BA%90%E4%B8%8A%E4%BC%A0%E8%87%B3%E4%B8%83%E7%89%9BCDN/"/>
-    <id>http://yoursite.com/2018/05/24/node-将项目资源上传至七牛CDN/</id>
+    <link href="https://anran758.github.io/blog/2018/05/24/node-%E5%B0%86%E9%A1%B9%E7%9B%AE%E8%B5%84%E6%BA%90%E4%B8%8A%E4%BC%A0%E8%87%B3%E4%B8%83%E7%89%9BCDN/"/>
+    <id>https://anran758.github.io/blog/2018/05/24/node-将项目资源上传至七牛CDN/</id>
     <published>2018-05-24T12:40:40.000Z</published>
     <updated>2018-05-24T16:00:32.546Z</updated>
     
@@ -153,23 +153,23 @@
     
     </summary>
     
-      <category term="Node" scheme="http://yoursite.com/categories/Node/"/>
+      <category term="Node" scheme="https://anran758.github.io/blog/categories/Node/"/>
     
     
-      <category term="Node" scheme="http://yoursite.com/tags/Node/"/>
+      <category term="Node" scheme="https://anran758.github.io/blog/tags/Node/"/>
     
-      <category term="Javascirpt" scheme="http://yoursite.com/tags/Javascirpt/"/>
+      <category term="Javascirpt" scheme="https://anran758.github.io/blog/tags/Javascirpt/"/>
     
-      <category term="七牛" scheme="http://yoursite.com/tags/%E4%B8%83%E7%89%9B/"/>
+      <category term="七牛" scheme="https://anran758.github.io/blog/tags/%E4%B8%83%E7%89%9B/"/>
     
-      <category term="项目管理" scheme="http://yoursite.com/tags/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/"/>
+      <category term="项目管理" scheme="https://anran758.github.io/blog/tags/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/"/>
     
   </entry>
   
   <entry>
     <title>常见的几种压缩图片的思路</title>
-    <link href="http://yoursite.com/2018/05/08/canvas-compress-prictures/"/>
-    <id>http://yoursite.com/2018/05/08/canvas-compress-prictures/</id>
+    <link href="https://anran758.github.io/blog/2018/05/08/canvas-compress-prictures/"/>
+    <id>https://anran758.github.io/blog/2018/05/08/canvas-compress-prictures/</id>
     <published>2018-05-08T15:15:40.000Z</published>
     <updated>2018-05-14T12:23:30.734Z</updated>
     
@@ -186,8 +186,8 @@
   
   <entry>
     <title>浅谈CSS3 Matrix 的使用</title>
-    <link href="http://yoursite.com/2018/05/06/%E8%B0%88%E8%B0%88CSS3-Matrix-%E7%9A%84%E7%90%86%E8%A7%A3/"/>
-    <id>http://yoursite.com/2018/05/06/谈谈CSS3-Matrix-的理解/</id>
+    <link href="https://anran758.github.io/blog/2018/05/06/%E8%B0%88%E8%B0%88CSS3-Matrix-%E7%9A%84%E7%90%86%E8%A7%A3/"/>
+    <id>https://anran758.github.io/blog/2018/05/06/谈谈CSS3-Matrix-的理解/</id>
     <published>2018-05-06T02:11:26.000Z</published>
     <updated>2018-05-06T09:23:25.052Z</updated>
     
@@ -199,21 +199,21 @@
     
     </summary>
     
-      <category term="css" scheme="http://yoursite.com/categories/css/"/>
+      <category term="css" scheme="https://anran758.github.io/blog/categories/css/"/>
     
     
-      <category term="css" scheme="http://yoursite.com/tags/css/"/>
+      <category term="css" scheme="https://anran758.github.io/blog/tags/css/"/>
     
-      <category term="transform" scheme="http://yoursite.com/tags/transform/"/>
+      <category term="transform" scheme="https://anran758.github.io/blog/tags/transform/"/>
     
-      <category term="css3" scheme="http://yoursite.com/tags/css3/"/>
+      <category term="css3" scheme="https://anran758.github.io/blog/tags/css3/"/>
     
   </entry>
   
   <entry>
     <title>git-flow 练习笔记</title>
-    <link href="http://yoursite.com/2018/04/23/git-flow/"/>
-    <id>http://yoursite.com/2018/04/23/git-flow/</id>
+    <link href="https://anran758.github.io/blog/2018/04/23/git-flow/"/>
+    <id>https://anran758.github.io/blog/2018/04/23/git-flow/</id>
     <published>2018-04-23T08:09:23.000Z</published>
     <updated>2018-04-26T16:26:37.165Z</updated>
     
@@ -225,21 +225,21 @@
     
     </summary>
     
-      <category term="git" scheme="http://yoursite.com/categories/git/"/>
+      <category term="git" scheme="https://anran758.github.io/blog/categories/git/"/>
     
     
-      <category term="git" scheme="http://yoursite.com/tags/git/"/>
+      <category term="git" scheme="https://anran758.github.io/blog/tags/git/"/>
     
-      <category term="github" scheme="http://yoursite.com/tags/github/"/>
+      <category term="github" scheme="https://anran758.github.io/blog/tags/github/"/>
     
-      <category term="git flow" scheme="http://yoursite.com/tags/git-flow/"/>
+      <category term="git flow" scheme="https://anran758.github.io/blog/tags/git-flow/"/>
     
   </entry>
   
   <entry>
     <title>浏览器与服务端的背后交互: 详解页面请求的过程</title>
-    <link href="http://yoursite.com/2018/04/06/URL-to-browser/"/>
-    <id>http://yoursite.com/2018/04/06/URL-to-browser/</id>
+    <link href="https://anran758.github.io/blog/2018/04/06/URL-to-browser/"/>
+    <id>https://anran758.github.io/blog/2018/04/06/URL-to-browser/</id>
     <published>2018-04-06T08:07:15.000Z</published>
     <updated>2018-04-19T13:42:26.354Z</updated>
     
@@ -256,8 +256,8 @@
   
   <entry>
     <title>详解图片的加载方式</title>
-    <link href="http://yoursite.com/2018/03/24/loading-pictures/"/>
-    <id>http://yoursite.com/2018/03/24/loading-pictures/</id>
+    <link href="https://anran758.github.io/blog/2018/03/24/loading-pictures/"/>
+    <id>https://anran758.github.io/blog/2018/03/24/loading-pictures/</id>
     <published>2018-03-24T06:02:50.000Z</published>
     <updated>2018-03-24T13:10:59.000Z</updated>
     
@@ -269,19 +269,19 @@
     
     </summary>
     
-      <category term="other" scheme="http://yoursite.com/categories/other/"/>
+      <category term="other" scheme="https://anran758.github.io/blog/categories/other/"/>
     
     
-      <category term="image" scheme="http://yoursite.com/tags/image/"/>
+      <category term="image" scheme="https://anran758.github.io/blog/tags/image/"/>
     
-      <category term="Photoshop" scheme="http://yoursite.com/tags/Photoshop/"/>
+      <category term="Photoshop" scheme="https://anran758.github.io/blog/tags/Photoshop/"/>
     
   </entry>
   
   <entry>
     <title>关于移动端GIF动图逐个播放的思路</title>
-    <link href="http://yoursite.com/2018/03/11/%E5%85%B3%E4%BA%8E%E5%89%8D%E5%8F%B0GIF%E5%8A%A8%E5%9B%BE%E9%80%90%E4%B8%AA%E6%92%AD%E6%94%BE%E7%9A%84%E6%80%9D%E8%B7%AF/"/>
-    <id>http://yoursite.com/2018/03/11/关于前台GIF动图逐个播放的思路/</id>
+    <link href="https://anran758.github.io/blog/2018/03/11/%E5%85%B3%E4%BA%8E%E5%89%8D%E5%8F%B0GIF%E5%8A%A8%E5%9B%BE%E9%80%90%E4%B8%AA%E6%92%AD%E6%94%BE%E7%9A%84%E6%80%9D%E8%B7%AF/"/>
+    <id>https://anran758.github.io/blog/2018/03/11/关于前台GIF动图逐个播放的思路/</id>
     <published>2018-03-11T13:23:23.000Z</published>
     <updated>2018-03-12T13:09:19.000Z</updated>
     
@@ -293,23 +293,23 @@
     
     </summary>
     
-      <category term="javascript" scheme="http://yoursite.com/categories/javascript/"/>
+      <category term="javascript" scheme="https://anran758.github.io/blog/categories/javascript/"/>
     
     
-      <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
+      <category term="javascript" scheme="https://anran758.github.io/blog/tags/javascript/"/>
     
-      <category term="移动端" scheme="http://yoursite.com/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/"/>
+      <category term="移动端" scheme="https://anran758.github.io/blog/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/"/>
     
-      <category term="gif" scheme="http://yoursite.com/tags/gif/"/>
+      <category term="gif" scheme="https://anran758.github.io/blog/tags/gif/"/>
     
-      <category term="canvas" scheme="http://yoursite.com/tags/canvas/"/>
+      <category term="canvas" scheme="https://anran758.github.io/blog/tags/canvas/"/>
     
   </entry>
   
   <entry>
     <title>聊聊常见的跨域问题</title>
-    <link href="http://yoursite.com/2018/03/04/%E8%81%8A%E8%81%8A%E5%B8%B8%E8%A7%81%E7%9A%84%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/"/>
-    <id>http://yoursite.com/2018/03/04/聊聊常见的跨域问题/</id>
+    <link href="https://anran758.github.io/blog/2018/03/04/%E8%81%8A%E8%81%8A%E5%B8%B8%E8%A7%81%E7%9A%84%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/"/>
+    <id>https://anran758.github.io/blog/2018/03/04/聊聊常见的跨域问题/</id>
     <published>2018-03-04T12:44:55.000Z</published>
     <updated>2018-03-08T13:51:21.000Z</updated>
     
@@ -326,8 +326,8 @@
   
   <entry>
     <title>VSCode: 从零开始配置前端环境</title>
-    <link href="http://yoursite.com/2018/02/06/VSCode-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E9%85%8D%E7%BD%AE%E5%89%8D%E7%AB%AF%E7%8E%AF%E5%A2%83/"/>
-    <id>http://yoursite.com/2018/02/06/VSCode-从零开始配置前端环境/</id>
+    <link href="https://anran758.github.io/blog/2018/02/06/VSCode-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E9%85%8D%E7%BD%AE%E5%89%8D%E7%AB%AF%E7%8E%AF%E5%A2%83/"/>
+    <id>https://anran758.github.io/blog/2018/02/06/VSCode-从零开始配置前端环境/</id>
     <published>2018-02-06T13:41:18.000Z</published>
     <updated>2018-02-10T14:55:36.000Z</updated>
     
@@ -339,23 +339,23 @@
     
     </summary>
     
-      <category term="tools" scheme="http://yoursite.com/categories/tools/"/>
+      <category term="tools" scheme="https://anran758.github.io/blog/categories/tools/"/>
     
     
-      <category term="tools" scheme="http://yoursite.com/tags/tools/"/>
+      <category term="tools" scheme="https://anran758.github.io/blog/tags/tools/"/>
     
-      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
+      <category term="vue" scheme="https://anran758.github.io/blog/tags/vue/"/>
     
-      <category term="vscode" scheme="http://yoursite.com/tags/vscode/"/>
+      <category term="vscode" scheme="https://anran758.github.io/blog/tags/vscode/"/>
     
-      <category term="环境配置" scheme="http://yoursite.com/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
+      <category term="环境配置" scheme="https://anran758.github.io/blog/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
     
   </entry>
   
   <entry>
     <title>你可能不知道的console</title>
-    <link href="http://yoursite.com/2018/01/30/Debug-%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6console/"/>
-    <id>http://yoursite.com/2018/01/30/Debug-深入研究console/</id>
+    <link href="https://anran758.github.io/blog/2018/01/30/Debug-%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6console/"/>
+    <id>https://anran758.github.io/blog/2018/01/30/Debug-深入研究console/</id>
     <published>2018-01-30T05:09:07.000Z</published>
     <updated>2018-02-01T07:03:09.000Z</updated>
     
@@ -367,23 +367,23 @@
     
     </summary>
     
-      <category term="debug" scheme="http://yoursite.com/categories/debug/"/>
+      <category term="debug" scheme="https://anran758.github.io/blog/categories/debug/"/>
     
     
-      <category term="debug" scheme="http://yoursite.com/tags/debug/"/>
+      <category term="debug" scheme="https://anran758.github.io/blog/tags/debug/"/>
     
-      <category term="Javascript" scheme="http://yoursite.com/tags/Javascript/"/>
+      <category term="Javascript" scheme="https://anran758.github.io/blog/tags/Javascript/"/>
     
-      <category term="tools" scheme="http://yoursite.com/tags/tools/"/>
+      <category term="tools" scheme="https://anran758.github.io/blog/tags/tools/"/>
     
-      <category term="console" scheme="http://yoursite.com/tags/console/"/>
+      <category term="console" scheme="https://anran758.github.io/blog/tags/console/"/>
     
   </entry>
   
   <entry>
     <title>走进 web 移动端开发</title>
-    <link href="http://yoursite.com/2018/01/25/web-%E8%B5%B0%E8%BF%9Bweb%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/"/>
-    <id>http://yoursite.com/2018/01/25/web-走进web移动开发/</id>
+    <link href="https://anran758.github.io/blog/2018/01/25/web-%E8%B5%B0%E8%BF%9Bweb%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/"/>
+    <id>https://anran758.github.io/blog/2018/01/25/web-走进web移动开发/</id>
     <published>2018-01-25T08:28:57.000Z</published>
     <updated>2018-02-01T14:54:17.000Z</updated>
     
@@ -395,23 +395,23 @@
     
     </summary>
     
-      <category term="移动开发" scheme="http://yoursite.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/"/>
+      <category term="移动开发" scheme="https://anran758.github.io/blog/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/"/>
     
     
-      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+      <category term="JavaScript" scheme="https://anran758.github.io/blog/tags/JavaScript/"/>
     
-      <category term="解决方案" scheme="http://yoursite.com/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+      <category term="解决方案" scheme="https://anran758.github.io/blog/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
     
-      <category term="移动端" scheme="http://yoursite.com/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/"/>
+      <category term="移动端" scheme="https://anran758.github.io/blog/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/"/>
     
-      <category term="css" scheme="http://yoursite.com/tags/css/"/>
+      <category term="css" scheme="https://anran758.github.io/blog/tags/css/"/>
     
   </entry>
   
   <entry>
     <title>为什么我们要选用 Vue/React/Angular 进行开发</title>
-    <link href="http://yoursite.com/2018/01/23/JavaScript-%E4%BD%A0%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E6%94%BE%E5%BC%83JQuery%E8%80%8C%E9%80%89%E7%94%A8Vue-React-Angular%E8%BF%9B%E8%A1%8C%E5%BC%80%E5%8F%91/"/>
-    <id>http://yoursite.com/2018/01/23/JavaScript-你为什么会放弃JQuery而选用Vue-React-Angular进行开发/</id>
+    <link href="https://anran758.github.io/blog/2018/01/23/JavaScript-%E4%BD%A0%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E6%94%BE%E5%BC%83JQuery%E8%80%8C%E9%80%89%E7%94%A8Vue-React-Angular%E8%BF%9B%E8%A1%8C%E5%BC%80%E5%8F%91/"/>
+    <id>https://anran758.github.io/blog/2018/01/23/JavaScript-你为什么会放弃JQuery而选用Vue-React-Angular进行开发/</id>
     <published>2018-01-23T12:43:24.000Z</published>
     <updated>2018-01-25T14:06:14.000Z</updated>
     
@@ -423,23 +423,23 @@
     
     </summary>
     
-      <category term="JavaScript" scheme="http://yoursite.com/categories/JavaScript/"/>
+      <category term="JavaScript" scheme="https://anran758.github.io/blog/categories/JavaScript/"/>
     
     
-      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+      <category term="JavaScript" scheme="https://anran758.github.io/blog/tags/JavaScript/"/>
     
-      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
+      <category term="vue" scheme="https://anran758.github.io/blog/tags/vue/"/>
     
-      <category term="框架" scheme="http://yoursite.com/tags/%E6%A1%86%E6%9E%B6/"/>
+      <category term="框架" scheme="https://anran758.github.io/blog/tags/%E6%A1%86%E6%9E%B6/"/>
     
-      <category term="杂谈" scheme="http://yoursite.com/tags/%E6%9D%82%E8%B0%88/"/>
+      <category term="杂谈" scheme="https://anran758.github.io/blog/tags/%E6%9D%82%E8%B0%88/"/>
     
   </entry>
   
   <entry>
     <title>性能优化 - 回流与重绘</title>
-    <link href="http://yoursite.com/2018/01/15/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-%E5%9B%9E%E6%B5%81%E4%B8%8E%E9%87%8D%E6%B1%87/"/>
-    <id>http://yoursite.com/2018/01/15/性能优化-回流与重汇/</id>
+    <link href="https://anran758.github.io/blog/2018/01/15/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-%E5%9B%9E%E6%B5%81%E4%B8%8E%E9%87%8D%E6%B1%87/"/>
+    <id>https://anran758.github.io/blog/2018/01/15/性能优化-回流与重汇/</id>
     <published>2018-01-15T04:19:57.000Z</published>
     <updated>2018-01-17T04:58:26.000Z</updated>
     
@@ -451,27 +451,27 @@
     
     </summary>
     
-      <category term="性能优化" scheme="http://yoursite.com/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+      <category term="性能优化" scheme="https://anran758.github.io/blog/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
     
     
-      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+      <category term="JavaScript" scheme="https://anran758.github.io/blog/tags/JavaScript/"/>
     
-      <category term="性能优化" scheme="http://yoursite.com/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+      <category term="性能优化" scheme="https://anran758.github.io/blog/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
     
-      <category term="HTML" scheme="http://yoursite.com/tags/HTML/"/>
+      <category term="HTML" scheme="https://anran758.github.io/blog/tags/HTML/"/>
     
-      <category term="DOM" scheme="http://yoursite.com/tags/DOM/"/>
+      <category term="DOM" scheme="https://anran758.github.io/blog/tags/DOM/"/>
     
   </entry>
   
   <entry>
     <title>性能优化 - 基础的性能优化</title>
-    <link href="http://yoursite.com/2018/01/13/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
-    <id>http://yoursite.com/2018/01/13/性能优化-前端性能优化/</id>
+    <link href="https://anran758.github.io/blog/2018/01/13/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+    <id>https://anran758.github.io/blog/2018/01/13/性能优化-前端性能优化/</id>
     <published>2018-01-13T14:43:15.000Z</published>
     <updated>2018-01-17T04:59:18.000Z</updated>
     
-    <content type="html"><![CDATA[<img src="/blog/2018/01/13/性能优化-前端性能优化/banner.png"><p>其实很多性能方面的问题, 很多都是从基础就开始影响. 既然如此我们也从最底层逐步分析, 切入每一点小细节~<br><a id="more"></a></p><h2 id="图片优化"><a href="#图片优化" class="headerlink" title="图片优化"></a>图片优化</h2><p>web早期, 人们有很多想要实现的设计效果出于css或兼容性的限制, 不得不由图片来去实现这种效果. 以现在时代的眼光来说, 无疑是很不优雅的. 撇开图片本身所占用的空间大小外, 本身代码结构就不够语义化. 那么现在这个CSS3都已经普及的年代, 来试着让<code>HTML</code>, <code>CSS</code>属性或<code>SVG</code>用寥寥数行的代码来代替图片来实现效果吧~ 比如一个圆角, 一个渐变的海浪线等.</p><h3 id="图片格式"><a href="#图片格式" class="headerlink" title="图片格式"></a>图片格式</h3><p>每一种图片格式都有着自己的特点和优势, 下面来了解一下现在常见的图片格式来”对症下药”.</p><p>主流的图片格式</p><ul><li><code>jpg</code> 全名是JPEG. JPEG图片以24位颜色存储单个位图.</li><li><code>png</code> 可移植网络图形格式. 使用<code>png</code>格式的图片更多的是看中它有透明图层, 因为它是256色, 每一色都可以作为透明像素. 但相对的代价就是体积较大(这个可想而知嘛, 图片里面的信息装的多了, 体积自然就大了).</li><li><code>GIF</code> 这个稍微有点网络常识的对会知道, 常用于做动画.</li><li><code>SVG</code> 可缩放矢量图形. 它能很好的处理图形大小的改变, 放大缩小都不会失真, 适合静态图片展示，高保真文档查看和打印的应用场景. 如今主流浏览器都对它有着很好兼容性支持.</li></ul><p>没有被Web标准采纳的格式, 但还是值得关注图片格式<br><strong>APNG</strong> APNG 是出自 Mozilla 公司下的两位程序员之手, APNG 的出现是为了代替 GIF. 它相较GIF来说有着更好的图片质量, 还支持着透明图层, 同时图片的大小都比 GIF 格式要小.</p><p>可惜由于出现的较晚, 没有被Web标准给采纳. 截止到笔者写这篇文章的时间(2018.1), Edge这个不合群的家伙在最新版本 Edge 17 仍然还没有支持这个格式, 而chrome 59才开始支持. 因此兼容性不高, 平时也很少能看到这种格式的出现.</p><p><strong>Webp</strong>是出自Google之手, WebP 的优势体现在它具有更优的图像数据压缩算法，能带来更小的图片体积，而且拥有肉眼识别无差异的图像质量；同时具备了无损和有损的压缩模式、Alpha 透明以及动画的特性，在 JPEG 和 PNG 上的转化效果都相当优秀、稳定和统一。</p><p>同上面的 APNG 一样, 同样没有被Web标准所采纳. 不过在 caniuse 上能发现, 如今国内大半的用户已经支持了 WebP , 这个未来还是可以小小的期待一下.</p><h3 id="正确的使用图片格式"><a href="#正确的使用图片格式" class="headerlink" title="正确的使用图片格式"></a>正确的使用图片格式</h3><p>话归正题, 下面针对不同的使用场景, 来选择正确的图片格式.</p><ul><li>首先是jpg, 一般不需要透明图层的图片一律使用jpg, 它相对png来说两者的体积之差能有几倍之差.</li><li>如果需要比较通用的动画的话, GIF是唯一的选择. 如果是相对简单的GIF动画的话, 也可以考虑使用CSS3来实现.</li><li>如果需要清晰显示颜色丰富的图片或者需要用到透明图层的话, png是一个比较好的选择</li></ul><h3 id="页面中图片加载方式"><a href="#页面中图片加载方式" class="headerlink" title="页面中图片加载方式"></a>页面中图片加载方式</h3><p>细心的你或许会发现, 有时在网络慢的情况下, 能看到图片一点一点从上到下的加载. 或者是先模糊, 再清晰的加载方式.<br>实际上这是图片的压缩算法呈现的效果, 逐行显示是<em>离散余弦变化</em>. 而模糊到清晰的是<em>小波算法</em>. 浏览器先读取图片的压缩算法, 再根据算法来选择不同的渲染算法. 下面是某图站的一张大的壁纸加载过程(没有找到小波算法的图, 以后留意到了再回来补)</p><img src="/blog/2018/01/13/性能优化-前端性能优化/anima-1.gif" title="离散余弦变化"><p><strong>参考资料</strong><br><a href="https://aotu.io/notes/2016/11/07/apng/index.html" rel="noopener" target="_blank">APNG 那些事</a></p><h3 id="常见的图片优化方案"><a href="#常见的图片优化方案" class="headerlink" title="常见的图片优化方案"></a>常见的图片优化方案</h3><p><strong>CSS-Sprite</strong></p><p>在页面中, 我们经常能看到一些icon图标. 这些icon实际上占用并不大, 但奈不住多呀. 100个icon的话就要发送一百个HTTP请求. CSS Sprite(精灵). 利用CSS的<code>background-position</code>和<code>background-image</code>属性, 只需要引用一张图片即可. 这极大的节省了HTTP请求量.</p><p><strong>iconfont</strong><br><code>iconfont</code> 和上面所提的<code>css-sprite</code>方法类似, 不同的是这个方法是通过引入字体图标的形式. 好处是设置字体图标的颜色或者可以通过设置<code>font-size</code>来改变尺寸, 并且不容易失真.</p><p>当然, 现在都是使用自动化工具, 都不需要自己手动去调整</p><p><strong><code>&lt;picture&gt;</code>标签</strong><br>HTML5新出了一个<code>&lt;picture&gt;</code>标签, 它是一个容器, 用来为其内部特定的<code>&lt;img&gt;</code>提供多样的<code>&lt;source&gt;</code>元素. 浏览器会根据当前页面（即图片所在的盒子的容器）的布局以及当前浏览的设备（比如普通的屏幕和高清屏幕）去从中选择最合适的资源. 也就是所谓的响应式图片. 由于兼容性所限, 因此当下并没有广泛使用.</p><p><code>media</code>属性允许你提供一个用于给用户代理作为选择<code>&lt;source&gt;</code>元素的依据的媒体查询。如果这个媒体查询匹配结果为<code>false</code>，那么这个<code>&lt;source&gt;</code>元素会被跳过, 使用如下.</p><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">picture</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">srcset</span>=<span class="string">"mdn-logo-smaller.png"</span> <span class="attr">media</span>=<span class="string">"(max-width: 768px)"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">srcset</span>=<span class="string">"mdn-logo-big.png"</span> <span class="attr">media</span>=<span class="string">"(min-width: 1000px)"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"mdn-logo-narrow.png"</span> <span class="attr">alt</span>=<span class="string">"MDN"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">picture</span>&gt;</span></div></pre></td></tr></table></figure><p><strong>构建自动化工具实现优化</strong><br>这个一句话说不完, 以后单独拎出来说这东西吧.</p><h2 id="视频优化"><a href="#视频优化" class="headerlink" title="视频优化"></a>视频优化</h2><p>当下视频播放器分为两大流派, 一个是HTML5新进入的<code>video</code>标签, 使用方式简洁. 也是现在主流播放方案. 另一个是<code>Flash</code>播放器, 也是过去常用的播放方案. 虽然技术成熟, 插件多, 但也是逐步的将被淘汰. chrome浏览器默认禁止Flash播放器的使用, 就连Edge都要手动开启才能使用.</p><blockquote><p>来对比一下两者的优缺点</p></blockquote><table><thead><tr><th style="text-align:left"></th><th style="text-align:left">优点</th><th style="text-align:left">缺点</th></tr></thead><tbody><tr><td style="text-align:left">video</td><td style="text-align:left">不需要下载额外的资源(如插件什么的)</td><td style="text-align:left">不同浏览器<code>video</code>标签的外观都不一样. 如果要统一的话需要自己写UI来实现</td></tr><tr><td style="text-align:left">Flash</td><td style="text-align:left">兼容性好, 只需要有 Flash player 播放器插件都可以进行播放</td><td style="text-align:left">1. 需要下载额外的 swf 播放文件才可以播放, 浏览器必须要有Flash player插件(回想以前网页老是让你下载Flash的场景)<br>2. Flash player 版本的碎片化<br>3. UI定制需要 as(带有学习成本)</td></tr></tbody></table><p><strong>当下主流的方案</strong><br>Flash 和 HTML5 两个方案相结合, 组成一个完整的方案. 当下就有几个成熟稳定的库, 如<code>Flowplayer</code>和<code>VideoJs</code>等.</p><p><strong>视频优化需要的解决问题</strong></p><ol><li>由于各浏览器UI不同, 设计师会要求我们按照设计图做播放器.</li><li>在一些视频网站中, 可能产品经理就会让我们实现, 让用户一进来就最先看到视频.<br>浏览器会将所有的多媒体文件放在最后面加载, 无论标签位置放置在什么位置. 解决的方案就是将<code>&lt;link&gt;</code>代替<code>&lt;script&gt;</code>标签引用.</li></ol><h2 id="常用的前端缓存技术"><a href="#常用的前端缓存技术" class="headerlink" title="常用的前端缓存技术"></a>常用的前端缓存技术</h2><p><code>SessionStorage</code> 临时性存储, 数据仅仅在当前的页面生效, 关闭页面后数据就自动清除了. 同时刷新页面不属于”离开页面”的范围, 数据仍然会存在. 现在微信公众号开发常用这种方法来记录用户信息.</p><p><code>Cookie</code>, 兼容性最好的本地存储. 缺点是有大小的限制, 而且每次发送请求时, 请求头会带着Cookie一起发送过去.(这里有个问题, 如果在cookie中存储了1M的数据, 那么在请求的时候, 1M的数据也会跟着请求发送到服务端. 这就很大的影响带宽了) 现在基本大多数登录的合法性验证都是用cookie验证的.</p><p>LocalStorage 特点是持久储存, 操作方法和 SessionStorage 乐视, 也都是操作key-value的形式. 几乎所有现代浏览器都已经支持了. 值得注意的是, LocalStorage 虽然可以永久储存, 但是无法跨浏览器的获取数据的, 还需要注意储存上限.</p><h2 id="高性能DOM"><a href="#高性能DOM" class="headerlink" title="高性能DOM"></a>高性能DOM</h2><p>说到高性能的<code>DOM</code>, 就不得不提回流与重绘这个概念. 为此我又专门的写了一篇<a href="https://anran758.github.io/blog/2018/01/15/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-%E5%9B%9E%E6%B5%81%E4%B8%8E%E9%87%8D%E6%B1%87/" target="_blank" rel="noopener">回流与重绘</a>. 有兴趣的同学可以去看一下.</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>上文都只是在基础上的优化. 还有更多项目内工程化的优化就再等咱有时间再更新相关的内容吧~</p><div class="note primary"><p><strong>参考资料</strong><br>前端性能优化-通用的缓存SDK: <a href="https://www.imooc.com/learn/866" target="_blank" rel="noopener">https://www.imooc.com/learn/866</a></p></div>]]></content>
+    <content type="html"><![CDATA[<img src="/blog/2018/01/13/性能优化-前端性能优化/banner.png"><p>其实很多性能方面的问题, 很多都是从基础就开始影响. 既然如此我们也从最底层逐步分析, 切入每一点小细节~<br><a id="more"></a></p><h2 id="图片优化"><a href="#图片优化" class="headerlink" title="图片优化"></a>图片优化</h2><p>web早期, 人们有很多想要实现的设计效果出于css或兼容性的限制, 不得不由图片来去实现这种效果. 以现在时代的眼光来说, 无疑是很不优雅的. 撇开图片本身所占用的空间大小外, 本身代码结构就不够语义化. 那么现在这个CSS3都已经普及的年代, 来试着让<code>HTML</code>, <code>CSS</code>属性或<code>SVG</code>用寥寥数行的代码来代替图片来实现效果吧~ 比如一个圆角, 一个渐变的海浪线等.</p><h3 id="图片格式"><a href="#图片格式" class="headerlink" title="图片格式"></a>图片格式</h3><p>每一种图片格式都有着自己的特点和优势, 下面来了解一下现在常见的图片格式来”对症下药”.</p><p>主流的图片格式</p><ul><li><code>jpg</code> 全名是JPEG. JPEG图片以24位颜色存储单个位图.</li><li><code>png</code> 可移植网络图形格式. 使用<code>png</code>格式的图片更多的是看中它有透明图层, 因为它是256色, 每一色都可以作为透明像素. 但相对的代价就是体积较大(这个可想而知嘛, 图片里面的信息装的多了, 体积自然就大了).</li><li><code>GIF</code> 这个稍微有点网络常识的对会知道, 常用于做动画.</li><li><code>SVG</code> 可缩放矢量图形. 它能很好的处理图形大小的改变, 放大缩小都不会失真, 适合静态图片展示，高保真文档查看和打印的应用场景. 如今主流浏览器都对它有着很好兼容性支持.</li></ul><p>没有被Web标准采纳的格式, 但还是值得关注图片格式<br><strong>APNG</strong> APNG 是出自 Mozilla 公司下的两位程序员之手, APNG 的出现是为了代替 GIF. 它相较GIF来说有着更好的图片质量, 还支持着透明图层, 同时图片的大小都比 GIF 格式要小.</p><p>可惜由于出现的较晚, 没有被Web标准给采纳. 截止到笔者写这篇文章的时间(2018.1), Edge这个不合群的家伙在最新版本 Edge 17 仍然还没有支持这个格式, 而chrome 59才开始支持. 因此兼容性不高, 平时也很少能看到这种格式的出现.</p><p><strong>Webp</strong>是出自Google之手, WebP 的优势体现在它具有更优的图像数据压缩算法，能带来更小的图片体积，而且拥有肉眼识别无差异的图像质量；同时具备了无损和有损的压缩模式、Alpha 透明以及动画的特性，在 JPEG 和 PNG 上的转化效果都相当优秀、稳定和统一。</p><p>同上面的 APNG 一样, 同样没有被Web标准所采纳. 不过在 caniuse 上能发现, 如今国内大半的用户已经支持了 WebP , 这个未来还是可以小小的期待一下.</p><h3 id="正确的使用图片格式"><a href="#正确的使用图片格式" class="headerlink" title="正确的使用图片格式"></a>正确的使用图片格式</h3><p>话归正题, 下面针对不同的使用场景, 来选择正确的图片格式.</p><ul><li>首先是jpg, 一般不需要透明图层的图片一律使用jpg, 它相对png来说两者的体积之差能有几倍之差.</li><li>如果需要比较通用的动画的话, GIF是唯一的选择. 如果是相对简单的GIF动画的话, 也可以考虑使用CSS3来实现.</li><li>如果需要清晰显示颜色丰富的图片或者需要用到透明图层的话, png是一个比较好的选择</li></ul><h3 id="页面中图片加载方式"><a href="#页面中图片加载方式" class="headerlink" title="页面中图片加载方式"></a>页面中图片加载方式</h3><p>细心的你或许会发现, 有时在网络慢的情况下, 能看到图片一点一点从上到下的加载. 或者是先模糊, 再清晰的加载方式.<br>实际上这是图片的压缩算法呈现的效果, 逐行显示是<em>离散余弦变化</em>. 而模糊到清晰的是<em>小波算法</em>. 浏览器先读取图片的压缩算法, 再根据算法来选择不同的渲染算法. 下面是某图站的一张大的壁纸加载过程(没有找到小波算法的图, 以后留意到了再回来补)</p><img src="/blog/2018/01/13/性能优化-前端性能优化/anima-1.gif" title="离散余弦变化"><p><strong>参考资料</strong><br><a href="https://aotu.io/notes/2016/11/07/apng/index.html" rel="noopener" target="_blank">APNG 那些事</a></p><h3 id="常见的图片优化方案"><a href="#常见的图片优化方案" class="headerlink" title="常见的图片优化方案"></a>常见的图片优化方案</h3><p><strong>CSS-Sprite</strong></p><p>在页面中, 我们经常能看到一些icon图标. 这些icon实际上占用并不大, 但奈不住多呀. 100个icon的话就要发送一百个HTTP请求. CSS Sprite(精灵). 利用CSS的<code>background-position</code>和<code>background-image</code>属性, 只需要引用一张图片即可. 这极大的节省了HTTP请求量.</p><p><strong>iconfont</strong><br><code>iconfont</code> 和上面所提的<code>css-sprite</code>方法类似, 不同的是这个方法是通过引入字体图标的形式. 好处是设置字体图标的颜色或者可以通过设置<code>font-size</code>来改变尺寸, 并且不容易失真.</p><p>当然, 现在都是使用自动化工具, 都不需要自己手动去调整</p><p><strong><code>&lt;picture&gt;</code>标签</strong><br>HTML5新出了一个<code>&lt;picture&gt;</code>标签, 它是一个容器, 用来为其内部特定的<code>&lt;img&gt;</code>提供多样的<code>&lt;source&gt;</code>元素. 浏览器会根据当前页面（即图片所在的盒子的容器）的布局以及当前浏览的设备（比如普通的屏幕和高清屏幕）去从中选择最合适的资源. 也就是所谓的响应式图片. 由于兼容性所限, 因此当下并没有广泛使用.</p><p><code>media</code>属性允许你提供一个用于给用户代理作为选择<code>&lt;source&gt;</code>元素的依据的媒体查询。如果这个媒体查询匹配结果为<code>false</code>，那么这个<code>&lt;source&gt;</code>元素会被跳过, 使用如下.</p><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">picture</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">srcset</span>=<span class="string">"mdn-logo-smaller.png"</span> <span class="attr">media</span>=<span class="string">"(max-width: 768px)"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">srcset</span>=<span class="string">"mdn-logo-big.png"</span> <span class="attr">media</span>=<span class="string">"(min-width: 1000px)"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"mdn-logo-narrow.png"</span> <span class="attr">alt</span>=<span class="string">"MDN"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">picture</span>&gt;</span></div></pre></td></tr></table></figure><p><strong>构建自动化工具实现优化</strong><br>这个一句话说不完, 以后单独拎出来说这东西吧.</p><h2 id="视频优化"><a href="#视频优化" class="headerlink" title="视频优化"></a>视频优化</h2><p>当下视频播放器分为两大流派, 一个是HTML5新进入的<code>video</code>标签, 使用方式简洁. 也是现在主流播放方案. 另一个是<code>Flash</code>播放器, 也是过去常用的播放方案. 虽然技术成熟, 插件多, 但也是逐步的将被淘汰. chrome浏览器默认禁止Flash播放器的使用, 就连Edge都要手动开启才能使用.</p><blockquote><p>来对比一下两者的优缺点</p></blockquote><table><thead><tr><th style="text-align:left"></th><th style="text-align:left">优点</th><th style="text-align:left">缺点</th></tr></thead><tbody><tr><td style="text-align:left">video</td><td style="text-align:left">不需要下载额外的资源(如插件什么的)</td><td style="text-align:left">不同浏览器<code>video</code>标签的外观都不一样. 如果要统一的话需要自己写UI来实现</td></tr><tr><td style="text-align:left">Flash</td><td style="text-align:left">兼容性好, 只需要有 Flash player 播放器插件都可以进行播放</td><td style="text-align:left">1. 需要下载额外的 swf 播放文件才可以播放, 浏览器必须要有Flash player插件(回想以前网页老是让你下载Flash的场景)<br>2. Flash player 版本的碎片化<br>3. UI定制需要 as(带有学习成本)</td></tr></tbody></table><p><strong>当下主流的方案</strong><br>Flash 和 HTML5 两个方案相结合, 组成一个完整的方案. 当下就有几个成熟稳定的库, 如<code>Flowplayer</code>和<code>VideoJs</code>等.</p><p><strong>视频优化需要的解决问题</strong></p><ol><li>由于各浏览器UI不同, 设计师会要求我们按照设计图做播放器.</li><li>在一些视频网站中, 可能产品经理就会让我们实现, 让用户一进来就最先看到视频.<br>浏览器会将所有的多媒体文件放在最后面加载, 无论标签位置放置在什么位置. 解决的方案就是将<code>&lt;link&gt;</code>代替<code>&lt;script&gt;</code>标签引用.</li></ol><h2 id="常用的前端缓存技术"><a href="#常用的前端缓存技术" class="headerlink" title="常用的前端缓存技术"></a>常用的前端缓存技术</h2><p><code>SessionStorage</code> 临时性存储, 数据仅仅在当前的页面生效, 关闭页面后数据就自动清除了. 同时刷新页面不属于”离开页面”的范围, 数据仍然会存在. 现在微信公众号开发常用这种方法来记录用户信息.</p><p><code>Cookie</code>, 兼容性最好的本地存储. 缺点是有大小的限制, 而且每次发送请求时, 请求头会带着Cookie一起发送过去.(这里有个问题, 如果在cookie中存储了1M的数据, 那么在请求的时候, 1M的数据也会跟着请求发送到服务端. 这就很大的影响带宽了) 现在基本大多数登录的合法性验证都是用cookie验证的.</p><p>LocalStorage 特点是持久储存, 操作方法和 SessionStorage 乐视, 也都是操作key-value的形式. 几乎所有现代浏览器都已经支持了. 值得注意的是, LocalStorage 虽然可以永久储存, 但是无法跨浏览器的获取数据的, 还需要注意储存上限.</p><h2 id="高性能DOM"><a href="#高性能DOM" class="headerlink" title="高性能DOM"></a>高性能DOM</h2><p>说到高性能的<code>DOM</code>, 就不得不提回流与重绘这个概念. 为此我又专门的写了一篇<a href="https://anran758.github.io/blog/2018/01/15/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-%E5%9B%9E%E6%B5%81%E4%B8%8E%E9%87%8D%E6%B1%87/">回流与重绘</a>. 有兴趣的同学可以去看一下.</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>上文都只是在基础上的优化. 还有更多项目内工程化的优化就再等咱有时间再更新相关的内容吧~</p><div class="note primary"><p><strong>参考资料</strong><br>前端性能优化-通用的缓存SDK: <a href="https://www.imooc.com/learn/866" target="_blank" rel="noopener">https://www.imooc.com/learn/866</a></p></div>]]></content>
     
     <summary type="html">
     
@@ -479,19 +479,19 @@
     
     </summary>
     
-      <category term="JavaScript" scheme="http://yoursite.com/categories/JavaScript/"/>
+      <category term="JavaScript" scheme="https://anran758.github.io/blog/categories/JavaScript/"/>
     
     
-      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+      <category term="JavaScript" scheme="https://anran758.github.io/blog/tags/JavaScript/"/>
     
-      <category term="性能优化" scheme="http://yoursite.com/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+      <category term="性能优化" scheme="https://anran758.github.io/blog/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
     
   </entry>
   
   <entry>
     <title>深入理解之排序二叉树</title>
-    <link href="http://yoursite.com/2018/01/10/%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
-    <id>http://yoursite.com/2018/01/10/深入学习之排序二叉树/</id>
+    <link href="https://anran758.github.io/blog/2018/01/10/%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+    <id>https://anran758.github.io/blog/2018/01/10/深入学习之排序二叉树/</id>
     <published>2018-01-10T03:13:32.000Z</published>
     <updated>2018-01-12T15:18:24.000Z</updated>
     
@@ -503,16 +503,16 @@
     
     </summary>
     
-      <category term="数据结构" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+      <category term="数据结构" scheme="https://anran758.github.io/blog/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
     
-      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+      <category term="JavaScript" scheme="https://anran758.github.io/blog/tags/JavaScript/"/>
     
-      <category term="数据结构" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+      <category term="数据结构" scheme="https://anran758.github.io/blog/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
-      <category term="二叉树" scheme="http://yoursite.com/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+      <category term="二叉树" scheme="https://anran758.github.io/blog/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
     
-      <category term="排序二叉树" scheme="http://yoursite.com/tags/%E6%8E%92%E5%BA%8F%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+      <category term="排序二叉树" scheme="https://anran758.github.io/blog/tags/%E6%8E%92%E5%BA%8F%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
     
   </entry>
   

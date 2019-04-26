@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[H5微信支付所遇到的若干问题]]></title>
     <url>%2Fblog%2F2019%2F02%2F23%2Fh5-cookie-lost%2F</url>
-    <content type="text"><![CDATA[最近做了个H5微信支付的需求，记录一下所遇到的一些问题。。cookie 丢失的问题在H5页面中，一开始我们是需要拿到微信用户的信息。因此需要调用获取用户的接口。在第一次调用该接口时，需要有一个授权的过程。没有拿到用户信息的话，就需要调取授权让用户确认。然后问题就来了~授权完成后，会发现后端是拿不到cookie信息。经过查询资料后发现原来还是跨域在作祟~虽然我们解决了基本的跨域问题，即域名(origin)的不同。但是默认情况下跨域请求不会发送cookie.这时前端需要设置XHR的withCredentials: true, 后端也需要配合设置Access-Control-Allow-Credentials即可。以 axios 为例, withCredentials: true 与 data 平级:12345678910const opt = &#123; url: '/user', method: 'get', data: &#123; name: 'jojo' &#125;, withCredentials: false,&#125;axios(opt).then(res =&gt; console.log(res))这种情况一般是前后端项目不在同一个域名的情况下，且需要带凭证的场景需要设置Credentials。url未注册(url not registered)随后微信弹了一下url not registered的错误，检查支付目录已经正确的被配置。相关资料前端：微信内H5调起支付后端：jsapi 开发流程]]></content>
+    <content type="text"><![CDATA[最近做了个H5微信支付的需求，记录一下所遇到的一些问题。。cookie 丢失的问题在H5页面中，一开始我们是需要拿到微信用户的信息。因此需要调用获取用户的接口。在第一次调用该接口时，需要有一个授权的过程。没有拿到用户信息的话，就需要调取授权让用户确认。然后问题就来了~授权完成后，会发现后端是拿不到cookie信息。经过查询资料后发现原来还是跨域在作祟~虽然我们解决了基本的跨域问题，即域名(origin)的不同。但是默认情况下跨域请求不会发送cookie.这时前端需要设置XHR的withCredentials: true, 后端也需要配合设置Access-Control-Allow-Credentials即可。以 axios 为例, withCredentials: true 与 data 平级:12345678910const opt = &#123; url: '/user', method: 'get', data: &#123; name: 'jojo' &#125;, withCredentials: false,&#125;axios(opt).then(res =&gt; console.log(res))这种情况一般是前后端项目不在同一个域名的情况下，且需要带凭证的场景需要设置Credentials。url未注册(url not registered)随后微信弹了一下url not registered的错误，检查支付目录已经正确的被配置。相关资料微信内H5调起支付jsapi 开发流程]]></content>
       <categories>
         <category>h5</category>
       </categories>
@@ -430,8 +430,8 @@
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>正则表达式</tag>
         <tag>JavaScript</tag>
+        <tag>正则表达式</tag>
       </tags>
   </entry>
   <entry>
