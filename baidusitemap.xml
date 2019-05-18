@@ -4,6 +4,47 @@
 
     
   <url>
+    <loc>https://anran758.github.io/blog/blog/2019/05/18/wechat-pc-login/</loc>
+    <lastmod>2019-05-18T15:16:49.613Z</lastmod>
+    <data>
+        <display>
+        <title>在本地测试微信登录</title>
+        <pubTime>2019-05-18T09:23:12.000Z</pubTime>
+        
+        <tag>微信开发</tag>
+         
+        <tag>微信登录</tag>
+         
+        <tag>shistle</tag>
+         
+        <tag>网站应用</tag>
+         
+         
+           
+             
+              <breadCrumb title="微信开发" url="https://anran758.github.io/blog/blog/categories/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://anran758.github.io/blog/blog/2018/04/06/URL-to-browser/</loc>
+    <lastmod>2019-05-06T13:17:21.548Z</lastmod>
+    <data>
+        <display>
+        <title>浏览器与服务端的背后交互: 详解页面请求的过程</title>
+        <pubTime>2018-04-06T08:07:15.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://anran758.github.io/blog/blog/2019/05/03/minp-customize-slider/</loc>
     <lastmod>2019-05-04T09:08:14.218Z</lastmod>
     <data>
@@ -242,21 +283,6 @@
              
               <breadCrumb title="git" url="https://anran758.github.io/blog/blog/categories/git/"/>
           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://anran758.github.io/blog/blog/2018/04/06/URL-to-browser/</loc>
-    <lastmod>2018-04-19T13:42:26.354Z</lastmod>
-    <data>
-        <display>
-        <title>浏览器与服务端的背后交互: 详解页面请求的过程</title>
-        <pubTime>2018-04-06T08:07:15.000Z</pubTime>
-        
-         
-           
         </display>
     </data>
     </url>
