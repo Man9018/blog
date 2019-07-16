@@ -4,8 +4,53 @@
 
     
   <url>
+    <loc>https://anran758.github.io/blog/blog/2019/07/16/ant-design-redirect-change-method/</loc>
+    <lastmod>2019-07-16T15:50:55.439Z</lastmod>
+    <data>
+        <display>
+        <title>ant design pro 使用 no-mock 造成 POST 请求被重定向为 GET 请求</title>
+        <pubTime>2019-07-16T13:37:01.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://anran758.github.io/blog/blog/2019/07/10/operating-system/</loc>
+    <lastmod>2019-07-16T12:40:55.995Z</lastmod>
+    <data>
+        <display>
+        <title>operating-system</title>
+        <pubTime>2019-07-10T15:20:13.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://anran758.github.io/blog/blog/2019/06/05/react-vs-vue/</loc>
+    <lastmod>2019-06-05T10:32:21.000Z</lastmod>
+    <data>
+        <display>
+        <title>react-vs-vue</title>
+        <pubTime>2019-06-05T03:10:56.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://anran758.github.io/blog/blog/2019/05/18/wechat-pc-login/</loc>
-    <lastmod>2019-05-18T15:16:49.613Z</lastmod>
+    <lastmod>2019-05-18T15:16:49.000Z</lastmod>
     <data>
         <display>
         <title>在本地测试微信登录</title>
@@ -31,7 +76,7 @@
     
   <url>
     <loc>https://anran758.github.io/blog/blog/2018/04/06/URL-to-browser/</loc>
-    <lastmod>2019-05-06T13:17:21.548Z</lastmod>
+    <lastmod>2019-05-06T13:17:21.000Z</lastmod>
     <data>
         <display>
         <title>浏览器与服务端的背后交互: 详解页面请求的过程</title>
@@ -46,7 +91,7 @@
     
   <url>
     <loc>https://anran758.github.io/blog/blog/2019/05/03/minp-customize-slider/</loc>
-    <lastmod>2019-05-04T09:08:14.218Z</lastmod>
+    <lastmod>2019-05-04T09:08:14.000Z</lastmod>
     <data>
         <display>
         <title>【UI组件】来做一个可配置的滑块进度条吧</title>
@@ -68,7 +113,7 @@
     
   <url>
     <loc>https://anran758.github.io/blog/blog/2019/02/23/h5-cookie-lost/</loc>
-    <lastmod>2019-04-26T07:04:23.120Z</lastmod>
+    <lastmod>2019-04-26T07:04:23.000Z</lastmod>
     <data>
         <display>
         <title>H5微信支付所遇到的若干问题</title>
@@ -94,7 +139,7 @@
     
   <url>
     <loc>https://anran758.github.io/blog/blog/2019/02/11/miniprograms-download-image/</loc>
-    <lastmod>2019-02-11T15:11:38.442Z</lastmod>
+    <lastmod>2019-02-11T15:11:38.000Z</lastmod>
     <data>
         <display>
         <title>在微信小程序中保存网络图片</title>
@@ -109,7 +154,7 @@
     
   <url>
     <loc>https://anran758.github.io/blog/blog/2018/11/23/miniprogrmas-build-frame/</loc>
-    <lastmod>2018-12-16T13:51:13.772Z</lastmod>
+    <lastmod>2018-12-16T13:51:13.000Z</lastmod>
     <data>
         <display>
         <title>小程序开发笔记 - 小程序项目的结构设计</title>
@@ -131,7 +176,7 @@
     
   <url>
     <loc>https://anran758.github.io/blog/blog/2017/12/31/Git-emoji%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</loc>
-    <lastmod>2018-09-06T06:58:09.934Z</lastmod>
+    <lastmod>2018-09-06T06:58:09.000Z</lastmod>
     <data>
         <display>
         <title>Git emoji使用指南</title>
@@ -153,7 +198,7 @@
     
   <url>
     <loc>https://anran758.github.io/blog/blog/2018/06/28/how-to-use-echart/</loc>
-    <lastmod>2018-06-29T15:49:24.564Z</lastmod>
+    <lastmod>2018-06-29T15:49:24.000Z</lastmod>
     <data>
         <display>
         <title>Echarts 的食用方式</title>
@@ -177,7 +222,7 @@
     
   <url>
     <loc>https://anran758.github.io/blog/blog/2018/06/09/javascript-position-navigation/</loc>
-    <lastmod>2018-06-09T15:18:11.802Z</lastmod>
+    <lastmod>2018-06-09T15:18:11.000Z</lastmod>
     <data>
         <display>
         <title>锚点定位导航</title>
@@ -201,7 +246,7 @@
     
   <url>
     <loc>https://anran758.github.io/blog/blog/2018/05/24/node-%E5%B0%86%E9%A1%B9%E7%9B%AE%E8%B5%84%E6%BA%90%E4%B8%8A%E4%BC%A0%E8%87%B3%E4%B8%83%E7%89%9BCDN/</loc>
-    <lastmod>2018-05-24T16:00:32.546Z</lastmod>
+    <lastmod>2018-05-24T16:00:32.000Z</lastmod>
     <data>
         <display>
         <title>将项目资源上传至七牛CDN</title>
@@ -227,7 +272,7 @@
     
   <url>
     <loc>https://anran758.github.io/blog/blog/2018/05/08/canvas-compress-prictures/</loc>
-    <lastmod>2018-05-14T12:23:30.734Z</lastmod>
+    <lastmod>2018-05-14T12:23:30.000Z</lastmod>
     <data>
         <display>
         <title>常见的几种压缩图片的思路</title>
@@ -242,7 +287,7 @@
     
   <url>
     <loc>https://anran758.github.io/blog/blog/2018/05/06/%E8%B0%88%E8%B0%88CSS3-Matrix-%E7%9A%84%E7%90%86%E8%A7%A3/</loc>
-    <lastmod>2018-05-06T09:23:25.052Z</lastmod>
+    <lastmod>2018-05-06T09:23:25.000Z</lastmod>
     <data>
         <display>
         <title>浅谈CSS3 Matrix 的使用</title>
@@ -266,7 +311,7 @@
     
   <url>
     <loc>https://anran758.github.io/blog/blog/2018/04/23/git-flow/</loc>
-    <lastmod>2018-04-26T16:26:37.165Z</lastmod>
+    <lastmod>2018-04-26T16:26:37.000Z</lastmod>
     <data>
         <display>
         <title>git-flow 练习笔记</title>
