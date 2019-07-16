@@ -5,12 +5,18 @@
     
   <url>
     <loc>https://anran758.github.io/blog/blog/2019/07/16/ant-design-redirect-change-method/</loc>
-    <lastmod>2019-07-16T15:50:55.439Z</lastmod>
+    <lastmod>2019-07-16T16:27:26.985Z</lastmod>
     <data>
         <display>
         <title>ant design pro 使用 no-mock 造成 POST 请求被重定向为 GET 请求</title>
         <pubTime>2019-07-16T13:37:01.000Z</pubTime>
         
+        <tag>HTTP</tag>
+         
+        <tag>ant design pro</tag>
+         
+        <tag>react</tag>
+         
          
            
         </display>
@@ -20,7 +26,7 @@
     
   <url>
     <loc>https://anran758.github.io/blog/blog/2019/07/10/operating-system/</loc>
-    <lastmod>2019-07-16T12:40:55.995Z</lastmod>
+    <lastmod>2019-07-16T16:14:58.515Z</lastmod>
     <data>
         <display>
         <title>operating-system</title>
@@ -35,7 +41,7 @@
     
   <url>
     <loc>https://anran758.github.io/blog/blog/2019/06/05/react-vs-vue/</loc>
-    <lastmod>2019-06-05T10:32:21.000Z</lastmod>
+    <lastmod>2019-07-16T16:14:54.993Z</lastmod>
     <data>
         <display>
         <title>react-vs-vue</title>
@@ -97,9 +103,9 @@
         <title>【UI组件】来做一个可配置的滑块进度条吧</title>
         <pubTime>2019-05-03T12:51:37.000Z</pubTime>
         
-        <tag>小程序开发</tag>
-         
         <tag>UI组件</tag>
+         
+        <tag>小程序开发</tag>
          
          
            

@@ -4,6 +4,11 @@
     <title><![CDATA[ant design pro 使用 no-mock 造成 POST 请求被重定向为 GET 请求]]></title>
     <url>%2Fblog%2F2019%2F07%2F16%2Fant-design-redirect-change-method%2F</url>
     <content type="text"><![CDATA[最近在 ant design pro 的项目遇到了一个奇怪的问题，在输入命令行npm run start:no-mock后，发现预期发出POST请求变成了GET请求，状态码是301永久重定向。而在使用mock数据中不会出现这种问题。因此使用断点调试，经过一番尝试，逐步检查函数的调用及传参问题，最后也将此问题排除掉了。随后想到问题是不是出现在类库身上，接口是基于dva/fetch进行封装的，而dva/fetch又是基于浏览器原生(native code)的fetch进行封装. 使用断点并没有进入fetch内部。为了缩小范围，将发出请求的参数和方法从Network中拷贝下来，使用fetch直接调用，发现只要不经过umi类处理就不会出现这种现象。12345// 通过 dva/fetch// request('/api/login', &#123; method: 'POST', body: &#123;username, password&#125; &#125;)// 直接调用原生 fetchrequest('https://zzz.xxx.com/api/login', &#123; method: 'POST', body: &#123;username, password&#125; &#125;)随后在network上我注意到，通过umi处理后的请求URL有点奇怪:虽然我没有研究过umi的具体实现细节，但可以推测出umi是通过config拿到proxy.target作为base url. 但项目中target使用的协议是http协议，在实际的network中被转换为了https.难不成就是这个在作祟？抱着尝试的态度将target上的协议转为https, 发现就能正常的发出POST请求了。。但这样就会很迷茫，真的是umi干的吗？由于该项目基础架构另一个团队上接手上来的，有了很多复杂的因素干扰，method在哪一步进行了转换呢? 然后为了解惑做了一些简单的排查:从网络原理来考虑，这种情况应该是在客户端发生的，为了排除服务端重定向的嫌疑，使用了抓包查看了没有经过浏览器格式的报文信息，确定了是客户端的问题。接着去看了部分源码也没有看到相关的逻辑。最后近期业务量还挺重的，因此在此文记录一下，后序会继续关注一下这个问题，了解到原因再回来补充。由于项目是运行在内网中，因此没有升级umi最新版本(内网可能没有最新的版本的镜像), 也有可能在最新版已经修复但没有继续尝试了。如果有遇到相同问题的同学可以了解一下这个情况。1234&#123; "umi": "^2.0.1", "umi-plugin-react": "^1.0.1"&#125;]]></content>
+      <tags>
+        <tag>HTTP</tag>
+        <tag>ant design pro</tag>
+        <tag>react</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[operating-system]]></title>
@@ -37,8 +42,8 @@
         <category>小程序开发</category>
       </categories>
       <tags>
-        <tag>小程序开发</tag>
         <tag>UI组件</tag>
+        <tag>小程序开发</tag>
       </tags>
   </entry>
   <entry>
