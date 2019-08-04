@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[从零开始配置Mac前端开发环境]]></title>
+    <url>%2Fblog%2F2019%2F07%2F26%2Fconfiguring-mac-front-end-development-env-from-zero%2F</url>
+    <content type="text"><![CDATA[鼠标和触摸板设置不同的方向]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[ant design pro 使用 no-mock 造成 POST 请求被重定向为 GET 请求]]></title>
     <url>%2Fblog%2F2019%2F07%2F16%2Fant-design-redirect-change-method%2F</url>
     <content type="text"><![CDATA[最近在 ant design pro 的项目遇到了一个奇怪的问题，在输入命令行npm run start:no-mock后，发现预期发出POST请求变成了GET请求，状态码是301永久重定向。而在使用mock数据中不会出现这种问题。因此使用断点调试，经过一番尝试，逐步检查函数的调用及传参问题，最后也将此问题排除掉了。随后想到问题是不是出现在类库身上，接口是基于dva/fetch进行封装的，而dva/fetch又是基于浏览器原生(native code)的fetch进行封装. 使用断点并没有进入fetch内部。为了缩小范围，将发出请求的参数和方法从Network中拷贝下来，使用fetch直接调用，发现只要不经过umi类处理就不会出现这种现象。12345// 通过 dva/fetch// request('/api/login', &#123; method: 'POST', body: &#123;username, password&#125; &#125;)// 直接调用原生 fetchrequest('https://zzz.xxx.com/api/login', &#123; method: 'POST', body: &#123;username, password&#125; &#125;)随后在network上我注意到，通过umi处理后的请求URL有点奇怪:虽然我没有研究过umi的具体实现细节，但可以推测出umi是通过config拿到proxy.target作为base url. 但项目中target使用的协议是http协议，在实际的network中被转换为了https.难不成就是这个在作祟？抱着尝试的态度将target上的协议转为https, 发现就能正常的发出POST请求了。。但这样就会很迷茫，真的是umi干的吗？由于该项目基础架构另一个团队上接手上来的，有了很多复杂的因素干扰，method在哪一步进行了转换呢? 然后为了解惑做了一些简单的排查:从网络原理来考虑，这种情况应该是在客户端发生的，为了排除服务端重定向的嫌疑，使用了抓包查看了没有经过浏览器格式的报文信息，确定了是客户端的问题。接着去看了部分源码也没有看到相关的逻辑。最后近期业务量还挺重的，因此在此文记录一下，后序会继续关注一下这个问题，了解到原因再回来补充。由于项目是运行在内网中，因此没有升级umi最新版本(内网可能没有最新的版本的镜像), 也有可能在最新版已经修复但没有继续尝试了。如果有遇到相同问题的同学可以了解一下这个情况。1234&#123; "umi": "^2.0.1", "umi-plugin-react": "^1.0.1"&#125;]]></content>
+      <categories>
+        <category>react</category>
+      </categories>
       <tags>
-        <tag>HTTP</tag>
         <tag>ant design pro</tag>
         <tag>react</tag>
+        <tag>HTTP</tag>
       </tags>
   </entry>
   <entry>
@@ -42,8 +50,8 @@
         <category>小程序开发</category>
       </categories>
       <tags>
-        <tag>UI组件</tag>
         <tag>小程序开发</tag>
+        <tag>UI组件</tag>
       </tags>
   </entry>
   <entry>
@@ -63,7 +71,7 @@
   <entry>
     <title><![CDATA[在微信小程序中保存网络图片]]></title>
     <url>%2Fblog%2F2019%2F02%2F11%2Fminiprograms-download-image%2F</url>
-    <content type="text"><![CDATA[微信代码片段点这里, 该功能需要添加appid才能进行正常的测试。在小程序的文档中我们得知，wx.saveImageToPhotosAlbum 是用来保存图片到相册的。但是仔细一看会发现这个接口的filePath参数只接受临时文件路径或永久文件路径，不支持网络图片路径，意味着我们不能直接调用这个接口。。因此先需要把该文件下载至本地，使用 wx.downloadFile 。但值得注意的是小程序只可以跟指定的域名与进行网络通信，也就是说下载图片之前，我们需要先去微信公众者平台的开发设置里设置uploadFile合法域名。示例代码如下：123&lt;!-- index.wxml --&gt;&lt;image class="qr-code" src="&#123;&#123;url&#125;&#125;" mode="aspectFill" /&gt;&lt;button class="text" bindtap="saveImage"&gt;保存图片&lt;/button&gt;123456789101112131415161718192021222324252627282930313233343536373839404142434445464748// index.jsconst app = getApp()Page(&#123; data: &#123; url: 'https://avatars3.githubusercontent.com/u/23024075?s=460&amp;v=4' &#125;, // 保存图片 saveImage() &#123; this.wxToPromise('downloadFile', &#123; url: this.data.url &#125;) .then(res =&gt; this.wxToPromise('saveImageToPhotosAlbum', &#123; filePath: res.tempFilePath &#125;)) .then(res =&gt; &#123; // do something wx.showToast(&#123; title: '保存成功~',icon: 'none' &#125;); &#125;) .catch(err) =&gt; &#123; console.log(err); // 如果是用户自己取消的话保存图片的话 // if (~err.errMsg.indexOf('cancel')) return; &#125;) &#125;, /** * 将 callback 转为易读的 promise * @returns [promise] */ wxToPromise(method, opt) &#123; return new Promise((resolve, reject) =&gt; &#123; wx[method](&#123; ...opt, success(res) &#123; opt.success &amp;&amp; opt.success(); resolve(res) &#125;, fail(err) &#123; opt.fail &amp;&amp; opt.fail(); reject(err) &#125; &#125;) &#125;); &#125;,&#125;)然后理论上就可以保存图片了… 用户第一次在我们的小程序使用保存图片这个功能是会弹出一个授权弹框，如果用户手滑点了拒绝授权后再点一次保存图片，然后就会发现什么反应都没有了。。。出现这样的原因是因为这个授权弹框只会出现一次，所以我们得想办法再让用户重新授权一次。这时就想到使用 wx.authorize .但是经过测试后发现，使用 wx.authorize 后，会报 authorize:fail auth deny 的错误。然后经过查阅资料得知：如果用户未接受或拒绝过此权限，会弹窗询问用户，用户点击同意后方可调用接口；如果用户已授权，可以直接调用接口；如果用户已拒绝授权，则不会出现弹窗，而是直接进入接口 fail 回调。请开发者兼容用户拒绝授权的场景。emmm… 那这样效果当然不符合我们预期，只能在换一种方式。这时就想到了使用&lt;button open-type=&quot;openSetting&quot;/&gt;，在交互上做一个提示弹框，引导用户重新授权：123456789101112131415161718&lt;image class="qr-code" src="&#123;&#123;url&#125;&#125;" mode="aspectFill" /&gt;&lt;button class="text" bindtap="saveImage"&gt;保存图片&lt;/button&gt;&lt;!-- 简陋版提示 --&gt;&lt;view wx:if="&#123;&#123;showDialog&#125;&#125;" class="dialog-wrap"&gt; &lt;view class="dialog"&gt; 这是一段提示用户授权的提示语 &lt;view class="dialog-footer"&gt; &lt;button class="btn" open-type="openSetting" bindtap="confirm" &gt; 授权 &lt;/button&gt; &lt;button class="btn" bindtap="cancel"&gt;取消&lt;/button&gt; &lt;/view&gt; &lt;/view&gt;&lt;/view&gt;123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566const app = getApp()Page(&#123; data: &#123; url: 'https://avatars3.githubusercontent.com/u/23024075?s=460&amp;v=4', showDialog: false, &#125;, saveImage() &#123; this.wxToPromise('downloadFile', &#123; url: this.data.url &#125;) .then(res =&gt; this.wxToPromise('saveImageToPhotosAlbum', &#123; filePath: res.tempFilePath &#125;)) .then(res =&gt; &#123; console.log(res); // this.hide(); wx.showToast(&#123; title: '保存成功~', icon: 'none', &#125;); &#125;) .catch((&#123; errMsg &#125;) =&gt; &#123; console.log(errMsg) // if (~errMsg.indexOf('cancel')) return; if (!~errMsg.indexOf('auth')) &#123; wx.showToast(&#123; title: '图片保存失败，稍后再试', icon: 'none' &#125;); &#125; else &#123; // 调用授权提示弹框 this.setData(&#123; showDialog: true &#125;) &#125;; &#125;) &#125;, // callback to promise wxToPromise(method, opt) &#123; return new Promise((resolve, reject) =&gt; &#123; wx[method](&#123; ...opt, success(res) &#123; opt.success &amp;&amp; opt.success(); resolve(res) &#125;, fail(err) &#123; opt.fail &amp;&amp; opt.fail(); reject(err) &#125; &#125;) &#125;); &#125;, confirm() &#123; this.setData(&#123; showDialog:false &#125;) &#125;, cancel() &#123; this.setData(&#123; showDialog: false &#125;) &#125;&#125;)最后这样就完成啦~]]></content>
+    <content type="text"><![CDATA[在小程序的文档中我们得知，wx.saveImageToPhotosAlbum 是用来保存图片到相册的。但是仔细一看会发现这个接口的filePath参数只接受临时文件路径或永久文件路径，不支持网络图片路径，意味着我们不能直接调用这个接口。。因此先需要把该文件下载至本地，使用 wx.downloadFile 。但值得注意的是小程序只可以跟指定的域名与进行网络通信，也就是说下载图片之前，我们需要先去微信公众者平台的开发设置里设置uploadFile合法域名。示例代码如下：123&lt;!-- index.wxml --&gt;&lt;image class="qr-code" src="&#123;&#123;url&#125;&#125;" mode="aspectFill" /&gt;&lt;button class="text" bindtap="saveImage"&gt;保存图片&lt;/button&gt;123456789101112131415161718192021222324252627282930313233343536373839404142434445464748// index.jsconst app = getApp()Page(&#123; data: &#123; url: 'https://avatars3.githubusercontent.com/u/23024075?s=460&amp;v=4' &#125;, // 保存图片 saveImage() &#123; this.wxToPromise('downloadFile', &#123; url: this.data.url &#125;) .then(res =&gt; this.wxToPromise('saveImageToPhotosAlbum', &#123; filePath: res.tempFilePath &#125;)) .then(res =&gt; &#123; // do something wx.showToast(&#123; title: '保存成功~',icon: 'none' &#125;); &#125;) .catch(err) =&gt; &#123; console.log(err); // 如果是用户自己取消的话保存图片的话 // if (~err.errMsg.indexOf('cancel')) return; &#125;) &#125;, /** * 将 callback 转为易读的 promise * @returns [promise] */ wxToPromise(method, opt) &#123; return new Promise((resolve, reject) =&gt; &#123; wx[method](&#123; ...opt, success(res) &#123; opt.success &amp;&amp; opt.success(); resolve(res) &#125;, fail(err) &#123; opt.fail &amp;&amp; opt.fail(); reject(err) &#125; &#125;) &#125;); &#125;,&#125;)然后理论上就可以保存图片了… 用户第一次在我们的小程序使用保存图片这个功能是会弹出一个授权弹框，如果用户手滑点了拒绝授权后再点一次保存图片，然后就会发现什么反应都没有了。。。出现这样的原因是因为这个授权弹框只会出现一次，所以我们得想办法再让用户重新授权一次。这时就想到使用 wx.authorize .但是经过测试后发现，使用 wx.authorize 后，会报 authorize:fail auth deny 的错误。然后经过查阅资料得知：如果用户未接受或拒绝过此权限，会弹窗询问用户，用户点击同意后方可调用接口；如果用户已授权，可以直接调用接口；如果用户已拒绝授权，则不会出现弹窗，而是直接进入接口 fail 回调。请开发者兼容用户拒绝授权的场景。emmm… 那这样效果当然不符合我们预期，只能在换一种方式。这时就想到了使用&lt;button open-type=&quot;openSetting&quot;/&gt;，在交互上做一个提示弹框，引导用户重新授权：123456789101112131415161718&lt;image class="qr-code" src="&#123;&#123;url&#125;&#125;" mode="aspectFill" /&gt;&lt;button class="text" bindtap="saveImage"&gt;保存图片&lt;/button&gt;&lt;!-- 简陋版提示 --&gt;&lt;view wx:if="&#123;&#123;showDialog&#125;&#125;" class="dialog-wrap"&gt; &lt;view class="dialog"&gt; 这是一段提示用户授权的提示语 &lt;view class="dialog-footer"&gt; &lt;button class="btn" open-type="openSetting" bindtap="confirm" &gt; 授权 &lt;/button&gt; &lt;button class="btn" bindtap="cancel"&gt;取消&lt;/button&gt; &lt;/view&gt; &lt;/view&gt;&lt;/view&gt;123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566const app = getApp()Page(&#123; data: &#123; url: 'https://avatars3.githubusercontent.com/u/23024075?s=460&amp;v=4', showDialog: false, &#125;, saveImage() &#123; this.wxToPromise('downloadFile', &#123; url: this.data.url &#125;) .then(res =&gt; this.wxToPromise('saveImageToPhotosAlbum', &#123; filePath: res.tempFilePath &#125;)) .then(res =&gt; &#123; console.log(res); // this.hide(); wx.showToast(&#123; title: '保存成功~', icon: 'none', &#125;); &#125;) .catch((&#123; errMsg &#125;) =&gt; &#123; console.log(errMsg) // if (~errMsg.indexOf('cancel')) return; if (!~errMsg.indexOf('auth')) &#123; wx.showToast(&#123; title: '图片保存失败，稍后再试', icon: 'none' &#125;); &#125; else &#123; // 调用授权提示弹框 this.setData(&#123; showDialog: true &#125;) &#125;; &#125;) &#125;, // callback to promise wxToPromise(method, opt) &#123; return new Promise((resolve, reject) =&gt; &#123; wx[method](&#123; ...opt, success(res) &#123; opt.success &amp;&amp; opt.success(); resolve(res) &#125;, fail(err) &#123; opt.fail &amp;&amp; opt.fail(); reject(err) &#125; &#125;) &#125;); &#125;, confirm() &#123; this.setData(&#123; showDialog:false &#125;) &#125;, cancel() &#123; this.setData(&#123; showDialog: false &#125;) &#125;&#125;)最后这样就完成啦~微信代码片段点这里, 该功能需要添加appid才能进行正常的测试。]]></content>
   </entry>
   <entry>
     <title><![CDATA[小程序开发笔记 - 小程序项目的结构设计]]></title>
@@ -85,7 +93,7 @@
         <category>javascript</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
+        <tag>javascript</tag>
         <tag>Echarts</tag>
         <tag>图表</tag>
       </tags>
@@ -98,9 +106,9 @@
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
         <tag>业务组件</tag>
         <tag>jQuery</tag>
+        <tag>javascript</tag>
       </tags>
   </entry>
   <entry>
@@ -130,8 +138,8 @@
         <category>css</category>
       </categories>
       <tags>
-        <tag>css</tag>
         <tag>transform</tag>
+        <tag>css</tag>
         <tag>css3</tag>
       </tags>
   </entry>
@@ -174,9 +182,9 @@
       </categories>
       <tags>
         <tag>javascript</tag>
-        <tag>移动端</tag>
         <tag>gif</tag>
         <tag>canvas</tag>
+        <tag>移动端</tag>
       </tags>
   </entry>
   <entry>
@@ -207,21 +215,21 @@
       </categories>
       <tags>
         <tag>debug</tag>
-        <tag>Javascript</tag>
         <tag>tools</tag>
         <tag>console</tag>
+        <tag>javascript</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[走进 web 移动端开发]]></title>
     <url>%2Fblog%2F2018%2F01%2F25%2Fweb-%E8%B5%B0%E8%BF%9Bweb%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%2F</url>
-    <content type="text"><![CDATA[近年来, 人们逐渐倾向移动端的使用. 越来越多的人使用手机/平板来上网. 既然有需求, 那就自然会有市场~ 作为一个身在一线的前端工程师在工作中也难免会遇到这种场景/需求. 下面就分享一下对于移动端的一些学习笔记~移动端基础的知识移动端的屏幕相比PC来说多的太多了, 因此我们不能只是使用传统的px, 首先来认识一下我们常用的单位吧.px: css pixels 逻辑像素, 浏览器使用的抽象单位dp, pt: device independent pixels 设备无关像素dpr devicePixelRatio 设备像素缩放比它们之间的计算公式是: 1px = (dpr)² * dp这里我们用IPhone 5为例, 我们知道, iPhone 5 的dpr为2, 根据上面的公式, 我们能得出:平面上: 1px = (2)² * dp =&gt; 1px = 4dp(四个物理像素)但我们在实际的开发中, 更多的是按照长度(维度)来换算:维度上: 1px = dpr * dp =&gt; 1px = 2 * dp因此在移动端开发的时候. 我们拿到UI的设计图, 设计图(IPhone5)的尺寸是640 * 1136. 这是因为dpr的缘故. 因此我们需要在开发时, 将原先的宽度除于2才行.还有我们常说的Retina屏又是什么? Retina屏(高清屏幕)就是dpr &lt;= 2.viewportviewport, 就是视图窗口. 其中它在手机上又分为一下两个窗口.Visual viewport (可视窗口)Layout viewport (布局窗口)最下面一层就是layout viewport, 上面一层就是visual viewport, visual viewport可以控制窗口的缩放(salce), 能看得到更多底层的layout viewport的东西.这里值得注意的是, layout viewport的宽度是大于浏览器可视区域的宽度的.Meta标签如果我们没有限制viewport的缩放比的话. 我们通过获取window.innerWidth(布局窗口) / document.body.clientWidth的缩放比得知, 设备会根据页面的大小, 自动的去调整缩放比. 这就会不符合我们的预期.这时我们可以通过Meta标签来控制viewport. 它的语法如下:1&lt;meta name="viewport" content="name=value,name=value"&gt;参数如下:width: 设置布局 viewport 的特定值(“device-width”)initial-scale: 设置页面的初始缩放minimum-sacle: 最少缩放maximum-scale: 最大缩放user-scalable: 用户能否缩放目前主流的编辑器在使用emmet生成基本HTML模板时都会自带插入一句1&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;而有时候我们不希望用户能控制页面的搜索，那我们就可以设置user-scalable为no, 百度就是如下的做法:1&lt;meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"&gt;移动端布局移动端的布局就能不像PC端一样用固定宽度了, 因为移动端有太多不同的屏幕分辨率了.. 因此现在主流的布局方式还是响应式布局和flex布局. 未来还有Grid布局, 不过现在普及度不够高暂时放放, 以后有机会单独开一篇.响应式布局响应式布局实际上是一个设计理念, 它是多项技术的综合体. 其核心就是媒体查询(@media).响应式网站的优点主要有:减少工作量: 代码, 设计, 内容只需要一份. 多出的工作也仅仅是js和css样式的调整.相对来说会节省时间每个设备都能得到正确的设计相反, 它也带有一些副作用(缺点):由于我们是响应式布局, 需要加载更多的样式和脚本资源设计比较难精准定位和控制media实际上是css3的玩意, 对老版本浏览器兼容不好(特指IE)接着我们继续看看响应式设计着重的几个点吧:关于响应式设计中针对不同分辨率的媒体查询设计, 可以看我Repo中的这一块.百分比布局仅仅使用媒体查询来适应不同的固定宽度设计, 只会从一组css 到另一组css的切换. 两组之间没有任何平滑渐变. 当没有命中媒体查询时, 表现就会不可控.就比如说iPhone又出了个iPad mini, 这个设备的宽度介于iphone和ipad之间. 这样就有可能会导致布局的错乱, 我们应该要尽量避免这种情况发生.弹性图片很简单也很常见的思路. 图片设置宽度100%, 外层一个div包裹着, div设置宽度, 可以随着媒体查询改变宽度 从而实现自适应123img &#123; max-width: 100%&#125;当页面达到手机屏幕宽度的时候, 我们可以考虑放弃一些传统页面的设计思想. 力求页面简单, 简洁(手机屏幕小). 因此需要作出以下处理:同比例缩减元素尺寸调整页面结构布局隐藏冗余的元素除此之外, 应该将经常需要切换位置元素使用「绝对定位」, 减少重绘提高渲染性能.Flex布局Flexbox的出现是为了解决复杂的web布局，因为这种布局方式很灵活。容器的子元素可以任意方向进行排列. 有效的针对不同屏幕宽度大小的情况下，让元素自动有效合理处理布局结构。Flex在移动布局上已经运用的很广泛了. 比如我们常见的垂直居中, 原先需要好几行代码的效果, 现在就一行align-items: center就能解决了, 十分便利.Flex网上已经有太多的详细教程了. 考虑到篇幅限制, 这边也就不再过多的赘述了. 不过值得一提的是, Flexbox是有新旧两个版本的, 新的是display: flex, 旧的(2009年的语法)是display: box; 两者作用都差不多, 只是使用的属性名有些差异, 如果要兼容低版本的浏览器的话可以考虑后者.扩展阅读:[张鑫旭]CSS box-flex属性，然后弹性盒子模型简介: http://www.zhangxinxu.com/wordpress/?p=1338Flex入门: http://ife.baidu.com/note/detail/id/952Flexbox详解: https://segmentfault.com/a/1190000002910324移动端一些常见的坑1px border这个问题常出现在ios下, 其根本原因还是retina屏的问题. 1px使用了2dp渲染, 因此看上去就会粗一点.常见的解决方案有以下几个:背景渐变CSS3 有了渐变背景，可以通过渐变背景实现 1px 的 border，实现原理是设置 1px 的渐变背景，50% 有颜色，50% 是透明的。12345678910111213@mixin commonStyle() &#123; background-size: 100% 1px,1px 100% ,100% 1px, 1px 100%; background-repeat: no-repeat; background-position: top, right top, bottom, left top;&#125;@mixin border($border-color) &#123; @include commonStyle(); background-image:linear-gradient(180deg, $border-color, $border-color 50%, transparent 50%), linear-gradient(270deg, $border-color, $border-color 50%, transparent 50%), linear-gradient(0deg, $border-color, $border-color 50%, transparent 50%), linear-gradient(90deg, $border-color, $border-color 50%, transparent 50%);&#125;缺点就是没办法实现圆角.使用 scale 缩放0.5倍1234567891011121314151617.sidebar .folder li &#123; padding: 8px 0 8px 15px; color: #7c7c7c; Cursor: pointer; position: relative;&#125;.folder + li:before &#123; position: absolute; top: -1px; left: 0; content: ''; width: 100%; height: 1px; border-top: 1px solid #ddd; -webkit-transform: scaleY(0.5);&#125;多行文本溢出webkit内核的浏览器可以尝试使用-webkit-line-clamp, 可惜兼容性不高.12345678.intwoline &#123; display: -webkit-box !important; overflow: hidden; text-overflow: ellipsis; word-break: break-all; -webkit-box-orient: vertical; -webkit-line-clamp: 2;&#125;终端交互优化最近几年，爆炸式的移动Web浏览器的使用打破了这个途径。低带宽，高延迟，小内存，低处理器性能的移动设备环境，迫使开发者不得不想办法通过优化前端页面的性能来满足用户的性能预期。300毫秒的故事移动web页面上的click事件响应都要慢上300ms移动设备访问的web页面都是pc上的页面. 在默认的viewport(980px)的页面往往都是需要”双击”或”捏开”放大页面, 来看清页面. 正是为了确定用户是”双击”还是”单击”. sofari需要个300ms的延迟来判断. 而后来的Iphone也一直沿用这样的设计, 没借鉴成功iPhone的android也沿用了这样的设计. 于是”300ms的延迟”就成为了一道规范.因此针对这个延迟, 出现了使用tap基础事件去代替click事件. 已经有成熟的类库去帮我们实现了, 这也不展开讲.移动端的事件现在智能手机的普及, 触摸成为了移动设备的交互的核心事件, 主要有这几种常用的事件• Touchstart: 手指触摸屏幕触发(只有第一下才会触发)• Touchmove: 手指在屏幕滑动, 连续触发• Touchend: 手指离开屏幕时触发• Touchcanel: 系统取消touch时候触发(不常用)除了常见的事件属性外, 触摸事件也有自己专有的触摸属性:touches: 跟踪触摸操作的touch对象数组targetTouches: 特定时间目标的touch对象数组changeTouches: 上次触摸改变的touch对象数组其中touches是最为常用的. 它是一个数组, 包含着几个touch对象, 每个touch对象包含如下属性:• clientX: 触摸目标在视口中的x坐标• clientY: 触摸目标在视口中的y坐标• Identifier: 标识触摸的唯一ID• pageX: 触摸目标在页面中的x坐标.• pageY: 触摸目标在页面中的y坐标.• screenX: 触摸目标在屏幕中的x坐标• screenY: 触摸目标在屏幕中的y坐标• target: 触摸的DOM节点目标不过值得注意的是 Android 下可能会有touchend不触发的bug, 已知 Android 4.0, 4.1, 4.4 ~ 5.0都有这个bug.弹性滚动当客户端的页面滚动到底部或顶部的时候, 滚动条会允许我们再向上(下)拖, 松开就会有缓冲反弹的效果, 能有一个良好的用户体验.移动web页面也有这样的能力. 但是滚动有几种情况需要考虑(副作用):body层滚动: (系统特殊化处理)自带弹性滚动, overflow:hidden失效, GIF和定时器暂停局部滚动: 没有弹性滚动, 没有滚动惯性, 不流畅而局部滚动开启弹性滚动的方式也很简单, 只需要在body上添加如下的代码:12345body &#123; /* android 不支持, 但是有类库支持*/ overflow: hidden; -webkit-overflow-scrolling: touch;&#125;上拉刷新, 下拉加载在移动端, 我们常常能看到这种 —— 顶部会允许下拉一小点距离, 松开时页会有弹性的滚动向下, 并且加载数据. 这是一种良好的交互. 多数类库或者插件都能实现这种效果. 可惜本人移动端的经验不足, 没有自己去实现过一次. (再占一个坑吧~总结移动端与PC端的开发主要还是着重点不同吧. 比如在移动开发时, 我们必须要考虑用户的流量, 并不是所有人都在用着好的WIFi来上网.其中如何在这个小屏幕下给用户带来良好的体验也是另外一门学问. 本文只是总结一些常见的东西, 比如移动端适配也还没有讲. 如果以后自己的工作重心倾向移动端的话, 就会继续再更新相关的内容吧~参考资料:饿了么 - 移动端Web开发踩坑之旅: https://zhuanlan.zhihu.com/p/26141351Hello, 移动WEB: https://www.imooc.com/learn/494]]></content>
+    <content type="text"><![CDATA[近年来, 人们逐渐倾向移动端的使用. 越来越多的人使用手机/平板来上网. 既然有需求, 那就自然会有市场~ 作为一个身在一线的前端工程师在工作中也难免会遇到这种场景/需求. 下面就分享一下对于移动端的一些学习笔记~移动端基础的知识移动端的屏幕相比 PC 来说多的太多了, 因此我们不能只是使用传统的 px, 首先来认识一下我们常用的单位吧.px: css pixels 逻辑像素, 浏览器使用的抽象单位dp, pt: device independent pixels 设备无关像素dpr devicePixelRatio 设备像素缩放比它们之间的计算公式是: 1px = (dpr)² * dp这里我们用 IPhone 5 为例, 我们知道, iPhone 5 的dpr为 2, 根据上面的公式, 我们能得出:平面上: 1px = (2)² * dp =&gt; 1px = 4dp(四个物理像素)但我们在实际的开发中, 更多的是按照长度(维度)来换算:维度上: 1px = dpr * dp =&gt; 1px = 2 * dp因此在移动端开发的时候. 我们拿到 UI 的设计图, 设计图(IPhone5)的尺寸是640 * 1136. 这是因为dpr的缘故. 因此我们需要在开发时, 将原先的宽度除于 2 才行.还有我们常说的Retina屏又是什么? Retina屏(高清屏幕)就是dpr &lt;= 2.viewportviewport, 就是视图窗口. 其中它在手机上又分为一下两个窗口.Visual viewport (可视窗口)Layout viewport (布局窗口)最下面一层就是layout viewport, 上面一层就是visual viewport, visual viewport可以控制窗口的缩放(salce), 能看得到更多底层的layout viewport的东西.这里值得注意的是, layout viewport的宽度是大于浏览器可视区域的宽度的.Meta 标签如果我们没有限制viewport的缩放比的话. 我们通过获取window.innerWidth(布局窗口) / document.body.clientWidth的缩放比得知, 设备会根据页面的大小, 自动的去调整缩放比. 这就会不符合我们的预期.这时我们可以通过Meta标签来控制viewport. 它的语法如下:1&lt;meta name="viewport" content="name=value,name=value" /&gt;参数如下:width: 设置布局 viewport 的特定值(“device-width”)initial-scale: 设置页面的初始缩放minimum-sacle: 最少缩放maximum-scale: 最大缩放user-scalable: 用户能否缩放目前主流的编辑器在使用emmet生成基本HTML模板时都会自带插入一句1&lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;而有时候我们不希望用户能控制页面的搜索，那我们就可以设置user-scalable为no, 百度就是如下的做法:1234&lt;meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/&gt;移动端布局移动端的布局就能不像 PC 端一样用固定宽度了, 因为移动端有太多不同的屏幕分辨率了.. 因此现在主流的布局方式还是响应式布局和 flex 布局. 未来还有 Grid 布局, 不过现在普及度不够高暂时放放, 以后有机会单独开一篇.响应式布局响应式布局实际上是一个设计理念, 它是多项技术的综合体. 其核心就是媒体查询(@media).响应式网站的优点主要有:减少工作量: 代码, 设计, 内容只需要一份. 多出的工作也仅仅是 js 和 css 样式的调整.相对来说会节省时间每个设备都能得到正确的设计相反, 它也带有一些副作用(缺点):由于我们是响应式布局, 需要加载更多的样式和脚本资源设计比较难精准定位和控制media实际上是 css3 的玩意, 对老版本浏览器兼容不好(特指 IE)接着我们继续看看响应式设计着重的几个点吧:关于响应式设计中针对不同分辨率的媒体查询设计, 可以看我 Repo 中的这一块.百分比布局仅仅使用媒体查询来适应不同的固定宽度设计, 只会从一组 css 到另一组 css 的切换. 两组之间没有任何平滑渐变. 当没有命中媒体查询时, 表现就会不可控.就比如说 iPhone 又出了个 iPad mini, 这个设备的宽度介于 iphone 和 ipad 之间. 这样就有可能会导致布局的错乱, 我们应该要尽量避免这种情况发生.弹性图片很简单也很常见的思路. 图片设置宽度 100%, 外层一个 div 包裹着, div 设置宽度, 可以随着媒体查询改变宽度 从而实现自适应123img &#123; max-width: 100%;&#125;当页面达到手机屏幕宽度的时候, 我们可以考虑放弃一些传统页面的设计思想. 力求页面简单, 简洁(手机屏幕小). 因此需要作出以下处理:同比例缩减元素尺寸调整页面结构布局隐藏冗余的元素除此之外, 应该将经常需要切换位置元素使用「绝对定位」, 减少重绘提高渲染性能.Flex 布局Flexbox的出现是为了解决复杂的 web 布局，因为这种布局方式很灵活。容器的子元素可以任意方向进行排列. 有效的针对不同屏幕宽度大小的情况下，让元素自动有效合理处理布局结构。Flex在移动布局上已经运用的很广泛了. 比如我们常见的垂直居中, 原先需要好几行代码的效果, 现在就一行align-items: center就能解决了, 十分便利.Flex网上已经有太多的详细教程了. 考虑到篇幅限制, 这边也就不再过多的赘述了. 不过值得一提的是, Flexbox是有新旧两个版本的, 新的是display: flex, 旧的(2009 年的语法)是display: box; 两者作用都差不多, 只是使用的属性名有些差异, 如果要兼容低版本的浏览器的话可以考虑后者.扩展阅读:[张鑫旭]CSS box-flex 属性，然后弹性盒子模型简介: http://www.zhangxinxu.com/wordpress/?p=1338Flex 入门: http://ife.baidu.com/note/detail/id/952Flexbox 详解: https://segmentfault.com/a/1190000002910324移动端一些常见的坑1px border这个问题常出现在 ios 下, 其根本原因还是retina屏的问题. 1px使用了2dp渲染, 因此看上去就会粗一点.常见的解决方案有以下几个:背景渐变CSS3 有了渐变背景，可以通过渐变背景实现 1px 的 border，实现原理是设置 1px 的渐变背景，50% 有颜色，50% 是透明的。123456789101112131415161718192021@mixin commonStyle() &#123; background-size: 100% 1px, 1px 100%, 100% 1px, 1px 100%; background-repeat: no-repeat; background-position: top, right top, bottom, left top;&#125;@mixin border($border-color) &#123; @include commonStyle(); background-image: linear-gradient( 180deg, $border-color, $border-color 50%, transparent 50% ), linear-gradient( 270deg, $border-color, $border-color 50%, transparent 50% ), linear-gradient(0deg, $border-color, $border-color 50%, transparent 50%), linear-gradient(90deg, $border-color, $border-color 50%, transparent 50%);&#125;缺点就是没办法实现圆角.使用 scale 缩放 0.5 倍1234567891011121314151617.sidebar .folder li &#123; padding: 8px 0 8px 15px; color: #7c7c7c; cursor: pointer; position: relative;&#125;.folder + li:before &#123; position: absolute; top: -1px; left: 0; content: ''; width: 100%; height: 1px; border-top: 1px solid #ddd; -webkit-transform: scaleY(0.5);&#125;多行文本溢出webkit 内核的浏览器可以尝试使用-webkit-line-clamp, 可惜兼容性不高.12345678.intwoline &#123; display: -webkit-box !important; overflow: hidden; text-overflow: ellipsis; word-break: break-all; -webkit-box-orient: vertical; -webkit-line-clamp: 2;&#125;终端交互优化最近几年，爆炸式的移动 Web 浏览器的使用打破了这个途径。低带宽，高延迟，小内存，低处理器性能的移动设备环境，迫使开发者不得不想办法通过优化前端页面的性能来满足用户的性能预期。300 毫秒的故事移动 web 页面上的 click 事件响应都要慢上 300ms移动设备访问的 web 页面都是 pc 上的页面. 在默认的 viewport(980px)的页面往往都是需要”双击”或”捏开”放大页面, 来看清页面. 正是为了确定用户是”双击”还是”单击”. sofari 需要个 300ms 的延迟来判断. 而后来的 Iphone 也一直沿用这样的设计, 没借鉴成功 iPhone 的 android 也沿用了这样的设计. 于是”300ms 的延迟”就成为了一道规范.因此针对这个延迟, 出现了使用 tap 基础事件去代替 click 事件. 已经有成熟的类库去帮我们实现了, 这也不展开讲.移动端的事件现在智能手机的普及, 触摸成为了移动设备的交互的核心事件, 主要有这几种常用的事件• Touchstart: 手指触摸屏幕触发(只有第一下才会触发)• Touchmove: 手指在屏幕滑动, 连续触发• Touchend: 手指离开屏幕时触发• Touchcanel: 系统取消 touch 时候触发(不常用)除了常见的事件属性外, 触摸事件也有自己专有的触摸属性:touches: 跟踪触摸操作的 touch 对象数组targetTouches: 特定时间目标的 touch 对象数组changeTouches: 上次触摸改变的 touch 对象数组其中touches是最为常用的. 它是一个数组, 包含着几个 touch 对象, 每个 touch 对象包含如下属性:• clientX: 触摸目标在视口中的 x 坐标• clientY: 触摸目标在视口中的 y 坐标• Identifier: 标识触摸的唯一 ID• pageX: 触摸目标在页面中的 x 坐标.• pageY: 触摸目标在页面中的 y 坐标.• screenX: 触摸目标在屏幕中的 x 坐标• screenY: 触摸目标在屏幕中的 y 坐标• target: 触摸的 DOM 节点目标不过值得注意的是 Android 下可能会有 touchend 不触发的 bug, 已知 Android 4.0, 4.1, 4.4 ~ 5.0 都有这个 bug.弹性滚动当客户端的页面滚动到底部或顶部的时候, 滚动条会允许我们再向上(下)拖, 松开就会有缓冲反弹的效果, 能有一个良好的用户体验.移动 web 页面也有这样的能力. 但是滚动有几种情况需要考虑(副作用):body 层滚动: (系统特殊化处理)自带弹性滚动, overflow:hidden 失效, GIF 和定时器暂停局部滚动: 没有弹性滚动, 没有滚动惯性, 不流畅而局部滚动开启弹性滚动的方式也很简单, 只需要在 body 上添加如下的代码:12345body &#123; /* android 不支持, 但是有类库支持*/ overflow: hidden; -webkit-overflow-scrolling: touch;&#125;上拉刷新, 下拉加载在移动端, 我们常常能看到这种 —— 顶部会允许下拉一小点距离, 松开时页会有弹性的滚动向下, 并且加载数据. 这是一种良好的交互. 多数类库或者插件都能实现这种效果. 可惜本人移动端的经验不足, 没有自己去实现过一次. (再占一个坑吧~总结移动端与 PC 端的开发主要还是着重点不同吧. 比如在移动开发时, 我们必须要考虑用户的流量, 并不是所有人都在用着好的 WIFi 来上网.其中如何在这个小屏幕下给用户带来良好的体验也是另外一门学问. 本文只是总结一些常见的东西, 比如移动端适配也还没有讲. 如果以后自己的工作重心倾向移动端的话, 就会继续再更新相关的内容吧~参考资料:饿了么 - 移动端 Web 开发踩坑之旅: https://zhuanlan.zhihu.com/p/26141351Hello, 移动 WEB: https://www.imooc.com/learn/494]]></content>
       <categories>
         <category>移动开发</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
         <tag>解决方案</tag>
+        <tag>javascript</tag>
         <tag>移动端</tag>
         <tag>css</tag>
       </tags>
@@ -229,15 +237,15 @@
   <entry>
     <title><![CDATA[为什么我们要选用 Vue/React/Angular 进行开发]]></title>
     <url>%2Fblog%2F2018%2F01%2F23%2FJavaScript-%E4%BD%A0%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E6%94%BE%E5%BC%83JQuery%E8%80%8C%E9%80%89%E7%94%A8Vue-React-Angular%E8%BF%9B%E8%A1%8C%E5%BC%80%E5%8F%91%2F</url>
-    <content type="text"><![CDATA[JQuery, 曾经从事网页工作者的标配, 以前还没有前端的概念, 但不懂JQuery几乎是会被嘲讽的. 而当下的使用量却逐年降低, 更多的用户转向新兴的 React/Angular/Vue . 今天我们来聊聊, 相比JQuery成熟庞大生态圈, 为什么我们现在开始逐步的放弃 JQuery.前言截止至笔者写这篇文章为止(2018.1), 前端开发的大趋势主要是以下几点:旧浏览器逐渐被淘汰(比如IE8及以下, 主流框架已经放弃了支持)移动端需求的增加用户体验要求变得更高前端架构从传统的后台 MVC 向 RESTFul API + 前端 MV* 迁移众所周知. JQuery只是一个DOM和ajax的封装库. 现在前端项目的日益发展导致JQuery已经不足以承载太多的复杂项目了. JQuery能兼容各种低版本的浏览器这一大优势也在旧浏览器淘汰的路上逐步减弱. 越来越多的开发者开始拥抱新型框架, 它们使前端不太需要关心DOM了, 只需要关心状态.Vue因为我目前主要使用的是Vue的技术栈, 就来说说为什么要选择 Vue 吧.首先, Vue.js是一个库, 并不是一个真正框架(或者说是一个UI层面的框架). 它相比其他两个主流框架 (React/Angular) 来说 Vue 的学习成本相对来说会比较低. 其次 vue 的作者是国人尤雨溪, 因此它对中文的支持会更友好一点(说句题外话, 偶尔能看到有老外吐槽. Vue.js的源码偶尔能看到中文的注释2333).Vue是渐进式框架, 它主要关注的是视图管理. 其核心思想主要是数据驱动和组件化. vue的优势主要有以下几点:侵入性低不对整体构架做过多约束, 方便与其他库或是已有的前端技术栈整合. 比如说当前的项目就是在使用JQuery, 我们也可以将项目移入vue里, 然后逐步的进行改良.vue鼓励模块化因为组件系统是 Vue 的另一个重要概念, 因为它是一种抽象，允许我们使用小型、独立和通常可复用的组件构建大型应用. 这将有利于将界面代码自然分割成更容易维护的模块. 简而言之就是模块化开发, 减少代码的重复性和提高复用性.vue.js比较推荐的是基于commonJs的一个模块方案. 通过webpack这样的模块构建工具, 将一个组件的模块, css和js都写在同一个文件里. Vue本身也有自己脚手架叫做vue-cli, 通过脚手架来帮助我们自动构建项目, 再使用npm进行包管理也是使项目模块化的一种.Vue的语法糖和各种修饰符使得编写JS变得更加的容易. 同时使用一些依赖库, 比如babel使我们能大胆的使用ES6的语法糖. 原先需要封装一个函数的命令, 现在只用一句代码就能解决了. 大大的提高效率.Vue也有自己的生态系统和一个活跃的社区.后记JQuery作为曾经的霸主, 现在市场使用的份额仍然不小. 原因主要是一些老旧的项目仍然在使用着. 其次, 有些时候我们也会遇到需要频繁操作DOM的场景, 再加上JQuery庞大的生态圈. 有很多完善的插件仍然可以使用. 因此, JQuery虽然过时了, 但在未来几年中, 也必然还会有它的份额存在.]]></content>
+    <content type="text"><![CDATA[本篇文章是笔者早期写的，现在回顾来看其实是有一些片面的。jquery的语法封装确实不错JQuery, 曾经从事网页工作者的标配, 以前还没有前端的概念, 但不懂JQuery几乎是会被嘲讽的. 而当下的使用量却逐年降低, 更多的用户转向新兴的 React/Angular/Vue . 今天我们来聊聊, 相比JQuery成熟庞大生态圈, 为什么我们现在开始逐步的放弃 JQuery.前言截止至笔者写这篇文章为止(2018.1), 前端开发的大趋势主要是以下几点:旧浏览器逐渐被淘汰(比如IE8及以下, 主流框架已经放弃了支持)移动端需求的增加用户体验要求变得更高前端架构从传统的后台 MVC 向 RESTFul API + 前端 MV* 迁移众所周知. JQuery只是一个DOM和ajax的封装库. 现在前端项目的日益发展导致JQuery已经不足以承载太多的复杂项目了. JQuery能兼容各种低版本的浏览器这一大优势也在旧浏览器淘汰的路上逐步减弱. 越来越多的开发者开始拥抱新型框架, 它们使前端不太需要关心DOM了, 只需要关心状态.Vue因为我目前主要使用的是Vue的技术栈, 就来说说为什么要选择 Vue 吧.首先, Vue.js是一个库, 并不是一个真正框架(或者说是一个UI层面的框架). 它相比其他两个主流框架 (React/Angular) 来说 Vue 的学习成本相对来说会比较低. 其次 vue 的作者是国人尤雨溪, 因此它对中文的支持会更友好一点(说句题外话, 偶尔能看到有老外吐槽. Vue.js的源码偶尔能看到中文的注释2333).Vue是渐进式框架, 它主要关注的是视图管理. 其核心思想主要是数据驱动和组件化. vue的优势主要有以下几点:侵入性低不对整体构架做过多约束, 方便与其他库或是已有的前端技术栈整合. 比如说当前的项目就是在使用JQuery, 我们也可以将项目移入vue里, 然后逐步的进行改良.vue鼓励模块化因为组件系统是 Vue 的另一个重要概念, 因为它是一种抽象，允许我们使用小型、独立和通常可复用的组件构建大型应用. 这将有利于将界面代码自然分割成更容易维护的模块. 简而言之就是模块化开发, 减少代码的重复性和提高复用性.vue.js比较推荐的是基于commonJs的一个模块方案. 通过webpack这样的模块构建工具, 将一个组件的模块, css和js都写在同一个文件里. Vue本身也有自己脚手架叫做vue-cli, 通过脚手架来帮助我们自动构建项目, 再使用npm进行包管理也是使项目模块化的一种.Vue的语法糖和各种修饰符使得编写JS变得更加的容易. 同时使用一些依赖库, 比如babel使我们能大胆的使用ES6的语法糖. 原先需要封装一个函数的命令, 现在只用一句代码就能解决了. 大大的提高效率.Vue也有自己的生态系统和一个活跃的社区.后记JQuery作为曾经的霸主, 现在市场使用的份额仍然不小. 原因主要是一些老旧的项目仍然在使用着. 其次, 有些时候我们也会遇到需要频繁操作DOM的场景, 再加上JQuery庞大的生态圈. 有很多完善的插件仍然可以使用. 因此, JQuery虽然过时了, 但在未来几年中, 也必然还会有它的份额存在.]]></content>
       <categories>
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
         <tag>vue</tag>
         <tag>框架</tag>
         <tag>杂谈</tag>
+        <tag>javascript</tag>
       </tags>
   </entry>
   <entry>
@@ -248,8 +256,8 @@
         <category>性能优化</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
         <tag>性能优化</tag>
+        <tag>javascript</tag>
         <tag>HTML</tag>
         <tag>DOM</tag>
       </tags>
@@ -262,8 +270,8 @@
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
         <tag>性能优化</tag>
+        <tag>javascript</tag>
       </tags>
   </entry>
   <entry>
@@ -274,7 +282,7 @@
         <category>数据结构</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
+        <tag>javascript</tag>
         <tag>数据结构</tag>
         <tag>二叉树</tag>
         <tag>排序二叉树</tag>
@@ -288,9 +296,9 @@
         <category>vue</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
         <tag>vue</tag>
         <tag>性能优化</tag>
+        <tag>javascript</tag>
       </tags>
   </entry>
   <entry>
@@ -330,7 +338,7 @@
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
+        <tag>javascript</tag>
         <tag>JavaScript原理分析</tag>
         <tag>技巧</tag>
       </tags>
@@ -408,8 +416,8 @@
         <category>vue</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
         <tag>vue</tag>
+        <tag>javascript</tag>
       </tags>
   </entry>
   <entry>
@@ -417,7 +425,7 @@
     <url>%2Fblog%2F2017%2F11%2F27%2F%E8%B0%88%E8%B0%88npm%E5%8C%85%E9%87%8C%E7%9A%84%20install%20--save%20%E5%92%8C%20install%20--save-dev%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%2F</url>
     <content type="text"><![CDATA[当我们使用npm进行开发时经常能遇到需要安装依赖包, 那么npm install --save和npm install --save-dev之间到底有什么区别呢? 现在来探究一番.install –save-dev实际上--save-dev是开发时候所依赖的东西，如我们想添加自动添加前缀, 那么就安装autoprefixer到开发依赖去. 也就是编译打包后autoprefixer已经帮我们添加了相应的浏览器前缀, 那么我们之后就不需要依赖他了. 所以1npm install babel --save-dev在这里我们可以看到已经放进package.json中的devDependencies(开发依赖)中去了.install –save--save就是你发布之后还依赖的东西。 如果编译打包后还需要依赖的库, 如vue, 所以就放进了dependencies中(生产依赖).两者需要安装的依赖其实都可以在package.json中手动输入相应的库和版本号, 然后使用npm install就能进行安装package.json中的所有依赖了~]]></content>
       <tags>
-        <tag>JavaScript</tag>
+        <tag>javascript</tag>
         <tag>npm</tag>
       </tags>
   </entry>
@@ -429,8 +437,8 @@
         <category>javascript</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
         <tag>实战</tag>
+        <tag>javascript</tag>
       </tags>
   </entry>
   <entry>
@@ -446,9 +454,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[通过sourcetree实现远程仓库与本地仓库关联]]></title>
-    <url>%2Fblog%2F2017%2F11%2F03%2F%E9%80%9A%E8%BF%87sourcetree%E5%AE%9E%E7%8E%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E4%B8%8E%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E5%85%B3%E8%81%94%2F</url>
-    <content type="text"><![CDATA[&emsp;&emsp;sourceTree 是当下比较流行的git客户端,简化了如何与Git存储库进行交互，从而可以专注于编码, 可以通过简单的Git GUI可视化来管理仓库, 提高效率.&emsp;&emsp;题归正转, 今天我们来说说如何通过sourcetree来将本地仓库与远程仓库关联.步骤&emsp;首先把本地仓库初始化.&emsp;再添加到sourcetree上&emsp;进入github.com -&gt; your profile -&gt; repositories(仓库) -&gt; New&emsp;填写仓库信息, 复制仓库链接&emsp;设置 -&gt; 添加 -&gt; 填写信息 -&gt; 确定&emsp;然后就可以提交到github了~]]></content>
+    <title><![CDATA[使用 sourcetree 实现远程仓库与本地仓库关联]]></title>
+    <url>%2Fblog%2F2017%2F11%2F03%2Fuse-sourcetree-association%2F</url>
+    <content type="text"><![CDATA[sourceTree 是当下比较流行的 git 客户端,简化了如何与Git存储库进行交互，从而可以专注于编码, 可以通过简单的Git GUI可视化来管理仓库, 提高效率.今天我们来说说如何通过sourcetree来将本地仓库与远程仓库关联.步骤首先把本地仓库初始化.再添加到sourcetree上进入 Github -&gt; your profile -&gt; repositories(仓库) -&gt; New填写仓库信息, 复制仓库链接 设置 -&gt; 添加 -&gt; 填写信息 -&gt; 确定 然后就可以提交到github了~]]></content>
       <categories>
         <category>Git</category>
       </categories>
@@ -469,41 +477,28 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[JavaScript-常用速查的正则表达式]]></title>
-    <url>%2Fblog%2F2017%2F08%2F21%2FJavaScript-%E5%B8%B8%E7%94%A8%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%2F</url>
-    <content type="text"><![CDATA[自己收集了一套针对工作中所需的正则表达式. 多适用于字符串处理、表单验证、日志数据分析等场合，实用高效.Tips：在本文找想要的正则时，可以尝试使用浏览器的快速查询功能。Ctrl + F输入关键字能提高查询的效率哟~常见的表单验证1234567891011121314151617// 用户名正则，4到16位（字母，数字，下划线，减号）var userNameReg = /^[a-zA-Z0-9_-]&#123;4,16&#125;$/// 密码强度正则，最少6位，包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符var passwordReg = /^.*(?=.&#123;6,&#125;)(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&amp;*? ]).*$/;// 匹配邮箱地址var mailReg = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/// 中国六位数的邮政编码var postalCode = /^\d&#123;6&#125;$/// 匹配15~18位身份证var IDCard = /(^[1-9]\d&#123;5&#125;(18|19|([23]\d))\d&#123;2&#125;((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d&#123;3&#125;[0-9Xx]$)|(^[1-9]\d&#123;5&#125;\d&#123;2&#125;((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d&#123;2&#125;$)/// 匹配18位的新版身份证var IDCard_18 = /^[1-9]\d&#123;5&#125;(18|19|([23]\d))\d&#123;2&#125;((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d&#123;3&#125;[0-9Xx]$/网络相关12345678//ipv4地址正则var IPReg = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.)&#123;3&#125;(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$///Reg Hex颜色正则var cPattern = /^#?([a-fA-F0-9]&#123;6&#125;|[a-fA-F0-9]&#123;3&#125;)$/// URL正则var urlReg= /^((https?|ftp|file):\/\/)?([\da-z\.-]+)\.([a-z\.]&#123;2,6&#125;)([\/\w \.-]*)*\/?$/;联系方式1234567891011// 5-11位的腾讯qq号var qqReg = /^[1-9][0-9]&#123;4,11&#125;$/// 微信号正则，6至20位，以字母开头，字母，数字，减号，下划线var qqReg = /^[a-zA-Z]([-_a-zA-Z0-9]&#123;5,19&#125;)+$/// 国内常见var phone = /^1[3|5|8|9]\d&#123;9&#125;$/// 固定电话var telephone = /^(0[0-9]&#123;2&#125;)\d&#123;8&#125;$|^(0[0-9]&#123;3&#125;(\d&#123;7,8&#125;))$/匹配特定数字1234567891011121314151617181920212223242526272829// 匹配正整数var reg = /^[1-9]\d*$/// 匹配负整数var reg = /^-[1-9]\d*$/// 匹配整数var reg = /^-?[1-9]\d*$/// 匹配非负整数（正整数 + 0）var reg = /^[1-9]\d*|0$/// 匹配非正整数（负整数 + 0）var reg = /^-[1-9]\d*|0$/// 匹配正浮点数var reg = /^[1-9]\d*\.\d*|0\.\d*[1-9]\d*$/ // 匹配负浮点数var reg = /^-([1-9]\d*\.\d*|0\.\d*[1-9]\d*)$/// 匹配浮点数var reg = /^-?([1-9]\d*\.\d*|0\.\d*[1-9]\d*|0?\.0+|0)$/// 匹配非负浮点数（正浮点数 + 0）var reg = /^[1-9]\d*\.\d*|0\.\d*[1-9]\d*|0?\.0+|0$/// 匹配非正浮点数（负浮点数 + 0）var reg = /^(-([1-9]\d*\.\d*|0\.\d*[1-9]\d*))|0?\.0+|0$/字符串相关1234567891011121314151617181920212223// 匹配由26个英文字母组成的字符串var reg = /^[A-Za-z]+$/// 匹配由26个英文字母的大写组成的字符串var reg = /^[A-Z]+$/// 匹配由26个英文字母的小写组成的字符串var reg = /^[a-z]+$/// 匹配由数字和26个英文字母组成的字符串var reg = /^[A-Za-z0-9]+$/// 匹配由数字、26个英文字母或者下划线组成的字符串var reg = /^\w+$/// 匹配空白行的正则表达式var reg = /\n\s*\r/// 匹配首尾空白字符的正则表达式var reg = /^\s*|\s*$/// 匹配双字节字符(包括汉字在内, 一个双字节字符长度计2，ASCII字符计1)var reg = /[^\x00-\xff]/`以后将正则表达式的更新都在我的新repo - Front-End-Lab 中. 求关注求支持呀~]]></content>
+    <title><![CDATA[速查正则表达式]]></title>
+    <url>%2Fblog%2F2017%2F08%2F21%2Fjs-common-regexp%2F</url>
+    <content type="text"><![CDATA[自己收集了一套针对工作中所需的正则表达式. 多适用于字符串处理、表单验证、日志数据分析等场合，实用高效.tips: 善用Ctrl + F输入关键字能提高查询的效率哟~常见正则校验表单验证123456789101112131415161718192021222324// 用户名正则，4到16位（字母，数字，下划线，减号）var userNameReg = /^[a-zA-Z0-9_-]&#123;4,16&#125;$/;// 必须拥有数字和特殊字符，并且在6 ~ 16位之间// (?=.*[0-9]) - 断言一个字符串至少有一个数字;// (?=.*[!@#$%^&amp;*]) - 断言一个字符串至少有一个特殊字符。var reg = /^(?=.*[0-9])(?=.*[!@#$%^&amp;*])[a-zA-Z0-9!@#$%^&amp;*]&#123;6,16&#125;$/;// 匹配邮箱地址var mailReg = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;// 中国六位数的邮政编码var postalCode = /^\d&#123;6&#125;$/;// 匹配15~18位身份证var IDCard = /(^[1-9]\d&#123;5&#125;(18|19|([23]\d))\d&#123;2&#125;((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d&#123;3&#125;[0-9Xx]$)|(^[1-9]\d&#123;5&#125;\d&#123;2&#125;((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d&#123;2&#125;$)/;// 匹配18位的新版身份证var IDCard_18 = /^[1-9]\d&#123;5&#125;(18|19|([23]\d))\d&#123;2&#125;((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d&#123;3&#125;[0-9Xx]$/;// 校验输入框是字符数为是否为 4~16 位(英文长度为1, 汉字长度为2)var numName = /^[a-zA-Z0-9]&#123;4,16&#125;$/;var mate = numName.test(value.replace(/[\u4e00-\u9fa5]/g, 'aa'));网络相关1234567891011//ipv4地址正则var IPReg = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.)&#123;3&#125;(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;// Reg Hex颜色正则var pattern = /^#?([a-fA-F0-9]&#123;6&#125;|[a-fA-F0-9]&#123;3&#125;)$/;// URL正则var urlReg= /^((https?|ftp|file):\/\/)?([\da-z\.-]+)\.([a-z\.]&#123;2,6&#125;)([\/\w \.-]*)*\/?$/;// 匹配JSON格式var reg = /^\w+\((&#123;[^()]+&#125;)\)$/匹配json字符串12345678var ret = response.data;if (typeof ret === 'string') &#123; var reg = /^\w+\((&#123;[^()]+&#125;)\)$/ var matches = ret.match(reg); if (matches) ret = JSON.parse(matches[1]);&#125;res.json(ret);联系方式1234567891011// 5-11位的腾讯qq号var qqReg = /^[1-9][0-9]&#123;4,11&#125;$/;// 微信号正则，6至20位，以字母开头，字母，数字，减号，下划线var qqReg = /^[a-zA-Z]([-_a-zA-Z0-9]&#123;5,19&#125;)+$/;// 国内常见var phone = /^1[3|5|8|9]\d&#123;9&#125;$/;// 固定电话var telephone = /^(0[0-9]&#123;2&#125;)\d&#123;8&#125;$|^(0[0-9]&#123;3&#125;(\d&#123;7,8&#125;))$/;匹配特定数字1234567891011121314151617181920212223242526272829// 匹配正整数var reg = /^[1-9]\d*$/;// 匹配负整数var reg = /^-[1-9]\d*$/;// 匹配整数var reg = /^-?[1-9]\d*$/;// 匹配非负整数（正整数 + 0）var reg = /^[1-9]\d*|0$/;// 匹配非正整数（负整数 + 0）var reg = /^-[1-9]\d*|0$/;// 匹配正浮点数var reg = /^[1-9]\d*\.\d*|0\.\d*[1-9]\d*$/;// 匹配负浮点数var reg = /^-([1-9]\d*\.\d*|0\.\d*[1-9]\d*)$/;// 匹配浮点数var reg = /^-?([1-9]\d*\.\d*|0\.\d*[1-9]\d*|0?\.0+|0)$/;// 匹配非负浮点数（正浮点数 + 0）var reg = /^[1-9]\d*\.\d*|0\.\d*[1-9]\d*|0?\.0+|0$/;// 匹配非正浮点数（负浮点数 + 0）var reg = /^(-([1-9]\d*\.\d*|0\.\d*[1-9]\d*))|0?\.0+|0$/;字符串相关123456789101112131415161718192021222324// 匹配由26个英文字母组成的字符串var reg = /^[A-Za-z]+$/;// 匹配由26个英文字母的大写组成的字符串var reg = /^[A-Z]+$/;// 匹配由26个英文字母的小写组成的字符串var reg = /^[a-z]+$/;// 匹配由数字和26个英文字母组成的字符串var reg = /^[A-Za-z0-9]+$/;// 匹配由数字、26个英文字母或者下;划线组成的字符串var reg = /^\w+$/;// 匹配空白行的正则表达式var reg = /\n\s*\r/;// 匹配首尾空白字符的正则表达式var reg = /^\s*|\s*$/;var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;// 匹配双字节字符(包括汉字在内, 一个双字节字符长度计2，ASCII字符计1)var reg = /[^\x00-\xff]/g;匹配语系字符范围用法:/^[\u4E00-\u9FA5]+$/(匹配简体中文)2E80～33FFh：中日韩符号区。收容康熙字典部首、中日韩辅助部首、注音符号、日本假名、韩文音符，中日韩的符号、标点、带圈或带括符文数字、月份，以及日本的假名组合、单位、年号、月份、日期、时间等。3400～4DFFh：中日韩认同表意文字扩充A区，总计收容6,582个中日韩汉字。4E00～9FFFh：中日韩认同表意文字区，总计收容20,902个中日韩汉字。A000～A4FFh：彝族文字区，收容中国南方彝族文字和字根。AC00～D7FFh：韩文拼音组合字区，收容以韩文音符拼成的文字。F900～FAFFh：中日韩兼容表意文字区，总计收容302个中日韩汉字。FB00～FFFDh：文字表现形式区，收容组合拉丁文字、希伯来文、阿拉伯文、中日韩直式标点、小符号、半角符号、全角符号等。正则函数使用示例replace1234// 使用正则匹配中文字节, 将其替换为xx, 再获取字符串的长度就是完整的长度了.function getLen(str) &#123; return str.replace(/[^\x00-\xff]/g, 'xx').length;&#125;test123456789// 匹配是否符合邮件规则var reg = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;// test返回一个布尔值, 表示是否匹配到制定字符串var mail = reg.test('anran758@gmail.com')if (mail) &#123; // 如果邮件格式正确的话, 就可以做点啥了(雾&#125;正则技巧反向引用1234// 比如这里我们想让这个日期格式反转// 正则括号是一个分组, 下面的代码就捕获了三个分组// 通过$分组符来转换位置, 来达到我们想要的结果'2018-3-21'.replace(/(\d&#123;4&#125;)-(\d&#123;1,2&#125;)-(\d&#123;1,2&#125;)/g, '$2/$3/$1') // "3/21/2018"忽略分組不希望捕获某些分组, 只需要分组内加上?:即可:12var reg = /(?:Byron).(ok)/;'Byron-ok'.replace(reg, '$1'); // 只匹配了 ok前瞻名字正則正向前瞻exp(?=assert)负向前瞻exp(?!assert)正向前瞻就是匹配前者, 效验后者是否存在.1234567// 这个正则的意思是: 匹配一个单词字符( [a-zA-Z0-9_] ), 然后验证后面是不是数字// 结果为: "X2*3". 因为3后面没有数字, 所以没有匹配到.'a2*3'.replace(/\w(?=\d)/g, 'X')// 结果为: "X2*X4X8"// 总的说就是'a2*34v8'.replace(/\w(?=\d)/g, 'X')负向前瞻则相反, 匹配前面, 替代后面123456789// a 是单词字符, 后面是数字, 因此没有匹配到// 2 是单词字符, 后面不是数字, 被替换成X// * 不是单词字符 因此没有匹配到// 3 是单词字符, 后面是数字, 因此没有匹配到// 4 是单词字符, 后面不是数字, 被替换成X// v 是单词字符, 后面是数字, 因此没有匹配到// 8 是单词字符, 后面没有匹配到数字, 被替换成X// 结果: aX*4XvX'a2*34v8'.replace(/\w(?!\d)/g, 'X')可视化正则表达式, 可以试试regexper, 让你看懂正则匹配的走向.以后的更新与维护都将在 Front-End-Lab/REGEXP 中。]]></content>
       <categories>
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
         <tag>正则表达式</tag>
+        <tag>javascript</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[数组方法深入研究之二 (基础算法)]]></title>
-    <url>%2Fblog%2F2017%2F07%2F19%2FBasic%20Algorithm%20Scripting%20-%202%2F</url>
-    <content type="text"><![CDATA[数组方法的深入学习Chunky Monkey(分割数组)猴子吃香蕉, 分割数组,把一个数组arr按照指定的数组大小size分割成若干个数组块。例如:&#8195;&#8195;hunk([1,2,3,4],2) =&gt; [[1,2],[3,4]];&#8195;&#8195;chunk([1,2,3,4,5],2) =&gt; [[1,2],[3,4],[5]];思路&#8195;这道题重点主要是每size个值分割一个数组,这里我们可以使用以下几种方法来解题.while + splicefor + slicewhile + slice第一种12345678910111213141516// while + splicefunction chunk(arr, size) &#123; // 定义一个新数组和用来临时存放分割的空数组. var a = [], t = [], i = 0, len = arr.length; while (i &lt; len)&#123; t = arr.splice(0, size); a.push(t); i += size; &#125; return a;&#125;chunk([0, 1, 2, 3, 4, 5], 3);&#8195;在这里值得注意的是,len保存arr.length的快照是必须的..因为splice会修改原来原来的数组.第二种12345678910111213141516171819// for + splicefunction chunk(arr, size) &#123; var a = [], t = [], len = arr.length; // 数组中的个数小于size或者size是小于等于0的也就没有必要分割了 if (len &lt;= size || size &lt;= 0) &#123; return arr; &#125; else &#123; // 它的重点主要是数组中的值的数量 for (var i = 0;i &lt; len; i += size) &#123; // 查询指定数 t = arr.slice(i, i + size); a.push(t); &#125; &#125; return a;&#125;chunk([0, 1, 2, 3, 4, 5], 3);第三种1234567891011121314// while + slicefunction chunk(arr, size) &#123; var a = [], t = [], i = 0, len = arr.length; while (i &lt; len) &#123; // 查询的值 t = arr.slice(i, i += size); a.push(t); &#125; return a;&#125;chunk([0, 1, 2, 3, 4, 5], 3);Falsy Bouncer(过滤数组假值)删除数组中的所有假值。在JavaScript中，假值有false、null、0、””、undefined 和 NaN。思路&#8195;这道题比较有意思..一开始我走进了一个误区,想着单纯return x !== false &amp;&amp; ...这样简单的返回就可以了,后来发现在处理NaN时会很麻烦..isNaN()还会把英文字符串也给过滤掉,再加上多个&amp;&amp;使得代码会变得繁乱,可读性不高.&#8195;然后查阅了一番资料后,才注意到平时被忽略Boolean()的一些特性对于处理这种类型的问题简直不能太合适.12345678910function bouncer(arr) &#123; // 请把你的代码写在这里 var a = arr.filter(function(x) &#123; return Boolean(x); &#125;); return a;&#125;bouncer([7, "ate", "", false, 9]);&#8195;摘至MDN.Boolean 的描述:如果Boolean构造函数的参数不是一个布尔值,则该参数会被转换成一个布尔值.如果参数是 0, -0, null, false, NaN, undefined, 或者空字符串 (“”),生成的Boolean对象的值为false. 其他任何值,包括任何对象或者字符串”false”, 都会创建一个值为true的Boolean对象.Seek and Destroy (摧毁指定数组)实现一个摧毁(destroyer)函数，第一个参数是待摧毁的数组，其余的参数是待摧毁的值。实现原理&#8195;filter() 为数组中的每个元素调用一次 callback函数，并利用所有使得 callback 返回 true 或 等价于 true 的值 的元素创建一个新数组.&#8195;filter()从头至尾遍历数组,若回调函数返回的是true(通过测试),就存入新数组中.若返回的是false,则过滤掉.12345678910111213141516function destroyer(arr) &#123; // 先将第一个参数隔开,定义一个储存着待移除的空数组 var args = arguments[0], removeArgs = []; // 要被删除的参数装进'removeArgs'里 for (var i = 1; i &lt; arguments.length; i++) &#123; removeArgs.push(arguments[i]); &#125; // 遍历'args',若'removeArgs'中不存在'value',应该返回-1.反之返回false被过滤掉. return args.filter(function(value) &#123; return removeArgs.indexOf(value) === -1; &#125;);&#125;destroyer([1, 2, 3, 1, 2, 3], 2, 3);Where do I belong (数组排序并找出元素索引)先给数组排序，然后找到指定的值在数组的位置，最后返回位置对应的索引。&#8195;举例：where([1,2,3,4], 1.5) 应该返回 1。因为1.5插入到数组[1,2,3,4]后变成[1,1.5,2,3,4]，而1.5对应的索引值就是1。&#8195; 同理，where([20,3,5], 19) 应该返回 2。因为数组会先排序为 [3,5,20]，19插入到数组[3,5,20]后变成[3,5,19,20]，而19对应的索引值就是2。思路&#8195;这个没啥好说的了..将第二个参数push进数组中,再进行排序.排序后通过indexOf()来实现功能.不过需要注意的是sort默认是按照’Unicode’编码进行排序的.Caesars Cipher (凯撒密码)风靡全球的凯撒密码Caesar cipher，又叫移位密码。移位密码也就是密码中的字母会按照指定的数量来做移位。一个常见的案例就是ROT13密码，字母会移位13个位置。由’A’ ↔ ‘N’, ‘B’ ↔ ‘O’，以此类推。写一个ROT13函数，实现输入加密字符串，输出解密字符串。所有的字母都是大写，不要转化任何非字母形式的字符(例如：空格，标点符号)，遇到这些特殊字符，跳过它们。思路&#8195;本次练习用到String.charCodeAt()和String.fromCharCode(),首先来查询字符串的Unicode字符.&#8195;根据Unicode表我们得知:小于65和大于90对应的就是数字和小写字符a-z大于等于65和小于等于77对应的就是大写字符A-M (13位)大于等于78和小于等于90对应的就是大写字符N-Z&#8195;ROT13的功能就是移位,如果序号小于78(A-M字母)，使用String.fromCharCode()转换成该序号加13的字符,反之减13.1234567891011121314151617181920212223function rot13(str) &#123; // LBH QVQ VG! var newStr = []; for (var i = 0;i &lt; str.length;i ++) &#123; // 查询每个字符串的Unicode编号 var temp = str.charCodeAt(i); // 非大写字母,空格,数字等都不转换 if (temp &lt; 65 || temp &gt; 91) &#123; newStr.push(str.charAt(i)); continue; // 大于77(N-Z),就转换成该序号 - 13的字符串. &#125; else if (temp &gt; 77) &#123; newStr.push(String.fromCharCode(temp - 13)); // 小于78(A-M),就转换成该序号 + 13的字符串 &#125; else &#123; newStr.push(String.fromCharCode(temp + 13)); &#125; &#125; return newStr.join('');&#125;rot13("SERR PBQR PNZC"); // 你可以修改这一行来测试你的代码Sum All Numbers in a Range题目描述&emsp;&emsp;传递给一个包含两个数字的数组。返回这两个数字和它们之间所有数字的和。最小的数字并非总在最前面。比如传递[1, 4]会返回10, 即1 + 2 + 3 + 4.非数组方法1234567891011121314 function sumAll(arr) &#123; var max = Math.max.apply(null, arr); var min = Math.min.apply(null,arr); var num = max - min; var total = min; while(num) &#123; num--; total += ++min; &#125; return total;&#125;sumAll([1, 1]);]]></content>
+    <title><![CDATA[数组方法深入研究与练习]]></title>
+    <url>%2Fblog%2F2017%2F07%2F16%2Farray-method-test%2F</url>
+    <content type="text"><![CDATA[数组是js中最常见的一种数据类型，善用正确数组的方法可以编写出良好结构的代码。目录目录回文处理首个单词字母大写返回数组最大的数字检查字符串结尾重复输出字符串截断字符串分割数组过滤数组假值摧毁指定数组数组排序并找出元素索引凯撒密码Sum All Numbers in a Range非数组方法回文处理Palindromes(回文)，顾名思义就是指倒着念和顺着念都是相同、前后对称的。处理这种回文我们只需将字符串反转再进行对比，就可以得到结果啦：12345678910function palindrome(str) &#123; var string = str.replace(/[\W_]/g, '').toLowerCase(); var replaceStr = string .split('') .reverse() .join(''); return replaceStr === string;&#125;palindrome('eye'); // true首个单词字母大写Title Case a Sentence(首个单词字母大写)句中单词首字母大写, 确保字符串的每个单词首字母都大写，其余部分小写。1234567function titleCase(str) &#123; return str.toLowerCase().replace(/( |^)[a-z]/g, function(L) &#123; return L.toUpperCase(); &#125;);&#125;titleCase("I'm a little tea pot"); // I'm A Little Tea Pot思路首先把字符串转换为小写,再用正则匹配带空格或者就字母开头的首个字母replace替换成大写字母.返回数组最大的数字Return Largest Numbers in Arrays(返回数组最大的数字)找出多个数组中的最大数,并返回一个新数组123456789101112131415161718function largestOfFour(arr) &#123; // 请把你的代码写在这里 var count = []; for (var i = 0; i &lt; arr.length; i++) &#123; var a = arr[i].sort(function(a, b) &#123; return b - a; &#125;); count.push(a[0]); &#125; return count;&#125;largestOfFour([ [4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]); // [5,27,39,1001]思路新定义一个数组,遍历传进来的数组进行从大到小排序,将排序后最大的数push进新的数组count最后再返回.检查字符串结尾Confirm the Ending(检查字符串结尾)检查字符串结尾,判断一个字符串(str)是否以指定的字符串(target)结尾, 返回一个布尔值。12345678function confirmEnding(str, target) &#123; var lenth = str.length - target.length; return str.substr(lenth) === target&#125;confirmEnding('Connor', 'n'); // falseconfirmEnding('Bastian', 'n'); // trueconfirmEnding('He has to give me a new name', 'me'); // true思路substr()接受一个start的形参，是一个字符的索引，把字符串str.length - target.length就可以对比结尾字符串是否一样了.重复输出字符串Repeat a string repeat a string(重复输出字符串，复读机(雾)重复一个指定的字符串num次，如果num是一个负数则返回一个空字符串。对于这种题目可以使用两种方法解决:递归12345678910111213// 第一种使用递归function repeat(str, num) &#123; // 请把你的代码写在这里 if (num &lt; 0) &#123; return ''; &#125; else if (num === 1) &#123; return str; &#125; else &#123; return str + repeat(str, num - 1); &#125;&#125;repeat('abc', 3); // "abcabcabc"while12345678910function repeat(str, num) &#123; var s = ''; while (num &gt; 0) &#123; s += str; num--; &#125; return s;&#125;repeat('abc', 3);思路递归一般放进if()判断语句中,是一种通过重复地调用函数本身,逐次减少 num 的值来实现效果.第二种使用了while语句,每调用一次就递减 1,直至num &gt; 0.截断字符串Truncate a string(截断字符串)截断字符串,如果字符串的长度比指定的参数 num 长，则把多余的部分用…来表示。插入到字符串尾部的三个点号也会计入字符串的长度。如果指定的参数 num 小于或等于 3，则添加的三个点号不会计入字符串的长度。12345678910111213141516function truncate(str, num) &#123; // 首先判断num的值是不是大于字符串的长度,若是,那就没有必要省略了. if (num &gt;= str.length) &#123; return str; &#125; if (num &lt;= 3) &#123; return str.slice(0, num) + '...'; &#125; return str.slice(0, num - 3) + '...';&#125;var str = 'A-tisket a-tasket A green and yellow basket';truncate(str, str.length);分割数组Chunky Monkey(分割数组)猴子吃香蕉, 分割数组,把一个数组 arr 按照指定的数组大小size分割成若干个数组块。例如:12hunk([1,2,3,4],2) =&gt; [[1,2],[3,4]];chunk([1,2,3,4,5],2) =&gt; [[1,2],[3,4],[5]];思路这道题重点主要是每size个值分割一个数组,这里我们可以使用以下几种方法来解题.while + splice1234567891011121314151617181920// while + splicefunction chunk(arr, size) &#123; // 定义一个新数组和用来临时存放分割的空数组. var a = []; var t = []; var i = 0; // 需要保持快照 var len = arr.length; while (i &lt; len) &#123; t = arr.splice(0, size); a.push(t); i += size; &#125; return a;&#125;chunk([0, 1, 2, 3, 4, 5], 3);for + slice123456789101112131415161718192021// for + splicefunction chunk(arr, size) &#123; var a = [], t = [], len = arr.length; // 数组中的个数小于size或者size是小于等于0的也就没有必要分割了 if (len &lt;= size || size &lt;= 0) &#123; return arr; &#125; else &#123; // 它的重点主要是数组中的值的数量 for (var i = 0; i &lt; len; i += size) &#123; // 查询指定数 t = arr.slice(i, i + size); a.push(t); &#125; &#125; return a;&#125;chunk([0, 1, 2, 3, 4, 5], 3);while + slice12345678910111213141516// while + slicefunction chunk(arr, size) &#123; var a = [], t = [], i = 0, len = arr.length; while (i &lt; len) &#123; // 查询的值 t = arr.slice(i, (i += size)); a.push(t); &#125; return a;&#125;chunk([0, 1, 2, 3, 4, 5], 3);过滤数组假值Falsy Bouncer(过滤数组假值)删除数组中的所有假值。在 JavaScript 中，假值有 false、null、0、&quot;&quot;、undefined和NaN。这道题比较有意思..一开始我走进了一个误区，想着单纯return x !== false &amp;&amp; ...这样简单的返回就可以了，后来发现在处理NaN时会很麻烦..isNaN()还会把英文字符串也给过滤掉,再加上多个&amp;&amp;使得代码会变得繁乱,可读性不高.然后查阅了一番资料后,才注意到平时被忽略Boolean()的一些特性对于处理这种类型的问题简直不能太合适.12345678910function bouncer(arr) &#123; // 请把你的代码写在这里 var a = arr.filter(function(x) &#123; return Boolean(x); &#125;); return a;&#125;bouncer([7, 'ate', '', false, 9]);摘至MDN.Boolean 的描述:如果 Boolean 构造函数的参数不是一个布尔值,则该参数会被转换成一个布尔值.如果参数是 0, -0, null, false, NaN, undefined, 或者空字符串 (“”),生成的 Boolean 对象的值为 false. 其他任何值,包括任何对象或者字符串”false”, 都会创建一个值为 true 的 Boolean 对象.摧毁指定数组Seek and Destroy (摧毁指定数组)实现一个摧毁(destroyer)函数，第一个参数是待摧毁的数组，其余的参数是待摧毁的值。实现原理filter() 为数组中的每个元素调用一次 callback函数，并利用所有使得 callback 返回 true 或 等价于 true 的值 的元素创建一个新数组.filter()从头至尾遍历数组,若回调函数返回的是 true(通过测试),就存入新数组中.若返回的是 false,则过滤掉.12345678910111213141516function destroyer(arr) &#123; // 先将第一个参数隔开,定义一个储存着待移除的空数组 var args = arguments[0], removeArgs = []; // 要被删除的参数装进'removeArgs'里 for (var i = 1; i &lt; arguments.length; i++) &#123; removeArgs.push(arguments[i]); &#125; // 遍历'args',若'removeArgs'中不存在'value',应该返回-1.反之返回false被过滤掉. return args.filter(function(value) &#123; return removeArgs.indexOf(value) === -1; &#125;);&#125;destroyer([1, 2, 3, 1, 2, 3], 2, 3);数组排序并找出元素索引Where do I belong (数组排序并找出元素索引)先给数组排序，然后找到指定的值在数组的位置，最后返回位置对应的索引。举例：where([1,2,3,4], 1.5) 应该返回 1。因为 1.5 插入到数组[1,2,3,4]后变成[1,1.5,2,3,4]，而 1.5 对应的索引值就是 1。同理，where([20,3,5], 19) 应该返回 2。因为数组会先排序为 [3,5,20]，19 插入到数组[3,5,20]后变成[3,5,19,20]，而 19 对应的索引值就是 2。思路这个没啥好说的了..将第二个参数push进数组中,再进行排序.排序后通过indexOf()来实现功能.不过需要注意的是sort默认是按照’Unicode’编码进行排序的.凯撒密码Caesars Cipher (凯撒密码)风靡全球的凯撒密码 Caesar cipher，又叫移位密码。移位密码也就是密码中的字母会按照指定的数量来做移位。一个常见的案例就是 ROT13 密码，字母会移位 13 个位置。由’A’ ↔ ‘N’, ‘B’ ↔ ‘O’，以此类推。写一个 ROT13 函数，实现输入加密字符串，输出解密字符串。所有的字母都是大写，不要转化任何非字母形式的字符(例如：空格，标点符号)，遇到这些特殊字符，跳过它们。思路本次练习用到String.charCodeAt()和String.fromCharCode(),首先来查询字符串的 Unicode 字符.根据Unicode表我们得知:&lt; 65同时&gt; 90对应的就是数字和小写字符a-z&gt;= 65和&lt;= 77对应的就是大写字符A-M(13 位)&gt;= 78和&lt;= 90 对应的就是大写字符N-ZROT13 的功能就是移位,如果序号小于 78(A-M 字母)，使用 String.fromCharCode()转换成该序号加 13 的字符,反之减 13.123456789101112131415161718192021222324function rot13(str) &#123; // LBH QVQ VG! var newStr = []; for (var i = 0; i &lt; str.length; i++) &#123; // 查询每个字符串的Unicode编号 var temp = str.charCodeAt(i); // 非大写字母,空格,数字等都不转换 if (temp &lt; 65 || temp &gt; 91) &#123; newStr.push(str.charAt(i)); continue; // 大于77(N-Z),就转换成该序号 - 13的字符串. &#125; else if (temp &gt; 77) &#123; newStr.push(String.fromCharCode(temp - 13)); // 小于78(A-M),就转换成该序号 + 13的字符串 &#125; else &#123; newStr.push(String.fromCharCode(temp + 13)); &#125; &#125; return newStr.join('');&#125;rot13('SERR PBQR PNZC'); // 你可以修改这一行来测试你的代码Sum All Numbers in a Range题目描述&emsp;&emsp;传递给一个包含两个数字的数组。返回这两个数字和它们之间所有数字的和。最小的数字并非总在最前面。比如传递[1, 4]会返回10, 即1 + 2 + 3 + 4.非数组方法1234567891011121314 function sumAll(arr) &#123; var max = Math.max.apply(null, arr); var min = Math.min.apply(null,arr); var num = max - min; var total = min; while(num) &#123; num--; total += ++min; &#125; return total;&#125;sumAll([1, 1]);]]></content>
       <categories>
-        <category>算法</category>
+        <category>javascript</category>
       </categories>
       <tags>
         <tag>算法</tag>
         <tag>ffc</tag>
-        <tag>test</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[数组方法深入研究之一 (基础算法)]]></title>
-    <url>%2Fblog%2F2017%2F07%2F16%2FBasic%20Algorithm%20Scripting%20-%201%2F</url>
-    <content type="text"><![CDATA[一些基础的算法练习Palindromes(回文处理)Palindromes称之为回文。在中文文当中是指倒着念和顺着念都是相同的，前后对称.正则表达式replace()1234567function palindrome(str) &#123; var string = str.replace(/[\W_]/g,'').toLowerCase(); var replaceStr = string.split('').reverse().join(''); return replaceStr === string;&#125;palindrome("eye"); // true思路&#8195;首先对字符串进行处理..去掉字符串多余的标点符号和空格，然后把字符串转化成小写.&#8195;split把字符串拆分为一个字符串组成的数组.reverse反转数组顺序,join拼接字符串.Title Case a Sentence(首个单词字母大写)句中单词首字母大写,确保字符串的每个单词首字母都大写，其余部分小写。1234567function titleCase(str) &#123; return str.toLowerCase().replace(/( |^)[a-z]/g, function(L) &#123; return L.toUpperCase(); &#125;);&#125;titleCase("I'm a little tea pot"); // I'm A Little Tea Pot思路&#8195;首先把字符串转换为小写,再用正则匹配带空格或者就字母开头的首个字母replace替换成大写字母.Return Largest Numbers in Arrays(返回数组最大的数字)找出多个数组中的最大数,并返回一个新数组12345678910111213function largestOfFour(arr) &#123; // 请把你的代码写在这里 var count = []; for (var i = 0; i &lt; arr.length; i ++) &#123; var a = arr[i].sort(function (a,b) &#123; return b-a; &#125;); count.push(a[0]); &#125; return count;&#125;largestOfFour([[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]); // [5,27,39,1001]思路&#8195;新定义一个数组,遍历传进来的数组进行从大到小排序,将排序后最大的数push进新的数组count最后再返回.Confirm the Ending(检查字符串结尾)检查字符串结尾,判断一个字符串(str)是否以指定的字符串(target)结尾。如果是，返回true;如果不是，返回false。123456789101112function confirmEnding(str, target) &#123; var l = str.length - target.length; if (str.substr(l) === target) &#123; return true; &#125; else &#123; return false; &#125;&#125;confirmEnding("Connor", "n"); // falseconfirmEnding("Bastian", "n"); // trueconfirmEnding("He has to give me a new name", "me"); // true思路&#8195;乍一看好像挺麻烦的样子,容我们深入一看却发现好像并没有想象中的麻烦..&#8195;这里用上了String.prototype.substr()而参数start是一个字符的索引,把字符串str.length - target.length就可以对比结尾字符串是否一样了.Repeat a string repeat a string(重复输出字符串)重复一个指定的字符串 num次，如果num是一个负数则返回一个空字符串。&#8195;对于这种题目可以使用两种方法解决:递归while循环12345678910111213// 第一种使用递归function repeat(str, num) &#123; // 请把你的代码写在这里 if (num &lt; 0)&#123; return ""; &#125; else if (num === 1) &#123; return str; &#125; else &#123; return str + repeat(str, num - 1); &#125;&#125;repeat("abc", 3); // "abcabcabc"1234567891011// 第二种使用whilefunction repeat(str, num) &#123; var s = ''; while(num &gt; 0)&#123; s += str; num --; &#125; return s;&#125;repeat("abc", 3);思路&#8195;递归一般放进if()判断语句中,是一种通过重复地调用函数本身,逐次减少num的值来实现效果.第二种使用了while语句,每调用一次就递减1,直至num &gt; 0.Truncate a string(截断字符串)截断字符串,如果字符串的长度比指定的参数num长，则把多余的部分用…来表示。插入到字符串尾部的三个点号也会计入字符串的长度。如果指定的参数num小于或等于3，则添加的三个点号不会计入字符串的长度。12345678910111213function truncate(str, num) &#123; // 首先判断num的值是不是大于字符串的长度,若是,那就没有必要省略了. if(num &gt;= str.length) &#123; return str; &#125; else if (num &lt;= 3) &#123; return str.slice(0,num) + "..."; &#125; else &#123; return str.slice(0,num-3) + "..."; &#125;&#125;truncate("A-tisket a-tasket A green and yellow basket", "A-tisket a-tasket A green and yellow basket".length);思路&#8195;slice截取字符串.substr(),indexOf()和lastIndexOf()办法同理.https://www.w3cplus.com/javascript/confirm-the-ending.html 大漠老师有一篇文章对此使用有着更详细的说明.]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>算法</tag>
-        <tag>ffc</tag>
-        <tag>test</tag>
+        <tag>javascript</tag>
       </tags>
   </entry>
 </search>
