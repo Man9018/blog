@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://anran758.github.io/blog/2017/07/16/array-method-test/</loc>
+    
+    <lastmod>2019-08-05T01:51:36.277Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://anran758.github.io/blog/2017/11/03/use-sourcetree-association/</loc>
+    
+    <lastmod>2019-08-05T01:51:13.052Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://anran758.github.io/blog/2019/02/11/miniprograms-download-image/</loc>
     
     <lastmod>2019-08-04T16:35:10.768Z</lastmod>
@@ -16,23 +30,9 @@
   </url>
   
   <url>
-    <loc>https://anran758.github.io/blog/2017/11/03/use-sourcetree-association/</loc>
-    
-    <lastmod>2019-08-04T12:49:55.101Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://anran758.github.io/blog/2017/08/21/js-common-regexp/</loc>
     
     <lastmod>2019-08-04T10:46:05.644Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://anran758.github.io/blog/2017/07/16/array-method-test/</loc>
-    
-    <lastmod>2019-08-04T10:31:05.844Z</lastmod>
     
   </url>
   
@@ -44,21 +44,14 @@
   </url>
   
   <url>
-    <loc>https://anran758.github.io/blog/2018/01/10/%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F%E4%BA%8C%E5%8F%89%E6%A0%91/</loc>
-    
-    <lastmod>2019-08-04T09:10:39.276Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://anran758.github.io/blog/2017/11/27/%E8%B0%88%E8%B0%88npm%E5%8C%85%E9%87%8C%E7%9A%84%20install%20--save%20%E5%92%8C%20install%20--save-dev%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
-    
-    <lastmod>2019-08-04T09:10:39.276Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://anran758.github.io/blog/2017/11/29/Vue-v-for-%E9%81%8D%E5%8E%86%E7%BB%91%E5%AE%9Atoggle-icon-%E5%8A%A8%E6%80%81%E5%88%87%E6%8D%A2action/</loc>
+    
+    <lastmod>2019-08-04T09:10:39.276Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://anran758.github.io/blog/2018/01/10/%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F%E4%BA%8C%E5%8F%89%E6%A0%91/</loc>
     
     <lastmod>2019-08-04T09:10:39.276Z</lastmod>
     
@@ -79,6 +72,13 @@
   </url>
   
   <url>
+    <loc>https://anran758.github.io/blog/2017/11/27/%E8%B0%88%E8%B0%88npm%E5%8C%85%E9%87%8C%E7%9A%84%20install%20--save%20%E5%92%8C%20install%20--save-dev%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
+    
+    <lastmod>2019-08-04T09:10:39.276Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://anran758.github.io/blog/2017/11/20/%E4%BD%BF%E7%94%A8JavaScript%E5%88%A0%E9%99%A4%E5%85%A8%E9%83%A8%E7%9A%84%E5%BE%AE%E5%8D%9A/</loc>
     
     <lastmod>2019-08-04T09:10:39.276Z</lastmod>
@@ -93,7 +93,7 @@
   </url>
   
   <url>
-    <loc>https://anran758.github.io/blog/2017/11/17/Javascript%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90-%E8%A3%81%E5%89%AA%E5%9B%BE%E7%89%87%E6%95%88%E6%9E%9C/</loc>
+    <loc>https://anran758.github.io/blog/2018/06/09/javascript-position-navigation/</loc>
     
     <lastmod>2019-08-04T09:10:39.275Z</lastmod>
     
@@ -114,7 +114,7 @@
   </url>
   
   <url>
-    <loc>https://anran758.github.io/blog/2018/06/09/javascript-position-navigation/</loc>
+    <loc>https://anran758.github.io/blog/2018/01/15/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-%E5%9B%9E%E6%B5%81%E4%B8%8E%E9%87%8D%E6%B1%87/</loc>
     
     <lastmod>2019-08-04T09:10:39.275Z</lastmod>
     
@@ -128,7 +128,7 @@
   </url>
   
   <url>
-    <loc>https://anran758.github.io/blog/2018/01/15/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-%E5%9B%9E%E6%B5%81%E4%B8%8E%E9%87%8D%E6%B1%87/</loc>
+    <loc>https://anran758.github.io/blog/2017/11/17/Javascript%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90-%E8%A3%81%E5%89%AA%E5%9B%BE%E7%89%87%E6%95%88%E6%9E%9C/</loc>
     
     <lastmod>2019-08-04T09:10:39.275Z</lastmod>
     
@@ -138,27 +138,6 @@
     <loc>https://anran758.github.io/blog/2019/07/16/ant-design-redirect-change-method/</loc>
     
     <lastmod>2019-08-04T08:36:59.260Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://anran758.github.io/blog/2019/07/26/configuring-mac-front-end-development-env-from-zero/</loc>
-    
-    <lastmod>2019-07-29T10:40:05.594Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://anran758.github.io/blog/2019/07/10/operating-system/</loc>
-    
-    <lastmod>2019-07-16T16:14:58.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://anran758.github.io/blog/2019/06/05/react-vs-vue/</loc>
-    
-    <lastmod>2019-07-16T16:14:54.000Z</lastmod>
     
   </url>
   
@@ -264,13 +243,6 @@
     <loc>https://anran758.github.io/blog/2017/12/05/%E6%B5%85%E8%B0%88%E5%89%8D%E7%AB%AF%E6%89%80%E8%83%BD%E5%81%9A%E7%9A%84SEO/</loc>
     
     <lastmod>2018-01-09T02:19:28.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://anran758.github.io/blog/2017/12/31/Git-emoji%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97-DESKTOP-8U754NN/</loc>
-    
-    <lastmod>2018-01-08T09:08:51.000Z</lastmod>
     
   </url>
   

@@ -1,1 +1,588 @@
-<!doctype html><html class="theme-next muse use-motion" lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="google-site-verification" content="hfSxUMVDQ0d4JZmyWsUce4uMULHxHXQxxCLYVk3cIbs"><meta name="baidu-site-verification" content="CtPpLH5dio"><meta name="360-site-verification" content="fed30e39f8ff2eb48911426c8fe68a72"><meta name="sogou_site_verification" content="2LQEC21JZB"><meta name="msvalidate.01" content="D0E8CE815DEAA11708C153218034AA8E"><link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"><link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css"><link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/blog/css/main.css?v=5.1.0" rel="stylesheet" type="text/css"><meta name="keywords" content="Hexo, NexT"><link rel="alternate" href="/blog/atom.xml" title="anran758 - 前端实验台" type="application/atom+xml"><link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.1.0"><meta name="description" content="跨域是前端工程中一个很常见的问题啦. 今天就来聊一聊跨域, 以及常见的处理方式和原理."><meta property="og:type" content="article"><meta property="og:title" content="聊聊常见的跨域问题"><meta property="og:url" content="https://anran758.github.io/blog/2018/03/04/聊聊常见的跨域问题/index.html"><meta property="og:site_name" content="anran758 - 前端实验台"><meta property="og:description" content="跨域是前端工程中一个很常见的问题啦. 今天就来聊一聊跨域, 以及常见的处理方式和原理."><meta property="og:locale" content="zh-Hans"><meta property="og:image" content="https://anran758.github.io/blog/2018/03/04/聊聊常见的跨域问题/banner.jpg"><meta property="og:image" content="https://anran758.github.io/blog/2018/03/04/聊聊常见的跨域问题/img-1.jpg"><meta property="og:image" content="https://anran758.github.io/blog/2018/03/04/聊聊常见的跨域问题/img-2.png"><meta property="og:updated_time" content="2018-03-08T13:51:21.000Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="聊聊常见的跨域问题"><meta name="twitter:description" content="跨域是前端工程中一个很常见的问题啦. 今天就来聊一聊跨域, 以及常见的处理方式和原理."><meta name="twitter:image" content="https://anran758.github.io/blog/2018/03/04/聊聊常见的跨域问题/banner.jpg"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/blog/",scheme:"Muse",sidebar:{position:"left",display:"post",offset:12,offset_float:0,b2t:!1,scrollpercent:!1},fancybox:!0,motion:!0,duoshuo:{userId:"0",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}},emojis:{className:"github-emoji"}}</script><link rel="canonical" href="https://anran758.github.io/blog/2018/03/04/聊聊常见的跨域问题/"><title>聊聊常见的跨域问题 | anran758 - 前端实验台</title></head><body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans"><script>!function(e,a,t,n,c,g,s){e.GoogleAnalyticsObject="ga",e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,g=a.createElement("script"),s=a.getElementsByTagName("script")[0],g.async=1,g.src="https://www.google-analytics.com/analytics.js",s.parentNode.insertBefore(g,s)}(window,document),ga("create","UA-99223334-1","auto"),ga("send","pageview")</script><script type="text/javascript">var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?b333b085e93f238859c899fd8ca5bd3f";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/blog/" class="brand" rel="start"><span class="site-title">anran758 - 前端实验台</span></a></div><h1 class="site-subtitle" itemprop="description"></h1></div><div class="site-nav-toggle"><button><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/blog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class="menu-item menu-item-categories"><a href="/blog/categories" rel="section"><i class="menu-item-icon fa fa-fw fa-circle-o-notch"></i><br>分类</a></li><li class="menu-item menu-item-tags"><a href="/blog/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>标签</a></li><li class="menu-item menu-item-archives"><a href="/blog/archives" rel="section"><i class="menu-item-icon fa fa-fw fa-ravelry"></i><br>时光轴</a></li><li class="menu-item menu-item-about"><a href="/blog/about" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于</a></li><li class="menu-item menu-item-search"><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class="site-search"><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class="search-icon"><i class="fa fa-search"></i> </span><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span><div class="local-search-input-wrapper"><input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input"></div></div><div id="local-search-result"></div></div></div></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://anran758.github.io/blog/blog/2018/03/04/聊聊常见的跨域问题/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="Anron"><meta itemprop="description" content=""><meta itemprop="image" content="https://avatars3.githubusercontent.com/u/23024075?s=96&v=4"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="anran758 - 前端实验台"></span><header class="post-header"><h2 class="post-title" itemprop="name headline">聊聊常见的跨域问题</h2><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-04T20:44:55+08:00">2018-03-04 </time></span><span id="/blog/2018/03/04/聊聊常见的跨域问题/" class="leancloud_visitors" data-flag-title="聊聊常见的跨域问题"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-eye"></i> </span><span class="post-meta-item-text">热度 </span><span class="leancloud-visitors-count"></span> </span><span>°C<div class="post-wordcount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i> </span><span class="post-meta-item-text">字数统计</span> <span title="字数统计">2,333</span></div></span></div></header><div class="post-body" itemprop="articleBody"><img src="/blog/2018/03/04/聊聊常见的跨域问题/banner.jpg"><p>跨域是前端工程中一个很常见的问题啦. 今天就来聊一聊跨域, 以及常见的处理方式和原理.<br><a id="more"></a></p><h2 id="什么是跨域"><a href="#什么是跨域" class="headerlink" title="什么是跨域?"></a>什么是跨域?</h2><p>跨域实际上源于浏览器对javascript的一种安全限制(也被称之为同源策略). 默认情况下, 我们只能访问同一协议、同一域名、同一端口下的资源. 如今都是提倡前后分离的情况下, 前端更是需要调用大量后台接口的场景, 因此解决跨域的问题就摆在了面前.</p><h2 id="产生跨域的原因"><a href="#产生跨域的原因" class="headerlink" title="产生跨域的原因"></a>产生跨域的原因</h2><p>产生跨域的原因我们主要归为这两点:</p><ol><li>浏览器安全限制(不能读取不同域、端口、协议下的内容)</li><li>使用的是XHR(XMLHttpRequest)请求</li></ol><p>同源策略这个原因是众所周知了, 它作为一个安全策略, 的确有效预防了某些安全上的问题. 但同时又阻止了大量适合使用的跨域请求. 而 XHR 也受同源策略影响: 浏览器不允许 javascript 查找跨域文档的内容. 使用 XHR, 文档内容都是通过<code>responseText</code>属性暴露, 因此同源策略不允许 XHR 进行跨域请求.</p><h2 id="解决跨域"><a href="#解决跨域" class="headerlink" title="解决跨域"></a>解决跨域</h2><p>跨域很多情况下都需要后端的配合, 因此主要先来谈谈前端的跨域方案.</p><h3 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h3><p>前文我们说过, 产生跨域的原因之一XHR请求, 但是<code>script</code>发出的请求类型(type)并不是<code>xhr</code>, 因此可以解决跨域的问题.</p><p>JSONP 由回调函数和数据组成的, 实现方式就是动态创建一个<code>&lt;script&gt;</code>标签, 然后设置<code>src</code>属性指向的跨域的URL(包涵请求参数). 来向服务端请求数据.</p><p>比如我们要查询小明的信息, 这时我们得知它的<code>userID</code>为 1150, 同时我们都知道GET请求可以通过url进行传参, 因此我们向服务器发起请求:</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>)</div><div class="line">script.src = <span class="string">"https://www.example.com/users?user_id=1150"</span></div><div class="line"><span class="built_in">document</span>.body.appendChild(script)</div></pre></td></tr></table></figure><p>在插入<code>&lt;script&gt;</code>标签到<code>&lt;body&gt;</code>后, 浏览器立马就去请求服务器的资源. 值得注意的是, 使用<code>jsonp</code>也需要服务端的配合. 因此必须通过某种方式来告知服务端, 我们正在通过<code>&lt;script&gt;</code>标签调用请求, 必须返回一个JSONP响应, 而不应该是普通JSON响应.</p><p>至于什么叫<code>jsonp</code>响应呢? 这里其实很好理解.. 假设后端发回来的是<code>json</code>格式的数据, 我们也用不了呀, 数据还是数据, 不会做任何变化.. 为了让浏览器可以在<code>&lt;script&gt;</code>标签里直接使用, 我们需要让服务端返回一段js代码 —— 用函数包装的json的形式(这也jsonp中”P(padding)”的含义). 这个函数名前后端可约定. 如下:</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 服务端返回 js 代码到 &lt;script&gt;里</span></div><div class="line">userData(&#123;<span class="string">'naem'</span>:<span class="string">'小明'</span>,<span class="string">'id'</span>:<span class="number">1150</span>,<span class="string">'level'</span>:<span class="string">'中等'</span>&#125;)</div><div class="line"></div><div class="line"><span class="comment">// 前端定义函数</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">userData</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">  <span class="comment">// 当 jsonp 请求成功后, 将json传入函数并调用, 我们拿到 json 后就可以做一些其他的事</span></div><div class="line">&#125;</div></pre></td></tr></table></figure><p>我们来拿B站为例. 打开chrome下的network, 上图就是<code>jsonp</code>的应用, 服务端返回的js脚本. 下图可以发现, 我们发出去的请求类型是<code>script</code>, 验证了前文所说的<code>&lt;script&gt;</code>不受同源策略影响的.</p><img src="/blog/2018/03/04/聊聊常见的跨域问题/img-1.jpg"><p>目前主流的类库都对<code>jsonp</code>进行了封装, 如<code>JQuery</code>的<code>getJSON</code>和<code>ajax</code>, 这里就不深入讲解了. 最后对<code>jsonp</code>总结一下:</p><p><code>jsonp</code>实际上是一个非正式传输协议, 或者说是一种”投机取巧”的方式. 我们可以利用<code>&lt;script&gt;</code>的特性从而进行数据交互解决跨域的问题. 相对来说, 它也有一定的局限性: 只能应用在GET请求上, 除此之外还有安全性的问题 —— 只能用在我们信任的服务端, 因为你不能保证对方未来会给你传些什么…</p><h3 id="跨域资源共享-CORS"><a href="#跨域资源共享-CORS" class="headerlink" title="跨域资源共享(CORS)"></a>跨域资源共享(CORS)</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>说完了”不正规”的<code>jsonp</code>, 紧接着我们再说说原生的<code>CORS</code>规范. 我们先来看看官方的定义:</p><p><strong>CORS(Cross-origin resource Sharing, 跨资源共享)</strong>, 定义了访问跨域资源时, 浏览器和服务器应该如何沟通. 其背后主要思想就是<strong>使用自定义的HTTP头部</strong>来让浏览器与服务器进行沟通, 从而决定请求或相应是否成功, 还是应该失败.</p><p>目前主流的浏览器都已经对CORS有着良好的支持, 而IE8 ~ 9则还需要使用专用的<code>XDomainRequest</code>这里我们抛开不谈.</p><img src="/blog/2018/03/04/聊聊常见的跨域问题/img-2.png"><p>这个功能实际上是由浏览器自动完成的, 我们并不需要做什么额外的工作. 对于开发者来说, 也就需要了解一些安全细节的问题, 这一点我们放在后面讲.</p><h4 id="两种请求"><a href="#两种请求" class="headerlink" title="两种请求"></a>两种请求</h4><p>浏览器发送CORS请求时, 会将请求分为<strong>简单请求</strong>与<strong>非简单请求</strong>.</p><p>在我们日常工作中, 常用的<strong>简单请求</strong>可以将其归为以下几点:</p><ul><li>使用的方法(Methods)为<code>HEAD</code>、<code>GET</code>、<code>POST</code></li><li>请求头无自定义头</li><li><code>Content-Type</code>只能是以下几种<ul><li>text/plain</li><li>multipart/form-data</li><li>application/x-www-form-urlencoded</li></ul></li></ul><p><strong>非简单请求:</strong></p><ul><li><code>PUT</code>, <code>Delete</code> 方法的 ajax 请求</li><li>发送 JSON 格式的 ajax 请求(比如post数据)</li><li>带自定义头的 ajax 请求</li></ul><p>如果是简单请求, 则会<strong>先执行, 后判断</strong>。执行的过程大致如下:</p><p>浏览器发起请求检测到是 CORS 请求, 然后添加一个<code>origin</code>字段(其中包含页面源信息: 协议、域名、端口) =&gt; 服务端收到后作相应的处理(对比<code>origin</code>, 服务端判断这个源是否接受)返回结果给浏览器 =&gt; 浏览器检查响应头是否允许跨域信息 =&gt; 允许, 那就当做没事发生. 不允许, 浏览器抛出相应的错误信息(值得一提的是, 这时状态码也还有可能是200).</p><p>非简单请求执行顺序又有些不同. 在发生 CORS 请求时, 浏览器预先发送一个<code>option</code>请求. 浏览器这种行为被称之为<strong>预检请求(Preflighted request)</strong>. 其中包含如下的请求头:</p><ul><li>origin: 同上，包含页面源信息.</li><li>Access-Control-Request-Methods: 请求方法</li><li>Access-Control-Request-Header: 自定义头部信息, 多个头部以逗号分隔(可选, 看请求时有没有定义请求头)</li></ul><p>举个栗子, 我们用JQuery发送一段JSON格式的请求做演示:</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> result;</div><div class="line"></div><div class="line">$.ajax(&#123;</div><div class="line">  <span class="attr">type</span> : <span class="string">"post"</span>,</div><div class="line">  <span class="attr">url</span>: <span class="string">"https://www.example/api/rank"</span>,</div><div class="line">  <span class="attr">contentType</span> : <span class="string">"application/json;charset=utf-8"</span>,</div><div class="line">  <span class="attr">data</span>: <span class="built_in">JSON</span>.stringify(&#123;<span class="attr">name</span>: <span class="string">"something"</span>&#125;),</div><div class="line">  <span class="attr">success</span>: <span class="function"><span class="keyword">function</span>(<span class="params">json</span>)</span>&#123;</div><div class="line">    result = json;</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure><p>这时请求头(Request Headers)信息如下:</p><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Accept: */*</div><div class="line">Accept-Encoding: gzip, deflate, br</div><div class="line">Accept-Language: zh-CN,zh;q=0.9</div><div class="line">Access-Control-Request-Header: content-type</div><div class="line">Access-Control-Request-Methods: POST</div><div class="line">Connection:keep-alive</div><div class="line">Host: https://www.example.com</div><div class="line">origin: localhost:8080</div><div class="line">User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1</div></pre></td></tr></table></figure><p>服务端接收到预检请求后, 判断是否允许这种类型的请求. 在响应头(Response Header)上返回如下头部与浏览器进行交流:</p><ul><li>Access-Control-Allow-Origin: 服务端允许的源信息</li><li>Access-Control-Allow-Methods: 服务端允许的方法, 多个方法可以使用顿号分隔</li><li>Access-Control-Allow-Headrs: 服务端允许的头部, 多个头部可以使用顿号分隔</li></ul><p>当预检请求被通过后, 我们原本想要发送的请求才会发送出去.</p><p>另外, 细心的你或许已经注意到了, 非简单请求这一来一回需要发送两次请求, 如果频率高的情况下岂不是很费性能又影响效率? 所幸的是HTTP协议新增(IE10+)了一个响应头用于缓存预检请求. 服务端在响应头添加如下字段:</p><figure class="highlight http"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">Access-Control-Max-Age</span>: 3600</div></pre></td></tr></table></figure><p>这个响应头表示这个预检请求可以缓存多长时间, 单位为秒. 这里3600s = 1h, 也就是说一个小时内可以不用再发预检命令了.</p><h4 id="带-cookie-的跨域请求"><a href="#带-cookie-的跨域请求" class="headerlink" title="带 cookie 的跨域请求"></a>带 cookie 的跨域请求</h4><p>默认情况下, 跨域请求是不带上 cookie 的. 前端需要将<code>withCredentials</code>属性设置为<code>true</code>, 同时还需要服务端设置<code>Access-Control-Allow-Credentials</code>为<code>true</code>启动 cookie. 如果在发送 cookie 的时候, 浏览器检测到服务端响应头没有这个头部, 那么就会在控制台抛出一个错误.</p><p>另外, 还有一个值得注意的是. 服务端响应头设置了<code>Access-Control-Allow-Origin: *</code>的话, 是不能满足带 cookie 的跨域请求的. 因此有这种场景不能使用通配符, 需要全匹配字段.</p><h4 id="CORS-总结"><a href="#CORS-总结" class="headerlink" title="CORS 总结"></a>CORS 总结</h4><p>简单总结一下 CORS. CORS的出现也是为了解决跨域的问题. 只不过和<code>JSONP</code>不同, 它是纳入规范的一部分, 它几乎支持所有的类型的HTTP请求(JSONP只能使用GET). 唯一美中不足的也就是兼容性的问题, 因此可以使用JSONP作向下的兼容</p><p>事实上前端在 CORS 上并没有多少可操作的余地, 主要的还是浏览器来处理、服务端在设置, 但是并不代表我们就不需要了解这些知识啦.</p><hr><p>嗯, 其他的跨域方法先挖个坑..</p></div><div><div style="padding:10px 0;margin:20px auto;width:90%;text-align:center"><div>坚持原创技术分享，您的支持将鼓励我继续创作！</div><button id="rewardButton" disable="enable" onclick='var qr=document.getElementById("QR");"none"===qr.style.display?qr.style.display="block":qr.style.display="none"'><span>赏</span></button><div id="QR" style="display:none"><div id="wechat" style="display:inline-block"><img id="wechat_qr" src="/blog/images/wechatpay.png" alt="Anron WeChat Pay"></div></div></div></div><div class="note success"><p>web 开发细节之类的知识已经逐步完善到<a href="https://github.com/anran758/Front-End-Lab" target="_blank" rel="noopener">Front-End-Lab</a> 这个仓库。以后可以作为一个知识体系，根据目录去找想要了解的知识或问题~</p></div><div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong> Anron</li><li class="post-copyright-link"><strong>本文链接：</strong> <a href="https://anran758.github.io/blog/2018/03/04/聊聊常见的跨域问题/" title="聊聊常见的跨域问题">https://anran758.github.io/blog/2018/03/04/聊聊常见的跨域问题/</a></li><li class="post-copyright-license"><strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！</li></ul></div><footer class="post-footer"><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/blog/2018/02/06/VSCode-从零开始配置前端环境/" rel="next" title="VSCode: 从零开始配置前端环境"><i class="fa fa-chevron-left"></i> VSCode: 从零开始配置前端环境</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"><a href="/blog/2018/03/11/关于前台GIF动图逐个播放的思路/" rel="prev" title="关于移动端GIF动图逐个播放的思路">关于移动端GIF动图逐个播放的思路 <i class="fa fa-chevron-right"></i></a></div></div></footer></article><div class="post-spread"></div></div></div><div class="comments" id="comments"><div id="container"></div><link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css"><script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script><script>var gitment=new Gitment({id:"init_"+Date.now(),owner:"anran758",repo:"gitment-comments",oauth:{client_id:"a35e4aa0db5b5a7bcc2f",client_secret:"a19ef2a9debab8747a6e723c1eff1141213fe101"}});gitment.render("container")</script></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">文章目录</li><li class="sidebar-nav-overview" data-target="site-overview">站点概览</li></ul><section class="site-overview sidebar-panel"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" src="https://avatars3.githubusercontent.com/u/23024075?s=96&v=4" alt="Anron"><p class="site-author-name" itemprop="name">Anron</p><p class="site-description motion-element" itemprop="description"></p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/blog/archives"><span class="site-state-item-count">45</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"><a href="/blog/categories/index.html"><span class="site-state-item-count">20</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/blog/tags/index.html"><span class="site-state-item-count">71</span> <span class="site-state-item-name">标签</span></a></div></nav><div class="motion-element link-line"><div class="feed-link block-item"><a href="https://github.com/anran758/blog" target="_blank" rel="alternate"><i class="fa fa-star"></i> STAR</a></div><div class="feed-link block-item"><a href="/blog/atom.xml" rel="alternate"><i class="fa fa-rss"></i> RSS</a></div></div><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/anran758" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i> GitHub </a></span><span class="links-of-author-item"><a href="http://weibo.com/u/3833726651" target="_blank" title="微博"><i class="fa fa-fw fa-weibo"></i> 微博 </a></span><span class="links-of-author-item"><a href="https://segmentfault.com/u/anran758/" target="_blank" title="Segmentfault"><i class="fa fa-fw fa-code"></i> Segmentfault </a></span><span class="links-of-author-item"><a href="https://codepen.io/anran758/" target="_blank" title="Codepen"><i class="fa fa-fw fa-globe"></i> Codepen</a></span></div><div class="links-of-blogroll motion-element links-of-blogroll-block"><div class="links-of-blogroll-title"><i class="fa fa-fw fa-book"></i> 优质博客</div><ul class="links-of-blogroll-list"><li class="links-of-blogroll-item"><a href="http://www.zhangxinxu.com/" title="张鑫旭" target="_blank">张鑫旭</a></li><li class="links-of-blogroll-item"><a href="http://www.liaoxuefeng.com/" title="廖雪峰" target="_blank">廖雪峰</a></li><li class="links-of-blogroll-item"><a href="https://isux.tencent.com/" title="ISUX" target="_blank">ISUX</a></li><li class="links-of-blogroll-item"><a href="http://eux.baidu.com/" title="百度EUX" target="_blank">百度EUX</a></li><li class="links-of-blogroll-item"><a href="http://www.alloyteam.com/" title="Alloyteam" target="_blank">Alloyteam</a></li></ul></div><div class="links-of-blogroll motion-element links-of-blogroll-inline"><div class="links-of-blogroll-title"><i class="fa fa-fw fa-wikipedia-w"></i> 百科全书</div><ul class="links-of-blogroll-list"><li class="links-of-blogroll-item"><a href="https://caniuse.com/" title="Caniuse - CSS兼容性" target="_blank">Caniuse - CSS兼容性</a></li><li class="links-of-blogroll-item"><a href="https://developer.mozilla.org/zh-CN/" title="MDN - Web文档" target="_blank">MDN - Web文档</a></li></ul></div><div class="links-of-blogroll motion-element links-of-blogroll-inline"><div class="links-of-blogroll-title"><i class="fa fa-fw fa-wrench"></i> 常用工具</div><ul class="links-of-blogroll-list"><li class="links-of-blogroll-item"><a href="https://jsbin.com/?js,console,output" title="JSBin" target="_blank">JSBin</a></li><li class="links-of-blogroll-item"><a href="https://codepen.io/" title="codepen" target="_blank">codepen</a></li><li class="links-of-blogroll-item"><a href="https://www.easy-mock.com/" title="Easy-mock" target="_blank">Easy-mock</a></li><li class="links-of-blogroll-item"><a href="http://autoprefixer.github.io/" title="Autoprefixer" target="_blank">Autoprefixer</a></li><li class="links-of-blogroll-item"><a href="https://tinypng.com/" title="压缩图片 - tinypng" target="_blank">压缩图片 - tinypng</a></li></ul></div></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是跨域"><span class="nav-number">1.</span> <span class="nav-text">什么是跨域?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#产生跨域的原因"><span class="nav-number">2.</span> <span class="nav-text">产生跨域的原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决跨域"><span class="nav-number">3.</span> <span class="nav-text">解决跨域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JSONP"><span class="nav-number">3.1.</span> <span class="nav-text">JSONP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跨域资源共享-CORS"><span class="nav-number">3.2.</span> <span class="nav-text">跨域资源共享(CORS)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概述"><span class="nav-number">3.2.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#两种请求"><span class="nav-number">3.2.2.</span> <span class="nav-text">两种请求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#带-cookie-的跨域请求"><span class="nav-number">3.2.3.</span> <span class="nav-text">带 cookie 的跨域请求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CORS-总结"><span class="nav-number">3.2.4.</span> <span class="nav-text">CORS 总结</span></a></li></ol></li></ol></li></ol></div></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><div class="copyright"><div class="theme-info"><span class="with-love"><i class="fa fa-heart"></i> </span><span class="author" itemprop="copyrightHolder">Anron</span><div class="powered-by"></div></div><div class="theme-info"><span class="post-count">全站共54.1k字</span><div class="powered-by"></div></div>&copy; 2017 - <span itemprop="copyrightYear">2019</span></div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script><script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script><script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script><script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script><script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.0"></script><script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.0"></script><script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.0"></script><script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.0"></script><script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.0"></script><script type="text/javascript">var isfetched=!1,search_path="search.xml";0==search_path.length&&(search_path="search.xml");var path="/blog/"+search_path;function proceedsearch(){$("body").append('<div class="search-popup-overlay local-search-pop-overlay"></div>').css("overflow","hidden"),$(".popup").toggle()}var searchFunc=function(e,t,a){"use strict";$.ajax({url:e,dataType:"xml",async:!0,success:function(e){isfetched=!0,$(".popup").detach().appendTo(".header-inner");var r=$("entry",e).map(function(){return{title:$("title",this).text(),content:$("content",this).text(),url:$("url",this).text()}}).get(),c=document.getElementById(t),s=document.getElementById(a);c.addEventListener("input",function(){var e=0,t='<ul class="search-result-list">',a=this.value.trim().toLowerCase().split(/[\s\-]+/);s.innerHTML="",this.value.trim().length>1&&r.forEach(function(r){var c=!1,s=r.title.trim().toLowerCase(),o=r.content.trim().replace(/<[^>]+>/g,"").toLowerCase(),n=decodeURIComponent(r.url),i=-1,l=-1,p=-1;if(""!=s&&a.forEach(function(e,t){i=s.indexOf(e),l=o.indexOf(e),(i>=0||l>=0)&&(c=!0,0==t&&(p=l))}),c){e+=1,t+="<li><a href='"+n+"' class='search-result-title'>"+s+"</a>";var h=r.content.trim().replace(/<[^>]+>/g,"");if(p>=0){var u=p-20,d=p+80;u<0&&(u=0),0==u&&(d=50),d>h.length&&(d=h.length);var f=h.substring(u,d);a.forEach(function(e){var t=new RegExp(e,"gi");f=f.replace(t,'<b class="search-keyword">'+e+"</b>")}),t+='<p class="search-result">'+f+"...</p>"}t+="</li>"}}),t+="</ul>",0==e&&(t='<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'),""==a&&(t='<div id="no-result"><i class="fa fa-search fa-5x" /></div>'),s.innerHTML=t}),proceedsearch()}})};$(".popup-trigger").click(function(e){e.stopPropagation(),0==isfetched?searchFunc(path,"local-search-input","local-search-result"):proceedsearch()}),$(".popup-btn-close").click(function(e){$(".popup").hide(),$(".local-search-pop-overlay").remove(),$("body").css("overflow","")}),$(".popup").click(function(e){e.stopPropagation()})</script><script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script><script>AV.initialize("QrxRhKL4BgNphcY1TiSNE4oL-gzGzoHsz","ToJdukQb4M9DfdjLminRBwHq")</script><script>function showTime(e){var t=new AV.Query(e),n=[],o=$(".leancloud_visitors");o.each(function(){n.push($(this).attr("id").trim())}),t.containedIn("url",n),t.find().done(function(e){var t=".leancloud-visitors-count";if(0!==e.length){for(var i=0;i<e.length;i++){var s=e[i],r=s.get("url"),l=s.get("time"),c=document.getElementById(r);$(c).find(t).text(l)}for(i=0;i<n.length;i++){r=n[i],c=document.getElementById(r);var u=$(c).find(t);""==u.text()&&u.text(0)}}else o.find(t).text(0)}).fail(function(e,t){console.log("Error: "+t.code+" "+t.message)})}function addCount(e){var t=$(".leancloud_visitors"),n=t.attr("id").trim(),o=t.attr("data-flag-title").trim(),i=new AV.Query(e);i.equalTo("url",n),i.find({success:function(t){if(t.length>0){var i=t[0];i.fetchWhenSave(!0),i.increment("time"),i.save(null,{success:function(e){$(document.getElementById(n)).find(".leancloud-visitors-count").text(e.get("time"))},error:function(e,t){console.log("Failed to save Visitor num, with error message: "+t.message)}})}else{var s=new e,r=new AV.ACL;r.setPublicReadAccess(!0),r.setPublicWriteAccess(!0),s.setACL(r),s.set("title",o),s.set("url",n),s.set("time",1),s.save(null,{success:function(e){$(document.getElementById(n)).find(".leancloud-visitors-count").text(e.get("time"))},error:function(e,t){console.log("Failed to create")}})}},error:function(e){console.log("Error:"+e.code+" "+e.message)}})}$(function(){var e=AV.Object.extend("Counter");1==$(".leancloud_visitors").length?addCount(e):$(".post-title-link").length>1&&showTime(e)})</script><script>!function(){var t=document.createElement("script"),e=window.location.protocol.split(":")[0];t.src="https"===e?"https://zz.bdstatic.com/linksubmit/push.js":"http://push.zhanzhang.baidu.com/push.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}()</script><script>!function(){var t=document.createElement("script"),e=window.location.protocol.split(":")[0];t.src="https"===e?"https://zz.bdstatic.com/linksubmit/push.js":"http://push.zhanzhang.baidu.com/push.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}()</script></body></html>
+<!doctype html><html class="theme-next muse use-motion" lang="zh-Hans"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="google-site-verification" content="hfSxUMVDQ0d4JZmyWsUce4uMULHxHXQxxCLYVk3cIbs"><meta name="baidu-site-verification" content="CtPpLH5dio"><meta name="360-site-verification" content="fed30e39f8ff2eb48911426c8fe68a72"><meta name="sogou_site_verification" content="2LQEC21JZB"><meta name="msvalidate.01" content="D0E8CE815DEAA11708C153218034AA8E"><link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"><link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css"><link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/blog/css/main.css?v=5.1.0" rel="stylesheet" type="text/css"><meta name="keywords" content="Hexo, NexT"><link rel="alternate" href="/blog/atom.xml" title="anran758 - 前端实验台" type="application/atom+xml"><link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.1.0"><meta name="description" content="跨域是前端工程中一个很常见的问题啦. 今天就来聊一聊跨域, 以及常见的处理方式和原理."><meta property="og:type" content="article"><meta property="og:title" content="聊聊常见的跨域问题"><meta property="og:url" content="https://anran758.github.io/blog/2018/03/04/聊聊常见的跨域问题/index.html"><meta property="og:site_name" content="anran758 - 前端实验台"><meta property="og:description" content="跨域是前端工程中一个很常见的问题啦. 今天就来聊一聊跨域, 以及常见的处理方式和原理."><meta property="og:locale" content="zh-Hans"><meta property="og:image" content="https://anran758.github.io/blog/2018/03/04/聊聊常见的跨域问题/banner.jpg"><meta property="og:image" content="https://anran758.github.io/blog/2018/03/04/聊聊常见的跨域问题/img-1.jpg"><meta property="og:image" content="https://anran758.github.io/blog/2018/03/04/聊聊常见的跨域问题/img-2.png"><meta property="og:updated_time" content="2018-03-08T13:51:21.000Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="聊聊常见的跨域问题"><meta name="twitter:description" content="跨域是前端工程中一个很常见的问题啦. 今天就来聊一聊跨域, 以及常见的处理方式和原理."><meta name="twitter:image" content="https://anran758.github.io/blog/2018/03/04/聊聊常见的跨域问题/banner.jpg"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/blog/",scheme:"Muse",sidebar:{position:"left",display:"post",offset:12,offset_float:0,b2t:!1,scrollpercent:!1},fancybox:!0,motion:!0,duoshuo:{userId:"0",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}},emojis:{className:"github-emoji"}}</script><link rel="canonical" href="https://anran758.github.io/blog/2018/03/04/聊聊常见的跨域问题/"><title>聊聊常见的跨域问题 | anran758 - 前端实验台</title></head><body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans"><script>!function(e,a,t,n,c,g,s){e.GoogleAnalyticsObject="ga",e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,g=a.createElement("script"),s=a.getElementsByTagName("script")[0],g.async=1,g.src="https://www.google-analytics.com/analytics.js",s.parentNode.insertBefore(g,s)}(window,document),ga("create","UA-99223334-1","auto"),ga("send","pageview")</script><script type="text/javascript">var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?b333b085e93f238859c899fd8ca5bd3f";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/blog/" class="brand" rel="start"><span class="site-title">anran758 - 前端实验台</span></a></div><h1 class="site-subtitle" itemprop="description"></h1></div><div class="site-nav-toggle"><button><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/blog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class="menu-item menu-item-categories"><a href="/blog/categories" rel="section"><i class="menu-item-icon fa fa-fw fa-circle-o-notch"></i><br>分类</a></li><li class="menu-item menu-item-tags"><a href="/blog/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>标签</a></li><li class="menu-item menu-item-archives"><a href="/blog/archives" rel="section"><i class="menu-item-icon fa fa-fw fa-ravelry"></i><br>时光轴</a></li><li class="menu-item menu-item-about"><a href="/blog/about" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于</a></li><li class="menu-item menu-item-search"><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class="site-search"><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class="search-icon"><i class="fa fa-search"></i> </span><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span><div class="local-search-input-wrapper"><input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input"></div></div><div id="local-search-result"></div></div></div></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://anran758.github.io/blog/blog/2018/03/04/聊聊常见的跨域问题/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="Anron"><meta itemprop="description" content><meta itemprop="image" content="https://avatars3.githubusercontent.com/u/23024075?s=96&v=4"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="anran758 - 前端实验台"></span><header class="post-header"><h2 class="post-title" itemprop="name headline">聊聊常见的跨域问题</h2><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-04T20:44:55+08:00">2018-03-04 </time></span><span id="/blog/2018/03/04/聊聊常见的跨域问题/" class="leancloud_visitors" data-flag-title="聊聊常见的跨域问题"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-eye"></i> </span><span class="post-meta-item-text">热度 </span><span class="leancloud-visitors-count"></span> </span><span>°C<div class="post-wordcount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i> </span><span class="post-meta-item-text">字数统计</span> <span title="字数统计">2,366</span></div></span></div></header><div class="post-body" itemprop="articleBody"><img src="/blog/2018/03/04/聊聊常见的跨域问题/banner.jpg"><p>跨域是前端工程中一个很常见的问题啦. 今天就来聊一聊跨域, 以及常见的处理方式和原理.<br><a id="more"></a></p><h2 id="什么是跨域"><a href="#什么是跨域" class="headerlink" title="什么是跨域?"></a>什么是跨域?</h2><p>跨域实际上源于浏览器对javascript的一种安全限制(也被称之为同源策略). 默认情况下, 我们只能访问同一协议、同一域名、同一端口下的资源. 如今都是提倡前后分离的情况下, 前端更是需要调用大量后台接口的场景, 因此解决跨域的问题就摆在了面前.</p><h2 id="产生跨域的原因"><a href="#产生跨域的原因" class="headerlink" title="产生跨域的原因"></a>产生跨域的原因</h2><p>产生跨域的原因我们主要归为这两点:</p><ol><li>浏览器安全限制(不能读取不同域、端口、协议下的内容)</li><li>使用的是XHR(XMLHttpRequest)请求</li></ol><p>同源策略这个原因是众所周知了, 它作为一个安全策略, 的确有效预防了某些安全上的问题. 但同时又阻止了大量适合使用的跨域请求. 而 XHR 也受同源策略影响: 浏览器不允许 javascript 查找跨域文档的内容. 使用 XHR, 文档内容都是通过<code>responseText</code>属性暴露, 因此同源策略不允许 XHR 进行跨域请求.</p><h2 id="解决跨域"><a href="#解决跨域" class="headerlink" title="解决跨域"></a>解决跨域</h2><p>跨域很多情况下都需要后端的配合, 因此主要先来谈谈前端的跨域方案.</p><h3 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h3><p>前文我们说过, 产生跨域的原因之一XHR请求, 但是<code>script</code>发出的请求类型(type)并不是<code>xhr</code>, 因此可以解决跨域的问题.</p><p>JSONP 由回调函数和数据组成的, 实现方式就是动态创建一个<code>&lt;script&gt;</code>标签, 然后设置<code>src</code>属性指向的跨域的URL(包涵请求参数). 来向服务端请求数据.</p><p>比如我们要查询小明的信息, 这时我们得知它的<code>userID</code>为 1150, 同时我们都知道GET请求可以通过url进行传参, 因此我们向服务器发起请求:</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>)</span><br><span class="line">script.src = <span class="string">"https://www.example.com/users?user_id=1150"</span></span><br><span class="line"><span class="built_in">document</span>.body.appendChild(script)</span><br></pre></td></tr></table></figure>
+<p>在插入<code>&lt;script&gt;</code>标签到<code>&lt;body&gt;</code>后, 浏览器立马就去请求服务器的资源. 值得注意的是, 使用<code>jsonp</code>也需要服务端的配合. 因此必须通过某种方式来告知服务端, 我们正在通过<code>&lt;script&gt;</code>标签调用请求, 必须返回一个JSONP响应, 而不应该是普通JSON响应.</p>
+<p>至于什么叫<code>jsonp</code>响应呢? 这里其实很好理解.. 假设后端发回来的是<code>json</code>格式的数据, 我们也用不了呀, 数据还是数据, 不会做任何变化.. 为了让浏览器可以在<code>&lt;script&gt;</code>标签里直接使用, 我们需要让服务端返回一段js代码 —— 用函数包装的json的形式(这也jsonp中”P(padding)”的含义). 这个函数名前后端可约定. 如下:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 服务端返回 js 代码到 &lt;script&gt;里</span></span><br><span class="line">userData(&#123;<span class="string">'naem'</span>:<span class="string">'小明'</span>,<span class="string">'id'</span>:<span class="number">1150</span>,<span class="string">'level'</span>:<span class="string">'中等'</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 前端定义函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">userData</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 当 jsonp 请求成功后, 将json传入函数并调用, 我们拿到 json 后就可以做一些其他的事</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们来拿B站为例. 打开chrome下的network, 上图就是<code>jsonp</code>的应用, 服务端返回的js脚本. 下图可以发现, 我们发出去的请求类型是<code>script</code>,  验证了前文所说的<code>&lt;script&gt;</code>不受同源策略影响的.</p>
+<img src="/blog/2018/03/04/聊聊常见的跨域问题/img-1.jpg">
+<p>目前主流的类库都对<code>jsonp</code>进行了封装, 如<code>JQuery</code>的<code>getJSON</code>和<code>ajax</code>, 这里就不深入讲解了. 最后对<code>jsonp</code>总结一下:</p>
+<p><code>jsonp</code>实际上是一个非正式传输协议, 或者说是一种”投机取巧”的方式. 我们可以利用<code>&lt;script&gt;</code>的特性从而进行数据交互解决跨域的问题. 相对来说, 它也有一定的局限性: 只能应用在GET请求上, 除此之外还有安全性的问题 —— 只能用在我们信任的服务端, 因为你不能保证对方未来会给你传些什么…</p>
+<h3 id="跨域资源共享-CORS"><a href="#跨域资源共享-CORS" class="headerlink" title="跨域资源共享(CORS)"></a>跨域资源共享(CORS)</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>说完了”不正规”的<code>jsonp</code>, 紧接着我们再说说原生的<code>CORS</code>规范. 我们先来看看官方的定义:</p>
+<p><strong>CORS(Cross-origin resource Sharing, 跨资源共享)</strong>, 定义了访问跨域资源时, 浏览器和服务器应该如何沟通. 其背后主要思想就是<strong>使用自定义的HTTP头部</strong>来让浏览器与服务器进行沟通, 从而决定请求或相应是否成功, 还是应该失败.</p>
+<p>目前主流的浏览器都已经对CORS有着良好的支持, 而IE8 ~ 9则还需要使用专用的<code>XDomainRequest</code>这里我们抛开不谈.</p>
+<img src="/blog/2018/03/04/聊聊常见的跨域问题/img-2.png">
+<p>这个功能实际上是由浏览器自动完成的, 我们并不需要做什么额外的工作. 对于开发者来说, 也就需要了解一些安全细节的问题, 这一点我们放在后面讲.</p>
+<h4 id="两种请求"><a href="#两种请求" class="headerlink" title="两种请求"></a>两种请求</h4><p>浏览器发送CORS请求时, 会将请求分为<strong>简单请求</strong>与<strong>非简单请求</strong>.</p>
+<p>在我们日常工作中, 常用的<strong>简单请求</strong>可以将其归为以下几点:</p>
+<ul>
+<li>使用的方法(Methods)为<code>HEAD</code>、<code>GET</code>、<code>POST</code></li>
+<li>请求头无自定义头</li>
+<li><code>Content-Type</code>只能是以下几种<ul>
+<li>text/plain</li>
+<li>multipart/form-data</li>
+<li>application/x-www-form-urlencoded</li>
+</ul>
+</li>
+</ul>
+<p><strong>非简单请求:</strong></p>
+<ul>
+<li><code>PUT</code>, <code>Delete</code> 方法的 ajax 请求</li>
+<li>发送 JSON 格式的 ajax 请求(比如post数据)</li>
+<li>带自定义头的 ajax 请求</li>
+</ul>
+<p>如果是简单请求, 则会<strong>先执行, 后判断</strong>。执行的过程大致如下:</p>
+<p>浏览器发起请求检测到是 CORS 请求, 然后添加一个<code>origin</code>字段(其中包含页面源信息: 协议、域名、端口) =&gt; 服务端收到后作相应的处理(对比<code>origin</code>, 服务端判断这个源是否接受)返回结果给浏览器 =&gt; 浏览器检查响应头是否允许跨域信息 =&gt; 允许, 那就当做没事发生. 不允许, 浏览器抛出相应的错误信息(值得一提的是, 这时状态码也还有可能是200).</p>
+<p>非简单请求执行顺序又有些不同. 在发生 CORS 请求时, 浏览器预先发送一个<code>option</code>请求. 浏览器这种行为被称之为<strong>预检请求(Preflighted request)</strong>. 其中包含如下的请求头:</p>
+<ul>
+<li>origin: 同上，包含页面源信息.</li>
+<li>Access-Control-Request-Methods: 请求方法</li>
+<li>Access-Control-Request-Header: 自定义头部信息, 多个头部以逗号分隔(可选, 看请求时有没有定义请求头)</li>
+</ul>
+<p>举个栗子, 我们用JQuery发送一段JSON格式的请求做演示:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> result;</span><br><span class="line"></span><br><span class="line">$.ajax(&#123;</span><br><span class="line">  type : <span class="string">"post"</span>,</span><br><span class="line">  url: <span class="string">"https://www.example/api/rank"</span>,</span><br><span class="line">  contentType : <span class="string">"application/json;charset=utf-8"</span>,</span><br><span class="line">  data: <span class="built_in">JSON</span>.stringify(&#123;<span class="attr">name</span>: <span class="string">"something"</span>&#125;),</span><br><span class="line">  success: <span class="function"><span class="keyword">function</span>(<span class="params">json</span>)</span>&#123;</span><br><span class="line">    result = json;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>这时请求头(Request Headers)信息如下:</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Accept</span>: */*</span><br><span class="line"><span class="attribute">Accept-Encoding</span>: gzip, deflate, br</span><br><span class="line"><span class="attribute">Accept-Language</span>: zh-CN,zh;q=0.9</span><br><span class="line"><span class="attribute">Access-Control-Request-Header</span>: content-type</span><br><span class="line"><span class="attribute">Access-Control-Request-Methods</span>: POST</span><br><span class="line"><span class="attribute">Connection:keep-alive</span></span><br><span class="line"><span class="attribute">Host</span>: https://www.example.com</span><br><span class="line"><span class="attribute">origin</span>: localhost:8080</span><br><span class="line"><span class="attribute">User-Agent</span>: Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1</span><br></pre></td></tr></table></figure>
+<p>服务端接收到预检请求后, 判断是否允许这种类型的请求. 在响应头(Response Header)上返回如下头部与浏览器进行交流:</p>
+<ul>
+<li>Access-Control-Allow-Origin: 服务端允许的源信息</li>
+<li>Access-Control-Allow-Methods: 服务端允许的方法, 多个方法可以使用顿号分隔</li>
+<li>Access-Control-Allow-Headrs: 服务端允许的头部, 多个头部可以使用顿号分隔</li>
+</ul>
+<p>当预检请求被通过后, 我们原本想要发送的请求才会发送出去.</p>
+<p>另外, 细心的你或许已经注意到了, 非简单请求这一来一回需要发送两次请求, 如果频率高的情况下岂不是很费性能又影响效率? 所幸的是HTTP协议新增(IE10+)了一个响应头用于缓存预检请求. 服务端在响应头添加如下字段:</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Access-Control-Max-Age</span>: 3600</span><br></pre></td></tr></table></figure>
+<p>这个响应头表示这个预检请求可以缓存多长时间, 单位为秒. 这里3600s = 1h, 也就是说一个小时内可以不用再发预检命令了.</p>
+<h4 id="带-cookie-的跨域请求"><a href="#带-cookie-的跨域请求" class="headerlink" title="带 cookie 的跨域请求"></a>带 cookie 的跨域请求</h4><p>默认情况下, 跨域请求是不带上 cookie 的. 前端需要将<code>withCredentials</code>属性设置为<code>true</code>, 同时还需要服务端设置<code>Access-Control-Allow-Credentials</code>为<code>true</code>启动 cookie. 如果在发送 cookie 的时候, 浏览器检测到服务端响应头没有这个头部, 那么就会在控制台抛出一个错误.</p>
+<p>另外, 还有一个值得注意的是. 服务端响应头设置了<code>Access-Control-Allow-Origin: *</code>的话, 是不能满足带 cookie 的跨域请求的. 因此有这种场景不能使用通配符, 需要全匹配字段.</p>
+<h4 id="CORS-总结"><a href="#CORS-总结" class="headerlink" title="CORS 总结"></a>CORS 总结</h4><p>简单总结一下 CORS. CORS的出现也是为了解决跨域的问题. 只不过和<code>JSONP</code>不同, 它是纳入规范的一部分, 它几乎支持所有的类型的HTTP请求(JSONP只能使用GET). 唯一美中不足的也就是兼容性的问题, 因此可以使用JSONP作向下的兼容</p>
+<p>事实上前端在 CORS 上并没有多少可操作的余地, 主要的还是浏览器来处理、服务端在设置, 但是并不代表我们就不需要了解这些知识啦.</p>
+<hr>
+<p>嗯, 其他的跨域方法先挖个坑..</p>
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding:10px 0;margin:20px auto;width:90%;text-align:center">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick='var qr=document.getElementById("QR");"none"===qr.style.display?qr.style.display="block":qr.style.display="none"'>
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display:none">
+      
+        <div id="wechat" style="display:inline-block">
+          <img id="wechat_qr" src="/blog/images/wechatpay.png" alt="Anron WeChat Pay">
+          
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    
+    
+      
+
+    
+
+    
+    
+      <div class="note success"><p>web 开发细节之类的知识已经逐步完善到<a href="https://github.com/anran758/Front-End-Lab" target="_blank" rel="noopener">Front-End-Lab</a> 这个仓库。以后可以作为一个知识体系，根据目录去找想要了解的知识或问题~</p></div>
+    
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      Anron
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://anran758.github.io/blog/2018/03/04/聊聊常见的跨域问题/" title="聊聊常见的跨域问题">https://anran758.github.io/blog/2018/03/04/聊聊常见的跨域问题/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018/02/06/VSCode-从零开始配置前端环境/" rel="next" title="VSCode: 从零开始配置前端环境">
+                <i class="fa fa-chevron-left"></i> VSCode: 从零开始配置前端环境
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018/03/11/关于前台GIF动图逐个播放的思路/" rel="prev" title="关于移动端GIF动图逐个播放的思路">
+                关于移动端GIF动图逐个播放的思路 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="container"></div>
+      <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+      <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+      <script>var gitment=new Gitment({id:"init_"+Date.now(),owner:"anran758",repo:"gitment-comments",oauth:{client_id:"a35e4aa0db5b5a7bcc2f",client_secret:"a19ef2a9debab8747a6e723c1eff1141213fe101"}});gitment.render("container")</script>
+
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://avatars3.githubusercontent.com/u/23024075?s=96&v=4" alt="Anron">
+          <p class="site-author-name" itemprop="name">Anron</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/blog/archives">
+                <span class="site-state-item-count">41</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/blog/categories/index.html">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags/index.html">
+                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        <div class="motion-element link-line">
+          
+            <div class="feed-link block-item">
+              <a href="https://github.com/anran758/blog" target="_blank" rel="alternate">
+                <i class="fa fa-star"></i>
+                STAR
+              </a>
+            </div>
+          
+
+          
+            <div class="feed-link block-item">
+              <a href="/blog/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+        </div>
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/anran758" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/3833726651" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://segmentfault.com/u/anran758/" target="_blank" title="Segmentfault">
+                  
+                    <i class="fa fa-fw fa-code"></i>
+                  
+                  Segmentfault
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://codepen.io/anran758/" target="_blank" title="Codepen">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Codepen
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa fa-fw fa-book"></i>
+              优质博客
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.zhangxinxu.com/" title="张鑫旭" target="_blank">张鑫旭</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.liaoxuefeng.com/" title="廖雪峰" target="_blank">廖雪峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://isux.tencent.com/" title="ISUX" target="_blank">ISUX</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://eux.baidu.com/" title="百度EUX" target="_blank">百度EUX</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.alloyteam.com/" title="Alloyteam" target="_blank">Alloyteam</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-wikipedia-w"></i>
+      百科全书
+    </div>
+    <ul class="links-of-blogroll-list">
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://caniuse.com/" title="Caniuse - CSS兼容性" target="_blank">Caniuse - CSS兼容性</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://developer.mozilla.org/zh-CN/" title="MDN - Web文档" target="_blank">MDN - Web文档</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-wrench"></i>
+      常用工具
+    </div>
+    <ul class="links-of-blogroll-list">
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://jsbin.com/?js,console,output" title="JSBin" target="_blank">JSBin</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://codepen.io/" title="codepen" target="_blank">codepen</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://www.easy-mock.com/" title="Easy-mock" target="_blank">Easy-mock</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://autoprefixer.github.io/" title="Autoprefixer" target="_blank">Autoprefixer</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://tinypng.com/" title="压缩图片 - tinypng" target="_blank">压缩图片 - tinypng</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+
+
+      </section>
+
+      
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是跨域"><span class="nav-number">1.</span> <span class="nav-text">什么是跨域?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#产生跨域的原因"><span class="nav-number">2.</span> <span class="nav-text">产生跨域的原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决跨域"><span class="nav-number">3.</span> <span class="nav-text">解决跨域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JSONP"><span class="nav-number">3.1.</span> <span class="nav-text">JSONP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跨域资源共享-CORS"><span class="nav-number">3.2.</span> <span class="nav-text">跨域资源共享(CORS)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概述"><span class="nav-number">3.2.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#两种请求"><span class="nav-number">3.2.2.</span> <span class="nav-text">两种请求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#带-cookie-的跨域请求"><span class="nav-number">3.2.3.</span> <span class="nav-text">带 cookie 的跨域请求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CORS-总结"><span class="nav-number">3.2.4.</span> <span class="nav-text">CORS 总结</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  <div class="theme-info">
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Anron</span>
+    <div class="powered-by"></div>
+  </div>
+
+  <div class="theme-info">
+    <span class="post-count">全站共53.1k字</span>
+    <div class="powered-by"></div>
+  </div>
+
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">var isfetched=!1,search_path="search.xml";0==search_path.length&&(search_path="search.xml");var path="/blog/"+search_path;function proceedsearch(){$("body").append('<div class="search-popup-overlay local-search-pop-overlay"></div>').css("overflow","hidden"),$(".popup").toggle()}var searchFunc=function(e,t,a){"use strict";$.ajax({url:e,dataType:"xml",async:!0,success:function(e){isfetched=!0,$(".popup").detach().appendTo(".header-inner");var r=$("entry",e).map(function(){return{title:$("title",this).text(),content:$("content",this).text(),url:$("url",this).text()}}).get(),c=document.getElementById(t),s=document.getElementById(a);c.addEventListener("input",function(){var e=0,t='<ul class="search-result-list">',a=this.value.trim().toLowerCase().split(/[\s\-]+/);s.innerHTML="",this.value.trim().length>1&&r.forEach(function(r){var c=!1,s=r.title.trim().toLowerCase(),o=r.content.trim().replace(/<[^>]+>/g,"").toLowerCase(),n=decodeURIComponent(r.url),i=-1,l=-1,p=-1;if(""!=s&&a.forEach(function(e,t){i=s.indexOf(e),l=o.indexOf(e),(i>=0||l>=0)&&(c=!0,0==t&&(p=l))}),c){e+=1,t+="<li><a href='"+n+"' class='search-result-title'>"+s+"</a>";var h=r.content.trim().replace(/<[^>]+>/g,"");if(p>=0){var u=p-20,d=p+80;u<0&&(u=0),0==u&&(d=50),d>h.length&&(d=h.length);var f=h.substring(u,d);a.forEach(function(e){var t=new RegExp(e,"gi");f=f.replace(t,'<b class="search-keyword">'+e+"</b>")}),t+='<p class="search-result">'+f+"...</p>"}t+="</li>"}}),t+="</ul>",0==e&&(t='<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'),""==a&&(t='<div id="no-result"><i class="fa fa-search fa-5x" /></div>'),s.innerHTML=t}),proceedsearch()}})};$(".popup-trigger").click(function(e){e.stopPropagation(),0==isfetched?searchFunc(path,"local-search-input","local-search-result"):proceedsearch()}),$(".popup-btn-close").click(function(e){$(".popup").hide(),$(".local-search-pop-overlay").remove(),$("body").css("overflow","")}),$(".popup").click(function(e){e.stopPropagation()})</script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("QrxRhKL4BgNphcY1TiSNE4oL-gzGzoHsz","ToJdukQb4M9DfdjLminRBwHq")</script>
+  <script>function showTime(e){var t=new AV.Query(e),n=[],o=$(".leancloud_visitors");o.each(function(){n.push($(this).attr("id").trim())}),t.containedIn("url",n),t.find().done(function(e){var t=".leancloud-visitors-count";if(0!==e.length){for(var i=0;i<e.length;i++){var s=e[i],r=s.get("url"),l=s.get("time"),c=document.getElementById(r);$(c).find(t).text(l)}for(i=0;i<n.length;i++){r=n[i],c=document.getElementById(r);var u=$(c).find(t);""==u.text()&&u.text(0)}}else o.find(t).text(0)}).fail(function(e,t){console.log("Error: "+t.code+" "+t.message)})}function addCount(e){var t=$(".leancloud_visitors"),n=t.attr("id").trim(),o=t.attr("data-flag-title").trim(),i=new AV.Query(e);i.equalTo("url",n),i.find({success:function(t){if(t.length>0){var i=t[0];i.fetchWhenSave(!0),i.increment("time"),i.save(null,{success:function(e){$(document.getElementById(n)).find(".leancloud-visitors-count").text(e.get("time"))},error:function(e,t){console.log("Failed to save Visitor num, with error message: "+t.message)}})}else{var s=new e,r=new AV.ACL;r.setPublicReadAccess(!0),r.setPublicWriteAccess(!0),s.setACL(r),s.set("title",o),s.set("url",n),s.set("time",1),s.save(null,{success:function(e){$(document.getElementById(n)).find(".leancloud-visitors-count").text(e.get("time"))},error:function(e,t){console.log("Failed to create")}})}},error:function(e){console.log("Error:"+e.code+" "+e.message)}})}$(function(){var e=AV.Object.extend("Counter");1==$(".leancloud_visitors").length?addCount(e):$(".post-title-link").length>1&&showTime(e)})</script>
+
+
+
+  
+<script>!function(){var t=document.createElement("script"),e=window.location.protocol.split(":")[0];t.src="https"===e?"https://zz.bdstatic.com/linksubmit/push.js":"http://push.zhanzhang.baidu.com/push.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}()</script>
+
+
+  
+
+  
+
+  <script>!function(){var t=document.createElement("script"),e=window.location.protocol.split(":")[0];t.src="https"===e?"https://zz.bdstatic.com/linksubmit/push.js":"http://push.zhanzhang.baidu.com/push.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}()</script></body></html>
