@@ -18,24 +18,28 @@ $(document).on('DOMContentLoaded', function() {
 
   // Ref: https://github.com/ForbesLindesay/unescape-html
   function unescapeHtml(html) {
-    return String(html)
-      .replace(/&quot;/g, '"')
-      .replace(/&#39;/g, '\'')
-      .replace(/&#x3A;/g, ':')
-      // Replace all the other &#x; chars
-      .replace(/&#(\d+);/g, function(m, p) {
-        return String.fromCharCode(p);
-      })
-      .replace(/&lt;/g, '<')
-      .replace(/&gt;/g, '>')
-      .replace(/&amp;/g, '&');
+    return (
+      String(html)
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'")
+        .replace(/&#x3A;/g, ':')
+        // Replace all the other &#x; chars
+        .replace(/&#(\d+);/g, function(m, p) {
+          return String.fromCharCode(p);
+        })
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&amp;/g, '&')
+    );
   }
   function getIndexByWord(word, text, caseSensitive) {
     var wordLen = word.length;
     if (wordLen === 0) {
       return [];
     }
-    var startPosition = 0; var position = []; var index = [];
+    var startPosition = 0;
+    var position = [];
+    var index = [];
     if (!caseSensitive) {
       text = text.toLowerCase();
       word = word.toLowerCase();
@@ -43,7 +47,7 @@ $(document).on('DOMContentLoaded', function() {
     while ((position = text.indexOf(word, startPosition)) > -1) {
       index.push({
         position: position,
-        word    : word
+        word: word
       });
       startPosition = position + wordLen;
     }
@@ -63,7 +67,7 @@ $(document).on('DOMContentLoaded', function() {
       }
       hits.push({
         position: position,
-        length  : word.length
+        length: word.length
       });
       var wordEnd = position + word.length;
 
@@ -81,9 +85,9 @@ $(document).on('DOMContentLoaded', function() {
       }
     }
     return {
-      hits           : hits,
-      start          : start,
-      end            : end,
+      hits: hits,
+      start: start,
+      end: end,
       searchTextCount: searchTextCountInSlice
     };
   }
@@ -95,7 +99,10 @@ $(document).on('DOMContentLoaded', function() {
     slice.hits.forEach(function(hit) {
       result += text.substring(prevEnd, hit.position);
       var end = hit.position + hit.length;
-      result += `<b class="search-keyword">${text.substring(hit.position, end)}</b>`;
+      result += `<b class="search-keyword">${text.substring(
+        hit.position,
+        end
+      )}</b>`;
       prevEnd = end;
     });
     result += text.substring(prevEnd, slice.end);
@@ -118,7 +125,9 @@ $(document).on('DOMContentLoaded', function() {
         var searchTextCount = 0;
         var title = data.title.trim();
         var titleInLowerCase = title.toLowerCase();
-        var content = data.content ? data.content.trim().replace(/<[^>]+>/g, '') : '';
+        var content = data.content
+          ? data.content.trim().replace(/<[^>]+>/g, '')
+          : '';
         if (CONFIG.localsearch.unescape) {
           content = unescapeHtml(content);
         }
@@ -127,8 +136,12 @@ $(document).on('DOMContentLoaded', function() {
         var indexOfTitle = [];
         var indexOfContent = [];
         keywords.forEach(function(keyword) {
-          indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-          indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+          indexOfTitle = indexOfTitle.concat(
+            getIndexByWord(keyword, titleInLowerCase, false)
+          );
+          indexOfContent = indexOfContent.concat(
+            getIndexByWord(keyword, contentInLowerCase, false)
+          );
         });
 
         // Show search results
@@ -146,7 +159,13 @@ $(document).on('DOMContentLoaded', function() {
 
           var slicesOfTitle = [];
           if (indexOfTitle.length !== 0) {
-            var tmp = mergeIntoSlice(title, 0, title.length, indexOfTitle, searchText);
+            var tmp = mergeIntoSlice(
+              title,
+              0,
+              title.length,
+              indexOfTitle,
+              searchText
+            );
             searchTextCount += tmp.searchTextCountInSlice;
             slicesOfTitle.push(tmp);
           }
@@ -168,7 +187,13 @@ $(document).on('DOMContentLoaded', function() {
             if (end > content.length) {
               end = content.length;
             }
-            let tmp = mergeIntoSlice(content, start, end, indexOfContent, searchText);
+            let tmp = mergeIntoSlice(
+              content,
+              start,
+              end,
+              indexOfContent,
+              searchText
+            );
             searchTextCount += tmp.searchTextCountInSlice;
             slicesOfContent.push(tmp);
           }
@@ -192,29 +217,37 @@ $(document).on('DOMContentLoaded', function() {
           var resultItem = '';
 
           if (slicesOfTitle.length !== 0) {
-            resultItem += `<li><a href="${articleUrl}" class="search-result-title">${highlightKeyword(title, slicesOfTitle[0])}</a>`;
+            resultItem += `<li><a href="${articleUrl}" class="search-result-title">${highlightKeyword(
+              title,
+              slicesOfTitle[0]
+            )}</a>`;
           } else {
             resultItem += `<li><a href="${articleUrl}" class="search-result-title">${title}</a>`;
           }
 
           slicesOfContent.forEach(function(slice) {
-            resultItem += `<a href="${articleUrl}"><p class="search-result">${highlightKeyword(content, slice)}...</p></a>`;
+            resultItem += `<a href="${articleUrl}"><p class="search-result">${highlightKeyword(
+              content,
+              slice
+            )}...</p></a>`;
           });
 
           resultItem += '</li>';
           resultItems.push({
-            item           : resultItem,
+            item: resultItem,
             searchTextCount: searchTextCount,
-            hitCount       : hitCount,
-            id             : resultItems.length
+            hitCount: hitCount,
+            id: resultItems.length
           });
         }
       });
     }
     if (keywords.length === 1 && keywords[0] === '') {
-      resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>';
+      resultContent.innerHTML =
+        '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>';
     } else if (resultItems.length === 0) {
-      resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>';
+      resultContent.innerHTML =
+        '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>';
     } else {
       resultItems.sort(function(resultLeft, resultRight) {
         if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
@@ -233,19 +266,26 @@ $(document).on('DOMContentLoaded', function() {
     }
   }
   function fetchData(callback) {
+    console.log('fetchData', isXml, callback);
     $.ajax({
-      url     : path,
+      url: path,
       dataType: isXml ? 'xml' : 'json',
-      success : function(res) {
+      success: function(res) {
         // Get the contents from search data
+        console.log(res);
         isfetched = true;
-        datas = isXml ? $('entry', res).map(function() {
-          return {
-            title  : $('title', this).text(),
-            content: $('content', this).text(),
-            url    : $('url', this).text()
-          };
-        }).get() : res;
+        datas = isXml
+          ? $('entry', res)
+              .map(function() {
+                return {
+                  title: $('title', this).text(),
+                  content: $('content', this).text(),
+                  url: $('url', this).text()
+                };
+              })
+              .get()
+          : res;
+        console.log(datas);
 
         // Remove loading animation
         $('.local-search-pop-overlay').remove();
@@ -254,6 +294,9 @@ $(document).on('DOMContentLoaded', function() {
         if (callback) {
           callback();
         }
+      },
+      error: function(err) {
+        console.log('err', err);
       }
     });
   }
@@ -287,14 +330,16 @@ $(document).on('DOMContentLoaded', function() {
   function searchFunc() {
     // Start loading animation
     $('body')
-      .append(`<div class="local-search-pop-overlay">
+      .append(
+        `<div class="local-search-pop-overlay">
           <div id="search-loading-icon">
             <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
           </div>
-        </div>`)
+        </div>`
+      )
       .css('overflow', 'hidden');
     $('#search-loading-icon').css({
-      margin      : '20% auto 0 auto',
+      margin: '20% auto 0 auto',
       'text-align': 'center'
     });
     fetchData(proceedSearch);
@@ -326,7 +371,8 @@ $(document).on('DOMContentLoaded', function() {
     e.stopPropagation();
   });
   $(document).on('keyup', function(event) {
-    var shouldDismissSearchPopup = event.which === 27 && $('.search-popup').is(':visible');
+    var shouldDismissSearchPopup =
+      event.which === 27 && $('.search-popup').is(':visible');
     if (shouldDismissSearchPopup) {
       onPopupClose();
     }
