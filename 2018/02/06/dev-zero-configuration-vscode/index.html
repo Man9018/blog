@@ -63,7 +63,7 @@
 </script>
 
   <meta name="description" content="我们在进行开发工作时，选择一个顺手好用的 IDE 是必不可免的, 其中 vscode 就是一个很好的选择。它能让你大部分的工作都在编辑器内完成, 大大的提高开发效率~">
-<meta name="keywords" content="tools,环境搭建,vscode">
+<meta name="keywords" content="tools,vscode,环境搭建">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[环境搭建] 从零开始配置 vscode">
 <meta property="og:url" content="https://anran758.github.io/blog/2018/02/06/dev-zero-configuration-vscode/index.html">
@@ -471,6 +471,23 @@
 
         
       
+        <div id="reward-container">
+  <div></div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+        
+      
+      <div style="display: inline-block">
+        <img src="/blog/images/wechatpay.png" alt="anran758 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+      
         
 
 <div>
@@ -496,9 +513,9 @@
             
               <a href="/blog/tags/tools/" rel="tag"># tools</a>
             
-              <a href="/blog/tags/环境搭建/" rel="tag"># 环境搭建</a>
-            
               <a href="/blog/tags/vscode/" rel="tag"># vscode</a>
+            
+              <a href="/blog/tags/环境搭建/" rel="tag"># 环境搭建</a>
             
           </div>
         
@@ -548,14 +565,24 @@
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
           
+            <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
+          
             <li class="tab"><a href="#comment-disqus">disqus</a></li>
           
             <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
           
-            <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
-          
         </ul>
         <div class="tab-content">
+          
+            <div class="tab-pane disqusjs" id="comment-disqusjs">
+              
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+            </div>
           
             <div class="tab-pane disqus" id="comment-disqus">
               
@@ -569,16 +596,6 @@
           
             <div class="tab-pane gitalk" id="comment-gitalk">
               <div class="comments" id="gitalk-container"></div>
-            </div>
-          
-            <div class="tab-pane disqusjs" id="comment-disqusjs">
-              
-  <div class="comments" id="comments">
-    <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
-    </div>
-  </div>
-  
             </div>
           
         </div>
@@ -1185,6 +1202,22 @@
 
 
     
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', function() {
+    window.dsqjs = new DisqusJS({
+      api: '' || 'https://disqus.com/api/',
+      apikey: 'sIyn05JGvJaybYCauBuz5uFbUYie1vZfOTGIdNfUH6Uznx3sLiZR0ARXgiXDDiHM',
+      shortname: 'anran758',
+      url: "https://anran758.github.io/blog/2018/02/06/dev-zero-configuration-vscode/",
+      identifier: "2018/02/06/dev-zero-configuration-vscode/",
+      title: '[环境搭建] 从零开始配置 vscode',
+    });
+  }, window.DisqusJS);
+</script>
+
+    
 <script>
   function loadCount() {
     var d = document, s = d.createElement('script');
@@ -1235,22 +1268,6 @@
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
-</script>
-
-    
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
-
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', function() {
-    window.dsqjs = new DisqusJS({
-      api: '' || 'https://disqus.com/api/',
-      apikey: 'sIyn05JGvJaybYCauBuz5uFbUYie1vZfOTGIdNfUH6Uznx3sLiZR0ARXgiXDDiHM',
-      shortname: 'anran758',
-      url: "https://anran758.github.io/blog/2018/02/06/dev-zero-configuration-vscode/",
-      identifier: "2018/02/06/dev-zero-configuration-vscode/",
-      title: '[环境搭建] 从零开始配置 vscode',
-    });
-  }, window.DisqusJS);
 </script>
 
 </body>

@@ -685,6 +685,23 @@
 
         
       
+        <div id="reward-container">
+  <div></div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+        
+      
+      <div style="display: inline-block">
+        <img src="/blog/images/wechatpay.png" alt="anran758 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+      
         
 
 <div>
@@ -760,14 +777,24 @@
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
           
+            <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
+          
             <li class="tab"><a href="#comment-disqus">disqus</a></li>
           
             <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
           
-            <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
-          
         </ul>
         <div class="tab-content">
+          
+            <div class="tab-pane disqusjs" id="comment-disqusjs">
+              
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+            </div>
           
             <div class="tab-pane disqus" id="comment-disqus">
               
@@ -781,16 +808,6 @@
           
             <div class="tab-pane gitalk" id="comment-gitalk">
               <div class="comments" id="gitalk-container"></div>
-            </div>
-          
-            <div class="tab-pane disqusjs" id="comment-disqusjs">
-              
-  <div class="comments" id="comments">
-    <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
-    </div>
-  </div>
-  
             </div>
           
         </div>
@@ -1397,6 +1414,22 @@
 
 
     
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', function() {
+    window.dsqjs = new DisqusJS({
+      api: '' || 'https://disqus.com/api/',
+      apikey: 'sIyn05JGvJaybYCauBuz5uFbUYie1vZfOTGIdNfUH6Uznx3sLiZR0ARXgiXDDiHM',
+      shortname: 'anran758',
+      url: "https://anran758.github.io/blog/2017/12/31/Git-emoji使用指南/",
+      identifier: "2017/12/31/Git-emoji使用指南/",
+      title: 'Git emoji使用指南',
+    });
+  }, window.DisqusJS);
+</script>
+
+    
 <script>
   function loadCount() {
     var d = document, s = d.createElement('script');
@@ -1447,22 +1480,6 @@
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
-</script>
-
-    
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
-
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', function() {
-    window.dsqjs = new DisqusJS({
-      api: '' || 'https://disqus.com/api/',
-      apikey: 'sIyn05JGvJaybYCauBuz5uFbUYie1vZfOTGIdNfUH6Uznx3sLiZR0ARXgiXDDiHM',
-      shortname: 'anran758',
-      url: "https://anran758.github.io/blog/2017/12/31/Git-emoji使用指南/",
-      identifier: "2017/12/31/Git-emoji使用指南/",
-      title: 'Git emoji使用指南',
-    });
-  }, window.DisqusJS);
 </script>
 
 </body>
