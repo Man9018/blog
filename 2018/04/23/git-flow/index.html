@@ -70,7 +70,7 @@
 <meta property="og:site_name" content="anran758&#39;s blog">
 <meta property="og:description" content="在我们团队开发中，必不可免会使用到版本控制。同时还需要一个统一的工作流程，创建新的功能、打补丁、正式版发布打tag等等，git-flow工作流就这些繁琐的东西简化了，它封装了git命令，将命令组合了起来，我们只需要几行代码就能解决这些繁琐的工作。正好工作也有好一段时间了，想将这方面的知识梳理一下。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-19T07:10:43.375Z">
+<meta property="og:updated_time" content="2019-08-21T14:05:14.044Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git-flow 练习笔记">
 <meta name="twitter:description" content="在我们团队开发中，必不可免会使用到版本控制。同时还需要一个统一的工作流程，创建新的功能、打补丁、正式版发布打tag等等，git-flow工作流就这些繁琐的东西简化了，它封装了git命令，将命令组合了起来，我们只需要几行代码就能解决这些繁琐的工作。正好工作也有好一段时间了，想将这方面的知识梳理一下。">
@@ -328,7 +328,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-19 15:10:43" itemprop="dateModified" datetime="2019-08-19T15:10:43+08:00">2019-08-19</time>
+                <time title="修改时间：2019-08-21 22:05:14" itemprop="dateModified" datetime="2019-08-21T22:05:14+08:00">2019-08-21</time>
               </span>
             
           
@@ -391,7 +391,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>29 分钟</span>
+              <span>21 分钟</span>
             </span>
           
 
@@ -424,7 +424,7 @@
 <p>如果这时直接用<code>push</code>的话，git会提示你没有设定上游分支————别忘了现在我们在使用全新的测试仓库。</p>
 <figure class="highlight plain"><figcaption><span>bash</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">➜  git-flow-test git:(develop) git push</span><br><span class="line">fatal: The current branch develop has no upstream branch.</span><br><span class="line">To push the current branch and set the remote as upstream, use</span><br><span class="line"></span><br><span class="line">    git push --set-upstream origin develop</span><br><span class="line"></span><br><span class="line">➜  git-flow-test git:(develop) git push --set-upstream origin develop</span><br><span class="line">Counting objects: 5, done.</span><br><span class="line">Delta compression using up to 4 threads.</span><br><span class="line">Compressing objects: 100% (2/2), done.</span><br><span class="line">Writing objects: 100% (5/5), 385 bytes | 385.00 KiB/s, done.</span><br><span class="line">Total 5 (delta 0), reused 0 (delta 0)</span><br><span class="line">To github.com:anran758/git-flow-test.git</span><br><span class="line"> * [new branch]      develop -&gt; develop</span><br><span class="line">Branch &apos;develop&apos; set up to track remote branch &apos;develop&apos; from &apos;origin&apos;.</span><br><span class="line">➜  git-flow-test git:(develop)</span><br></pre></td></tr></table></figure>
 
-<h2 id="功能分支"><a href="#功能分支" class="headerlink" title="功能分支"></a>功能分支</h2><p>umm..现在假设我们现在碰到了一个需求，需要加一些功能，这时我们就需要开一个功能分支了，这时工作中常用的分支。那为啥都切到开发环境了还要单独开一个分支呢？这是避免产品调皮的说，“诶嘿，兄弟，刚才那个功能只是我突发奇想，咱们不要了吧”。嗯，这时宰一个产品祭天事小，污染了全局的开发环境才事大，回退都不好回退（可能团队中其他人也在写一些功能上去或者修复了一些bug上去，回退意味着其他人也会收到影响）。</p>
+<h2 id="功能分支"><a href="#功能分支" class="headerlink" title="功能分支"></a>功能分支</h2><p>umm..现在假设我们现在碰到了一个需求，需要加一些功能，这时我们就需要开一个功能分支了，这时工作中常用的分支。那为啥都切到开发环境了还要单独开一个分支呢？这是避免产品调皮的说，“刚才那个功能只是我突发奇想，咱们不要了吧(诶嘿.jpg”。嗯，这时宰一个产品祭天事小，污染了全局的开发环境才事大，回退都不好回退（可能团队中其他人也在写一些功能上去或者修复了一些bug上去，回退意味着其他人也会收到影响）。</p>
 <p>而单独开一个分支则没那么多破事需要烦恼，再不济就删除这个分支即可，不需要耗费额外的成本。</p>
 <p>我们先看一下给flow都有啥，使用命令<code>git flow -h</code>会提示如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">➜  git-flow-test git:(develop) git flow -h</span><br><span class="line">flags:ERROR short flag required <span class="keyword">for</span> (showcommands) on this platform</span><br><span class="line">usage: git flow &lt;subcommand&gt;</span><br><span class="line"></span><br><span class="line">Available subcommands are:</span><br><span class="line">   init      Initialize a new git repo with support <span class="keyword">for</span> the branching model.</span><br><span class="line">   feature   Manage your feature branches.</span><br><span class="line">   bugfix    Manage your bugfix branches.</span><br><span class="line">   release   Manage your release branches.</span><br><span class="line">   hotfix    Manage your hotfix branches.</span><br><span class="line">   support   Manage your support branches.</span><br><span class="line">   version   Shows version information.</span><br><span class="line">   config    Manage your git-flow configuration.</span><br><span class="line">   <span class="built_in">log</span>       Show <span class="built_in">log</span> deviating from base branch.</span><br><span class="line"></span><br><span class="line">Try <span class="string">'git flow &lt;subcommand&gt; help'</span> <span class="keyword">for</span> details.</span><br></pre></td></tr></table></figure>
@@ -593,16 +593,16 @@
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
           
-            <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
-          
             <li class="tab"><a href="#comment-disqus">disqus</a></li>
+          
+            <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
           
             <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
           
         </ul>
         <div class="tab-content">
           
-            <div class="tab-pane disqusjs" id="comment-disqusjs">
+            <div class="tab-pane disqus" id="comment-disqus">
               
   <div class="comments" id="comments">
     <div id="disqus_thread">
@@ -612,7 +612,7 @@
   
             </div>
           
-            <div class="tab-pane disqus" id="comment-disqus">
+            <div class="tab-pane disqusjs" id="comment-disqusjs">
               
   <div class="comments" id="comments">
     <div id="disqus_thread">
@@ -742,7 +742,9 @@
         
           
         
-        <span class="site-state-item-count">19</span>
+          
+        
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -901,7 +903,7 @@
         
           
         
-        <span class="site-state-item-count">72</span>
+        <span class="site-state-item-count">71</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -999,7 +1001,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">6:26</span>
+    <span title="站点阅读时长">4:41</span>
 </div>
   <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动</div>
   <span class="post-meta-divider">|</span>
@@ -1230,22 +1232,6 @@
 
 
     
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
-
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', function() {
-    window.dsqjs = new DisqusJS({
-      api: '' || 'https://disqus.com/api/',
-      apikey: 'sIyn05JGvJaybYCauBuz5uFbUYie1vZfOTGIdNfUH6Uznx3sLiZR0ARXgiXDDiHM',
-      shortname: 'anran758',
-      url: "https://anran758.github.io/blog/2018/04/23/git-flow/",
-      identifier: "2018/04/23/git-flow/",
-      title: 'git-flow 练习笔记',
-    });
-  }, window.DisqusJS);
-</script>
-
-    
 <script>
   function loadCount() {
     var d = document, s = d.createElement('script');
@@ -1276,6 +1262,22 @@
   }
     window.addEventListener('load', loadComments, false);
   
+</script>
+
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', function() {
+    window.dsqjs = new DisqusJS({
+      api: '' || 'https://disqus.com/api/',
+      apikey: 'sIyn05JGvJaybYCauBuz5uFbUYie1vZfOTGIdNfUH6Uznx3sLiZR0ARXgiXDDiHM',
+      shortname: 'anran758',
+      url: "https://anran758.github.io/blog/2018/04/23/git-flow/",
+      identifier: "2018/04/23/git-flow/",
+      title: 'git-flow 练习笔记',
+    });
+  }, window.DisqusJS);
 </script>
 
     

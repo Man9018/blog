@@ -63,14 +63,14 @@
 </script>
 
   <meta name="description" content="回流与重绘已经是个老生常谈的问题啦, 但提到性能优化上却又必不可免的提到它. 今天来谈一谈什么是回流与重绘, 我们该如何去测试, 如何针对性的去优化.">
-<meta name="keywords" content="javascript,性能优化,HTML,DOM">
+<meta name="keywords" content="JavaScript,性能优化,HTML,DOM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="性能优化 - 回流与重绘">
 <meta property="og:url" content="https://anran758.github.io/blog/2018/01/15/性能优化-回流与重汇/index.html">
 <meta property="og:site_name" content="anran758&#39;s blog">
 <meta property="og:description" content="回流与重绘已经是个老生常谈的问题啦, 但提到性能优化上却又必不可免的提到它. 今天来谈一谈什么是回流与重绘, 我们该如何去测试, 如何针对性的去优化.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-19T05:14:47.422Z">
+<meta property="og:updated_time" content="2019-08-21T13:59:27.572Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="性能优化 - 回流与重绘">
 <meta name="twitter:description" content="回流与重绘已经是个老生常谈的问题啦, 但提到性能优化上却又必不可免的提到它. 今天来谈一谈什么是回流与重绘, 我们该如何去测试, 如何针对性的去优化.">
@@ -328,7 +328,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-19 13:14:47" itemprop="dateModified" datetime="2019-08-19T13:14:47+08:00">2019-08-19</time>
+                <time title="修改时间：2019-08-21 21:59:27" itemprop="dateModified" datetime="2019-08-21T21:59:27+08:00">2019-08-21</time>
               </span>
             
           
@@ -391,7 +391,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>7 分钟</span>
+              <span>5 分钟</span>
             </span>
           
 
@@ -512,7 +512,7 @@
           
           <div class="post-tags">
             
-              <a href="/blog/tags/javascript/" rel="tag"># javascript</a>
+              <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
             
               <a href="/blog/tags/性能优化/" rel="tag"># 性能优化</a>
             
@@ -568,16 +568,16 @@
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
           
-            <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
-          
             <li class="tab"><a href="#comment-disqus">disqus</a></li>
+          
+            <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
           
             <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
           
         </ul>
         <div class="tab-content">
           
-            <div class="tab-pane disqusjs" id="comment-disqusjs">
+            <div class="tab-pane disqus" id="comment-disqus">
               
   <div class="comments" id="comments">
     <div id="disqus_thread">
@@ -587,7 +587,7 @@
   
             </div>
           
-            <div class="tab-pane disqus" id="comment-disqus">
+            <div class="tab-pane disqusjs" id="comment-disqusjs">
               
   <div class="comments" id="comments">
     <div id="disqus_thread">
@@ -717,7 +717,9 @@
         
           
         
-        <span class="site-state-item-count">19</span>
+          
+        
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -876,7 +878,7 @@
         
           
         
-        <span class="site-state-item-count">72</span>
+        <span class="site-state-item-count">71</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -974,7 +976,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">6:26</span>
+    <span title="站点阅读时长">4:41</span>
 </div>
   <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动</div>
   <span class="post-meta-divider">|</span>
@@ -1205,22 +1207,6 @@
 
 
     
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
-
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', function() {
-    window.dsqjs = new DisqusJS({
-      api: '' || 'https://disqus.com/api/',
-      apikey: 'sIyn05JGvJaybYCauBuz5uFbUYie1vZfOTGIdNfUH6Uznx3sLiZR0ARXgiXDDiHM',
-      shortname: 'anran758',
-      url: "https://anran758.github.io/blog/2018/01/15/性能优化-回流与重汇/",
-      identifier: "2018/01/15/性能优化-回流与重汇/",
-      title: '性能优化 - 回流与重绘',
-    });
-  }, window.DisqusJS);
-</script>
-
-    
 <script>
   function loadCount() {
     var d = document, s = d.createElement('script');
@@ -1251,6 +1237,22 @@
   }
     window.addEventListener('load', loadComments, false);
   
+</script>
+
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', function() {
+    window.dsqjs = new DisqusJS({
+      api: '' || 'https://disqus.com/api/',
+      apikey: 'sIyn05JGvJaybYCauBuz5uFbUYie1vZfOTGIdNfUH6Uznx3sLiZR0ARXgiXDDiHM',
+      shortname: 'anran758',
+      url: "https://anran758.github.io/blog/2018/01/15/性能优化-回流与重汇/",
+      identifier: "2018/01/15/性能优化-回流与重汇/",
+      title: '性能优化 - 回流与重绘',
+    });
+  }, window.DisqusJS);
 </script>
 
     

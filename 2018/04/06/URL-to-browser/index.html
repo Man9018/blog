@@ -70,7 +70,7 @@
 <meta property="og:site_name" content="anran758&#39;s blog">
 <meta property="og:description" content="这其实一个很经典的一个题目啦~但其涉及知识面之广，却值得一说。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-19T07:06:56.245Z">
+<meta property="og:updated_time" content="2019-08-21T14:05:49.711Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浏览器与服务端的背后交互: 详解页面请求的过程">
 <meta name="twitter:description" content="这其实一个很经典的一个题目啦~但其涉及知识面之广，却值得一说。">
@@ -328,7 +328,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-19 15:06:56" itemprop="dateModified" datetime="2019-08-19T15:06:56+08:00">2019-08-19</time>
+                <time title="修改时间：2019-08-21 22:05:49" itemprop="dateModified" datetime="2019-08-21T22:05:49+08:00">2019-08-21</time>
               </span>
             
           
@@ -378,7 +378,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>8 分钟</span>
+              <span>6 分钟</span>
             </span>
           
 
@@ -397,7 +397,7 @@
 <a id="more"></a>
 
 <h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>我们将 URL 输入至浏览器的地址栏后回车, 首先浏览器就会开始检查 URL 是否合法, 是否 IP 地址， 若是不符合匹配规则, 将会以关联字进行搜索， 并带至搜索页（这个看浏览器设置）.</p>
-<p>我们以掘金为例, 我在输入 URL 的时候粗心的输错了协议. 但 Chrome 浏览器不认识这玩意呀, 然后将我们带到了搜索页. 仿佛在说: “嘿, 兄弟. 虽然不太理解你想干嘛, 但是你可以看看这里有你想要的东西吗?”</p>
+<p>我们以掘金为例, 我在输入 URL 的时候粗心的输错了协议. 但 Chrome 浏览器不认识这玩意呀, 然后将我们带到了搜索页. 仿佛在说: “嘿, 朋友。虽然不太懂你到底想干嘛, 不过你可以来看看这里有你想要的东西吗?”</p>
 <img data-src="/blog/2018/04/06/URL-to-browser/img-1.png">
 
 <h2 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h2><p>嘿, 接下来我们需要了解一些基础的概念~</p>
@@ -549,16 +549,16 @@
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
           
-            <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
-          
             <li class="tab"><a href="#comment-disqus">disqus</a></li>
+          
+            <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
           
             <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
           
         </ul>
         <div class="tab-content">
           
-            <div class="tab-pane disqusjs" id="comment-disqusjs">
+            <div class="tab-pane disqus" id="comment-disqus">
               
   <div class="comments" id="comments">
     <div id="disqus_thread">
@@ -568,7 +568,7 @@
   
             </div>
           
-            <div class="tab-pane disqus" id="comment-disqus">
+            <div class="tab-pane disqusjs" id="comment-disqusjs">
               
   <div class="comments" id="comments">
     <div id="disqus_thread">
@@ -698,7 +698,9 @@
         
           
         
-        <span class="site-state-item-count">19</span>
+          
+        
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -857,7 +859,7 @@
         
           
         
-        <span class="site-state-item-count">72</span>
+        <span class="site-state-item-count">71</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -955,7 +957,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">6:26</span>
+    <span title="站点阅读时长">4:41</span>
 </div>
   <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动</div>
   <span class="post-meta-divider">|</span>
@@ -1186,22 +1188,6 @@
 
 
     
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
-
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', function() {
-    window.dsqjs = new DisqusJS({
-      api: '' || 'https://disqus.com/api/',
-      apikey: 'sIyn05JGvJaybYCauBuz5uFbUYie1vZfOTGIdNfUH6Uznx3sLiZR0ARXgiXDDiHM',
-      shortname: 'anran758',
-      url: "https://anran758.github.io/blog/2018/04/06/URL-to-browser/",
-      identifier: "2018/04/06/URL-to-browser/",
-      title: '浏览器与服务端的背后交互: 详解页面请求的过程',
-    });
-  }, window.DisqusJS);
-</script>
-
-    
 <script>
   function loadCount() {
     var d = document, s = d.createElement('script');
@@ -1232,6 +1218,22 @@
   }
     window.addEventListener('load', loadComments, false);
   
+</script>
+
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', function() {
+    window.dsqjs = new DisqusJS({
+      api: '' || 'https://disqus.com/api/',
+      apikey: 'sIyn05JGvJaybYCauBuz5uFbUYie1vZfOTGIdNfUH6Uznx3sLiZR0ARXgiXDDiHM',
+      shortname: 'anran758',
+      url: "https://anran758.github.io/blog/2018/04/06/URL-to-browser/",
+      identifier: "2018/04/06/URL-to-browser/",
+      title: '浏览器与服务端的背后交互: 详解页面请求的过程',
+    });
+  }, window.DisqusJS);
 </script>
 
     
