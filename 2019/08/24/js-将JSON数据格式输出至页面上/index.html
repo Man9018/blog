@@ -399,7 +399,7 @@
 <li><code>&lt;code&gt;</code> 则是呈现一段计算机代码，它以浏览器的默认等宽字体显示，<strong>但并不一定会完整呈现原来的格式</strong>。</li>
 </ul>
 <p>这些标签知识实际上算是比较冷门的知识，或许远古的面试题会考这种知识点，平时很少会遇到。但是如果你经常使用<code>markdown</code>的话，那么这些标签在<code>markdown</code>中有不同的别名:</p>
-<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">比如 markdown 语法中的 ``，实际上等同于 &lt;code&gt; 标签。实际作用是短代码块标签</span><br><span class="line"></span><br><span class="line">而 markdown 语法中的长代码块就等同于 <span class="code">`&lt;pre&gt;`</span> 标签，不同的博客或者网站的应用中还可以对 <span class="code">`&lt;pre&gt;`</span> 加类名，用以展示不同的语言的语法高亮。</span><br></pre></td></tr></table></figure>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">比如 markdown 语法中的 ``，实际上等同于 <span class="xml"><span class="tag">&lt;<span class="name">code</span>&gt;</span></span> 标签。实际作用是短代码块标签</span><br><span class="line"></span><br><span class="line">而 markdown 语法中的长代码块就等同于 <span class="code">`&lt;pre&gt;`</span> 标签，不同的博客或者网站的应用中还可以对 <span class="code">`&lt;pre&gt;`</span> 加类名，用以展示不同的语言的语法高亮。</span><br></pre></td></tr></table></figure>
 
 <p>通过三者之间的对比可以看出，只有 <code>&lt;pre&gt;</code> 才是符合我们需求的。</p>
 <iframe height="300" style="width: 100%;" scrolling="no" title="代码格式输出 - demo1" src="//codepen.io/anran758/embed/NWKdVYQ/?height=300&theme-id=32168&default-tab=html,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
@@ -1026,9 +1026,14 @@
                 console.log(`Failed to save Visitor num, with error message: ${responseJSON.error}`);
               })
           } else {
-              var $element = $(document.getElementById(url));
-              $element.find('.leancloud-visitors-count').text('Counter not initialized! More info at console err msg.');
-              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
             
           }
         })

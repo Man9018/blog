@@ -496,10 +496,10 @@
   
     <li class="popular-posts-item">
       
-        <div class="popular-posts-date">2017-12-26</div>
+        <div class="popular-posts-date">2017-11-29</div>
       
       
-      <div class="popular-posts-title"><a href="/blog/2017/12/26/新手不知道的技巧-if语句的判定/" rel="bookmark">条件语句的简写技巧</a></div>
+      <div class="popular-posts-title"><a href="/blog/2017/11/29/Vue-v-for-遍历绑定toggle-icon-动态切换action/" rel="bookmark">Vue 遍历绑定toggle icon, 动态切换action</a></div>
       
     </li>
   
@@ -1123,9 +1123,14 @@
                 console.log(`Failed to save Visitor num, with error message: ${responseJSON.error}`);
               })
           } else {
-              var $element = $(document.getElementById(url));
-              $element.find('.leancloud-visitors-count').text('Counter not initialized! More info at console err msg.');
-              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
             
           }
         })

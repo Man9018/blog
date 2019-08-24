@@ -444,10 +444,10 @@
   
     <li class="popular-posts-item">
       
-        <div class="popular-posts-date">2017-12-26</div>
+        <div class="popular-posts-date">2017-11-20</div>
       
       
-      <div class="popular-posts-title"><a href="/blog/2017/12/26/新手不知道的技巧-if语句的判定/" rel="bookmark">条件语句的简写技巧</a></div>
+      <div class="popular-posts-title"><a href="/blog/2017/11/20/使用JavaScript删除全部的微博/" rel="bookmark">使用JavaScript删除全部的微博</a></div>
       
     </li>
   
@@ -462,10 +462,10 @@
   
     <li class="popular-posts-item">
       
-        <div class="popular-posts-date">2018-01-30</div>
+        <div class="popular-posts-date">2017-11-17</div>
       
       
-      <div class="popular-posts-title"><a href="/blog/2018/01/30/Debug-深入研究console/" rel="bookmark">你可能不知道的console</a></div>
+      <div class="popular-posts-title"><a href="/blog/2017/11/17/Javascript深入解析-裁剪图片效果/" rel="bookmark">实现图片裁剪的效果</a></div>
       
     </li>
   
@@ -1041,9 +1041,14 @@
                 console.log(`Failed to save Visitor num, with error message: ${responseJSON.error}`);
               })
           } else {
-              var $element = $(document.getElementById(url));
-              $element.find('.leancloud-visitors-count').text('Counter not initialized! More info at console err msg.');
-              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
             
           }
         })
