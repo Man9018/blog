@@ -42,7 +42,7 @@
     copycode: {"enable":true,"show_result":true,"style":null},
     fancybox: false,
     mediumzoom: true,
-    lazyload: true,
+    lazyload: false,
     pangu: false,
     algolia: {
       applicationID: '',
@@ -70,10 +70,13 @@
 <meta property="og:site_name" content="anran758&#39;s blog">
 <meta property="og:description" content="ECharts，一个使用 JavaScript 实现的开源可视化库，可以流畅的运行在 PC 和移动设备上。可以这么说，在国内，是个前端都知道这个玩意是干嘛用的，毕竟它还是出自于国人之手。 虽说如此，但是Echarts涵盖的类型实在是太广了，它给我们提供了很多配置项，但呼之而来的问题是会有点让刚接触的人有点茫然… 哪些参数是必要的？哪个参数又跟什么地方的key值相对应，缺失后就无法正常的显示… 因">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/06/28/how-to-use-echart/banner.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/06/28/how-to-use-echart/echarts.png">
 <meta property="og:updated_time" content="2019-08-21T14:00:50.201Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Echarts 的食用方式">
 <meta name="twitter:description" content="ECharts，一个使用 JavaScript 实现的开源可视化库，可以流畅的运行在 PC 和移动设备上。可以这么说，在国内，是个前端都知道这个玩意是干嘛用的，毕竟它还是出自于国人之手。 虽说如此，但是Echarts涵盖的类型实在是太广了，它给我们提供了很多配置项，但呼之而来的问题是会有点让刚接触的人有点茫然… 哪些参数是必要的？哪个参数又跟什么地方的key值相对应，缺失后就无法正常的显示… 因">
+<meta name="twitter:image" content="https://anran758.github.io/blog/2018/06/28/how-to-use-echart/banner.png">
   <link rel="alternate" href="/blog/atom.xml" title="anran758's blog" type="application/atom+xml">
   <link rel="canonical" href="https://anran758.github.io/blog/2018/06/28/how-to-use-echart/">
 
@@ -381,7 +384,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>7.1k</span>
+              <span>7.7k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -391,7 +394,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>13 分钟</span>
+              <span>14 分钟</span>
             </span>
           
 
@@ -404,7 +407,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <img data-src="/blog/2018/06/28/how-to-use-echart/banner.png">
+        <img src="/blog/2018/06/28/how-to-use-echart/banner.png">
 <p><code>ECharts</code>，一个使用 JavaScript 实现的开源可视化库，可以流畅的运行在 PC 和移动设备上。可以这么说，在国内，是个前端都知道这个玩意是干嘛用的，毕竟它还是出自于国人之手。</p>
 <p>虽说如此，但是<code>Echarts</code>涵盖的类型实在是太广了，它给我们提供了很多配置项，但呼之而来的问题是会有点让刚接触的人有点茫然… 哪些参数是必要的？哪个参数又跟什么地方的<code>key</code>值相对应，缺失后就无法正常的显示…</p>
 <p>因此就来专门讲一讲这配置项的坑以及如何通过组件的方式正确的”食用“。</p>
@@ -423,7 +426,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">  url: url,</span><br><span class="line">  method: <span class="string">'GET'</span>,</span><br><span class="line">  data: data</span><br><span class="line">&#125;).done(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">  config.series[<span class="number">0</span>].data = res.data.click;</span><br><span class="line">  config.series[<span class="number">1</span>].data = res.data.exposure;</span><br><span class="line">  config.xAxis.data = res.data.xAxis;</span><br><span class="line"></span><br><span class="line">  myChart.setOption(option);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <p>如此，这样我们定义的 echarts 就完成啦~</p>
-<img data-src="/blog/2018/06/28/how-to-use-echart/echarts.png">
+<img src="/blog/2018/06/28/how-to-use-echart/echarts.png">
 
 <hr>
 <h2 id="Vue-组件"><a href="#Vue-组件" class="headerlink" title="Vue 组件"></a>Vue 组件</h2><p>在<code>vue</code>中封装组件也不难，大致如下：</p>
@@ -442,6 +445,54 @@
     
     
       
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      
+        <div class="popular-posts-date">2018-01-15</div>
+      
+      
+      <div class="popular-posts-title"><a href="/blog/2018/01/15/性能优化-回流与重汇/" rel="bookmark">性能优化 - 回流与重绘</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+        <div class="popular-posts-date">2018-01-30</div>
+      
+      
+      <div class="popular-posts-title"><a href="/blog/2018/01/30/Debug-深入研究console/" rel="bookmark">你可能不知道的console</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+        <div class="popular-posts-date">2017-11-29</div>
+      
+      
+      <div class="popular-posts-title"><a href="/blog/2017/11/29/Vue-v-for-遍历绑定toggle-icon-动态切换action/" rel="bookmark">Vue 遍历绑定toggle icon, 动态切换action</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+        <div class="popular-posts-date">2018-06-09</div>
+      
+      
+      <div class="popular-posts-title"><a href="/blog/2018/06/09/javascript-position-navigation/" rel="bookmark">锚点定位导航</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+        <div class="popular-posts-date">2017-08-21</div>
+      
+      
+      <div class="popular-posts-title"><a href="/blog/2017/08/21/js-common-regexp/" rel="bookmark">速查正则表达式</a></div>
+      
+    </li>
+  
+  </ul>
 
         
       
@@ -539,14 +590,18 @@
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
           
+            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
+          
             <li class="tab"><a href="#comment-disqus">disqus</a></li>
           
             <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
           
-            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
-          
         </ul>
         <div class="tab-content">
+          
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
           
             <div class="tab-pane disqus" id="comment-disqus">
               
@@ -566,10 +621,6 @@
     </div>
   </div>
   
-            </div>
-          
-            <div class="tab-pane gitalk" id="comment-gitalk">
-              <div class="comments" id="gitalk-container"></div>
             </div>
           
         </div>
@@ -635,7 +686,7 @@
         
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -649,10 +700,6 @@
           
         
         
-        
-          
-        
-          
         
           
         
@@ -849,7 +896,7 @@
         
           
         
-        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-count">72</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -942,12 +989,16 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">154k</span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">162k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:41</span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">4:55</span>
 </div>
   <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动</div>
   <span class="post-meta-divider">|</span>
@@ -980,7 +1031,6 @@
   
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1/reading_progress.min.js"></script>
   <script src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
@@ -1012,7 +1062,7 @@
   <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-bookmark@1/bookmark.min.js"></script>
   <script>
   if (CONFIG.page.isPost) {
-    bookmark.scrollToMark('auto', "#更多");
+    bookmark.scrollToMark('manual', "#更多");
   } else {
     bookmark.loadBookmark();
   }
@@ -1178,6 +1228,26 @@
 
 
     
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', function() {
+    var gitalk = new Gitalk({
+      clientID: 'a35e4aa0db5b5a7bcc2f',
+      clientSecret: 'a19ef2a9debab8747a6e723c1eff1141213fe101',
+      repo: 'gitment-comments',
+      owner: 'anran758',
+      admin: ['anran758'],
+      id: '20edc4cf314280069c0607fe945a347f',
+        language: window.navigator.language || window.navigator.userLanguage,
+      
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+    
 <script>
   function loadCount() {
     var d = document, s = d.createElement('script');
@@ -1224,26 +1294,6 @@
       title: 'Echarts 的食用方式',
     });
   }, window.DisqusJS);
-</script>
-
-    
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', function() {
-    var gitalk = new Gitalk({
-      clientID: 'a35e4aa0db5b5a7bcc2f',
-      clientSecret: 'a19ef2a9debab8747a6e723c1eff1141213fe101',
-      repo: 'gitment-comments',
-      owner: 'anran758',
-      admin: ['anran758'],
-      id: '20edc4cf314280069c0607fe945a347f',
-        language: window.navigator.language || window.navigator.userLanguage,
-      
-      distractionFreeMode: 'true'
-    });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
 </script>
 
 </body>

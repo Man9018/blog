@@ -42,7 +42,7 @@
     copycode: {"enable":true,"show_result":true,"style":null},
     fancybox: false,
     mediumzoom: true,
-    lazyload: true,
+    lazyload: false,
     pangu: false,
     algolia: {
       applicationID: '',
@@ -70,10 +70,13 @@
 <meta property="og:site_name" content="anran758&#39;s blog">
 <meta property="og:description" content="在我们团队开发中，必不可免会使用到版本控制。同时还需要一个统一的工作流程，创建新的功能、打补丁、正式版发布打tag等等，git-flow工作流就这些繁琐的东西简化了，它封装了git命令，将命令组合了起来，我们只需要几行代码就能解决这些繁琐的工作。正好工作也有好一段时间了，想将这方面的知识梳理一下。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/04/23/git-flow/banner.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/04/23/git-flow/img-1.png">
 <meta property="og:updated_time" content="2019-08-21T14:05:14.044Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git-flow 练习笔记">
 <meta name="twitter:description" content="在我们团队开发中，必不可免会使用到版本控制。同时还需要一个统一的工作流程，创建新的功能、打补丁、正式版发布打tag等等，git-flow工作流就这些繁琐的东西简化了，它封装了git命令，将命令组合了起来，我们只需要几行代码就能解决这些繁琐的工作。正好工作也有好一段时间了，想将这方面的知识梳理一下。">
+<meta name="twitter:image" content="https://anran758.github.io/blog/2018/04/23/git-flow/banner.png">
   <link rel="alternate" href="/blog/atom.xml" title="anran758's blog" type="application/atom+xml">
   <link rel="canonical" href="https://anran758.github.io/blog/2018/04/23/git-flow/">
 
@@ -381,7 +384,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>11k</span>
+              <span>12k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -404,7 +407,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <img data-src="/blog/2018/04/23/git-flow/banner.png">
+        <img src="/blog/2018/04/23/git-flow/banner.png">
 
 <p>在我们团队开发中，必不可免会使用到版本控制。同时还需要一个统一的工作流程，创建新的功能、打补丁、正式版发布打tag等等，git-flow工作流就这些繁琐的东西简化了，它封装了git命令，将命令组合了起来，我们只需要几行代码就能解决这些繁琐的工作。正好工作也有好一段时间了，想将这方面的知识梳理一下。</p>
 <a id="more"></a>
@@ -486,7 +489,7 @@
 <p>原来它与<code>hotbug</code>不同的是，它是基于<code>develop</code>分支的。事实上这一个工作流在笔者的日常开发中用的比较少，似乎有些gif flow 的模型中都没有这个工作流，不过我也没有深入的去考证~因为目前没有遇到碰到这个的场景，了解的同学不妨留言讨论分享一下。</p>
 <p>除此之外还有一个<code>support</code>的功能，是想用来支持以前的版本产品，这是一个实验性的功能，不太建议使用这个。</p>
 <p>如果你偏爱于可视化的git的话，如同 sourcetree 之类的 Git GUI 也内置有git flow。</p>
-<img title="Mac下的SourceTree" data-src="/blog/2018/04/23/git-flow/img-1.png">
+<img src="/blog/2018/04/23/git-flow/img-1.png" title="Mac下的SourceTree">
 
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>git flow实际上就一连串命令的组合，我们也可以单个单个的输入命令达到同样的效果。虽说git flow统一了工作流程，但并不是适用于全部的场景。项目中只有一个人时却反而会显得有点繁琐了。我们应该根据实际项目去选择符合项目的工作流。</p>
 
@@ -496,6 +499,36 @@
     
     
       
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      
+        <div class="popular-posts-date">2017-12-31</div>
+      
+      
+      <div class="popular-posts-title"><a href="/blog/2017/12/31/Git-emoji使用指南/" rel="bookmark">Git emoji使用指南</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+        <div class="popular-posts-date">2017-12-18</div>
+      
+      
+      <div class="popular-posts-title"><a href="/blog/2017/12/18/git-pull远程仓库代码冲突/" rel="bookmark">git pull远程仓库代码冲突</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+        <div class="popular-posts-date">2017-11-03</div>
+      
+      
+      <div class="popular-posts-title"><a href="/blog/2017/11/03/use-sourcetree-association/" rel="bookmark">【git】使用 sourcetree 实现远程仓库与本地仓库关联</a></div>
+      
+    </li>
+  
+  </ul>
 
         
       
@@ -593,14 +626,18 @@
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
           
+            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
+          
             <li class="tab"><a href="#comment-disqus">disqus</a></li>
           
             <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
           
-            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
-          
         </ul>
         <div class="tab-content">
+          
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
           
             <div class="tab-pane disqus" id="comment-disqus">
               
@@ -620,10 +657,6 @@
     </div>
   </div>
   
-            </div>
-          
-            <div class="tab-pane gitalk" id="comment-gitalk">
-              <div class="comments" id="gitalk-container"></div>
             </div>
           
         </div>
@@ -689,7 +722,7 @@
         
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -703,10 +736,6 @@
           
         
         
-        
-          
-        
-          
         
           
         
@@ -903,7 +932,7 @@
         
           
         
-        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-count">72</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -996,12 +1025,16 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">154k</span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">162k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:41</span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">4:55</span>
 </div>
   <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动</div>
   <span class="post-meta-divider">|</span>
@@ -1034,7 +1067,6 @@
   
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1/reading_progress.min.js"></script>
   <script src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
@@ -1066,7 +1098,7 @@
   <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-bookmark@1/bookmark.min.js"></script>
   <script>
   if (CONFIG.page.isPost) {
-    bookmark.scrollToMark('auto', "#更多");
+    bookmark.scrollToMark('manual', "#更多");
   } else {
     bookmark.loadBookmark();
   }
@@ -1232,6 +1264,26 @@
 
 
     
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', function() {
+    var gitalk = new Gitalk({
+      clientID: 'a35e4aa0db5b5a7bcc2f',
+      clientSecret: 'a19ef2a9debab8747a6e723c1eff1141213fe101',
+      repo: 'gitment-comments',
+      owner: 'anran758',
+      admin: ['anran758'],
+      id: '367d3e97675534abbae08fa7716f9f63',
+        language: window.navigator.language || window.navigator.userLanguage,
+      
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+    
 <script>
   function loadCount() {
     var d = document, s = d.createElement('script');
@@ -1278,26 +1330,6 @@
       title: 'git-flow 练习笔记',
     });
   }, window.DisqusJS);
-</script>
-
-    
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', function() {
-    var gitalk = new Gitalk({
-      clientID: 'a35e4aa0db5b5a7bcc2f',
-      clientSecret: 'a19ef2a9debab8747a6e723c1eff1141213fe101',
-      repo: 'gitment-comments',
-      owner: 'anran758',
-      admin: ['anran758'],
-      id: '367d3e97675534abbae08fa7716f9f63',
-        language: window.navigator.language || window.navigator.userLanguage,
-      
-      distractionFreeMode: 'true'
-    });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
 </script>
 
 </body>

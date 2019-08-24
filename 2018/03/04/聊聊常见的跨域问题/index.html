@@ -42,7 +42,7 @@
     copycode: {"enable":true,"show_result":true,"style":null},
     fancybox: false,
     mediumzoom: true,
-    lazyload: true,
+    lazyload: false,
     pangu: false,
     algolia: {
       applicationID: '',
@@ -70,10 +70,14 @@
 <meta property="og:site_name" content="anran758&#39;s blog">
 <meta property="og:description" content="跨域是前端工程中一个很常见的问题啦. 今天就来聊一聊跨域, 以及常见的处理方式和原理.">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/03/04/聊聊常见的跨域问题/banner.jpg">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/03/04/聊聊常见的跨域问题/img-1.jpg">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/03/04/聊聊常见的跨域问题/img-2.png">
 <meta property="og:updated_time" content="2019-08-19T05:14:47.552Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="聊聊常见的跨域问题">
 <meta name="twitter:description" content="跨域是前端工程中一个很常见的问题啦. 今天就来聊一聊跨域, 以及常见的处理方式和原理.">
+<meta name="twitter:image" content="https://anran758.github.io/blog/2018/03/04/聊聊常见的跨域问题/banner.jpg">
   <link rel="alternate" href="/blog/atom.xml" title="anran758's blog" type="application/atom+xml">
   <link rel="canonical" href="https://anran758.github.io/blog/2018/03/04/聊聊常见的跨域问题/">
 
@@ -368,7 +372,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>4.4k</span>
+              <span>4.3k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -391,7 +395,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <img data-src="/blog/2018/03/04/聊聊常见的跨域问题/banner.jpg">
+        <img src="/blog/2018/03/04/聊聊常见的跨域问题/banner.jpg">
 
 <p>跨域是前端工程中一个很常见的问题啦. 今天就来聊一聊跨域, 以及常见的处理方式和原理.</p>
 <a id="more"></a>
@@ -414,14 +418,14 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 服务端返回 js 代码到 &lt;script&gt;里</span></span><br><span class="line">userData(&#123;<span class="string">'naem'</span>:<span class="string">'小明'</span>,<span class="string">'id'</span>:<span class="number">1150</span>,<span class="string">'level'</span>:<span class="string">'中等'</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 前端定义函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">userData</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 当 jsonp 请求成功后, 将json传入函数并调用, 我们拿到 json 后就可以做一些其他的事</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>我们来拿B站为例. 打开chrome下的network, 上图就是<code>jsonp</code>的应用, 服务端返回的js脚本. 下图可以发现, 我们发出去的请求类型是<code>script</code>,  验证了前文所说的<code>&lt;script&gt;</code>不受同源策略影响的.</p>
-<img data-src="/blog/2018/03/04/聊聊常见的跨域问题/img-1.jpg">
+<img src="/blog/2018/03/04/聊聊常见的跨域问题/img-1.jpg">
 
 <p>目前主流的类库都对<code>jsonp</code>进行了封装, 如<code>JQuery</code>的<code>getJSON</code>和<code>ajax</code>, 这里就不深入讲解了. 最后对<code>jsonp</code>总结一下:</p>
 <p><code>jsonp</code>实际上是一个非正式传输协议, 或者说是一种”投机取巧”的方式. 我们可以利用<code>&lt;script&gt;</code>的特性从而进行数据交互解决跨域的问题. 相对来说, 它也有一定的局限性: 只能应用在GET请求上, 除此之外还有安全性的问题 —— 只能用在我们信任的服务端, 因为你不能保证对方未来会给你传些什么…</p>
 <h3 id="跨域资源共享-CORS"><a href="#跨域资源共享-CORS" class="headerlink" title="跨域资源共享(CORS)"></a>跨域资源共享(CORS)</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>说完了”不正规”的<code>jsonp</code>, 紧接着我们再说说原生的<code>CORS</code>规范. 我们先来看看官方的定义:</p>
 <p><strong>CORS(Cross-origin resource Sharing, 跨资源共享)</strong>, 定义了访问跨域资源时, 浏览器和服务器应该如何沟通. 其背后主要思想就是<strong>使用自定义的HTTP头部</strong>来让浏览器与服务器进行沟通, 从而决定请求或相应是否成功, 还是应该失败.</p>
 <p>目前主流的浏览器都已经对CORS有着良好的支持, 而IE8 ~ 9则还需要使用专用的<code>XDomainRequest</code>这里我们抛开不谈.</p>
-<img data-src="/blog/2018/03/04/聊聊常见的跨域问题/img-2.png">
+<img src="/blog/2018/03/04/聊聊常见的跨域问题/img-2.png">
 
 <p>这个功能实际上是由浏览器自动完成的, 我们并不需要做什么额外的工作. 对于开发者来说, 也就需要了解一些安全细节的问题, 这一点我们放在后面讲.</p>
 <h4 id="两种请求"><a href="#两种请求" class="headerlink" title="两种请求"></a>两种请求</h4><p>浏览器发送CORS请求时, 会将请求分为<strong>简单请求</strong>与<strong>非简单请求</strong>.</p>
@@ -564,14 +568,18 @@
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
           
+            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
+          
             <li class="tab"><a href="#comment-disqus">disqus</a></li>
           
             <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
           
-            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
-          
         </ul>
         <div class="tab-content">
+          
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
           
             <div class="tab-pane disqus" id="comment-disqus">
               
@@ -591,10 +599,6 @@
     </div>
   </div>
   
-            </div>
-          
-            <div class="tab-pane gitalk" id="comment-gitalk">
-              <div class="comments" id="gitalk-container"></div>
             </div>
           
         </div>
@@ -660,7 +664,7 @@
         
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -674,10 +678,6 @@
           
         
         
-        
-          
-        
-          
         
           
         
@@ -874,7 +874,7 @@
         
           
         
-        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-count">72</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -967,12 +967,16 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">154k</span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">162k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:41</span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">4:55</span>
 </div>
   <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动</div>
   <span class="post-meta-divider">|</span>
@@ -1005,7 +1009,6 @@
   
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1/reading_progress.min.js"></script>
   <script src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
@@ -1037,7 +1040,7 @@
   <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-bookmark@1/bookmark.min.js"></script>
   <script>
   if (CONFIG.page.isPost) {
-    bookmark.scrollToMark('auto', "#更多");
+    bookmark.scrollToMark('manual', "#更多");
   } else {
     bookmark.loadBookmark();
   }
@@ -1203,6 +1206,26 @@
 
 
     
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', function() {
+    var gitalk = new Gitalk({
+      clientID: 'a35e4aa0db5b5a7bcc2f',
+      clientSecret: 'a19ef2a9debab8747a6e723c1eff1141213fe101',
+      repo: 'gitment-comments',
+      owner: 'anran758',
+      admin: ['anran758'],
+      id: 'b4a49afb8c3d36347c612479e1f74efb',
+        language: window.navigator.language || window.navigator.userLanguage,
+      
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+    
 <script>
   function loadCount() {
     var d = document, s = d.createElement('script');
@@ -1249,26 +1272,6 @@
       title: '聊聊常见的跨域问题',
     });
   }, window.DisqusJS);
-</script>
-
-    
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', function() {
-    var gitalk = new Gitalk({
-      clientID: 'a35e4aa0db5b5a7bcc2f',
-      clientSecret: 'a19ef2a9debab8747a6e723c1eff1141213fe101',
-      repo: 'gitment-comments',
-      owner: 'anran758',
-      admin: ['anran758'],
-      id: 'b4a49afb8c3d36347c612479e1f74efb',
-        language: window.navigator.language || window.navigator.userLanguage,
-      
-      distractionFreeMode: 'true'
-    });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
 </script>
 
 </body>

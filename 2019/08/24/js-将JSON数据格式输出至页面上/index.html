@@ -62,26 +62,20 @@
   };
 </script>
 
-  <meta name="description" content="这其实一个很经典的一个题目啦~但其涉及知识面之广，却值得一说。">
-<meta name="keywords" content="前端、JavaScript、vue、react、小程序开发">
+  <meta name="description" content="JSON 是一种轻量级的数据交换格式，它有键值对集合(js 中的对象)和数组两种结构。JSON是一个通用的格式，在前后端语言中都能跟该 JSON 打交道。 有时候我们需要将 JSON 格式输入至页面展示的需求，其中还需要保持一定的索引，那么该如何实现呢？">
+<meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="浏览器与服务端的背后交互: 详解页面请求的过程">
-<meta property="og:url" content="https://anran758.github.io/blog/2018/04/06/URL-to-browser/index.html">
+<meta property="og:title" content="将 JSON 数据格式输出至页面上">
+<meta property="og:url" content="https://anran758.github.io/blog/2019/08/24/js-将JSON数据格式输出至页面上/index.html">
 <meta property="og:site_name" content="anran758&#39;s blog">
-<meta property="og:description" content="这其实一个很经典的一个题目啦~但其涉及知识面之广，却值得一说。">
+<meta property="og:description" content="JSON 是一种轻量级的数据交换格式，它有键值对集合(js 中的对象)和数组两种结构。JSON是一个通用的格式，在前后端语言中都能跟该 JSON 打交道。 有时候我们需要将 JSON 格式输入至页面展示的需求，其中还需要保持一定的索引，那么该如何实现呢？">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://anran758.github.io/blog/2018/04/06/URL-to-browser/banner.jpg">
-<meta property="og:image" content="https://anran758.github.io/blog/2018/04/06/URL-to-browser/img-1.png">
-<meta property="og:image" content="https://anran758.github.io/blog/2018/04/06/URL-to-browser/anima-1.gif">
-<meta property="og:image" content="https://anran758.github.io/blog/2018/04/06/URL-to-browser/anima-2.gif">
-<meta property="og:image" content="https://anran758.github.io/blog/2018/04/06/URL-to-browser/Mozilla.gif">
-<meta property="og:updated_time" content="2019-08-21T14:05:49.711Z">
+<meta property="og:updated_time" content="2019-08-24T09:38:17.478Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="浏览器与服务端的背后交互: 详解页面请求的过程">
-<meta name="twitter:description" content="这其实一个很经典的一个题目啦~但其涉及知识面之广，却值得一说。">
-<meta name="twitter:image" content="https://anran758.github.io/blog/2018/04/06/URL-to-browser/banner.jpg">
+<meta name="twitter:title" content="将 JSON 数据格式输出至页面上">
+<meta name="twitter:description" content="JSON 是一种轻量级的数据交换格式，它有键值对集合(js 中的对象)和数组两种结构。JSON是一个通用的格式，在前后端语言中都能跟该 JSON 打交道。 有时候我们需要将 JSON 格式输入至页面展示的需求，其中还需要保持一定的索引，那么该如何实现呢？">
   <link rel="alternate" href="/blog/atom.xml" title="anran758's blog" type="application/atom+xml">
-  <link rel="canonical" href="https://anran758.github.io/blog/2018/04/06/URL-to-browser/">
+  <link rel="canonical" href="https://anran758.github.io/blog/2019/08/24/js-将JSON数据格式输出至页面上/">
 
 
 <script id="page-configurations">
@@ -95,7 +89,7 @@
   };
 </script>
 
-  <title>浏览器与服务端的背后交互: 详解页面请求的过程 | anran758's blog</title>
+  <title>将 JSON 数据格式输出至页面上 | anran758's blog</title>
   
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-99223334-1"></script>
   <script>
@@ -292,7 +286,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://anran758.github.io/blog/blog/2018/04/06/URL-to-browser/">
+    <link itemprop="mainEntityOfPage" href="https://anran758.github.io/blog/blog/2019/08/24/js-将JSON数据格式输出至页面上/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="anran758">
@@ -306,7 +300,7 @@
       <header class="post-header">
 
         
-          <h2 class="post-title" itemprop="name headline">浏览器与服务端的背后交互: 详解页面请求的过程
+          <h2 class="post-title" itemprop="name headline">将 JSON 数据格式输出至页面上
 
             
           </h2>
@@ -323,24 +317,16 @@
                 
               
 
-              <time title="创建时间：2018-04-06 16:07:15" itemprop="dateCreated datePublished" datetime="2018-04-06T16:07:15+08:00">2018-04-06</time>
+              <time title="创建时间：2019-08-24 16:04:52 / 修改时间：17:38:17" itemprop="dateCreated datePublished" datetime="2019-08-24T16:04:52+08:00">2019-08-24</time>
             </span>
           
             
 
             
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-21 22:05:49" itemprop="dateModified" datetime="2019-08-21T22:05:49+08:00">2019-08-21</time>
-              </span>
-            
           
 
           
-            <span id="/blog/2018/04/06/URL-to-browser/" class="post-meta-item leancloud_visitors" data-flag-title="浏览器与服务端的背后交互: 详解页面请求的过程" title="阅读次数">
+            <span id="/blog/2019/08/24/js-将JSON数据格式输出至页面上/" class="post-meta-item leancloud_visitors" data-flag-title="将 JSON 数据格式输出至页面上" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -359,8 +345,8 @@
       
       <span class="post-meta-item-text">Disqus：</span>
     
-    <a title="disqus" href="/blog/2018/04/06/URL-to-browser/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/04/06/URL-to-browser/" itemprop="commentCount"></span>
+    <a title="disqus" href="/blog/2019/08/24/js-将JSON数据格式输出至页面上/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/08/24/js-将JSON数据格式输出至页面上/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -374,7 +360,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>3.2k</span>
+              <span>4.6k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -384,7 +370,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>6 分钟</span>
+              <span>8 分钟</span>
             </span>
           
 
@@ -397,73 +383,51 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <img src="/blog/2018/04/06/URL-to-browser/banner.jpg">
-
-<p>这其实一个很经典的一个题目啦~但其涉及知识面之广，却值得一说。</p>
+        <p><code>JSON</code> 是一种轻量级的数据交换格式，它有键值对集合(js 中的对象)和数组两种结构。<code>JSON</code>是一个通用的格式，在前后端语言中都能跟该 <code>JSON</code> 打交道。</p>
+<p>有时候我们需要将 <code>JSON</code> 格式输入至页面展示的需求，其中还需要保持一定的索引，那么该如何实现呢？</p>
 <a id="more"></a>
 
-<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>我们将 URL 输入至浏览器的地址栏后回车, 首先浏览器就会开始检查 URL 是否合法, 是否 IP 地址， 若是不符合匹配规则, 将会以关联字进行搜索， 并带至搜索页（这个看浏览器设置）.</p>
-<p>我们以掘金为例, 我在输入 URL 的时候粗心的输错了协议. 但 Chrome 浏览器不认识这玩意呀, 然后将我们带到了搜索页. 仿佛在说: “嘿, 朋友。虽然不太懂你到底想干嘛, 不过你可以来看看这里有你想要的东西吗?”</p>
-<img src="/blog/2018/04/06/URL-to-browser/img-1.png">
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>我们将对象转为 <code>JSON</code> 字符串时会经常使用 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtQ04vZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvSlNPTi9zdHJpbmdpZnk=" title="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify">JSON.stringify<i class="fa fa-external-link"></i></span> 这个 API，其实该方法就内置有格式化的参数:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> userInfo = &#123;<span class="attr">name</span>: <span class="string">'anran758'</span>,<span class="attr">github</span>: <span class="string">'https://github.com/anran758'</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> info = <span class="built_in">JSON</span>.stringify(userInfo, <span class="literal">null</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(info);</span><br><span class="line"><span class="comment">// "&#123;↵  "name": "anran758",↵  "github": "https://github.com/anran758"↵&#125;"</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h2><p>嘿, 接下来我们需要了解一些基础的概念~</p>
-<p>通常我们看到诸如<code>www.baidu.com/</code>之类的网址， 我们将其称之为域名. 而 <strong>DNS</strong>就是<strong>域名系统(Domain Name System)</strong>，它所处于的角色就是将主机名和域名映射为相应的 IP 地址.</p>
-<p>事实上我们向服务端请求资源时, 也可以直接输入目标 IP, 并不一定需要通过域名才能访问到. 但更多的时候，我们常见的还是使用域名的方式进行访问， 这是为什么呢？</p>
-<p>其实这个也很好理解，当你需要记住十个以上诸如<code>111.13.101.208</code>的 IP 地址的话，你就会感觉头疼了，如果我们使用我们熟悉的单词去记的话，相反就没那么困扰了（想想淘宝，京东和百度的域名~）.</p>
-<p>然而当计算机在网络进行通讯时, 它们仍然需要 IP 地址————因为它们不认得域名，这时 DNS 就派上用场啦~ 换句话说, 域名对于服务端来说, 并不是必须的，这只不过是方便人脑记忆罢了~</p>
-<img src="/blog/2018/04/06/URL-to-browser/anima-1.gif" title="通过 IP 地址来访问百度首页">
+<p>在上面的代码中，我们第一个参数(<code>value</code>)传入了一个需要序列化的对象。第二个参数是<code>replacer</code>，用以对属性转换和处理，由于我们不需要额外的处理，因此传入一个<code>null</code>；第三个参数则是空格索引的个数，封顶是<code>10</code>，<code>0</code>或不传则没有空格。</p>
+<p>在控制台打印出信息后，我们可以看的出来格式化的数据是带换行符，并且有缩进的格式。接下来我们就要考虑如何输出到页面中。</p>
+<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>只要学过<code>HTML</code>的朋友都知道，我们直接将数据输入至<code>HTML</code>中，空格缩进会被浏览器给忽略掉的。因此不能输入到 <code>&lt;div&gt;</code> 中。这时候又想到，<code>JSON</code>格式实际上也算是代码的一种，那能不能输入至雷士代码块的标签中呢？答案是可以的。</p>
+<p><code>HTML</code> 中有两个标签可以展示源代码: <code>&lt;pre&gt;</code> 和 <code>&lt;code&gt;</code> 。它们之间不同之处在于:</p>
+<ul>
+<li><code>&lt;pre&gt;</code> 表示预定义<strong>格式文本</strong>，按照原文件中的编排，以等宽字体的形式展现出来，<strong>文本中的空白符（比如空格和换行符）都会显示出来</strong>。</li>
+<li><code>&lt;code&gt;</code> 则是呈现一段计算机代码，它以浏览器的默认等宽字体显示，<strong>但并不一定会完整呈现原来的格式</strong>。</li>
+</ul>
+<p>这些标签知识实际上算是比较冷门的知识，或许远古的面试题会考这种知识点，平时很少会遇到。但是如果你经常使用<code>markdown</code>的话，那么这些标签在<code>markdown</code>中有不同的别名:</p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">比如 markdown 语法中的 ``，实际上等同于 &lt;code&gt; 标签。实际作用是短代码块标签</span><br><span class="line"></span><br><span class="line">而 markdown 语法中的长代码块就等同于 <span class="code">`&lt;pre&gt;`</span> 标签，不同的博客或者网站的应用中还可以对 <span class="code">`&lt;pre&gt;`</span> 加类名，用以展示不同的语言的语法高亮。</span><br></pre></td></tr></table></figure>
 
-<hr>
-<p>ok, 咱们回归正题, 我们把前面的错误纠正, 输入正确的 URL =&gt; 浏览器开始解析 DNS:</p>
-<ul>
-<li>首先浏览器将接收到的<code>URL</code>查询主机名，并将主机名发送到<code>DNS</code>客户端.</li>
-<li>随后查找缓存中是否有该域名的记录， 缓存查找会根据以下几步进行查找：<ul>
-<li>每个浏览器都有自己的缓存, 浏览器会先检查自身的缓存的是否存在目标的<code>DNS</code>记录? 如果有则进行尝试连接.(chrome 浏览器的 DNS 是采用预解析的, 我们可以在地址栏输入 about:DNS 查看浏览器本地的<code>DNS</code>)</li>
-<li>如果浏览器缓存没有找到, 进而会查找操作系统中的<code>DNS</code>. (windows 可以在命令行使用<code>ipconfig /displaydns</code>来查看 <code>DNS</code>)</li>
-<li>如果在本地<code>DNS</code>都没有找到的话, 则会查找<strong>hosts 文件</strong>(域名解析文件), 它是负责将主机名映射到相应的<code>IP</code>地址。随带一提，我们在日常开发中常用到的<code>127.0.0.1</code>默认就在<strong>hotst 文件</strong>中映射了域名为<code>localhost</code>, 因此我们直接使用<code>localhost</code>来访问<code>127.0.0.1</code>。这些都是可以由我们自定义的。</li>
-</ul>
-</li>
-<li>如果 hosts 与本地 DNS 解析器缓存都没有相应的网址映射关系，首先会找 TCP/IP 参数中设置的首选 DNS 服务器（比如谷歌通用 DNS 地址 8.8.8.8），我们叫它本地 DNS 服务器，此服务器收到查询时，如果要查询的域名，包含在本地配置区域资源中，则返回解析结果给客户机，完成域名解析。</li>
-<li>如果要查询的域名，由本地 DNS 服务器区域解析，但该服务器已缓存了此网址映射关系，则调用这个 IP 地址映射，完成域名解析。</li>
-<li>如果仍然没有找到的话， 本地 DNS 会发出一个请求到 <strong>ISP DNS 缓存服务器（互联网服务提供商，如电信，你用的是哪一家的网）</strong>进行递归查询.</li>
-<li>如果仍然没有找到，就会去根域名进行查询，根域名服务器全球只有十三台。根域名收到请求后会查看区域文件记录，若无则将其管辖范围内顶级域名（如.com）服务器 IP 告诉本地 DNS 服务器。</li>
-<li>顶级域名服务器收到请求后查看区域文件记录，若无则将其管辖范围内主域名服务器的 IP 地址告诉本地 DNS 服务器。</li>
-<li>主域名服务器接受到请求后查询自己的缓存，如果没有则进入下一级域名服务器进行查找，并重复该步骤直至找到正确纪录。</li>
-<li>找到会将结果缓存起来， 同时返回结果给客户端.</li>
-</ul>
-<p>从客户端到本地<code>DNS</code>服务器是属于递归查询，而<code>DNS</code>服务器之间就是的交互查询就是迭代查询。</p>
-<p><strong>资料借鉴：</strong> <span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3F1ZXN0aW9uLzIzMDQyMTMx" title="https://www.zhihu.com/question/23042131">DNS 解析的过程是什么，求详细的？<i class="fa fa-external-link"></i></span></p>
-<h2 id="TCP-IP-连接"><a href="#TCP-IP-连接" class="headerlink" title="TCP/IP 连接"></a>TCP/IP 连接</h2><blockquote>
-<p>世界上几乎所有的 HTPP 通信都是由 TCP/IP 承载的，TCP/IP 是全球计算机及网络设备都在使用的一种常用的分组交换网络分层。 HTTP 的连接实际上就是 TCP 连接以及其使用规则。 –《HTTP 权威指南》</p>
-</blockquote>
-<p>紧接着，浏览器拿到 IP 地址后， 浏览器获取 URL 的端口（每个协议都有默认的端口号，比如 http 默认端口就为 80.），URL 中没有则获取协议的默认端口。</p>
-<p>随即浏览器发起 TCP 连接请求：</p>
-<ul>
-<li>创建新的套接字（socket）.</li>
-<li>浏览器发起到 120.41.39.47:443(掘金主页 IP 及端口) 的连接.<ul>
-<li>建立一条新的 TCP 连接时， TCP 软件会进行交换一系列的 IP 分组，对连接的有关参数进行沟通.<br>a1). 首先浏览器会发送一个小的 TCP 分组，这个分组设置了一个特殊的 <strong>SYN</strong> 标记，用来表示这是一条连接请求，然后等待服务端的回应.<br>a2). 服务器接受了连接后， 会对一些连接参数进行计算，并向客户端传回个 TCP 分组，这分组中包含有 <strong>SYN</strong> 和 <strong>ACK(确定字符)</strong> 标记，说明请求已经成功建立.<br>a3). 如果浏览器迟迟没有收到 ACK 标记时， 可能会重新发送一个请求。如果 收到后，则会向服务器回送一条 ACK（确认信息），将完整的请求头发送出去.</li>
-</ul>
-</li>
-<li>服务器读取请求后，对 HTTP 请求进行处理.</li>
-<li>判断请求是否合理合法，合理的话就执行所请求的动作，并将数据写回客户端.</li>
-</ul>
-<img src="/blog/2018/04/06/URL-to-browser/anima-2.gif" title="访问掘金首页">
+<p>通过三者之间的对比可以看出，只有 <code>&lt;pre&gt;</code> 才是符合我们需求的。</p>
+<iframe height="300" style="width: 100%;" scrolling="no" title="代码格式输出 - demo1" src="//codepen.io/anran758/embed/NWKdVYQ/?height=300&theme-id=32168&default-tab=html,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <span class="exturl" data-url="aHR0cHM6Ly9jb2RlcGVuLmlvL2FucmFuNzU4L3Blbi9OV0tkVllRLw==" title="https://codepen.io/anran758/pen/NWKdVYQ/">代码格式输出 - demo1<i class="fa fa-external-link"></i></span> by anran758
+  (<span class="exturl" data-url="aHR0cHM6Ly9jb2RlcGVuLmlvL2FucmFuNzU4" title="https://codepen.io/anran758">@anran758<i class="fa fa-external-link"></i></span>) on <span class="exturl" data-url="aHR0cHM6Ly9jb2RlcGVuLmlv" title="https://codepen.io">CodePen<i class="fa fa-external-link"></i></span>.
+</iframe>
 
-<p>在输入网址后，浏览器向服务端发起请求，服务端先是返回一个<code>doc</code>类型的<code>HTML</code>文件回来，浏览器解析文档时，再一次根据文档里的(link 或者 script 标签)进一步请求外部资源（详情放在下面再说）.<br>我们可以在<strong>Network</strong>上看到，浏览器将请求发出去后，请求的<code>status</code>会变为<code>pending</code>，这也是上面说到开始建立连接请求的第一步，正在等待服务器的回应。随即我们点进请求详情内，可以发现请求头只有少量的字段。<br>我们再打开一个请求状态（status）为 200 的请求，就能看到完整的请求头以及服务端传回来的响应了.</p>
-<h2 id="渲染文档"><a href="#渲染文档" class="headerlink" title="渲染文档"></a>渲染文档</h2><p>接着上面的问题， 浏览器开始解析页面。不过不同的浏览器引擎渲染过程都不太一样，这里姑且先说说<code>webkit内核</code>的渲染方式.</p>
-<ul>
-<li>首先浏览器的HTML解释器（HTML Parser）先工作，它将HTML的标签解析为DOM树。（DOM树构建）.<ul>
-<li>如果遇到了<code>&lt;script&gt;</code>标签则会停止解析文档，这是因为JavaScript中可能会带有<code>document.write</code>方法，可能会重写页面的结构，因此浏览器会等待<code>script</code>标签下载完毕并执行后才会继续解析文档。</li>
-<li>这也是著名的web开发最佳实践的规则之一的由来————将<code>&lt;script&gt;</code>放在<code>&lt;body/&gt;&gt;</code>之上，这样就不会阻塞文档解析了。</li>
+<p>确定好展示的方式后，就可以考虑进一步扩展格式化的功能。比如对象中还有属性是 <code>JSON</code> 字符串的话，咱也进一步的解析，直至最底层。想实现这种功能需要编写一个递归函数，考虑如下代码:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> isPlainObject = <span class="function">(<span class="params">v</span>) =&gt;</span> <span class="built_in">Object</span>.prototype.toString.call(v) === <span class="string">"[object Object]"</span></span><br><span class="line"><span class="keyword">const</span> isString = <span class="function">(<span class="params">v</span>) =&gt;</span> <span class="built_in">Object</span>.prototype.toString.call(v) === <span class="string">"[object String]"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 格式 JSON 字符串为对象</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @author anran758</span></span><br><span class="line"><span class="comment"> * @param &#123; any &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">formatJsonStrAsObj</span>(<span class="params">sample</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> temp = sample;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (isString(temp)) &#123;</span><br><span class="line">    <span class="comment">// 因为有解析失败的可能，使用 try catch 做相应处理</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      temp = <span class="built_in">JSON</span>.parse(temp);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (ex) &#123;</span><br><span class="line">      <span class="comment">// parse error，return this sample</span></span><br><span class="line">      <span class="keyword">return</span> sample;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (isPlainObject(temp)) &#123;</span><br><span class="line">    temp = &#123; ...temp &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">Object</span>.keys(temp).forEach(<span class="function"><span class="params">key</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> item = temp[key];</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 字符串或者对象进行递归确认</span></span><br><span class="line">      <span class="keyword">if</span> (isString(item) || isPlainObject(item)) &#123;</span><br><span class="line">        temp[key] = formatJsonStrAsObj(item);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 将 JSON 字符串转换为带缩进的字符串</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; sample JSON 字符串</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; [indnt=2] 缩进数</span></span><br><span class="line"><span class="comment"> * @returns</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">formatJSONIndnt</span>(<span class="params">sample, indnt = <span class="number">2</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> newSample = formatJsonStrAsObj(sample);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (isString(newSample)) <span class="keyword">return</span> newSample;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">JSON</span>.stringify(newSample, <span class="literal">null</span>, indnt);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (ex) &#123;</span><br><span class="line">    <span class="keyword">return</span> newSample.toString();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> info = <span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">  name: <span class="string">'anran758'</span>,</span><br><span class="line">  avatar: <span class="string">'https://xxx'</span>,</span><br><span class="line">  detail: <span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">    desc: <span class="string">'some description'</span>,</span><br><span class="line">    level: <span class="number">2</span>,</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">const</span> data = formatJSONIndnt(info);</span><br><span class="line"><span class="built_in">console</span>.log(data);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以直接将 data 输出至 dom 中</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>上文讲了如何将数据输出至页面，以及扩展格式化功能的示例。接下来讲解输入方面的应用。</p>
+<p>当用户从别的地方复制数据想粘贴至输入框时，可以在输入框上设置监控事件，触发事件后尝试帮用户格式化数据，示例代码如下:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">pre</span> <span class="attr">class</span>=<span class="string">"preview pre"</span>&gt;</span><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">class</span>=<span class="string">"textarea"</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> info = <span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">  name: <span class="string">'anran758'</span>,</span><br><span class="line">  avatar: <span class="string">'https://xxx'</span>,</span><br><span class="line">  detail: <span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">    desc: <span class="string">'some description'</span>,</span><br><span class="line">    level: <span class="number">2</span>,</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">const</span> data = formatJSONIndnt(info);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> textarea = <span class="built_in">document</span>.querySelector(<span class="string">'.textarea'</span>);</span><br><span class="line"><span class="keyword">const</span> preview = <span class="built_in">document</span>.querySelector(<span class="string">'.pre'</span>);</span><br><span class="line"></span><br><span class="line">preview.innerHTML = data;</span><br><span class="line">textarea.addEventListener(<span class="string">'paste'</span>, (e) =&gt; &#123;</span><br><span class="line">  <span class="comment">// 阻止默认事件</span></span><br><span class="line">  e.preventDefault();</span><br><span class="line">  <span class="keyword">const</span> value = (e.clipboardData || <span class="built_in">window</span>.clipboardData).getData(<span class="string">'text'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 这里使用了上面定义的函数，进行格式化数据</span></span><br><span class="line">  e.target.value = formatJSONIndnt(value, <span class="number">2</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">  <span class="attribute">min-height</span>: <span class="number">100vh</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.preview</span> &#123;</span><br><span class="line">  <span class="attribute">flex</span>: <span class="number">1</span>;</span><br><span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#f5fcff</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#d3eeff</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">3px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.textarea</span> &#123;</span><br><span class="line">  <span class="attribute">flex</span>: <span class="number">1</span>;</span><br><span class="line">  <span class="attribute">margin-left</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">'SFMono-Regular'</span>, Consolas, <span class="string">'Liberation Mono'</span>, Menlo, Courier,</span><br><span class="line">    monospace;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.preview</span> + <span class="selector-class">.preview</span> &#123;</span><br><span class="line">  <span class="attribute">margin-left</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="代码格式输入 - demo1" src="//codepen.io/anran758/embed/oNvBrWm/?height=300&theme-id=32168&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <span class="exturl" data-url="aHR0cHM6Ly9jb2RlcGVuLmlvL2FucmFuNzU4L3Blbi9vTnZCcldtLw==" title="https://codepen.io/anran758/pen/oNvBrWm/">代码格式输入 - demo1<i class="fa fa-external-link"></i></span> by anran758
+  (<span class="exturl" data-url="aHR0cHM6Ly9jb2RlcGVuLmlvL2FucmFuNzU4" title="https://codepen.io/anran758">@anran758<i class="fa fa-external-link"></i></span>) on <span class="exturl" data-url="aHR0cHM6Ly9jb2RlcGVuLmlv" title="https://codepen.io">CodePen<i class="fa fa-external-link"></i></span>.
+</iframe>
+
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvZW4tVVMvZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvSlNPTi9zdHJpbmdpZnk=" title="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify">JSON.stringify() - JavaScript | MDN<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvZW4tVVMvZG9jcy9XZWIvSFRNTC9FbGVtZW50L3ByZQ==" title="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/pre"><code>&lt;pre&gt;</code> - HTML（超文本标记语言） | MDN<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvZW4tVVMvZG9jcy9XZWIvSFRNTC9FbGVtZW50L2NvZGU=" title="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/code"><code>&lt;code&gt;</code> - HTML（超文本标记语言） | MDN<i class="fa fa-external-link"></i></span></li>
 </ul>
-</li>
-<li>接着css解析器（CSS Parser）会在DOM树构建完毕后开始解析css，它和DOM树一样最后解析出来的是树形结构的<strong>CSSOM</strong>（css object module，别名也要StyleRules），浏览器将解析后的样式信息保存到新建的<code>RenderStyle</code>对象中。</li>
-<li><code>RenderStyle</code>对象被<code>RenderObject</code>类所管理和使用.</li>
-<li>当创建RenderObject对象之后，每个对象是不知道自己的位置、大小等信息的，webkit根据盒模型来计算他们的位置、大小等信息，这个过程也被称之为回流与重绘（reflow and reflow）.</li>
-<li>页面呈现.</li>
-</ul>
-<p>页面绘制的过程在下图的加载Mozilla官网动图就很好的体现了出来~</p>
-<img src="/blog/2018/04/06/URL-to-browser/Mozilla.gif">
 
     </div>
 
@@ -499,7 +463,7 @@
     <strong>本文作者： </strong>anran758</li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://anran758.github.io/blog/2018/04/06/URL-to-browser/" title="浏览器与服务端的背后交互: 详解页面请求的过程">https://anran758.github.io/blog/2018/04/06/URL-to-browser/</a>
+    <a href="https://anran758.github.io/blog/2019/08/24/js-将JSON数据格式输出至页面上/" title="将 JSON 数据格式输出至页面上">https://anran758.github.io/blog/2019/08/24/js-将JSON数据格式输出至页面上/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！</li>
@@ -509,6 +473,15 @@
       
 
       <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/blog/tags/javascript/" rel="tag"># javascript</a>
+            
+          </div>
+        
 
         
   <div class="post-widgets">
@@ -521,8 +494,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/blog/2018/03/24/loading-pictures/" rel="next" title="详解图片的加载方式">
-                  <i class="fa fa-chevron-left"></i> 详解图片的加载方式
+                <a href="/blog/2019/08/19/hexo-blog/" rel="next" title="从搭建到部署，快速构建一个私人博客">
+                  <i class="fa fa-chevron-left"></i> 从搭建到部署，快速构建一个私人博客
                 </a>
               
             </div>
@@ -530,10 +503,6 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/blog/2018/04/23/git-flow/" rel="prev" title="git-flow 练习笔记">
-                  git-flow 练习笔记 <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>
@@ -927,7 +896,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开始"><span class="nav-number">1.</span> <span class="nav-text">开始</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS"><span class="nav-number">2.</span> <span class="nav-text">DNS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-IP-连接"><span class="nav-number">3.</span> <span class="nav-text">TCP/IP 连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#渲染文档"><span class="nav-number">4.</span> <span class="nav-text">渲染文档</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">1.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出"><span class="nav-number">2.</span> <span class="nav-text">输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入"><span class="nav-number">3.</span> <span class="nav-text">输入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -1203,7 +1172,7 @@
       repo: 'gitment-comments',
       owner: 'anran758',
       admin: ['anran758'],
-      id: 'd87e9d8c51e161e089b872f6b0db087a',
+      id: '9044664db572517837fe443f6335af1a',
         language: window.navigator.language || window.navigator.userLanguage,
       
       distractionFreeMode: 'true'
@@ -1225,9 +1194,9 @@
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "https://anran758.github.io/blog/2018/04/06/URL-to-browser/";
-    this.page.identifier = "2018/04/06/URL-to-browser/";
-    this.page.title = '浏览器与服务端的背后交互: 详解页面请求的过程';};
+    this.page.url = "https://anran758.github.io/blog/2019/08/24/js-将JSON数据格式输出至页面上/";
+    this.page.identifier = "2019/08/24/js-将JSON数据格式输出至页面上/";
+    this.page.title = '将 JSON 数据格式输出至页面上';};
   function loadComments() {
     if (window.DISQUS) {
       DISQUS.reset({
@@ -1254,9 +1223,9 @@
       api: '' || 'https://disqus.com/api/',
       apikey: 'sIyn05JGvJaybYCauBuz5uFbUYie1vZfOTGIdNfUH6Uznx3sLiZR0ARXgiXDDiHM',
       shortname: 'anran758',
-      url: "https://anran758.github.io/blog/2018/04/06/URL-to-browser/",
-      identifier: "2018/04/06/URL-to-browser/",
-      title: '浏览器与服务端的背后交互: 详解页面请求的过程',
+      url: "https://anran758.github.io/blog/2019/08/24/js-将JSON数据格式输出至页面上/",
+      identifier: "2019/08/24/js-将JSON数据格式输出至页面上/",
+      title: '将 JSON 数据格式输出至页面上',
     });
   }, window.DisqusJS);
 </script>

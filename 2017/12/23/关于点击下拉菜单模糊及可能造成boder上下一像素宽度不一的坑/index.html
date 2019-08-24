@@ -42,7 +42,7 @@
     copycode: {"enable":true,"show_result":true,"style":null},
     fancybox: false,
     mediumzoom: true,
-    lazyload: true,
+    lazyload: false,
     pangu: false,
     algolia: {
       applicationID: '',
@@ -70,10 +70,15 @@
 <meta property="og:site_name" content="anran758&#39;s blog">
 <meta property="og:description" content="关于点击下拉菜单会造成文字模糊及boder 1px上下和左右宽度不一致的问题.">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://anran758.github.io/blog/2017/12/23/关于点击下拉菜单模糊及可能造成boder上下一像素宽度不一的坑/transition.gif">
+<meta property="og:image" content="https://anran758.github.io/blog/2017/12/23/关于点击下拉菜单模糊及可能造成boder上下一像素宽度不一的坑/bug.gif">
+<meta property="og:image" content="https://anran758.github.io/blog/2017/12/23/关于点击下拉菜单模糊及可能造成boder上下一像素宽度不一的坑/img-1.jpg">
+<meta property="og:image" content="https://anran758.github.io/blog/2017/12/23/关于点击下拉菜单模糊及可能造成boder上下一像素宽度不一的坑/img-2.jpg">
 <meta property="og:updated_time" content="2019-08-19T05:14:46.748Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于点击下拉菜单字体模糊及可能造成boder上下一像素宽度不一的坑">
 <meta name="twitter:description" content="关于点击下拉菜单会造成文字模糊及boder 1px上下和左右宽度不一致的问题.">
+<meta name="twitter:image" content="https://anran758.github.io/blog/2017/12/23/关于点击下拉菜单模糊及可能造成boder上下一像素宽度不一的坑/transition.gif">
   <link rel="alternate" href="/blog/atom.xml" title="anran758's blog" type="application/atom+xml">
   <link rel="canonical" href="https://anran758.github.io/blog/2017/12/23/关于点击下拉菜单模糊及可能造成boder上下一像素宽度不一的坑/">
 
@@ -381,7 +386,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>247</span>
+              <span>239</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -404,14 +409,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <img data-src="/blog/2017/12/23/关于点击下拉菜单模糊及可能造成boder上下一像素宽度不一的坑/transition.gif">
+        <img src="/blog/2017/12/23/关于点击下拉菜单模糊及可能造成boder上下一像素宽度不一的坑/transition.gif">
 <p>关于点击下拉菜单会造成文字模糊及<code>boder 1px</code>上下和左右宽度不一致的问题.</p>
 <a id="more"></a>
 <h2 id="起始"><a href="#起始" class="headerlink" title="起始"></a>起始</h2><p>朋友叫帮忙看代码~ 问题是这样的, 当点击下拉菜单时, 整个页面的组件都变模糊一下. 然后border上下的边框能隐约看到会大概溢出那么一点(但是没到一个像素).</p>
 <p>因为使用了<code>element</code>组件, 大概能想到中间加有<code>transition</code>, 对问题进行排查后发现<code>transform</code>这个属性会对后代元素能产生影响, 将属性删除, 问题解决. 具体影响的原理, 现在占个坑, 以后再深入挖掘…</p>
-<h2 id="Bug相关的图"><a href="#Bug相关的图" class="headerlink" title="Bug相关的图"></a>Bug相关的图</h2><img title="点击后能明显看到整个组件模糊了" data-src="/blog/2017/12/23/关于点击下拉菜单模糊及可能造成boder上下一像素宽度不一的坑/bug.gif">
-<img title="正常下的1像素" data-src="/blog/2017/12/23/关于点击下拉菜单模糊及可能造成boder上下一像素宽度不一的坑/img-1.jpg">
-<img title="1像素下还有一点点的溢出" data-src="/blog/2017/12/23/关于点击下拉菜单模糊及可能造成boder上下一像素宽度不一的坑/img-2.jpg">
+<h2 id="Bug相关的图"><a href="#Bug相关的图" class="headerlink" title="Bug相关的图"></a>Bug相关的图</h2><img src="/blog/2017/12/23/关于点击下拉菜单模糊及可能造成boder上下一像素宽度不一的坑/bug.gif" title="点击后能明显看到整个组件模糊了">
+<img src="/blog/2017/12/23/关于点击下拉菜单模糊及可能造成boder上下一像素宽度不一的坑/img-1.jpg" title="正常下的1像素">
+<img src="/blog/2017/12/23/关于点击下拉菜单模糊及可能造成boder上下一像素宽度不一的坑/img-2.jpg" title="1像素下还有一点点的溢出">
 
     </div>
 
@@ -419,6 +424,18 @@
     
     
       
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      
+        <div class="popular-posts-date">2018-05-06</div>
+      
+      
+      <div class="popular-posts-title"><a href="/blog/2018/05/06/谈谈CSS3-Matrix-的理解/" rel="bookmark">浅谈CSS3 Matrix 的使用</a></div>
+      
+    </li>
+  
+  </ul>
 
         
       
@@ -516,14 +533,18 @@
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
           
+            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
+          
             <li class="tab"><a href="#comment-disqus">disqus</a></li>
           
             <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
           
-            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
-          
         </ul>
         <div class="tab-content">
+          
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
           
             <div class="tab-pane disqus" id="comment-disqus">
               
@@ -543,10 +564,6 @@
     </div>
   </div>
   
-            </div>
-          
-            <div class="tab-pane gitalk" id="comment-gitalk">
-              <div class="comments" id="gitalk-container"></div>
             </div>
           
         </div>
@@ -612,7 +629,7 @@
         
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -626,10 +643,6 @@
           
         
         
-        
-          
-        
-          
         
           
         
@@ -826,7 +839,7 @@
         
           
         
-        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-count">72</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -919,12 +932,16 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">154k</span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">162k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:41</span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">4:55</span>
 </div>
   <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动</div>
   <span class="post-meta-divider">|</span>
@@ -957,7 +974,6 @@
   
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1/reading_progress.min.js"></script>
   <script src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
@@ -989,7 +1005,7 @@
   <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-bookmark@1/bookmark.min.js"></script>
   <script>
   if (CONFIG.page.isPost) {
-    bookmark.scrollToMark('auto', "#更多");
+    bookmark.scrollToMark('manual', "#更多");
   } else {
     bookmark.loadBookmark();
   }
@@ -1155,6 +1171,26 @@
 
 
     
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', function() {
+    var gitalk = new Gitalk({
+      clientID: 'a35e4aa0db5b5a7bcc2f',
+      clientSecret: 'a19ef2a9debab8747a6e723c1eff1141213fe101',
+      repo: 'gitment-comments',
+      owner: 'anran758',
+      admin: ['anran758'],
+      id: '729809d4b83166033f4e4c1da72d55e8',
+        language: window.navigator.language || window.navigator.userLanguage,
+      
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+    
 <script>
   function loadCount() {
     var d = document, s = d.createElement('script');
@@ -1201,26 +1237,6 @@
       title: '关于点击下拉菜单字体模糊及可能造成boder上下一像素宽度不一的坑',
     });
   }, window.DisqusJS);
-</script>
-
-    
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', function() {
-    var gitalk = new Gitalk({
-      clientID: 'a35e4aa0db5b5a7bcc2f',
-      clientSecret: 'a19ef2a9debab8747a6e723c1eff1141213fe101',
-      repo: 'gitment-comments',
-      owner: 'anran758',
-      admin: ['anran758'],
-      id: '729809d4b83166033f4e4c1da72d55e8',
-        language: window.navigator.language || window.navigator.userLanguage,
-      
-      distractionFreeMode: 'true'
-    });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
 </script>
 
 </body>

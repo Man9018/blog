@@ -42,7 +42,7 @@
     copycode: {"enable":true,"show_result":true,"style":null},
     fancybox: false,
     mediumzoom: true,
-    lazyload: true,
+    lazyload: false,
     pangu: false,
     algolia: {
       applicationID: '',
@@ -70,10 +70,12 @@
 <meta property="og:site_name" content="anran758&#39;s blog">
 <meta property="og:description" content="emoji源于日语词汇“絵文字”, 想必大家对它都挺熟悉的吧, 其拟人化的生动形象，已经成为当下流行的表情之一. 接下来讲一下如何规范的在git中使用emoji提高我们项目的可读性吧~">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://anran758.github.io/blog/2017/12/31/Git-emoji使用指南/banner.jpg">
 <meta property="og:updated_time" content="2019-08-19T05:14:46.121Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git emoji使用指南">
 <meta name="twitter:description" content="emoji源于日语词汇“絵文字”, 想必大家对它都挺熟悉的吧, 其拟人化的生动形象，已经成为当下流行的表情之一. 接下来讲一下如何规范的在git中使用emoji提高我们项目的可读性吧~">
+<meta name="twitter:image" content="https://anran758.github.io/blog/2017/12/31/Git-emoji使用指南/banner.jpg">
   <link rel="alternate" href="/blog/atom.xml" title="anran758's blog" type="application/atom+xml">
   <link rel="canonical" href="https://anran758.github.io/blog/2017/12/31/Git-emoji使用指南/">
 
@@ -381,7 +383,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>2.3k</span>
+              <span>2.1k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -404,7 +406,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <img data-src="/blog/2017/12/31/Git-emoji使用指南/banner.jpg">
+        <img src="/blog/2017/12/31/Git-emoji使用指南/banner.jpg">
 
 <p>emoji源于日语词汇“絵文字”, 想必大家对它都挺熟悉的吧, 其拟人化的生动形象，已经成为当下流行的表情之一. 接下来讲一下如何规范的在<code>git</code>中使用emoji提高我们项目的可读性吧~<a id="more"></a></p>
 <h4 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h4><p>在<code>git commit</code>上加入emoji的二进制符号, 格式为</p>
@@ -682,6 +684,36 @@
     
     
       
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      
+        <div class="popular-posts-date">2018-04-23</div>
+      
+      
+      <div class="popular-posts-title"><a href="/blog/2018/04/23/git-flow/" rel="bookmark">git-flow 练习笔记</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+        <div class="popular-posts-date">2017-12-18</div>
+      
+      
+      <div class="popular-posts-title"><a href="/blog/2017/12/18/git-pull远程仓库代码冲突/" rel="bookmark">git pull远程仓库代码冲突</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+        <div class="popular-posts-date">2017-11-03</div>
+      
+      
+      <div class="popular-posts-title"><a href="/blog/2017/11/03/use-sourcetree-association/" rel="bookmark">【git】使用 sourcetree 实现远程仓库与本地仓库关联</a></div>
+      
+    </li>
+  
+  </ul>
 
         
       
@@ -743,8 +775,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/blog/2017/12/26/新手不知道的技巧-if语句的判定/" rel="next" title="新手不知道的JavaScript技巧 - 条件语句的简写技巧">
-                  <i class="fa fa-chevron-left"></i> 新手不知道的JavaScript技巧 - 条件语句的简写技巧
+                <a href="/blog/2017/12/26/新手不知道的技巧-if语句的判定/" rel="next" title="条件语句的简写技巧">
+                  <i class="fa fa-chevron-left"></i> 条件语句的简写技巧
                 </a>
               
             </div>
@@ -777,14 +809,18 @@
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
           
+            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
+          
             <li class="tab"><a href="#comment-disqus">disqus</a></li>
           
             <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
           
-            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
-          
         </ul>
         <div class="tab-content">
+          
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
           
             <div class="tab-pane disqus" id="comment-disqus">
               
@@ -804,10 +840,6 @@
     </div>
   </div>
   
-            </div>
-          
-            <div class="tab-pane gitalk" id="comment-gitalk">
-              <div class="comments" id="gitalk-container"></div>
             </div>
           
         </div>
@@ -873,7 +905,7 @@
         
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -887,10 +919,6 @@
           
         
         
-        
-          
-        
-          
         
           
         
@@ -1087,7 +1115,7 @@
         
           
         
-        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-count">72</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -1180,12 +1208,16 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">154k</span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">162k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:41</span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">4:55</span>
 </div>
   <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动</div>
   <span class="post-meta-divider">|</span>
@@ -1218,7 +1250,6 @@
   
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1/reading_progress.min.js"></script>
   <script src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
@@ -1250,7 +1281,7 @@
   <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-bookmark@1/bookmark.min.js"></script>
   <script>
   if (CONFIG.page.isPost) {
-    bookmark.scrollToMark('auto', "#更多");
+    bookmark.scrollToMark('manual', "#更多");
   } else {
     bookmark.loadBookmark();
   }
@@ -1416,6 +1447,26 @@
 
 
     
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', function() {
+    var gitalk = new Gitalk({
+      clientID: 'a35e4aa0db5b5a7bcc2f',
+      clientSecret: 'a19ef2a9debab8747a6e723c1eff1141213fe101',
+      repo: 'gitment-comments',
+      owner: 'anran758',
+      admin: ['anran758'],
+      id: '9a0be219a5c7bcd265fd649762afd3d4',
+        language: window.navigator.language || window.navigator.userLanguage,
+      
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+    
 <script>
   function loadCount() {
     var d = document, s = d.createElement('script');
@@ -1462,26 +1513,6 @@
       title: 'Git emoji使用指南',
     });
   }, window.DisqusJS);
-</script>
-
-    
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', function() {
-    var gitalk = new Gitalk({
-      clientID: 'a35e4aa0db5b5a7bcc2f',
-      clientSecret: 'a19ef2a9debab8747a6e723c1eff1141213fe101',
-      repo: 'gitment-comments',
-      owner: 'anran758',
-      admin: ['anran758'],
-      id: '9a0be219a5c7bcd265fd649762afd3d4',
-        language: window.navigator.language || window.navigator.userLanguage,
-      
-      distractionFreeMode: 'true'
-    });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
 </script>
 
 </body>

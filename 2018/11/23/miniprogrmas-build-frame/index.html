@@ -42,7 +42,7 @@
     copycode: {"enable":true,"show_result":true,"style":null},
     fancybox: false,
     mediumzoom: true,
-    lazyload: true,
+    lazyload: false,
     pangu: false,
     algolia: {
       applicationID: '',
@@ -70,10 +70,13 @@
 <meta property="og:site_name" content="anran758&#39;s blog">
 <meta property="og:description" content="在工作中也做了好几个小程序项目了，正好抽空将小程序开发的一些知识重新整理一下~">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/11/23/miniprogrmas-build-frame/banner.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/11/23/miniprogrmas-build-frame/button.png">
 <meta property="og:updated_time" content="2019-08-19T07:06:56.246Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小程序开发笔记 - 小程序项目的结构设计">
 <meta name="twitter:description" content="在工作中也做了好几个小程序项目了，正好抽空将小程序开发的一些知识重新整理一下~">
+<meta name="twitter:image" content="https://anran758.github.io/blog/2018/11/23/miniprogrmas-build-frame/banner.png">
   <link rel="alternate" href="/blog/atom.xml" title="anran758's blog" type="application/atom+xml">
   <link rel="canonical" href="https://anran758.github.io/blog/2018/11/23/miniprogrmas-build-frame/">
 
@@ -381,7 +384,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>5.1k</span>
+              <span>5.2k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -404,7 +407,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <img data-src="/blog/2018/11/23/miniprogrmas-build-frame/banner.png">
+        <img src="/blog/2018/11/23/miniprogrmas-build-frame/banner.png">
 
 <p>在工作中也做了好几个小程序项目了，正好抽空将小程序开发的一些知识重新整理一下~</p>
 <a id="more"></a>
@@ -446,7 +449,7 @@
 
 <h3 id="样式"><a href="#样式" class="headerlink" title="样式"></a>样式</h3><p>写完页面后自然需要给页面润色, 我们可以通过在页面的<code>.wxss</code>来写局部样式，这没问题。但在我们完成一个又一个页面后，这时你可能会发现有些页面的样式<strong>重复性</strong>太高了。</p>
 <p>因为一个成熟的设计师，在设计每一个产品时，大多会有一套设计风格或者称之为主题的东西。这些元素大量重复在各个页面中，我们重复写这些样式实际上代码是有点冗余的。</p>
-<img title="主题按钮" data-src="/blog/2018/11/23/miniprogrmas-build-frame/button.png">
+<img src="/blog/2018/11/23/miniprogrmas-build-frame/button.png" title="主题按钮">
 
 <p>这时有经验的开发者很自然就会想到将重复性的代码抽出来，所幸微信提供了<code>@import</code>语句可以导入外联样式表。而这些通用的样式可以放在<code>/style/</code>目录下</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">├── style</span><br><span class="line">│   ├── button.wxss</span><br><span class="line">│   └── ...</span><br><span class="line">├── ...</span><br><span class="line">└── project.config.json</span><br></pre></td></tr></table></figure>
@@ -482,6 +485,18 @@
     
     
       
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      
+        <div class="popular-posts-date">2019-05-03</div>
+      
+      
+      <div class="popular-posts-title"><a href="/blog/2019/05/03/minp-customize-slider/" rel="bookmark">[UI组件] 来做一个可配置的滑块进度条吧</a></div>
+      
+    </li>
+  
+  </ul>
 
         
       
@@ -577,14 +592,18 @@
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
           
+            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
+          
             <li class="tab"><a href="#comment-disqus">disqus</a></li>
           
             <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
           
-            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
-          
         </ul>
         <div class="tab-content">
+          
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
           
             <div class="tab-pane disqus" id="comment-disqus">
               
@@ -604,10 +623,6 @@
     </div>
   </div>
   
-            </div>
-          
-            <div class="tab-pane gitalk" id="comment-gitalk">
-              <div class="comments" id="gitalk-container"></div>
             </div>
           
         </div>
@@ -673,7 +688,7 @@
         
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -687,10 +702,6 @@
           
         
         
-        
-          
-        
-          
         
           
         
@@ -887,7 +898,7 @@
         
           
         
-        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-count">72</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -980,12 +991,16 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">154k</span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">162k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:41</span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">4:55</span>
 </div>
   <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动</div>
   <span class="post-meta-divider">|</span>
@@ -1018,7 +1033,6 @@
   
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1/reading_progress.min.js"></script>
   <script src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
@@ -1050,7 +1064,7 @@
   <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-bookmark@1/bookmark.min.js"></script>
   <script>
   if (CONFIG.page.isPost) {
-    bookmark.scrollToMark('auto', "#更多");
+    bookmark.scrollToMark('manual', "#更多");
   } else {
     bookmark.loadBookmark();
   }
@@ -1216,6 +1230,26 @@
 
 
     
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', function() {
+    var gitalk = new Gitalk({
+      clientID: 'a35e4aa0db5b5a7bcc2f',
+      clientSecret: 'a19ef2a9debab8747a6e723c1eff1141213fe101',
+      repo: 'gitment-comments',
+      owner: 'anran758',
+      admin: ['anran758'],
+      id: '9d2b829a267b830d24bfc9af93d32438',
+        language: window.navigator.language || window.navigator.userLanguage,
+      
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+    
 <script>
   function loadCount() {
     var d = document, s = d.createElement('script');
@@ -1262,26 +1296,6 @@
       title: '小程序开发笔记 - 小程序项目的结构设计',
     });
   }, window.DisqusJS);
-</script>
-
-    
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', function() {
-    var gitalk = new Gitalk({
-      clientID: 'a35e4aa0db5b5a7bcc2f',
-      clientSecret: 'a19ef2a9debab8747a6e723c1eff1141213fe101',
-      repo: 'gitment-comments',
-      owner: 'anran758',
-      admin: ['anran758'],
-      id: '9d2b829a267b830d24bfc9af93d32438',
-        language: window.navigator.language || window.navigator.userLanguage,
-      
-      distractionFreeMode: 'true'
-    });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
 </script>
 
 </body>

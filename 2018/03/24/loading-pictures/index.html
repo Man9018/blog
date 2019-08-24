@@ -42,7 +42,7 @@
     copycode: {"enable":true,"show_result":true,"style":null},
     fancybox: false,
     mediumzoom: true,
-    lazyload: true,
+    lazyload: false,
     pangu: false,
     algolia: {
       applicationID: '',
@@ -70,10 +70,17 @@
 <meta property="og:site_name" content="anran758&#39;s blog">
 <meta property="og:description" content="[大图预警，流量慎入！] 我们在浏览页面获取信息时, 细心的你可能会留意到, 不同网页的图片可能有不同的加载方式. 那么究竟是由什么决定图片的加载方式的呢? 然后不由的陷入了沉思(.jpg), 所谓耳听为虚, 就让自己来动手操作一下吧~">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/03/24/loading-pictures/banner.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/03/24/loading-pictures/anima-1.gif">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/03/24/loading-pictures/img-1.jpg">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/03/24/loading-pictures/diff-1.gif">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/03/24/loading-pictures/diff-2.gif">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/03/24/loading-pictures/google-1.gif">
 <meta property="og:updated_time" content="2019-08-21T14:04:26.177Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="详解图片的加载方式">
 <meta name="twitter:description" content="[大图预警，流量慎入！] 我们在浏览页面获取信息时, 细心的你可能会留意到, 不同网页的图片可能有不同的加载方式. 那么究竟是由什么决定图片的加载方式的呢? 然后不由的陷入了沉思(.jpg), 所谓耳听为虚, 就让自己来动手操作一下吧~">
+<meta name="twitter:image" content="https://anran758.github.io/blog/2018/03/24/loading-pictures/banner.png">
   <link rel="alternate" href="/blog/atom.xml" title="anran758's blog" type="application/atom+xml">
   <link rel="canonical" href="https://anran758.github.io/blog/2018/03/24/loading-pictures/">
 
@@ -404,34 +411,34 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <img data-src="/blog/2018/03/24/loading-pictures/banner.png">
+        <img src="/blog/2018/03/24/loading-pictures/banner.png">
 
 <p>[大图预警，流量慎入！] 我们在浏览页面获取信息时, 细心的你可能会留意到, 不同网页的图片可能有不同的加载方式. 那么究竟是由什么决定图片的加载方式的呢? 然后不由的陷入了沉思(.jpg), 所谓耳听为虚, 就让自己来动手操作一下吧~</p>
 <a id="more"></a>
 
 <h2 id="加载方式"><a href="#加载方式" class="headerlink" title="加载方式"></a>加载方式</h2><p>目前所知的图片加载方式主要有两种: 一种是<strong>线性加载</strong>, 而另一种则是<strong>渐进式加载</strong>.</p>
 <p><strong>线性加载</strong>其实我们已经很熟悉啦, 图片的加载方式由上至下, 一点一点的加载的方式. 同时也是最常见的方式. 如下为例:</p>
-<img data-src="/blog/2018/03/24/loading-pictures/anima-1.gif">
+<img src="/blog/2018/03/24/loading-pictures/anima-1.gif">
 
 <p><strong>渐进式</strong>则如同名字一般, 它会先显示低分辨率的近似图像, 再逐步的增加图片分辨率(模糊到清晰). 这里容我卖个关子, 不上示例图先.</p>
 <h2 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h2><p>那么到底是什么决定了图片的加载方式呢? 事实上, 加载方式在作图的时候就已经被定下来了.</p>
 <p>比如在 Photoshop 中, 我们使用快捷键<code>ctrl + shift + alt + s</code>, 弹出储存为 Web 所用格式, 再选择<code>jpeg</code>格式后能看到下面有一个<strong>连续</strong>的选项(悬浮提示以多条路径下载), 这个选项的背后就是一个算法的接口，默认是不勾选的。渐进式使用的是小波变换, 而默认线性加载则是离散余弦变化算法. (关于算法的问题已经超出了本文的讨论范围, 这里姑且不谈.)</p>
-<img title="Photoshop 界面" data-src="/blog/2018/03/24/loading-pictures/img-1.jpg">
+<img src="/blog/2018/03/24/loading-pictures/img-1.jpg" title="Photoshop 界面">
 
 <p>浏览器在加载页面的时候, 读取图片的压缩算法, 再根据不同的压缩算法来选择相应的渲染算法.</p>
 <h2 id="两者对比"><a href="#两者对比" class="headerlink" title="两者对比"></a>两者对比</h2><p>嗯, 看似很有道理的样子呢, 那实际效果如何呢? 来动手测试一下: 我准备了两张相同内容但不同加载方式的图片. 将控制台打开, 设置一个比较差的网速来对比两张图片的加载情况.</p>
-<img title="jpg格式下, 两张图片加载对比" data-src="/blog/2018/03/24/loading-pictures/diff-1.gif">
+<img src="/blog/2018/03/24/loading-pictures/diff-1.gif" title="jpg格式下, 两张图片加载对比">
 
 <p>what? 怎么好像跟想象中的有所出入? 仔细一瞧, 图一虽然从上至下的加载, 但同时它的清晰度也跟着变化. 而图二则没有这种的效果.</p>
 <p>随后我想到了文件大小的限制的问题, 为了了解更详细加载过程, 我再次准备了两张<code>png</code>的格式, 只不过在 ps 上<code>png</code>格式需要勾选的选项变成是<strong>交错</strong>, 然后再次进行试验:</p>
-<img title="png格式下, 两张图片加载对比" data-src="/blog/2018/03/24/loading-pictures/diff-2.gif">
+<img src="/blog/2018/03/24/loading-pictures/diff-2.gif" title="png格式下, 两张图片加载对比">
 
 <p>啊哈… 由于图片本身也挺大的, 在这加载期间两者之间差距就体现出来了 —— 原来前面那只是因为算法前期结构的构建. 细心的同学还会看到, 虽然图一看上去最先加载完了图片, 但控制台里跳动<code>Size</code>和<code>Time</code>还在告诉我们, 浏览器仍然还没有下载渲染完这张图片, 安静的等待渲染完毕后, 你可能还会惊讶的发现: 什么? 图一竟然比图二还加载的时间还长一点?</p>
 <p>是的, 得益于渐进式逐步加载的算法, 人们在视觉上会感觉渐进式相比线性更快一些, 虽然实际加载的时间可能还会长点, 但用户体验的确是上去.</p>
 <p>然而并非所有浏览器都支持渐进式加载, 翻阅了一下资料, 发现早期张鑫旭 dalao 也写过类似的内容, 也可以参考一看: <span class="exturl" data-url="aHR0cDovL3d3dy56aGFuZ3hpbnh1LmNvbS93b3JkcHJlc3MvMjAxMy8wMS9wcm9ncmVzc2l2ZS1qcGVnLWltYWdlLWFuZC1zby1vbi8=" title="http://www.zhangxinxu.com/wordpress/2013/01/progressive-jpeg-image-and-so-on/">渐进式 jpeg(progressive jpeg)图片及其相关<i class="fa fa-external-link"></i></span></p>
 <h2 id="JavaScript-的渐进式"><a href="#JavaScript-的渐进式" class="headerlink" title="JavaScript 的渐进式"></a>JavaScript 的渐进式</h2><p>前文介绍渐进式的时候卖了个关子, 没上示例图是为啥呢~ 这是因为此物非彼物, 我们常看到的渐进式加载可能不是由图片本身算法的效果, 为了避免混淆才暂时不上. 文章看到这里, 有过开发经验的同学就会明白, 若真有这种需求, 我们总不能祈祷全部用户上传图片都是渐进式的吧, 这也不现实.</p>
 <p>google 图片就是使用<code>javascript</code>来操作图片的渐进式. 在点击查看大图的时候, 预先加载一个缩略图, 同时图片底布有一条 loading 的效果. 加载完毕后就显示清晰的图片, 并且将 loading 隐藏起来. 我在控制台研究了一段时间, 没研究出具体的实现手法. 知道的 dalao 也不妨留言, 交流一下~</p>
-<img title="png格式下, 两张图片加载对比" data-src="/blog/2018/03/24/loading-pictures/google-1.gif">
+<img src="/blog/2018/03/24/loading-pictures/google-1.gif" title="png格式下, 两张图片加载对比">
 
 <p>至于知乎的渐进式加载图片, 已经有知友分析过了, 实现方式跟我上一篇文章讲的东西思路也有相似之处, 只不过是针对方向不同~ 有兴趣的可以移步知友的回答: <span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3F1ZXN0aW9uLzU1NjIyOTMwL2Fuc3dlci8xNDU0NzUyNDM=" title="https://www.zhihu.com/question/55622930/answer/145475243">新版知乎加载图片时从模糊到清晰的这个效果是如何做出来的？ - Tw93 的回答<i class="fa fa-external-link"></i></span></p>
 
@@ -441,6 +448,18 @@
     
     
       
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      
+        <div class="popular-posts-date">2017-11-17</div>
+      
+      
+      <div class="popular-posts-title"><a href="/blog/2017/11/17/Javascript深入解析-裁剪图片效果/" rel="bookmark">实现图片裁剪的效果</a></div>
+      
+    </li>
+  
+  </ul>
 
         
       
@@ -536,14 +555,18 @@
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
           
+            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
+          
             <li class="tab"><a href="#comment-disqus">disqus</a></li>
           
             <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
           
-            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
-          
         </ul>
         <div class="tab-content">
+          
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
           
             <div class="tab-pane disqus" id="comment-disqus">
               
@@ -563,10 +586,6 @@
     </div>
   </div>
   
-            </div>
-          
-            <div class="tab-pane gitalk" id="comment-gitalk">
-              <div class="comments" id="gitalk-container"></div>
             </div>
           
         </div>
@@ -632,7 +651,7 @@
         
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -646,10 +665,6 @@
           
         
         
-        
-          
-        
-          
         
           
         
@@ -846,7 +861,7 @@
         
           
         
-        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-count">72</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -939,12 +954,16 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">154k</span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">162k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:41</span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">4:55</span>
 </div>
   <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动</div>
   <span class="post-meta-divider">|</span>
@@ -977,7 +996,6 @@
   
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1/reading_progress.min.js"></script>
   <script src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
@@ -1009,7 +1027,7 @@
   <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-bookmark@1/bookmark.min.js"></script>
   <script>
   if (CONFIG.page.isPost) {
-    bookmark.scrollToMark('auto', "#更多");
+    bookmark.scrollToMark('manual', "#更多");
   } else {
     bookmark.loadBookmark();
   }
@@ -1175,6 +1193,26 @@
 
 
     
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', function() {
+    var gitalk = new Gitalk({
+      clientID: 'a35e4aa0db5b5a7bcc2f',
+      clientSecret: 'a19ef2a9debab8747a6e723c1eff1141213fe101',
+      repo: 'gitment-comments',
+      owner: 'anran758',
+      admin: ['anran758'],
+      id: 'c63d7210e9d1579338583fe21da2eeaa',
+        language: window.navigator.language || window.navigator.userLanguage,
+      
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+    
 <script>
   function loadCount() {
     var d = document, s = d.createElement('script');
@@ -1221,26 +1259,6 @@
       title: '详解图片的加载方式',
     });
   }, window.DisqusJS);
-</script>
-
-    
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', function() {
-    var gitalk = new Gitalk({
-      clientID: 'a35e4aa0db5b5a7bcc2f',
-      clientSecret: 'a19ef2a9debab8747a6e723c1eff1141213fe101',
-      repo: 'gitment-comments',
-      owner: 'anran758',
-      admin: ['anran758'],
-      id: 'c63d7210e9d1579338583fe21da2eeaa',
-        language: window.navigator.language || window.navigator.userLanguage,
-      
-      distractionFreeMode: 'true'
-    });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
 </script>
 
 </body>

@@ -42,7 +42,7 @@
     copycode: {"enable":true,"show_result":true,"style":null},
     fancybox: false,
     mediumzoom: true,
-    lazyload: true,
+    lazyload: false,
     pangu: false,
     algolia: {
       applicationID: '',
@@ -65,15 +65,17 @@
   <meta name="description" content="可能入坑不久的同学还会用着if (value !== null || Value !== undefined)这样的判断语句, 而实际上只要理解判定的规则, 善用规则, 就能大大的提高代码的可读性. 接下来让我们深入学习一下.">
 <meta name="keywords" content="JavaScript,JavaScript原理分析,技巧">
 <meta property="og:type" content="article">
-<meta property="og:title" content="新手不知道的JavaScript技巧 - 条件语句的简写技巧">
+<meta property="og:title" content="条件语句的简写技巧">
 <meta property="og:url" content="https://anran758.github.io/blog/2017/12/26/新手不知道的技巧-if语句的判定/index.html">
 <meta property="og:site_name" content="anran758&#39;s blog">
 <meta property="og:description" content="可能入坑不久的同学还会用着if (value !== null || Value !== undefined)这样的判断语句, 而实际上只要理解判定的规则, 善用规则, 就能大大的提高代码的可读性. 接下来让我们深入学习一下.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-21T13:59:27.573Z">
+<meta property="og:image" content="https://anran758.github.io/blog/2017/12/26/新手不知道的技巧-if语句的判定/banner.jpg">
+<meta property="og:updated_time" content="2019-08-24T09:48:26.492Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="新手不知道的JavaScript技巧 - 条件语句的简写技巧">
+<meta name="twitter:title" content="条件语句的简写技巧">
 <meta name="twitter:description" content="可能入坑不久的同学还会用着if (value !== null || Value !== undefined)这样的判断语句, 而实际上只要理解判定的规则, 善用规则, 就能大大的提高代码的可读性. 接下来让我们深入学习一下.">
+<meta name="twitter:image" content="https://anran758.github.io/blog/2017/12/26/新手不知道的技巧-if语句的判定/banner.jpg">
   <link rel="alternate" href="/blog/atom.xml" title="anran758's blog" type="application/atom+xml">
   <link rel="canonical" href="https://anran758.github.io/blog/2017/12/26/新手不知道的技巧-if语句的判定/">
 
@@ -89,7 +91,7 @@
   };
 </script>
 
-  <title>新手不知道的JavaScript技巧 - 条件语句的简写技巧 | anran758's blog</title>
+  <title>条件语句的简写技巧 | anran758's blog</title>
   
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-99223334-1"></script>
   <script>
@@ -300,7 +302,7 @@
       <header class="post-header">
 
         
-          <h2 class="post-title" itemprop="name headline">新手不知道的JavaScript技巧 - 条件语句的简写技巧
+          <h2 class="post-title" itemprop="name headline">条件语句的简写技巧
 
             
           </h2>
@@ -328,7 +330,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-21 21:59:27" itemprop="dateModified" datetime="2019-08-21T21:59:27+08:00">2019-08-21</time>
+                <time title="修改时间：2019-08-24 17:48:26" itemprop="dateModified" datetime="2019-08-24T17:48:26+08:00">2019-08-24</time>
               </span>
             
           
@@ -347,7 +349,7 @@
           
 
           
-            <span id="/blog/2017/12/26/新手不知道的技巧-if语句的判定/" class="post-meta-item leancloud_visitors" data-flag-title="新手不知道的JavaScript技巧 - 条件语句的简写技巧" title="阅读次数">
+            <span id="/blog/2017/12/26/新手不知道的技巧-if语句的判定/" class="post-meta-item leancloud_visitors" data-flag-title="条件语句的简写技巧" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -381,7 +383,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>1.2k</span>
+              <span>1.1k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -404,7 +406,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <img data-src="/blog/2017/12/26/新手不知道的技巧-if语句的判定/banner.jpg">
+        <img src="/blog/2017/12/26/新手不知道的技巧-if语句的判定/banner.jpg">
+
 <p>可能入坑不久的同学还会用着<code>if (value !== null || Value !== undefined)</code>这样的判断语句, 而实际上只要理解判定的规则, 善用规则, 就能大大的提高代码的可读性. 接下来让我们深入学习一下.</p>
 <a id="more"></a>
 
@@ -458,8 +461,9 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> userName = <span class="string">'hello'</span>;</span><br><span class="line"><span class="keyword">var</span> flag = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// bad code</span></span><br><span class="line"><span class="keyword">if</span> (value != <span class="literal">undefined</span>) &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// bad code</span></span><br><span class="line"><span class="keyword">if</span> (value !== <span class="literal">undefined</span> || value !== <span class="literal">null</span> || value !== <span class="literal">false</span>) &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// good code</span></span><br><span class="line"><span class="keyword">if</span> (userName) &#123;</span><br><span class="line">  something...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// flag锁, 利用取反转换布尔值</span></span><br><span class="line"><span class="keyword">if</span> (!flag) &#123;</span><br><span class="line">  flag = <span class="literal">true</span>;</span><br><span class="line">  something...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>相同的, 也没有必要去使用<code>==</code>规范不推荐的方式去隐式转换类型, 这种规则同样适用于<code>三目运算符</code>, <code>switch</code>等条件运算中去… 这样看起来是不是自己的代码整洁多了呢~</p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>才疏学浅, 如果有什么说的不对或者需要改进的地方, 可以给我留言大家一起交流. 原创不易, 如果文章对你有帮助的话就随手点个赞鼓励一下呗~</p>
-<p><strong>参考资料</strong><br>ECMA-262 官方文档<br><span class="exturl" data-url="aHR0cDovL3d3dy5lY21hLWludGVybmF0aW9uYWwub3JnL2VjbWEtMjYyLzYuMC8jc2VjLWlmLXN0YXRlbWVudA==" title="http://www.ecma-international.org/ecma-262/6.0/#sec-if-statement">http://www.ecma-international.org/ecma-262/6.0/#sec-if-statement<i class="fa fa-external-link"></i></span></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><span class="exturl" data-url="aHR0cDovL3d3dy5lY21hLWludGVybmF0aW9uYWwub3JnL2VjbWEtMjYyLzYuMC8jc2VjLWlmLXN0YXRlbWVudA==" title="http://www.ecma-international.org/ecma-262/6.0/#sec-if-statement">ECMA-262 官方文档<i class="fa fa-external-link"></i></span></li>
+</ul>
 
     </div>
 
@@ -467,6 +471,54 @@
     
     
       
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      
+        <div class="popular-posts-date">2018-01-15</div>
+      
+      
+      <div class="popular-posts-title"><a href="/blog/2018/01/15/性能优化-回流与重汇/" rel="bookmark">性能优化 - 回流与重绘</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+        <div class="popular-posts-date">2018-01-30</div>
+      
+      
+      <div class="popular-posts-title"><a href="/blog/2018/01/30/Debug-深入研究console/" rel="bookmark">你可能不知道的console</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+        <div class="popular-posts-date">2017-11-29</div>
+      
+      
+      <div class="popular-posts-title"><a href="/blog/2017/11/29/Vue-v-for-遍历绑定toggle-icon-动态切换action/" rel="bookmark">Vue 遍历绑定toggle icon, 动态切换action</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+        <div class="popular-posts-date">2018-06-09</div>
+      
+      
+      <div class="popular-posts-title"><a href="/blog/2018/06/09/javascript-position-navigation/" rel="bookmark">锚点定位导航</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+        <div class="popular-posts-date">2017-08-21</div>
+      
+      
+      <div class="popular-posts-title"><a href="/blog/2017/08/21/js-common-regexp/" rel="bookmark">速查正则表达式</a></div>
+      
+    </li>
+  
+  </ul>
 
         
       
@@ -495,7 +547,7 @@
     <strong>本文作者： </strong>anran758</li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://anran758.github.io/blog/2017/12/26/新手不知道的技巧-if语句的判定/" title="新手不知道的JavaScript技巧 - 条件语句的简写技巧">https://anran758.github.io/blog/2017/12/26/新手不知道的技巧-if语句的判定/</a>
+    <a href="https://anran758.github.io/blog/2017/12/26/新手不知道的技巧-if语句的判定/" title="条件语句的简写技巧">https://anran758.github.io/blog/2017/12/26/新手不知道的技巧-if语句的判定/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！</li>
@@ -564,14 +616,18 @@
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
           
+            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
+          
             <li class="tab"><a href="#comment-disqus">disqus</a></li>
           
             <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
           
-            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
-          
         </ul>
         <div class="tab-content">
+          
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
           
             <div class="tab-pane disqus" id="comment-disqus">
               
@@ -591,10 +647,6 @@
     </div>
   </div>
   
-            </div>
-          
-            <div class="tab-pane gitalk" id="comment-gitalk">
-              <div class="comments" id="gitalk-container"></div>
             </div>
           
         </div>
@@ -660,7 +712,7 @@
         
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -674,10 +726,6 @@
           
         
         
-        
-          
-        
-          
         
           
         
@@ -874,7 +922,7 @@
         
           
         
-        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-count">72</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -940,7 +988,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开始"><span class="nav-number">1.</span> <span class="nav-text">开始</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">2.</span> <span class="nav-text">后记</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开始"><span class="nav-number">1.</span> <span class="nav-text">开始</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">2.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -967,12 +1015,16 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">154k</span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">162k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:41</span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">4:55</span>
 </div>
   <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动</div>
   <span class="post-meta-divider">|</span>
@@ -1005,7 +1057,6 @@
   
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1/reading_progress.min.js"></script>
   <script src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
@@ -1037,7 +1088,7 @@
   <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-bookmark@1/bookmark.min.js"></script>
   <script>
   if (CONFIG.page.isPost) {
-    bookmark.scrollToMark('auto', "#更多");
+    bookmark.scrollToMark('manual', "#更多");
   } else {
     bookmark.loadBookmark();
   }
@@ -1203,6 +1254,26 @@
 
 
     
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', function() {
+    var gitalk = new Gitalk({
+      clientID: 'a35e4aa0db5b5a7bcc2f',
+      clientSecret: 'a19ef2a9debab8747a6e723c1eff1141213fe101',
+      repo: 'gitment-comments',
+      owner: 'anran758',
+      admin: ['anran758'],
+      id: 'afbff6b6eae14c4ce369400872474063',
+        language: window.navigator.language || window.navigator.userLanguage,
+      
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+    
 <script>
   function loadCount() {
     var d = document, s = d.createElement('script');
@@ -1217,7 +1288,7 @@
   var disqus_config = function() {
     this.page.url = "https://anran758.github.io/blog/2017/12/26/新手不知道的技巧-if语句的判定/";
     this.page.identifier = "2017/12/26/新手不知道的技巧-if语句的判定/";
-    this.page.title = '新手不知道的JavaScript技巧 - 条件语句的简写技巧';};
+    this.page.title = '条件语句的简写技巧';};
   function loadComments() {
     if (window.DISQUS) {
       DISQUS.reset({
@@ -1246,29 +1317,9 @@
       shortname: 'anran758',
       url: "https://anran758.github.io/blog/2017/12/26/新手不知道的技巧-if语句的判定/",
       identifier: "2017/12/26/新手不知道的技巧-if语句的判定/",
-      title: '新手不知道的JavaScript技巧 - 条件语句的简写技巧',
+      title: '条件语句的简写技巧',
     });
   }, window.DisqusJS);
-</script>
-
-    
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', function() {
-    var gitalk = new Gitalk({
-      clientID: 'a35e4aa0db5b5a7bcc2f',
-      clientSecret: 'a19ef2a9debab8747a6e723c1eff1141213fe101',
-      repo: 'gitment-comments',
-      owner: 'anran758',
-      admin: ['anran758'],
-      id: 'afbff6b6eae14c4ce369400872474063',
-        language: window.navigator.language || window.navigator.userLanguage,
-      
-      distractionFreeMode: 'true'
-    });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
 </script>
 
 </body>

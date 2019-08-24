@@ -42,7 +42,7 @@
     copycode: {"enable":true,"show_result":true,"style":null},
     fancybox: false,
     mediumzoom: true,
-    lazyload: true,
+    lazyload: false,
     pangu: false,
     algolia: {
       applicationID: '',
@@ -70,10 +70,16 @@
 <meta property="og:site_name" content="anran758&#39;s blog">
 <meta property="og:description" content="在做微信登录的时候，希望能在本地能够测试登录。这里使用的是微信开放平台的网站应用微信登录, 与微信公众平台不同，微信开放平台并没有提供测试号的服务，因此在调试起来会十分的麻烦。比较传统的方法就是部署上测试服务器上专门先测试这一个接口。但从流程上来说，会比较麻烦，不够高效。下文将分享另一种测试的过程。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://anran758.github.io/blog/2019/05/18/wechat-pc-login/whistle.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2019/05/18/wechat-pc-login/setting-proxy.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2019/05/18/wechat-pc-login/open-plugin.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2019/05/18/wechat-pc-login/https.gif">
+<meta property="og:image" content="https://anran758.github.io/blog/2019/05/18/wechat-pc-login/rules.png">
 <meta property="og:updated_time" content="2019-08-19T05:14:46.643Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在本地测试微信登录">
 <meta name="twitter:description" content="在做微信登录的时候，希望能在本地能够测试登录。这里使用的是微信开放平台的网站应用微信登录, 与微信公众平台不同，微信开放平台并没有提供测试号的服务，因此在调试起来会十分的麻烦。比较传统的方法就是部署上测试服务器上专门先测试这一个接口。但从流程上来说，会比较麻烦，不够高效。下文将分享另一种测试的过程。">
+<meta name="twitter:image" content="https://anran758.github.io/blog/2019/05/18/wechat-pc-login/whistle.png">
   <link rel="alternate" href="/blog/atom.xml" title="anran758's blog" type="application/atom+xml">
   <link rel="canonical" href="https://anran758.github.io/blog/2019/05/18/wechat-pc-login/">
 
@@ -466,22 +472,22 @@
 <p>该方法会生成一个二维码，并挂载到指定的容器 ID 上。用户扫描二维码时，页面会向微信服务端发送一个请求等待用户确认，用户确认完成后，就会将页面重定向至指定的路径（redirect_uri）。</p>
 <p>那么现在问题就来了：重定向的地址要跟<strong>微信开放平台</strong>里设置的重定向的域名一致，就是说我们在本地开发起的<code>localhost:8080</code>这种是不行的。<br>这时我们就会想到了去修改<code>hosts</code>，但光改<code>hosts</code>是不行，还需要改端口。。这时就可以用到<code>shistle</code>了。</p>
 <h2 id="shistle"><a href="#shistle" class="headerlink" title="shistle"></a>shistle</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2F2d28vd2hpc3RsZQ==" title="https://github.com/avwo/whistle">whistle<i class="fa fa-external-link"></i></span>是基于Node实现的跨平台web调试代理工具，主要用于查看、修改HTTP、HTTPS、Websocket的请求、响应，也可以作为HTTP代理服务器使用。我们可以使用它来进行转发：</p>
-<img data-src="/blog/2019/05/18/wechat-pc-login/whistle.png">
+<img src="/blog/2019/05/18/wechat-pc-login/whistle.png">
 
 <p>通过 npm 来安装 whistle:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 全局安装 whistle</span></span><br><span class="line">npm install -g whistle</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动 whistle</span></span><br><span class="line">w2 start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定端口号来启动 whistle</span></span><br><span class="line">w2 start -p 9000</span><br></pre></td></tr></table></figure>
 
 <p>安装完毕后命令行提示我们可以进入 whistle 的控制台(默认启动的 URL 是 127.0.0.1:8899)，但此时还不能直接抓包，还需要配置代理才可以使用.</p>
 <p>配置代理可以使用全局代理或浏览器代理，比较推荐的做法是使用后者。我个人习惯使用<code>chrome</code>浏览器，因此可以安装 <span class="exturl" data-url="aHR0cHM6Ly9jaHJvbWUuZ29vZ2xlLmNvbS93ZWJzdG9yZS9kZXRhaWwvcHJveHktc3dpdGNoeW9tZWdhL3BhZGVrZ2NlbWxva2JhZG9oZ2tpZmlqb21jbGdqZ2lm" title="https://chrome.google.com/webstore/detail/proxy-switchyomega/padekgcemlokbadohgkifijomclgjgif">SwitchyOmega<i class="fa fa-external-link"></i></span> 代理插件，将 shistle 的配置信息填入，保存配置后记得切换插件的模式噢。</p>
-<img data-src="/blog/2019/05/18/wechat-pc-login/setting-proxy.png">
+<img src="/blog/2019/05/18/wechat-pc-login/setting-proxy.png">
 
-<img data-src="/blog/2019/05/18/wechat-pc-login/open-plugin.png">
+<img src="/blog/2019/05/18/wechat-pc-login/open-plugin.png">
 
 <p>想要拦截<code>HTPPS</code>的请求的话，还需要<span class="exturl" data-url="aHR0cDovL3dwcm94eS5vcmcvd2hpc3RsZS93ZWJ1aS9odHRwcy5odG1s" title="http://wproxy.org/whistle/webui/https.html">安装根证书<i class="fa fa-external-link"></i></span>,</p>
-<img data-src="/blog/2019/05/18/wechat-pc-login/https.gif">
+<img src="/blog/2019/05/18/wechat-pc-login/https.gif">
 
 <p>接着进入 whistle 的控制台, 点进<span class="exturl" data-url="aHR0cDovLzEyNy4wLjAuMTo4ODk5LyNydWxlcw==" title="http://127.0.0.1:8899/#rules">rules<i class="fa fa-external-link"></i></span>, 配置需要代理或转发的地址。这个配置规则类似于设置 hosts.</p>
-<img data-src="/blog/2019/05/18/wechat-pc-login/rules.png">
+<img src="/blog/2019/05/18/wechat-pc-login/rules.png">
 
 <p>设置好 rules 后，将本地开发的的网址<code>http://localhost:8020/#/login</code>替换为<code>http://test.anran758:8020/#/login</code>再进行测试登录，登录完毕后就能拿到用户数据了。</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
@@ -594,14 +600,18 @@
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
           
+            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
+          
             <li class="tab"><a href="#comment-disqus">disqus</a></li>
           
             <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
           
-            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
-          
         </ul>
         <div class="tab-content">
+          
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
           
             <div class="tab-pane disqus" id="comment-disqus">
               
@@ -621,10 +631,6 @@
     </div>
   </div>
   
-            </div>
-          
-            <div class="tab-pane gitalk" id="comment-gitalk">
-              <div class="comments" id="gitalk-container"></div>
             </div>
           
         </div>
@@ -690,7 +696,7 @@
         
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -704,10 +710,6 @@
           
         
         
-        
-          
-        
-          
         
           
         
@@ -904,7 +906,7 @@
         
           
         
-        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-count">72</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -997,12 +999,16 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">154k</span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">162k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:41</span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">4:55</span>
 </div>
   <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动</div>
   <span class="post-meta-divider">|</span>
@@ -1035,7 +1041,6 @@
   
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-reading-progress@1/reading_progress.min.js"></script>
   <script src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
@@ -1067,7 +1072,7 @@
   <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-bookmark@1/bookmark.min.js"></script>
   <script>
   if (CONFIG.page.isPost) {
-    bookmark.scrollToMark('auto', "#更多");
+    bookmark.scrollToMark('manual', "#更多");
   } else {
     bookmark.loadBookmark();
   }
@@ -1233,6 +1238,26 @@
 
 
     
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', function() {
+    var gitalk = new Gitalk({
+      clientID: 'a35e4aa0db5b5a7bcc2f',
+      clientSecret: 'a19ef2a9debab8747a6e723c1eff1141213fe101',
+      repo: 'gitment-comments',
+      owner: 'anran758',
+      admin: ['anran758'],
+      id: '47d9ccbc1e84a78468647fda370a7442',
+        language: window.navigator.language || window.navigator.userLanguage,
+      
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+    
 <script>
   function loadCount() {
     var d = document, s = d.createElement('script');
@@ -1279,26 +1304,6 @@
       title: '在本地测试微信登录',
     });
   }, window.DisqusJS);
-</script>
-
-    
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', function() {
-    var gitalk = new Gitalk({
-      clientID: 'a35e4aa0db5b5a7bcc2f',
-      clientSecret: 'a19ef2a9debab8747a6e723c1eff1141213fe101',
-      repo: 'gitment-comments',
-      owner: 'anran758',
-      admin: ['anran758'],
-      id: '47d9ccbc1e84a78468647fda370a7442',
-        language: window.navigator.language || window.navigator.userLanguage,
-      
-      distractionFreeMode: 'true'
-    });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
 </script>
 
 </body>
