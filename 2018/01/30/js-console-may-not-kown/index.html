@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=7.4.0" color="#222">
+  <link rel="alternate" href="/blog/atom.xml" title="anran758's blog" type="application/atom+xml">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="google-site-verification" content="hfSxUMVDQ0d4JZmyWsUce4uMULHxHXQxxCLYVk3cIbs">
+  <meta name="msvalidate.01" content="D0E8CE815DEAA11708C153218034AA8E">
+  <meta name="baidu-site-verification" content="CtPpLH5dio">
+
+<link rel="stylesheet" href="/blog/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '7.4.0',
+    exturl: true,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":true,"color":"#222","save":"manual"},
+    fancybox: false,
+    mediumzoom: true,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="浏览器控制台是前端调试中使用最频繁的调试工具，没有之一。但它实际上还有很多不为人所知的功能~">
+<meta name="keywords" content="JavaScript,chrome,tools,debug,console">
+<meta property="og:type" content="article">
+<meta property="og:title" content="你可能不知道的 console">
+<meta property="og:url" content="https://anran758.github.io/blog/2018/01/30/js-console-may-not-kown/index.html">
+<meta property="og:site_name" content="anran758&#39;s blog">
+<meta property="og:description" content="浏览器控制台是前端调试中使用最频繁的调试工具，没有之一。但它实际上还有很多不为人所知的功能~">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/01/30/js-console-may-not-kown/banner.jpg">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/01/30/js-console-may-not-kown/console.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/01/30/js-console-may-not-kown/console-2.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/01/30/js-console-may-not-kown/console-3.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/01/30/js-console-may-not-kown/zhihu.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/01/30/js-console-may-not-kown/console-info.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/01/30/js-console-may-not-kown/console-table.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/01/30/js-console-may-not-kown/console-group.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/01/30/js-console-may-not-kown/console-dir.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/01/30/js-console-may-not-kown/console-count.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/01/30/js-console-may-not-kown/console-time.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/01/30/js-console-may-not-kown/console-assert.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/01/30/js-console-may-not-kown/demo-1.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/01/30/js-console-may-not-kown/demo-2.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/01/30/js-console-may-not-kown/demo-3.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/01/30/js-console-may-not-kown/demo-copy.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/01/30/js-console-may-not-kown/demo-inspect-1.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/01/30/js-console-may-not-kown/demo-inspect-2.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/01/30/js-console-may-not-kown/demo-getEventListeners.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/01/30/js-console-may-not-kown/demo-monitor.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/01/30/js-console-may-not-kown/demo-monitor.png">
+<meta property="og:updated_time" content="2019-09-02T15:55:45.728Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="你可能不知道的 console">
+<meta name="twitter:description" content="浏览器控制台是前端调试中使用最频繁的调试工具，没有之一。但它实际上还有很多不为人所知的功能~">
+<meta name="twitter:image" content="https://anran758.github.io/blog/2018/01/30/js-console-may-not-kown/banner.jpg">
+  <link rel="canonical" href="https://anran758.github.io/blog/2018/01/30/js-console-may-not-kown/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>你可能不知道的 console | anran758's blog</title>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-99223334-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-99223334-1');
+    }
+  </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b333b085e93f238859c899fd8ca5bd3f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">anran758's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/blog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/blog/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/blog/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/blog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>时间轴</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/blog/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+    
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a class="book-mark-link book-mark-link-fixed" href="#"></a>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FucmFuNzU4L2Jsb2c=" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="https://anran758.github.io/blog/blog/2018/01/30/js-console-may-not-kown/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="anran758">
+      <meta itemprop="description" content="分享前端技术， web领域的学习成果~">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/23024075?s=96&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="anran758's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">你可能不知道的 console
+
+          
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2018-01-30 13:09:07" itemprop="dateCreated datePublished" datetime="2018-01-30T13:09:07+08:00">2018-01-30</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-09-02 23:55:45" itemprop="dateModified" datetime="2019-09-02T23:55:45+08:00">2019-09-02</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/blog/categories/debug/" itemprop="url" rel="index"><span itemprop="name">debug</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/blog/2018/01/30/js-console-may-not-kown/" class="post-meta-item leancloud_visitors" data-flag-title="你可能不知道的 console" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/blog/2018/01/30/js-console-may-not-kown/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/01/30/js-console-may-not-kown/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>7.8k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>14 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <img src="/blog/2018/01/30/js-console-may-not-kown/banner.jpg">
+
+<p>浏览器控制台是前端调试中使用最频繁的调试工具，没有之一。但它实际上还有很多不为人所知的功能~</p>
+<a id="more"></a>
+
+<h2 id="console"><a href="#console" class="headerlink" title="console"></a>console</h2><p><code>console</code> 是浏览器提供的接口。它是一个对象，在控制台中可以查看当前浏览器支持哪一些方法。下面介绍一些比较实用的 <code>api</code>:</p>
+<img src="/blog/2018/01/30/js-console-may-not-kown/console.png">
+
+<h3 id="log"><a href="#log" class="headerlink" title="log"></a>log</h3><p><code>console.log</code> 这可能是学习前端调试技术最基础的第一步了吧，你还记得最开始是从什么地方学习到使用这个方法来调试吗？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(obj1 [, obj2, ..., objN);</span><br><span class="line"><span class="built_in">console</span>.log(msg [, subst1, ..., substN);</span><br></pre></td></tr></table></figure>
+
+<p><code>console.log</code> 的功能就是向控制台输出一条信息。它可以传入多个参数，输出的行为取决于第一个参数是否是一个代替字符串。</p>
+<p>如果是替换字符串，则后面的参数会依次替换掉字符串里的占位符; 如果不是替换字符串，则输出每一个参数的值：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'anran758'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 常规使用方式，输出原始值</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'Hello'</span>); <span class="comment">// Hello</span></span><br><span class="line"><span class="built_in">console</span>.log(name); <span class="comment">// anran758</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`Hello, <span class="subst">$&#123;name&#125;</span>`</span>); <span class="comment">// Hello, anran758</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 第一个参数是替换字符串，后面是替换的规则</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'Hi, %s. what are you doing'</span>, name); <span class="comment">// Hi, anran758. what are you doing</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'%c I am some great text'</span>, <span class="string">'font-size: 50px;'</span>); <span class="comment">// 假装 50px: Hi, anran758. what are you doing</span></span><br></pre></td></tr></table></figure>
+
+<img src="/blog/2018/01/30/js-console-may-not-kown/console-2.png">
+
+<p>下面是替换字符串所支持的参数, 学习过 C 语言的同学是不是有种熟悉的感觉呀~</p>
+<table>
+<thead>
+<tr>
+<th align="left">占位符</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>%s</code></td>
+<td align="left">字符串</td>
+</tr>
+<tr>
+<td align="left"><code>%d</code> or <code>%i</code></td>
+<td align="left">整数</td>
+</tr>
+<tr>
+<td align="left"><code>%o</code> or <code>%O</code></td>
+<td align="left">对象</td>
+</tr>
+<tr>
+<td align="left"><code>%f</code></td>
+<td align="left">浮点数</td>
+</tr>
+<tr>
+<td align="left"><code>%c</code></td>
+<td align="left">样式代码</td>
+</tr>
+</tbody></table>
+<p>在使用时需要注意的一点是：不同占位符在传入值时会预先针对类型的不同而进行格式化，比如:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 我们在使用了数字占位符，却传入字符串. 内部进行格式化时进行了类似 parseInt('anran758', 10) 的数据转换</span></span><br><span class="line"><span class="comment">// 因此替换结果为 NaN</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'result: %d'</span>, <span class="string">'anran758'</span>); <span class="comment">// result: NaN</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 再比如，我们传入一个浮点数，经过数据格式化为 3。这一种是符合预期，因为我们要的就是整数</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'result: %d'</span>, <span class="number">3.25</span>); <span class="comment">// result: 3</span></span><br></pre></td></tr></table></figure>
+
+<p>了解了这些扩展方式后，我们可以来做一些有意思的事~</p>
+<p>比如，如果你打开控制台去访问知乎、百度等网站时，可能会发现控制台有一些开发者留下的彩蛋~ 如招聘信息或者自家公司的立体 logo：</p>
+<img src="/blog/2018/01/30/js-console-may-not-kown/console-3.png" title="Bilibili 主页">
+<img src="/blog/2018/01/30/js-console-may-not-kown/zhihu.png" title="知乎">
+
+<p>不过值得一提的是，<code>js</code> 规范中并没有规定 <code>console</code> 该如何实现，不同的浏览器调用 <code>console</code> 后的表现也会不一致。</p>
+<p>这导致有一个常见的问题发生: 在调用接口时，明明请求的数据还没回来，打印出来却是有值的。实际上原因可能就是你所使用的浏览器，在实现时该 API 是异步的，它提前给你显示了出来。这个问题我在 segmentfault 的问答区中看到有很多朋友问了这样的问题，特意提一提这事。</p>
+<p>解决的方法也很简单，如果你觉得这个值不对劲的话，你可以先将对象转为 json 字符串，然后再解析为对象, 这样就能将原始值输出。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onsole.log(<span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(obj)));</span><br></pre></td></tr></table></figure>
+
+<h3 id="info-warn-error"><a href="#info-warn-error" class="headerlink" title="info, warn, error"></a>info, warn, error</h3><p>如果你使用过一些脚手架来搭建项目或者是使用过 SDK 的话，那么在控制台中你能看到以下相关的使用信息。</p>
+<p>比如在载入程序时会发出一些运行信息会通过 <code>log</code> 或者 <code>info</code> 来输出信息。</p>
+<p>或者你使用的框架中检测到你使用了一些将来可能会被废弃的 API，这时它可能会在控制抛出一个 <code>warn</code> 来警告你。</p>
+<p>再或者你使用人家 SDK 的姿势不对，程序内部检测到压根不是这么用的，那么 SDK 内部会抛出错误信息，我们可以通过错误信息来进行排查错误。</p>
+<p>这三个 API 更多的是给开发人员提供额外的信息，来查看页面的运行情况，更多用于被封装过后的组件或框架中。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Info</span></span><br><span class="line"><span class="built_in">console</span>.info(<span class="string">'Hi, This is message'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// warning 警告</span></span><br><span class="line"><span class="built_in">console</span>.warn(<span class="string">'On, Your operation may cause a security breach!'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Error 报错</span></span><br><span class="line"><span class="built_in">console</span>.error(<span class="string">'Shit! Variable does not exist!'</span>)</span><br></pre></td></tr></table></figure>
+
+<img src="/blog/2018/01/30/js-console-may-not-kown/console-info.png">
+
+<h3 id="table"><a href="#table" class="headerlink" title="table"></a>table</h3><p><code>console.table</code>只接受一个数组或者对象, 可以接受<strong>一个</strong>额外的参数来描述表格的列数。它会把数据通过表格的形式打印出来, 这样我们看数据的时候就能直观了很多:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> array = [</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">'Jack'</span>, <span class="attr">age</span>: <span class="number">12</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">'Tome'</span>, <span class="attr">age</span>: <span class="number">18</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">'baka'</span>, <span class="attr">age</span>: <span class="number">15</span> &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.table(array);</span><br></pre></td></tr></table></figure>
+
+<img src="/blog/2018/01/30/js-console-may-not-kown/console-table.png">
+
+<h3 id="group"><a href="#group" class="headerlink" title="group"></a>group</h3><p><code>console.group</code> 和 <code>console.groupEnd</code> 是成对出现的，就像我们使用的标签一样。<code>group</code>在控制台创建一个新的分组, 输出到控制台上的内容都会被添加一个缩进, 表示该内容属于当前分组, 直到调用 <code>console.groupEnd()</code> 之后, 当前分组才结束。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> boys = [</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">'Jack'</span>, <span class="attr">age</span>: <span class="number">12</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">'Tome'</span>, <span class="attr">age</span>: <span class="number">18</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">'baka'</span>, <span class="attr">age</span>: <span class="number">15</span> &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">boys.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.group(<span class="string">`<span class="subst">$&#123;item.name&#125;</span>`</span>)</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`This is <span class="subst">$&#123;item.name&#125;</span>`</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;item.name&#125;</span> is <span class="subst">$&#123;item.age&#125;</span> years old`</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;item.name&#125;</span> is <span class="subst">$&#123;item.age * <span class="number">7</span>&#125;</span> years old`</span>);</span><br><span class="line">  <span class="built_in">console</span>.groupEnd(<span class="string">`<span class="subst">$&#123;item.name&#125;</span>`</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<img src="/blog/2018/01/30/js-console-may-not-kown/console-group.png">
+
+<h3 id="dir"><a href="#dir" class="headerlink" title="dir"></a>dir</h3><blockquote>
+<p>console.dir，在控制台中显示指定 JavaScript 对象的属性，并通过类似文件树样式的交互列表</p>
+</blockquote>
+<p>我们知道<code>console.log</code>实际上是可以输出 <code>DOM</code> 节点的, 但很多时候我们想查看的不是 <code>DOM</code> 节点，而是该 <code>DOM</code> 节点下的属性，这里就可以使用 <code>dir</code> 来代替 <code>log</code> 来输出 <code>DOM</code> 节点对象.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> head = <span class="built_in">document</span>.getElementById(<span class="string">'head'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(head);</span><br><span class="line"><span class="built_in">console</span>.dir(head);</span><br></pre></td></tr></table></figure>
+
+<p>但值得注意的是，这个特性是非标准，尽量不要在生产模式下使用。</p>
+<img src="/blog/2018/01/30/js-console-may-not-kown/console-dir.png">
+
+<h3 id="count"><a href="#count" class="headerlink" title="count"></a>count</h3><p>count, 如同字面意思一样. <code>count()</code>会输出每一次被调用的次数. 该方法的兼容性也需要注意, 不适用于生产模式.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.count(<span class="string">'anran758'</span>)</span><br><span class="line"><span class="built_in">console</span>.count(<span class="string">'anran758'</span>)</span><br><span class="line"><span class="built_in">console</span>.count(<span class="string">'zero'</span>)</span><br><span class="line"><span class="built_in">console</span>.count(<span class="string">'anran758'</span>)</span><br><span class="line"><span class="built_in">console</span>.count(<span class="string">'zero'</span>)</span><br><span class="line"><span class="built_in">console</span>.count(<span class="string">'anran758'</span>)</span><br><span class="line"><span class="built_in">console</span>.count(<span class="string">'zero'</span>)</span><br><span class="line"><span class="built_in">console</span>.count(<span class="string">'anran758'</span>)</span><br></pre></td></tr></table></figure>
+
+<img src="/blog/2018/01/30/js-console-may-not-kown/console-count.png">
+
+<h3 id="clear"><a href="#clear" class="headerlink" title="clear"></a>clear</h3><p><code>clear</code>可以清楚调用这个 API 之前的所有 <code>log</code> 信息，这在一个 <code>log</code> 很多很乱的情况下进行某个功能调试会很有作用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// something info</span></span><br><span class="line"><span class="built_in">console</span>.clear();</span><br></pre></td></tr></table></figure>
+
+<h3 id="time"><a href="#time" class="headerlink" title="time"></a>time</h3><p>启动一个计时器（timer）来跟踪某一个操作的占用时长。每一个计时器必须拥有唯一的名字。页面中最多能同时运行 <code>10,000</code> 个计时器。跟 <code>group</code> 一样, <code>time</code> 也是配套的。</p>
+<p>当以此计时器名字为参数调用 console.timeEnd() 时，浏览器将以毫秒为单位，输出对应计时器所经过的时间.</p>
+<p>比如我们统计一下请求接口的时间:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.time(<span class="string">'fetching data'</span>);</span><br><span class="line">fetch(<span class="string">'https://api.github.com/users/anran758'</span>)</span><br><span class="line">  .then(<span class="function"><span class="params">data</span> =&gt;</span> data.json())</span><br><span class="line">  .then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.timeEnd(<span class="string">'fetching data'</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(data);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>这样我们就轻易的知道了这次我们请求花费了多少时间啦~ 但值得注意的是，该方法的统计时间在微观下不够精准，更多时候我们还是需要使用更专业的测试工具后者网站来完成测试性能的工作。</p>
+<img src="/blog/2018/01/30/js-console-may-not-kown/console-time.png">
+
+<h3 id="assert"><a href="#assert" class="headerlink" title="assert"></a>assert</h3><p><code>console.assert()</code>还是蛮有意思的. 它第一个参数接受一个断言(声明), 第二个参数是一个<strong>message</strong>. 如果断言为 <code>false</code>，则将一个错误消息写入控制台。如果断言是 true，就当做没发生。语法如下:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.assert(assertion, message [, subst1, ..., substN]);</span><br></pre></td></tr></table></figure>
+
+<p>这里的断言不一定是<code>false</code>才会触发错误. 我特意去测试了一下, 触发的规则也跟<code>if</code>的判断里的逻辑相反. 只要是断言是<code>0</code>, <code>NaN</code>, <code>undefined</code>, <code>false</code>, <code>null</code>, 空字符串<code>&#39;&#39;</code>就会激活报错.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Assertion failed: Here is the "name" can not be empty</span></span><br><span class="line"><span class="keyword">var</span> str = <span class="string">''</span>;</span><br><span class="line"><span class="built_in">console</span>.assert(str, <span class="string">'Here is the "str" can not be empty'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Assertion failed: 0 is not allowed!</span></span><br><span class="line"><span class="keyword">var</span> num = <span class="number">0</span>;</span><br><span class="line"><span class="built_in">console</span>.assert(<span class="number">0</span>, <span class="string">'0 is not allowed!'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Assertion failed: That is wrong!</span></span><br><span class="line"><span class="built_in">console</span>.assert(<span class="number">1</span> === <span class="number">2</span>, <span class="string">'That is wrong!'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 什么都不会发生</span></span><br><span class="line"><span class="built_in">console</span>.assert(<span class="number">1</span> === <span class="number">1</span>, <span class="string">'That is wrong!'</span>);</span><br></pre></td></tr></table></figure>
+
+<img src="/blog/2018/01/30/js-console-may-not-kown/console-assert.png">
+
+<hr>
+<p>以上是 18.01.30 分享出来的内容，分享至今又发现了一些好用的功能，如果你跟笔者使用的都是 chrome 浏览器的话，可以继续往下看，笔者将逐一进行介绍：</p>
+<h2 id="chrome-devtools"><a href="#chrome-devtools" class="headerlink" title="chrome devtools"></a>chrome devtools</h2><p>下面介绍 <code>chrome devtools</code> 在控制台提供的一些语法糖，这些方法只能控制台使用，而不能直接在代码里使用。区分是浏览器提供的还是我们自己代码中定义的方法可以使用<code>console.log(method)</code>，如果打印出来的是 <code>[Command Line API]</code> 就是内置方法。</p>
+<h3 id="selector-startNode"><a href="#selector-startNode" class="headerlink" title="$(selector, [startNode])"></a>$(selector, [startNode])</h3><p>我相信做过前端的朋友都了解 <code>jqeury</code> 的 <code>$</code> 选择器，乃至于我们看到这个符号就能联想到 <code>DOM</code> 相关的东西。</p>
+<p>IE9+ 引入了 <code>document.querySelector()</code>，可以让我们很方便找到对应的 <code>DOM</code> 元素，但该 API 拼写起来确实有点麻烦，并且该方法的使用频率还不低。因此 <code>chrome</code> 开发工具提供一个<code>$</code>的别名给我们使用。</p>
+<p><code>$</code> 接受两个参数，第一个参数接受一个选择器，第二个参数接受一个 <code>DOM</code> 元素表示从该元素下开始搜索，不传默认为 <code>document</code>.</p>
+<p>我们可以简单做一个 demo 实验一下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 一个简单的嵌套结构 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"main main.container"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"start"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"main content"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"end"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>将上面的 demo 保存至 html 中后，在 chrome 浏览器中打开该文件。输入以下代码查看实际效果:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 查看是否是 Command Line API，如果不是的话那就意味着你在全局中引入了第三方库，它会覆盖浏览器默认的 API</span></span><br><span class="line">$;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 从 document 中获取第一个 main 元素，</span></span><br><span class="line"><span class="keyword">var</span> container = $(<span class="string">'.main'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 我们将上面获取到的节点作为 startNode, 从该节点往下找可以找到 content</span></span><br><span class="line"><span class="keyword">var</span> content = $(<span class="string">'.main'</span>, container);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'container: '</span>, container, <span class="string">'\n\n'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'content: '</span>, content, <span class="string">'\n\n'</span>);</span><br></pre></td></tr></table></figure>
+
+<img src="/blog/2018/01/30/js-console-may-not-kown/demo-1.png">
+
+<h3 id="selector-startNode-1"><a href="#selector-startNode-1" class="headerlink" title="$$(selector, [startNode])"></a>$$(selector, [startNode])</h3><p><code>$$</code> 相当于 <code>document.querySelectorAll</code>，但细节上看会有些不同。<code>$$</code> 调用后会返回一个数组，而后者调用后返回的是一个 <code>NodeList</code>，缺少一些数组的方法。</p>
+<p><code>$$</code> 与 <code>$</code> 接受的参数的功能是一致的，就不过多介绍：</p>
+<img src="/blog/2018/01/30/js-console-may-not-kown/demo-2.png">
+
+<h3 id><a href="#" class="headerlink" title="$_"></a>$_</h3><p>说这个方法之前需要先科普一下返回值这个概念：<code>js</code> 每一个表达式都会有返回值，比如你定义一个函数，但是没有 <code>return</code> 任何东西，那么调用这个函数后的返回值就是 <code>undefined</code>。这个知识点可以在 <code>你不知道的 JavaScript</code> 系列中了解更详细的解析。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;&#125; <span class="comment">// 返回值是 undefined</span></span><br><span class="line">fn(); <span class="comment">// 返回值是 undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> n = <span class="number">0</span>; <span class="comment">// 返回值是 undefined</span></span><br><span class="line">n += <span class="number">1</span>; <span class="comment">// 返回值是 1</span></span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].map(<span class="function"><span class="params">n</span> =&gt;</span> n * <span class="number">2</span>); <span class="comment">// [2, 4, 6]</span></span><br></pre></td></tr></table></figure>
+
+<p>好啦，话归正题~有时候为了方便，我们会直接在控制台进行运算，此时我们可以使用 <code>$_</code> 获取上一个表达式的值。在某些时候可以提供便利性。</p>
+<img src="/blog/2018/01/30/js-console-may-not-kown/demo-3.png">
+
+<p><code>clear</code>、<code>dir</code> 分别是 <code>console.clear</code>、<code>console.clear、dir</code> 的别名。</p>
+<h3 id="copy-obj"><a href="#copy-obj" class="headerlink" title="copy(obj)"></a>copy(obj)</h3><p>该方法可以将数据 copy 至粘贴板。</p>
+<p>当初发现这个 API 时还是挺意外的。当时需要将城市映射表数据改造为另一种结构，就直接在控制台中处理好了。接着就在想如何将数据弄出来，数据量很大，不好拷贝下来。然后突发奇想，看看控制台有没有支持复制数据的功能，随便尝试了以下，然后就成功了。</p>
+<p>这就意味着以后我们做一些数据处理可以直接在控制台中进行处理，在某些方面上会挺方便的，比如快速生成一个长度为 20 的数组，数组内有 0 ~ 19 的数字：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 要检查一下有没有全局变量覆盖了默认的 API</span></span><br><span class="line"><span class="comment">// ƒ copy(value) &#123; [Command Line API] &#125;</span></span><br><span class="line">copy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arr = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">20</span>; i++) &#123;</span><br><span class="line">  arr.push(i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 此时可以检查是否复制成功</span></span><br><span class="line"><span class="built_in">console</span>.log(arr);</span><br><span class="line">copy(arr);</span><br></pre></td></tr></table></figure>
+
+<img src="/blog/2018/01/30/js-console-may-not-kown/demo-copy.png">
+
+<h3 id="inspect-object-function"><a href="#inspect-object-function" class="headerlink" title="inspect(object/function)"></a>inspect(object/function)</h3><p><code>inspect</code> 接受一个对象或者函数。</p>
+<p>如果这个参数是一个 <code>DOM</code> 元素的话，并且它是存在 <code>DOM</code> 树中的，那么它会切换到 <code>Elements</code> 这个 tab。如果这个 <code>DOM</code> 元素没有被插入 <code>DOM</code> 树种的话，那仅仅会切换 tab。</p>
+<p>如果传入的是一个函数，会将这个函数传入 <code>source</code> 面板，用以检查函数(比起查看 <code>DOM</code> 的功能, 传递函数后的功能除了格式代码外并没有想到好的用处)</p>
+<img src="/blog/2018/01/30/js-console-may-not-kown/demo-inspect-1.png" title="代码格式化前">
+
+<img src="/blog/2018/01/30/js-console-may-not-kown/demo-inspect-2.png" title="代码格式化后">
+
+<h3 id="getEventListeners-obj"><a href="#getEventListeners-obj" class="headerlink" title="getEventListeners(obj)"></a>getEventListeners(obj)</h3><p><code>getEventListeners(obj)</code> 返回指定 <code>DOM</code> 绑定的事件监听器，有时候调试 DOM 时会挺方便的。以知乎首页为例，这样可以很清晰的看到 <code>document.body</code> 绑定的事件：</p>
+<img src="/blog/2018/01/30/js-console-may-not-kown/demo-getEventListeners.png" title="知乎首页">
+
+<h3 id="monitor-unmonitor-function"><a href="#monitor-unmonitor-function" class="headerlink" title="monitor/unmonitor(function)"></a>monitor/unmonitor(function)</h3><p>调用指定的函数时，会向控制台记录一条消息，指示函数名称以及调用时传递给函数的参数。使用<code>unmonitor(function)</code>停止监控。</p>
+<p>相当于在这个函数的头部添加了一个 <code>console.info</code> 的信息，算是语法糖吧~ 主要是调试时使用。当</p>
+<img src="/blog/2018/01/30/js-console-may-not-kown/demo-monitor.png">
+
+<h3 id="monitorEvents-unmonitorEvents-object-events"><a href="#monitorEvents-unmonitorEvents-object-events" class="headerlink" title="monitorEvents/unmonitorEvents(object[, events])"></a>monitorEvents/unmonitorEvents(object[, events])</h3><p><code>monitorEvents</code> 监控指定 <code>DOM</code> 的事件，如果不传第二个参数，就监听所有事件的发生。</p>
+<p>相对应的是使用<code>unmonitorEvents(object[, events])</code>停止监控事件。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 监控/停止监控 window 中触发的所有事件</span></span><br><span class="line">monitorEvents(<span class="built_in">window</span>);</span><br><span class="line">unmonitorEvents(<span class="built_in">window</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// or 监控/停止监控 window 中触发的 mouseover 事件</span></span><br><span class="line">monitorEvents(<span class="built_in">window</span>, <span class="string">'mouseover'</span>);</span><br><span class="line">unmonitorEvents(<span class="built_in">window</span>, <span class="string">'mouseover'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// or 监控/停止监控 window 中触发的指定多个事件</span></span><br><span class="line">monitorEvents(<span class="built_in">window</span>, [<span class="string">'mouseover'</span>, <span class="string">'mouseout'</span>]);</span><br><span class="line">unmonitorEvents(<span class="built_in">window</span>, [<span class="string">'mouseover'</span>, <span class="string">'mouseout'</span>]);</span><br></pre></td></tr></table></figure>
+
+<img src="/blog/2018/01/30/js-console-may-not-kown/demo-monitor.png">
+
+<h3 id="别名"><a href="#别名" class="headerlink" title="别名"></a>别名</h3><p>对于一些常用的方法， chrome tools 提供了别名以供我们快速使用：</p>
+<table>
+<thead>
+<tr>
+<th>缩短前</th>
+<th>缩短后</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>console.clear</td>
+<td>clear</td>
+</tr>
+<tr>
+<td>console.dir</td>
+<td>dir</td>
+</tr>
+<tr>
+<td>console.table</td>
+<td>table</td>
+</tr>
+<tr>
+<td>Object.keys</td>
+<td>keys</td>
+</tr>
+<tr>
+<td>Object.values</td>
+<td>values</td>
+</tr>
+</tbody></table>
+<p>参考资料:</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvZW4tVVMvZG9jcy9XZWIvQVBJL0NvbnNvbGU=" title="https://developer.mozilla.org/en-US/docs/Web/API/Console">Console<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cDovL3d3dy5hbGxveXRlYW0uY29tLzIwMTMvMTEvY29uc29sZS1sb2cv" title="http://www.alloyteam.com/2013/11/console-log/">从 console.log 说起（上）<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXJzLmdvb2dsZS5jb20vd2ViL3Rvb2xzL2Nocm9tZS1kZXZ0b29scy9jb25zb2xlL3V0aWxpdGllcw==" title="https://developers.google.com/web/tools/chrome-devtools/console/utilities">Console Utilities API Reference<i class="fa fa-external-link"></i></span></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      
+        <div class="popular-posts-date">2017-11-27</div>
+      
+      
+      <div class="popular-posts-title"><a href="/blog/2017/11/27/谈谈npm包里的 install --save 和 install --save-dev之间的区别/" rel="bookmark">npm包中的 install --save 和 install --save-dev之间到底有区别</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+        <div class="popular-posts-date">2018-01-23</div>
+      
+      
+      <div class="popular-posts-title"><a href="/blog/2018/01/23/JavaScript-你为什么会放弃JQuery而选用Vue-React-Angular进行开发/" rel="bookmark">为什么我们要选用 Vue/React/Angular 进行开发</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+        <div class="popular-posts-date">2018-06-09</div>
+      
+      
+      <div class="popular-posts-title"><a href="/blog/2018/06/09/javascript-position-navigation/" rel="bookmark">锚点定位导航</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+        <div class="popular-posts-date">2017-08-21</div>
+      
+      
+      <div class="popular-posts-title"><a href="/blog/2017/08/21/js-common-regexp/" rel="bookmark">速查正则表达式</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+        <div class="popular-posts-date">2018-01-06</div>
+      
+      
+      <div class="popular-posts-title"><a href="/blog/2018/01/06/优化Vue项目的构建速度/" rel="bookmark">优化Vue项目的构建速度</a></div>
+      
+    </li>
+  
+  </ul>
+
+        
+      
+        <div id="reward-container">
+  <div></div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+        
+      
+      <div style="display: inline-block">
+        <img src="/blog/images/wechatpay.png" alt="anran758 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+      
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>anran758</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://anran758.github.io/blog/2018/01/30/js-console-may-not-kown/" title="你可能不知道的 console">https://anran758.github.io/blog/2018/01/30/js-console-may-not-kown/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！</li>
+</ul>
+</div>
+
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+            
+              <a href="/blog/tags/chrome/" rel="tag"># chrome</a>
+            
+              <a href="/blog/tags/tools/" rel="tag"># tools</a>
+            
+              <a href="/blog/tags/debug/" rel="tag"># debug</a>
+            
+              <a href="/blog/tags/console/" rel="tag"># console</a>
+            
+          </div>
+        
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/blog/2018/01/25/web-走进web移动开发/" rel="next" title="走进 web 移动端开发">
+                  <i class="fa fa-chevron-left"></i> 走进 web 移动端开发
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/blog/2018/02/06/dev-zero-configuration-vscode/" rel="prev" title="[环境搭建] 从零开始配置 vscode">
+                  [环境搭建] 从零开始配置 vscode <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+          
+            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
+          
+            <li class="tab"><a href="#comment-disqus">disqus</a></li>
+          
+            <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
+          
+        </ul>
+        <div class="tab-content">
+          
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
+          
+            <div class="tab-pane disqus" id="comment-disqus">
+              
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+            </div>
+          
+            <div class="tab-pane disqusjs" id="comment-disqusjs">
+              
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+            </div>
+          
+        </div>
+      </div>
+      <script>
+        window.addEventListener('tabs:register', () => {
+          let activeClass = '';
+          
+            activeClass = localStorage.getItem('comments_active') || activeClass;
+          
+          if (activeClass) {
+            let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+            if (activeTab) {
+              activeTab.click();
+            }
+          }
+        });
+        
+        window.addEventListener('tabs:click', event => {
+          let commentClass = event.target.classList[1];
+          localStorage.setItem('comments_active', commentClass);
+        });
+        
+      </script>
+    
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#console"><span class="nav-number">1.</span> <span class="nav-text">console</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#log"><span class="nav-number">1.1.</span> <span class="nav-text">log</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#info-warn-error"><span class="nav-number">1.2.</span> <span class="nav-text">info, warn, error</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#table"><span class="nav-number">1.3.</span> <span class="nav-text">table</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#group"><span class="nav-number">1.4.</span> <span class="nav-text">group</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dir"><span class="nav-number">1.5.</span> <span class="nav-text">dir</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#count"><span class="nav-number">1.6.</span> <span class="nav-text">count</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clear"><span class="nav-number">1.7.</span> <span class="nav-text">clear</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#time"><span class="nav-number">1.8.</span> <span class="nav-text">time</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#assert"><span class="nav-number">1.9.</span> <span class="nav-text">assert</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chrome-devtools"><span class="nav-number">2.</span> <span class="nav-text">chrome devtools</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#selector-startNode"><span class="nav-number">2.1.</span> <span class="nav-text">$(selector, [startNode])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#selector-startNode-1"><span class="nav-number">2.2.</span> <span class="nav-text">$$(selector, [startNode])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.3.</span> <span class="nav-text">$_</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#copy-obj"><span class="nav-number">2.4.</span> <span class="nav-text">copy(obj)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#inspect-object-function"><span class="nav-number">2.5.</span> <span class="nav-text">inspect(object/function)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getEventListeners-obj"><span class="nav-number">2.6.</span> <span class="nav-text">getEventListeners(obj)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#monitor-unmonitor-function"><span class="nav-number">2.7.</span> <span class="nav-text">monitor/unmonitor(function)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#monitorEvents-unmonitorEvents-object-events"><span class="nav-number">2.8.</span> <span class="nav-text">monitorEvents/unmonitorEvents(object[, events])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#别名"><span class="nav-number">2.9.</span> <span class="nav-text">别名</span></a></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="https://avatars3.githubusercontent.com/u/23024075?s=96&v=4"
+      alt="anran758">
+  <p class="site-author-name" itemprop="name">anran758</p>
+  <div class="site-description" itemprop="description">分享前端技术， web领域的学习成果~</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/blog/categories/">
+          
+        
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/blog/tags/">
+          
+        
+        <span class="site-state-item-count">72</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/blog/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FucmFuNzU4" title="GitHub &rarr; https://github.com/anran758"><i class="fa fa-fw fa-github"></i>GitHub</span>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <span class="exturl" data-url="aHR0cHM6Ly93ZWliby5jb20vdS8zODMzNzI2NjUx" title="Weibo &rarr; https://weibo.com/u/3833726651"><i class="fa fa-fw fa-weibo"></i>Weibo</span>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL3UvYW5yYW43NTgv" title="Segmentfault &rarr; https://segmentfault.com/u/anran758/"><i class="fa fa-fw fa-globe"></i>Segmentfault</span>
+      </span>
+    
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    
+  
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><img src="/blog/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">anran758</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">166k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">5:02</span>
+</div>
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Muse</span></div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=5d560b378f0db5fa" async="async"></script>
+  </div>
+
+        
+
+
+
+
+
+
+  
+  <script>
+  function leancloudSelector(url) {
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = visitors.getAttribute('id').trim();
+      var title = visitors.getAttribute('data-flag-title').trim();
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+            
+              .catch(error => {
+                console.log('Failed to save visitor count', error);
+              })
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return element.getAttribute('id').trim();
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            leancloudSelector(url).innerText = time;
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=pzA3EVFcmmGjhOfofaeSXDdr-MdYXbMMI')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': 'pzA3EVFcmmGjhOfofaeSXDdr-MdYXbMMI',
+            'X-LC-Key': 'YQgLRTjAQ5uE0S4T6dKqeS8U',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+        if (localhost.test(document.URL)) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/blog/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+<script src="/blog/js/utils.js?v=7.4.0"></script><script src="/blog/js/motion.js?v=7.4.0"></script>
+<script src="/blog/js/schemes/muse.js?v=7.4.0"></script>
+<script src="/blog/js/next-boot.js?v=7.4.0"></script><script src="/blog/js/bookmark.js?v=7.4.0"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: 20378,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+
+
+  <script src="/blog/js/local-search.js?v=7.4.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: 'a35e4aa0db5b5a7bcc2f',
+      clientSecret: 'a19ef2a9debab8747a6e723c1eff1141213fe101',
+      repo: 'gitment-comments',
+      owner: 'anran758',
+      admin: ['anran758'],
+      id: '825a2843f0e0eb0ff7d01faac795ea5f',
+        language: window.navigator.language || window.navigator.userLanguage,
+      
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://anran758.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  function disqus_config() {
+    this.page.url = "https://anran758.github.io/blog/2018/01/30/js-console-may-not-kown/";
+    this.page.identifier = "2018/01/30/js-console-may-not-kown/";
+    this.page.title = '你可能不知道的 console';};
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://anran758.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+  
+</script>
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
+    window.dsqjs = new DisqusJS({
+      api: '' || 'https://disqus.com/api/',
+      apikey: 'sIyn05JGvJaybYCauBuz5uFbUYie1vZfOTGIdNfUH6Uznx3sLiZR0ARXgiXDDiHM',
+      shortname: 'anran758',
+      url: "https://anran758.github.io/blog/2018/01/30/js-console-may-not-kown/",
+      identifier: "2018/01/30/js-console-may-not-kown/",
+      title: '你可能不知道的 console',
+    });
+  }, window.DisqusJS);
+</script>
+
+</body>
+</html>

@@ -507,23 +507,17 @@
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
           
-            <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
+            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
           
             <li class="tab"><a href="#comment-disqus">disqus</a></li>
           
-            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
+            <li class="tab"><a href="#comment-disqusjs">disqusjs</a></li>
           
         </ul>
         <div class="tab-content">
           
-            <div class="tab-pane disqusjs" id="comment-disqusjs">
-              
-  <div class="comments" id="comments">
-    <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
-    </div>
-  </div>
-  
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
             </div>
           
             <div class="tab-pane disqus" id="comment-disqus">
@@ -536,8 +530,14 @@
   
             </div>
           
-            <div class="tab-pane gitalk" id="comment-gitalk">
-              <div class="comments" id="gitalk-container"></div>
+            <div class="tab-pane disqusjs" id="comment-disqusjs">
+              
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
             </div>
           
         </div>
@@ -916,19 +916,23 @@
 
   
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
 <script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
-    window.dsqjs = new DisqusJS({
-      api: '' || 'https://disqus.com/api/',
-      apikey: 'sIyn05JGvJaybYCauBuz5uFbUYie1vZfOTGIdNfUH6Uznx3sLiZR0ARXgiXDDiHM',
-      shortname: 'anran758',
-      url: "https://anran758.github.io/blog/2018/01/05/浅谈对MVC与MVVM的理解/",
-      identifier: "2018/01/05/浅谈对MVC与MVVM的理解/",
-      title: '浅谈对MVC与MVVM的理解',
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: 'a35e4aa0db5b5a7bcc2f',
+      clientSecret: 'a19ef2a9debab8747a6e723c1eff1141213fe101',
+      repo: 'gitment-comments',
+      owner: 'anran758',
+      admin: ['anran758'],
+      id: '57aacae9238785894ee73195d69a90f8',
+        language: window.navigator.language || window.navigator.userLanguage,
+      
+      distractionFreeMode: 'true'
     });
-  }, window.DisqusJS);
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
 </script>
 
 <script>
@@ -963,23 +967,19 @@
   
 </script>
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
 
 <script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
-    var gitalk = new Gitalk({
-      clientID: 'a35e4aa0db5b5a7bcc2f',
-      clientSecret: 'a19ef2a9debab8747a6e723c1eff1141213fe101',
-      repo: 'gitment-comments',
-      owner: 'anran758',
-      admin: ['anran758'],
-      id: '57aacae9238785894ee73195d69a90f8',
-        language: window.navigator.language || window.navigator.userLanguage,
-      
-      distractionFreeMode: 'true'
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
+    window.dsqjs = new DisqusJS({
+      api: '' || 'https://disqus.com/api/',
+      apikey: 'sIyn05JGvJaybYCauBuz5uFbUYie1vZfOTGIdNfUH6Uznx3sLiZR0ARXgiXDDiHM',
+      shortname: 'anran758',
+      url: "https://anran758.github.io/blog/2018/01/05/浅谈对MVC与MVVM的理解/",
+      identifier: "2018/01/05/浅谈对MVC与MVVM的理解/",
+      title: '浅谈对MVC与MVVM的理解',
     });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
+  }, window.DisqusJS);
 </script>
 
 </body>
