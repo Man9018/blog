@@ -63,22 +63,22 @@
   };
 </script>
 
-  <meta name="description" content="回流与重绘已经是个老生常谈的问题啦, 但提到性能优化上却又必不可免的提到它. 今天来谈一谈什么是回流与重绘, 我们该如何去测试, 如何针对性的去优化.">
+  <meta name="description" content="回流与重绘已经是个老生常谈的问题啦, 但谈起性能优化上它又占有一席之地。今天来谈一谈什么是回流与重绘, 我们该如何去测试并针对性的去优化。">
 <meta name="keywords" content="JavaScript,性能优化,HTML,DOM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="性能优化 - 回流与重绘">
 <meta property="og:url" content="https://anran758.github.io/blog/2018/01/15/性能优化-回流与重汇/index.html">
 <meta property="og:site_name" content="anran758&#39;s blog">
-<meta property="og:description" content="回流与重绘已经是个老生常谈的问题啦, 但提到性能优化上却又必不可免的提到它. 今天来谈一谈什么是回流与重绘, 我们该如何去测试, 如何针对性的去优化.">
+<meta property="og:description" content="回流与重绘已经是个老生常谈的问题啦, 但谈起性能优化上它又占有一席之地。今天来谈一谈什么是回流与重绘, 我们该如何去测试并针对性的去优化。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://anran758.github.io/blog/2018/01/15/性能优化-回流与重汇/banner.png">
 <meta property="og:image" content="https://anran758.github.io/blog/2018/01/15/性能优化-回流与重汇/Mozilla.gif">
 <meta property="og:image" content="https://anran758.github.io/blog/2018/01/15/性能优化-回流与重汇/img-1.png">
 <meta property="og:image" content="https://anran758.github.io/blog/2018/01/15/性能优化-回流与重汇/repaint.gif">
-<meta property="og:updated_time" content="2019-08-21T13:59:27.572Z">
+<meta property="og:updated_time" content="2019-09-13T02:55:52.441Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="性能优化 - 回流与重绘">
-<meta name="twitter:description" content="回流与重绘已经是个老生常谈的问题啦, 但提到性能优化上却又必不可免的提到它. 今天来谈一谈什么是回流与重绘, 我们该如何去测试, 如何针对性的去优化.">
+<meta name="twitter:description" content="回流与重绘已经是个老生常谈的问题啦, 但谈起性能优化上它又占有一席之地。今天来谈一谈什么是回流与重绘, 我们该如何去测试并针对性的去优化。">
 <meta name="twitter:image" content="https://anran758.github.io/blog/2018/01/15/性能优化-回流与重汇/banner.png">
   <link rel="canonical" href="https://anran758.github.io/blog/2018/01/15/性能优化-回流与重汇/">
 
@@ -331,7 +331,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-21 21:59:27" itemprop="dateModified" datetime="2019-08-21T21:59:27+08:00">2019-08-21</time>
+                <time title="修改时间：2019-09-13 10:55:52" itemprop="dateModified" datetime="2019-09-13T10:55:52+08:00">2019-09-13</time>
               </span>
             
           
@@ -380,7 +380,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>2.9k</span>
+              <span>3.3k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -390,7 +390,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>5 分钟</span>
+              <span>6 分钟</span>
             </span>
           
 
@@ -404,62 +404,85 @@
 
       
         <img src="/blog/2018/01/15/性能优化-回流与重汇/banner.png">
-<p>回流与重绘已经是个老生常谈的问题啦, 但提到性能优化上却又必不可免的提到它. 今天来谈一谈什么是回流与重绘, 我们该如何去测试, 如何针对性的去优化.</p>
+
+<p>回流与重绘已经是个老生常谈的问题啦, 但谈起性能优化上它又占有一席之地。今天来谈一谈什么是回流与重绘, 我们该如何去测试并针对性的去优化。</p>
 <a id="more"></a>
 
 <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>在<code>HTML</code>中, 每一个标签都有自己的盒子模型. 浏览器在解析<code>HTML</code>的过程中会通过一个叫<code>frame</code>的对象对盒子进行操作. 它主要有三个动作:</p>
-<ul>
-<li>构建<code>frame</code>, 以建立<code>DOM树</code>.</li>
-<li><strong>reflow</strong>, 布局引擎为<code>frame</code>计算图形, 以确定对象位置, 浏览器根据各种样式来计算结果放在它该出现的位置.</li>
-<li><strong>repaint</strong>, 当计算好盒子模型的位置, 大小以及其他属性后, 浏览器就根据各自的特性进行绘制一遍, 显现出来给用户看.</li>
-</ul>
+<ol>
+<li>构建 <code>frame</code>, 以建立<code>DOM树</code>.</li>
+<li>回流(<code>reflow</code>), 布局引擎为<code>frame</code>计算图形, 以确定对象位置, 浏览器根据各种样式来计算结果放在它该出现的位置.</li>
+<li>重绘(<code>repaint</code>), 当计算好盒子模型的位置, 大小以及其他属性后, 浏览器就根据各自的特性进行绘制一遍, 显现出来给用户看.</li>
+</ol>
 <img src="/blog/2018/01/15/性能优化-回流与重汇/Mozilla.gif" title="Mozilla 页面绘制">
 
-<h2 id="回流的代价"><a href="#回流的代价" class="headerlink" title="回流的代价"></a>回流的代价</h2><p><strong>回流(reflow)</strong>就是布局引擎为 frame 计算图形的过程. 但是这里需要我们注意的是, 回流并不仅仅只是在渲染页面的时候会触发, 实际上当你修改某个 css 属性或者操作 DOM 时, 就有可能会触发回流和重绘.</p>
-<p>也就是说, 我们操作 DOM 实际上是<em>有代价</em>的. 因为 DOM 的改变会导致浏览器重新计算的它的位置和渲染的样式. 我们来做一个假设, 当用户作出某个操作时(比如下拉滚动条), 你的页面中有几十个 DOM 节点同时发生回流绘制, 那这中间消耗的可是浏览器的资源, 可想而知这样页面的性能自然弱了下来.</p>
-<h2 id="如何触发"><a href="#如何触发" class="headerlink" title="如何触发"></a>如何触发</h2><p>YaHoo!性能小组总结了一些导致<code>reflow</code>发生的一些因素:</p>
+<h2 id="代价"><a href="#代价" class="headerlink" title="代价"></a>代价</h2><p><strong>回流(reflow)</strong>就是布局引擎为<code>frame</code> 计算图形的过程。但是这里需要我们注意的是, 回流并不仅仅只是在渲染页面的时候会触发, 实际上当我们动态修改某个 <code>css</code> 属性或者操作 <code>DOM</code> 时, 都有可能会触发回流和重绘。</p>
+<p>也就是说, 我们操作 <code>DOM</code> 实际上是有代价的。因为 <code>DOM</code> 的改变会导致浏览器重新计算的它的位置和渲染的样式。</p>
+<p>假设有这么一个场景：用户打开了一个很长的页面，就比如 <span class="exturl" data-url="aHR0cDovL3d3dy5lY21hLWludGVybmF0aW9uYWwub3JnL2VjbWEtMjYyLzYuMC8=" title="http://www.ecma-international.org/ecma-262/6.0/">ecma-262 规格文档<i class="fa fa-external-link"></i></span>，同时右键点击了翻译，这时下拉滚动条页面, 在一些配置比较差的电脑可能会导致网页卡死。</p>
+<p>我们知道浏览器的翻译功能是将当前页面的文字翻译至另一种语言，这其中需要替换 <code>DOM</code> 元素，同时用户打开的这个文档内容没有按章分隔，因此用户每滚动一次就需要重新替换内容、计算元素位置，频繁地触发回流的后果将导致网页占有性能徒然增大，配置较差的电脑顶不住这么大的压力，从而会引发页面卡死。这就是回流的代价。</p>
+<h2 id="触发"><a href="#触发" class="headerlink" title="触发"></a>触发</h2><p>回流是必不可免的，甚至很多时候我们不需要过分的关注回流的发生。但过于频繁的触发的话还是可能成为渲染性能瓶颈，因此我们需要知道回流是如何触发的。</p>
+<p>YaHoo!性能小组总结了一些导致回流发生的一些因素:</p>
 <ol>
 <li>调整窗口大小</li>
 <li>改变字体</li>
 <li>增加或者移除样式表</li>
 <li>内容变化，比如用户在 input 框中输入文字, CSS3 动画等</li>
-<li>激活<code>CSS</code>伪类，比如<code>:hover</code></li>
+<li>激活 <code>CSS</code> 伪类，比如 <code>:hover</code></li>
 <li>操作<code>class</code>属性</li>
 <li>脚本操作<code>DOM</code></li>
 <li>计算<code>offsetWidth</code>和<code>offsetHeight</code>属性</li>
 <li>设置 style 属性的值</li>
 </ol>
-<p>而<code>repaint</code>只要视觉效果改变了, 就一定会触发<code>repaint</code>. 比如<code>color</code>或者<code>background</code>. 这个很好理解, 如同字面意思一样. 重绘嘛, 就是字体颜色发生了变化浏览器需要重新绘制一遍. 这里值得一提的是, <strong>触发<code>reflow</code>一定会触发<code>repaint</code>, 而触发<code>repaint</code>却不一定会触发<code>reflow</code></strong>.</p>
-<h2 id="如何调试"><a href="#如何调试" class="headerlink" title="如何调试"></a>如何调试</h2><p>接下来我们找个页面测试一下, 看看该如何去调试回流与重绘的.<br>先来介绍一下我使用的工具. 我们打开天猫官网, 打开Chrome开发者工具, 找到 <code>More tools =&gt;  Rendering</code> 面板， 可以看到以下几个选项:</p>
+<p>而重绘则是视觉效果变化引起的重新绘制。比如 <code>color</code> 或者 <code>background</code> 发生了变化，那就该给触发重绘的元素化化妆，化成它想要的样子。</p>
+<p>回流与重绘两者之间的联系在于: <strong>触发回流一定会触发重绘, 而触发重绘却不一定会触发回流</strong>。</p>
+<p>我们可以把页面理解为一个黑板，黑板上有一朵画好的小花。现在我们要把这朵从左边(left)移到了右边(right)，那我们是不是要先确定好右边的具体位置，画好形状（回流），再画上它原有的颜色（重绘）。</p>
+<p>但如果我们仅仅是想换给花朵换一个颜色，那么只需擦掉花朵上的颜色，再重新涂上自己期望的颜色(重绘)就可以了。</p>
+<h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><p>我们光是用联想当然是不行的呀，我们需要一个工具来辅助查看页面渲染的情况。<code>chrome devtools</code> 就可以做到这件事。接下来我们先找个页面测试一下, 看看该如何去调试回流与重绘。</p>
+<p>首先打开天猫官网, 然后 <code>chrome devtools</code> 上打开 <code>Rendering</code> 面板，打开方式有两种：</p>
 <ol>
-<li><strong>Paint flashing</strong> - 高亮(绿色)显示重绘的页面区域</li>
-<li><strong>Layer boders</strong> - 我们知道页面是由多个”图层”组合的, 最终显示给用户看的就是多图层叠加在一起的效果, 区别无非是层级的问题(css的<code>absolute</code>和<code>z-index</code>就可以很好的说明这一点). 勾选这个选项可以显示图层边款, 我们再根据分析哪些不是我们想要的.</li>
-<li><strong>FPS meter</strong> - 玩游戏的同学大概会比较了解这个, 也就是显示绘制每秒帧数，帧速率分布和GPU内存. 这个更多的是用来分析页面交互和动画性能.</li>
-<li><strong>Scrolling performance issues</strong> - 滚动性能问题. 它会高亮显示可能减慢滚动速度的元素(蓝绿色), 其中包括触摸和滚轮事件处理程序以及其他主线程滚动情况.(有兴趣的同学可以在淘宝的官网勾上这个选项, 看下都有啥).</li>
+<li>点击 <code>More tools</code> 下的 <code>Rendering</code> 面板</li>
+<li>按 <code>Command+ Shift+ P（Mac</code> 或 <code>Control+ Shift+ P（Windows，Linux，Chrome OS）</code> 打开命令菜单，输入<code>rendering</code> 并回车。</li>
+</ol>
+<p>接着我们可以在面板上看到有以下几个选项:</p>
+<ol>
+<li><code>Paint flashing</code>: 高亮(绿色)显示重绘的页面区域</li>
+<li><code>Layer boders</code>: 显示图层边框（橙色/实时）和图块（青色。我们知道页面是由多个”图层”组合的, 最终显示给用户看的就是多图层叠加在一起的效果,<code>css</code> 的 <code>z-index</code>机制就可以很好的体现着一点。</li>
+<li><code>FPS meter</code>: 显示绘制每秒帧数，帧速率分布和GPU内存。或许玩游戏的朋友对这些参数会比较熟悉，该选项更多的是用来分析页面交互和动画性能.</li>
+<li><code>Scrolling performance issues</code>: 突出显示可以减慢滚动的元素（蓝绿色），包括touch＆whell事件处理程序和其他主线程滚动情况。主要用来分析滚动性能问题。</li>
 </ol>
 <img src="/blog/2018/01/15/性能优化-回流与重汇/img-1.png" title="Paint flashing">
 
-<p>这里主要讲<code>Paint flashing</code>. 我们勾上按钮后, 首先能看到天猫的Logo是一个GIF的动态图, 不断闪烁的绿色高亮提醒着我们, 浏览器正在努力的绘制的图形. 这点很好理解, 因为它是动态的, 浏览器需要绘制 gif 的每一帧展示给用户看. 首屏的轮播图也同理, 内容的不断变化触发着回流与重绘.</p>
-<p>紧接着我们往下滚, 发现左下角的工具栏会随着滚动而发生重绘. 很显然, 这种是使用了<code>fixed</code>定位. 我们知道<code>fixed</code>是相对浏览器窗口进行定位的. 我们滚动一点, 它会重新计算位置, 导致触发回流. 所幸的是<code>fixed</code>定位只会对自己渲染, 而不会影响身边的DOM. </p>
-<p>接着我们继续测试. 咦? 这几个商品模块好像不太对劲呀? 怎么停止滚动了, 还是会发生不断的重绘? 打开审查元素一看, 模块中有一个 gif 的背景图片. 我们将属性关闭, 发现几个模块的重绘都消失了, 果然是这东西作祟呀. 紧接着我们来检查一下这 gif 是有什么特殊的作用. 将表面的DOM删掉, 还原<code>background</code>属性 —— 噢~原来是一个加载的loading…. 父元素加一个loading动图, 在子元素还没加载出来时显示loading. 加载后由于层级的关系自然就覆盖了上去, 用户自然就看不到了.</p>
-<p>这种看似巧妙简便的方法实则是在用户看不到的地方在浪费无意义的性能消耗而已. 因此我还特意的去测试了淘宝和京东的情况, 发现这种写法只有天猫才有. 不知道写页面的同学是偷懒还是什么其他的原因, 这里我们可不要养成这种习惯~很多时候坑就是自己挖的最后又自己踩了上去.</p>
+<p>勾上 <code>Paint flashing</code>、<code>Layer boders</code>、<code>Scrolling performance issues</code> 等选项后刷新天猫首页，开始分析页面的渲染情况。</p>
+<p>首先能看到天猫的 Logo 是一个 GIF 的动态图，浏览器需要绘制 gif 的每一帧展示给用户看，因此 logo 区域上不断闪烁的绿色高亮表示浏览器正在勤恳的绘制的图形。轮播图组件也同理, 内容的不断变化触发着回流与重绘。</p>
+<p>紧接着我们往下滚, 发现左下角的工具栏会随着滚动而发生回流。很显然, 这是使用了 <code>fixed</code> 定位。<code>fixed</code> 是相对浏览器窗口进行定位的，我们每滚动一点，元素会随着滚动的变化而重新计算位置，进而导致触发回流。值得一提的是，<code>fixed</code> 定位只会对自身元素进行渲染, 而不会影响身边的DOM。</p>
+<p>接着我们继续往下分析。然后发现商品模块似乎不符合预期呀? 怎么停止滚动了，还是会不断的触发重绘? 打开审查元素一看，发现模块中有一个 gif 的背景图片。将属性关闭，发现几个模块的重绘都消失了，果然是这东西作祟呀。</p>
+<p>紧接着来检查一下这 gif 是有什么特殊的作用，打开 <code>background</code> 属性的 url 发现是一个加载的 loading。父元素加一个 loading 动图, 在子元素还没加载出来时显示 loading，当加载完毕后由于层级的关系自然就覆盖了上去, 用户自然就看不到了。</p>
+<p>但这样的效果需要额外的重绘代价，当该商品模块多到一定地步后，叠加起来的渲染可能还是会造成一定的浪费。但如果你说这是 bug 吗，其实也不算是。只能说是一种比较偷懒的方案，笔者并不推荐使用这样的方案。</p>
 <img src="/blog/2018/01/15/性能优化-回流与重汇/repaint.gif" title="天猫">
 
-<h2 id="如何优化"><a href="#如何优化" class="headerlink" title="如何优化"></a>如何优化</h2><p>到这里我们已经了解了渲染规则后, 那么就可以针对性的进行控制优化 —— 在我们 coding 的时候合理的去避开回流的影响来减少页面的开销.</p>
-<p><code>display:none</code>这个属性已经被玩烂了, 该属性的作用就如同它名字一样直观. <code>display</code>就是用来控制显示的状态嘛… 因此很多人喜欢拿它来做隐藏某一个元素的方法. 而背后却忽略了(或者说不知道)它本身所带的回流性能开销(因为会影响节点的位置从而触发回流和重绘).</p>
-<p>值得庆幸的是, 已经有前行者帮我们踩过很多坑, 我们只需站在巨人的肩上, 借鉴一下前人的经验:</p>
+<h2 id="如何优化"><a href="#如何优化" class="headerlink" title="如何优化"></a>如何优化</h2><p>好啦，到这里为止我们知道了回流重绘的触发与调试，那么就可以在编写代码时合理的去避开回流的影响来减少页面的开销。</p>
+<p>就比如 <code>display:none</code> 这个属性，该属性的作用就如同它名字一样直观，就是用来控制显示的状态嘛… 因此很多人喜欢拿它来做隐藏某个元素。而却忽略了(或者说不知道)它本身所带的回流性能开销(因为会影响节点的位置从而触发回流和重绘).</p>
+<p>有一些前辈帮我们总结了避免回流的经验以供我们借鉴：</p>
 <ol>
-<li>如果想设定元素的样式，通过改变元素的<code>class</code>类名 (尽可能在 DOM 树的最里层)</li>
+<li>如果想设定元素的样式，通过改变元素的 <code>class</code> 类名 (尽可能在 DOM 树的最里层)</li>
 <li>避免设置多项内联样式</li>
-<li>应用元素的动画，使用<code>position</code>属性的<code>fixed</code>值或<code>absolute</code>值(前文说过, 它只会影响自己)</li>
+<li>应用元素的动画，使用 <code>position</code> 属性的 <code>fixed</code> 值或 <code>absolute</code> 值(如前文示例所提)</li>
 <li>权衡平滑和速度</li>
-<li>避免使用<code>table</code>布局</li>
-<li>避免使用 CSS 的<code>JavaScript</code>表达式 (仅 IE 浏览器)</li>
+<li>避免使用 <code>table</code> 布局</li>
+<li>避免使用 CSS 的 <code>JavaScript</code> 表达式 (仅 IE 浏览器)</li>
 </ol>
-<p>除此之外, 使用<code>JavaScript</code>想要动态插入多个节点时, 可以使用<code>DocumentFragment</code>. 创建后一次插入. 就能避免多次的渲染性能.</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>最后总结一下所学的概念, 回流(reflow), 就是布局引擎为<code>frame</code>计算图形, 确定节点位置的一个步骤. 其中触发回流的原因主要是节点(DOM)大小或者位置的改变才会触发回流. 而重绘, 就是表面的视觉效果改变了, 就会触发重绘. 其中触发了回流紧接着也会触发重绘, 而触发重绘不一定会触发回流(ahh..有点像绕口令).</p>
+<p>在 <span class="exturl" data-url="aHR0cHM6Ly9jc3N0cmlnZ2Vycy5jb20v" title="https://csstriggers.com/">csstriggers<i class="fa fa-external-link"></i></span> 可以查看 css 属性在不同引擎下的渲染影响。</p>
+<p>除此之外, 使用 <code>JavaScript</code> 动态插入多个节点时, 可以使用<code>DocumentFragment</code>. 创建后一次插入. 就能避免多次的渲染性能.</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>最后总结一下所学的概念:</p>
+<ol>
+<li>回流(reflow), 就是布局引擎为 <code>frame</code> 计算图形, 确定节点位置的一个动作。其中触发回流的原因主要是 DOM 节点大小或位置的改变才会触发回流。</li>
+<li>重绘则是表面的视觉效果的改变从而引发重绘。</li>
+<li>其中触发回流就必定会触发重绘, 而触发重绘不一定会触发回流。</li>
+<li>可以在编写代码时根据触发回流重绘的特点有意的控制代码的编写。</li>
+<li>可以通过 chrome devtools 的 rendering 面板进行渲染性能分析</li>
+</ol>
 <div class="note primary">
-            <p><strong>参考资料</strong><br>形象化的reflow: <span class="exturl" data-url="aHR0cDovL3d3dy5hb2FvLm9yZy5jbi9ibG9nLzIwMDgvMDUvcmVmbG93Lw==" title="http://www.aoao.org.cn/blog/2008/05/reflow/">http://www.aoao.org.cn/blog/2008/05/reflow/<i class="fa fa-external-link"></i></span><br>影响 reflow 的因素及其优化: <span class="exturl" data-url="aHR0cDovL3d3dy5wbGFuYWJjLm5ldC8yMDA5LzA0LzEzL3JlZmxvdy8=" title="http://www.planabc.net/2009/04/13/reflow/">http://www.planabc.net/2009/04/13/reflow/<i class="fa fa-external-link"></i></span><br>Gecko Reflow Visualization - mozilla.org: <span class="exturl" data-url="aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1aVG5JeElBNUtHdw==" title="https://www.youtube.com/watch?v=ZTnIxIA5KGw">https://www.youtube.com/watch?v=ZTnIxIA5KGw<i class="fa fa-external-link"></i></span><br><span class="exturl" data-url="aHR0cDovL3d3dy56aGFuZ3hpbnh1LmNvbS93b3JkcHJlc3MvMjAxMC8wMS8lRTUlOUIlOUUlRTYlQjUlODElRTQlQjglOEUlRTklODclOEQlRTclQkIlOTglRUYlQkMlOUFjc3MlRTYlODAlQTclRTglODMlQkQlRTglQUUlQTlqYXZhc2NyaXB0JUU1JThGJTk4JUU2JTg1JUEyJUVGJUJDJTlGLw==" title="http://www.zhangxinxu.com/wordpress/2010/01/%E5%9B%9E%E6%B5%81%E4%B8%8E%E9%87%8D%E7%BB%98%EF%BC%9Acss%E6%80%A7%E8%83%BD%E8%AE%A9javascript%E5%8F%98%E6%85%A2%EF%BC%9F/">回流与重绘: CSS性能让JavaScript变慢?<i class="fa fa-external-link"></i></span></p>
+            <p><strong>参考资料:</strong></p><ul><li><span class="exturl" data-url="aHR0cDovL3d3dy5hb2FvLm9yZy5jbi9ibG9nLzIwMDgvMDUvcmVmbG93Lw==" title="http://www.aoao.org.cn/blog/2008/05/reflow/">形象化的reflow<i class="fa fa-external-link"></i></span></li><li><span class="exturl" data-url="aHR0cDovL3d3dy5wbGFuYWJjLm5ldC8yMDA5LzA0LzEzL3JlZmxvdy8=" title="http://www.planabc.net/2009/04/13/reflow/">影响 reflow 的因素及其优化<i class="fa fa-external-link"></i></span></li><li><span class="exturl" data-url="aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1aVG5JeElBNUtHdw==" title="https://www.youtube.com/watch?v=ZTnIxIA5KGw">Gecko Reflow Visualization - mozilla.org<i class="fa fa-external-link"></i></span></li><li><span class="exturl" data-url="aHR0cDovL3d3dy56aGFuZ3hpbnh1LmNvbS93b3JkcHJlc3MvMjAxMC8wMS8lRTUlOUIlOUUlRTYlQjUlODElRTQlQjglOEUlRTklODclOEQlRTclQkIlOTglRUYlQkMlOUFjc3MlRTYlODAlQTclRTglODMlQkQlRTglQUUlQTlqYXZhc2NyaXB0JUU1JThGJTk4JUU2JTg1JUEyJUVGJUJDJTlGLw==" title="http://www.zhangxinxu.com/wordpress/2010/01/%E5%9B%9E%E6%B5%81%E4%B8%8E%E9%87%8D%E7%BB%98%EF%BC%9Acss%E6%80%A7%E8%83%BD%E8%AE%A9javascript%E5%8F%98%E6%85%A2%EF%BC%9F/">回流与重绘: CSS性能让JavaScript变慢?<i class="fa fa-external-link"></i></span></li></ul>
           </div>
 
     </div>
@@ -703,7 +726,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回流的代价"><span class="nav-number">2.</span> <span class="nav-text">回流的代价</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何触发"><span class="nav-number">3.</span> <span class="nav-text">如何触发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何调试"><span class="nav-number">4.</span> <span class="nav-text">如何调试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何优化"><span class="nav-number">5.</span> <span class="nav-text">如何优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代价"><span class="nav-number">2.</span> <span class="nav-text">代价</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#触发"><span class="nav-number">3.</span> <span class="nav-text">触发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调试"><span class="nav-number">4.</span> <span class="nav-text">调试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何优化"><span class="nav-number">5.</span> <span class="nav-text">如何优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -824,14 +847,14 @@
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">166k</span>
+    <span title="站点总字数">167k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">5:02</span>
+    <span title="站点阅读时长">5:03</span>
 </div>
   <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> 强力驱动</div>
   <span class="post-meta-divider">|</span>
