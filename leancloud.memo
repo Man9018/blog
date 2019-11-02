@@ -30,6 +30,7 @@
 {"title":"关于移动端GIF动图逐个播放的思路","url":"/blog/2018/03/11/关于前台GIF动图逐个播放的思路/"},
 {"title":"详解图片的加载方式","url":"/blog/2018/03/24/loading-pictures/"},
 {"title":"你可能不了解的图片的加载方式","url":"/blog/2018/03/24/loading-pictures/"},
+{"title":"你可能不了解的图片加载方式","url":"/blog/2018/03/24/loading-pictures/"},
 {"title":"浏览器与服务端的背后交互: 详解页面请求的过程","url":"/blog/2018/04/06/URL-to-browser/"},
 {"title":"git-flow 练习笔记","url":"/blog/2018/04/23/git-flow/"},
 {"title":"浅谈CSS3 Matrix 的使用","url":"/blog/2018/05/06/谈谈CSS3-Matrix-的理解/"},
@@ -46,4 +47,5 @@
 {"title":"[环境搭建] 从零开始配置前端开发环境","url":"/blog/2019/07/26/configuring-mac-front-end-development-env-from-zero/"},
 {"title":"从搭建到部署，快速构建一个私人博客","url":"/blog/2019/08/19/hexo-blog/"},
 {"title":"将 JSON 数据格式输出至页面上","url":"/blog/2019/08/24/js-将JSON数据格式输出至页面上/"},
+{"title":"Hexo blog 的升级与同步方案","url":"/blog/2019/11/02/hexo-blog-upgrade-and-version-control/"},
 ]
