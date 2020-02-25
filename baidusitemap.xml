@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://anran758.github.io/blog/blog/2018/05/06/%E8%B0%88%E8%B0%88CSS3-Matrix-%E7%9A%84%E7%90%86%E8%A7%A3/</loc>
-    <lastmod>2020-02-16</lastmod>
+    <loc>https://anran758.github.io/blog/blog/2020/02/22/flexbox-use-cases/</loc>
+    <lastmod>2020-02-25</lastmod>
   </url>  <url>
     <loc>https://anran758.github.io/blog/blog/2020/02/05/css-getting-started-with-flexbox/</loc>
-    <lastmod>2020-02-11</lastmod>
+    <lastmod>2020-02-25</lastmod>
+  </url>  <url>
+    <loc>https://anran758.github.io/blog/blog/2018/05/06/%E8%B0%88%E8%B0%88CSS3-Matrix-%E7%9A%84%E7%90%86%E8%A7%A3/</loc>
+    <lastmod>2020-02-16</lastmod>
   </url>  <url>
     <loc>https://anran758.github.io/blog/blog/2019/07/26/configuring-mac-front-end-development-env-from-zero/</loc>
     <lastmod>2020-02-11</lastmod>
