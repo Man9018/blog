@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://anran758.github.io/blog/blog/2020/05/04/webpack-example/</loc>
+    <lastmod>2020-05-06</lastmod>
+  </url>  <url>
     <loc>https://anran758.github.io/blog/blog/2019/11/02/hexo-blog-upgrade-and-version-control/</loc>
     <lastmod>2020-05-05</lastmod>
   </url>  <url>
