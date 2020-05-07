@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="google-site-verification" content="hfSxUMVDQ0d4JZmyWsUce4uMULHxHXQxxCLYVk3cIbs">
+  <meta name="msvalidate.01" content="D0E8CE815DEAA11708C153218034AA8E">
+  <meta name="baidu-site-verification" content="CtPpLH5dio">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"anran758.github.io","root":"/blog/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"manual"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="在我们团队开发中，必不可免会使用到版本控制。同时还需要一个统一的工作流程，创建新的功能、打补丁、正式版发布打tag等等，git-flow工作流就这些繁琐的东西简化了，它封装了git命令，将命令组合了起来，我们只需要几行代码就能解决这些繁琐的工作。正好工作也有好一段时间了，想将这方面的知识梳理一下。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git-flow 练习笔记">
+<meta property="og:url" content="https://anran758.github.io/blog/2018/04/23/git-flow/">
+<meta property="og:site_name" content="Anran758&#39;s blog">
+<meta property="og:description" content="在我们团队开发中，必不可免会使用到版本控制。同时还需要一个统一的工作流程，创建新的功能、打补丁、正式版发布打tag等等，git-flow工作流就这些繁琐的东西简化了，它封装了git命令，将命令组合了起来，我们只需要几行代码就能解决这些繁琐的工作。正好工作也有好一段时间了，想将这方面的知识梳理一下。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/04/23/git-flow/banner.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/04/23/git-flow/img-1.png">
+<meta property="article:published_time" content="2018-04-23T08:09:23.000Z">
+<meta property="article:modified_time" content="2019-08-21T14:05:14.000Z">
+<meta property="article:author" content="anran758">
+<meta property="article:tag" content="git">
+<meta property="article:tag" content="github">
+<meta property="article:tag" content="git flow">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://anran758.github.io/blog/2018/04/23/git-flow/banner.png">
+
+<link rel="canonical" href="https://anran758.github.io/blog/2018/04/23/git-flow/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>git-flow 练习笔记 | Anran758's blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-99223334-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-99223334-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b333b085e93f238859c899fd8ca5bd3f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Anran758's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/blog/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>时间轴</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/anran758/blog" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://anran758.github.io/blog/2018/04/23/git-flow/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/23024075?s=96&v=4">
+      <meta itemprop="name" content="anran758">
+      <meta itemprop="description" content="web 开发的碎碎念">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Anran758's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          git-flow 练习笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-04-23 16:09:23" itemprop="dateCreated datePublished" datetime="2018-04-23T16:09:23+08:00">2018-04-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-08-21 22:05:14" itemprop="dateModified" datetime="2019-08-21T22:05:14+08:00">2019-08-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/blog/2018/04/23/git-flow/" class="post-meta-item leancloud_visitors" data-flag-title="git-flow 练习笔记" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/blog/2018/04/23/git-flow/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/04/23/git-flow/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <img data-src="/blog/2018/04/23/git-flow/banner.png" class="">
+
+<p>在我们团队开发中，必不可免会使用到版本控制。同时还需要一个统一的工作流程，创建新的功能、打补丁、正式版发布打tag等等，git-flow工作流就这些繁琐的东西简化了，它封装了git命令，将命令组合了起来，我们只需要几行代码就能解决这些繁琐的工作。正好工作也有好一段时间了，想将这方面的知识梳理一下。</p>
+<a id="more"></a>
+
+<p>git flow 有好几个版本，这里笔者演示使用的是<a href="https://github.com/petervanderdoes/gitflow-avh" target="_blank" rel="noopener">git-flow-avh</a>的版本。</p>
+<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>首先我们先开始初始化仓库的工作流，我们在命令行使用<code>git flow init</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ git flow init<br>flags:ERROR short flag required <span class="hljs-keyword">for</span> (showcommands) on this platform<br>flags:ERROR short flag required <span class="hljs-keyword">for</span> (<span class="hljs-built_in">local</span>) on this platform<br>flags:ERROR short flag required <span class="hljs-keyword">for</span> (global) on this platform<br>flags:ERROR short flag required <span class="hljs-keyword">for</span> (system) on this platform<br>flags:ERROR short flag required <span class="hljs-keyword">for</span> (file) on this platform<br>/usr/<span class="hljs-built_in">local</span>/bin/gitflow-common: line 81: [: -eq: unary operator expected<br>/usr/<span class="hljs-built_in">local</span>/bin/gitflow-common: line 81: [: -eq: unary operator expected<br>/usr/<span class="hljs-built_in">local</span>/bin/gitflow-common: line 81: [: -eq: unary operator expected<br>No branches exist yet. Base branches must be created now.<br></code></pre></td></tr></table></figure>
+
+<p>命令行出现了警告，告诉我们还没有基础的分支。这是因为测试是全新的仓库作测试，这个我们姑且先不管它，接着引导会向我们确定需要初始化分支的名字，我们都采用默认即可。<br>直到询问<code>Version tag prefix</code>时，我们采用<code>v</code>作版本前缀，这其实也是很常见的一种习惯。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs bash">Branch name <span class="hljs-keyword">for</span> production releases: [master]<br>/usr/<span class="hljs-built_in">local</span>/bin/gitflow-common: line 81: [: -eq: unary operator expected<br><br>Branch name <span class="hljs-keyword">for</span> <span class="hljs-string">"next release"</span> development: [develop]<br>/usr/<span class="hljs-built_in">local</span>/bin/gitflow-common: line 81: [: -eq: unary operator expected<br>/usr/<span class="hljs-built_in">local</span>/bin/gitflow-common: line 81: [: -eq: unary operator expected<br>/usr/<span class="hljs-built_in">local</span>/bin/gitflow-common: line 81: [: -eq: unary operator expected<br>/usr/<span class="hljs-built_in">local</span>/bin/gitflow-common: line 81: [: -eq: unary operator expected<br>/usr/<span class="hljs-built_in">local</span>/bin/gitflow-common: line 81: [: -eq: unary operator expected<br><br>How to name your supporting branch prefixes?<br>Feature branches? [feature/]<br>/usr/<span class="hljs-built_in">local</span>/bin/gitflow-common: line 81: [: -eq: unary operator expected<br>Bugfix branches? [bugfix/]<br>/usr/<span class="hljs-built_in">local</span>/bin/gitflow-common: line 81: [: -eq: unary operator expected<br>Release branches? [release/]<br>/usr/<span class="hljs-built_in">local</span>/bin/gitflow-common: line 81: [: -eq: unary operator expected<br>Hotfix branches? [hotfix/]<br>/usr/<span class="hljs-built_in">local</span>/bin/gitflow-common: line 81: [: -eq: unary operator expected<br>Support branches? [support/]<br>/usr/<span class="hljs-built_in">local</span>/bin/gitflow-common: line 81: [: -eq: unary operator expected<br><br>Version tag prefix? [] v<br>/usr/<span class="hljs-built_in">local</span>/bin/gitflow-common: line 81: [: -eq: unary operator expected<br>Hooks and filters directory? [/Users/anran/MyProject/git-flow-test/.git/hooks]<br>/usr/<span class="hljs-built_in">local</span>/bin/gitflow-common: line 81: [: -eq: unary operator expected<br></code></pre></td></tr></table></figure>
+
+<p>随后我们使用<code>git branch</code>查看一下当前分支，我们会发现，git flow 创建了两条分支————主分支（master）和开发分支（develop），并自动切换到了 develop 上。</p>
+<p>一般来说，我们常将 master 作为部署的分支，这个版本的产品防止稳定的代码和功能，作为产品的一个正式版部署。<br>正常情况下，我们不能直接在 master 分支上进行工作，而该是在 develop 开发环境下进行工作。<br>除此之外，develop 还是一个基础的分支，当我们开发新的功能时，我们会另开一个分支，在新的分支上进行功能开发，等功能开发完毕后再合并进来 develop 分支。</p>
+<p>嘿，我们先创建一个<code>README.md</code>，在里面添加一些文字进去，再提交上去。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs bash">➜  git-flow-test git:(develop) git branch<br>* develop<br>  master<br>➜  git-flow-test git:(develop) touch README.md<br>➜  git-flow-test git:(develop) ✗ vim README.md<br>➜  git-flow-test git:(develop) ✗ git add .<br>➜  git-flow-test git:(develop) ✗ git status<br>On branch develop<br>Changes to be committed:<br>  (use <span class="hljs-string">"git reset HEAD &lt;file&gt;..."</span> to unstage)<br><br>  new file:   README.md<br><br>➜  git-flow-test git:(develop) ✗ git commit -m <span class="hljs-string">"First commit"</span><br>[develop 61ec91a] First commit<br> 1 file changed, 1 insertion(+)<br> create mode 100644 README.md<br></code></pre></td></tr></table></figure>
+
+<p>如果这时直接用<code>push</code>的话，git会提示你没有设定上游分支————别忘了现在我们在使用全新的测试仓库。</p>
+<figure class="highlight plain"><figcaption><span>bash</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs git">➜  git-flow-test git:(develop) git push<br>fatal: The current branch develop has no upstream branch.<br>To push the current branch and set the remote as upstream, use<br><br>    git push --set-upstream origin develop<br><br>➜  git-flow-test git:(develop) git push --set-upstream origin develop<br>Counting objects: 5, done.<br>Delta compression using up to 4 threads.<br>Compressing objects: 100% (2&#x2F;2), done.<br>Writing objects: 100% (5&#x2F;5), 385 bytes | 385.00 KiB&#x2F;s, done.<br>Total 5 (delta 0), reused 0 (delta 0)<br>To github.com:anran758&#x2F;git-flow-test.git<br> * [new branch]      develop -&gt; develop<br>Branch &#39;develop&#39; set up to track remote branch &#39;develop&#39; from &#39;origin&#39;.<br>➜  git-flow-test git:(develop)<br></code></pre></td></tr></table></figure>
+
+<h2 id="功能分支"><a href="#功能分支" class="headerlink" title="功能分支"></a>功能分支</h2><p>umm..现在假设我们现在碰到了一个需求，需要加一些功能，这时我们就需要开一个功能分支了，这时工作中常用的分支。那为啥都切到开发环境了还要单独开一个分支呢？这是避免产品调皮的说，“刚才那个功能只是我突发奇想，咱们不要了吧(诶嘿.jpg”。嗯，这时宰一个产品祭天事小，污染了全局的开发环境才事大，回退都不好回退（可能团队中其他人也在写一些功能上去或者修复了一些bug上去，回退意味着其他人也会收到影响）。</p>
+<p>而单独开一个分支则没那么多破事需要烦恼，再不济就删除这个分支即可，不需要耗费额外的成本。</p>
+<p>我们先看一下给flow都有啥，使用命令<code>git flow -h</code>会提示如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs bash">➜  git-flow-test git:(develop) git flow -h<br>flags:ERROR short flag required <span class="hljs-keyword">for</span> (showcommands) on this platform<br>usage: git flow &lt;subcommand&gt;<br><br>Available subcommands are:<br>   init      Initialize a new git repo with support <span class="hljs-keyword">for</span> the branching model.<br>   feature   Manage your feature branches.<br>   bugfix    Manage your bugfix branches.<br>   release   Manage your release branches.<br>   hotfix    Manage your hotfix branches.<br>   support   Manage your support branches.<br>   version   Shows version information.<br>   config    Manage your git-flow configuration.<br>   <span class="hljs-built_in">log</span>       Show <span class="hljs-built_in">log</span> deviating from base branch.<br><br>Try <span class="hljs-string">'git flow &lt;subcommand&gt; help'</span> <span class="hljs-keyword">for</span> details.<br></code></pre></td></tr></table></figure>
+
+<p>因为我们现在是想做一个新功能，feature 就是我们想要的命令。我们进一步查看详情：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs bash">➜  git-flow-test git:(develop) git flow feature <span class="hljs-built_in">help</span><br>flags:ERROR short flag required <span class="hljs-keyword">for</span> (showcommands) on this platform<br>usage: git flow feature [list]<br>   or: git flow feature start<br>   or: git flow feature finish<br>   or: git flow feature publish<br>   or: git flow feature track<br>   or: git flow feature diff<br>   or: git flow feature rebase<br>   or: git flow feature checkout<br>   or: git flow feature pull<br>   or: git flow feature delete<br><br>    Manage your feature branches.<br><br>    For more specific <span class="hljs-built_in">help</span> <span class="hljs-built_in">type</span> the <span class="hljs-built_in">command</span> followed by --<span class="hljs-built_in">help</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<p>我们使用<code>git flow feature start</code>再加上一个名字，这个名字代表着这个功能分支是做什么的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash">➜  git-flow-test git:(develop) git flow feature start home<br>flags:ERROR short flag required <span class="hljs-keyword">for</span> (showcommands) on this platform<br>/usr/<span class="hljs-built_in">local</span>/bin/gitflow-common: line 81: [: -eq: unary operator expected<br>/usr/<span class="hljs-built_in">local</span>/bin/gitflow-common: line 81: [: -eq: unary operator expected<br>Switched to a new branch <span class="hljs-string">'feature/home'</span><br><br>Summary of actions:<br>- A new branch <span class="hljs-string">'feature/home'</span> was created, based on <span class="hljs-string">'develop'</span><br>- You are now on branch <span class="hljs-string">'feature/home'</span><br><br>Now, start committing on your feature. When <span class="hljs-keyword">done</span>, use:<br><br>     git flow feature finish home<br></code></pre></td></tr></table></figure>
+
+<p>这时我们创建了一个名为<code>feature/home</code>的新分支，并且切换到了新分支上。feature的前缀就是前面使用默认的功能分支的名字。<br>这个 feature 可以当成一个放置功能的文件夹。</p>
+<p>随后我创建一个 HTML 文件，并在上面写了少许代码假装（雾）完成了这个新功能的开发。<br>使用<code>git flow feature finish &lt;name&gt;</code>完成本回合的开发。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">➜  git-flow-test git:(feature/home) ✗ git flow finish home<br>Switched to branch <span class="hljs-string">'develop'</span><br>Your branch is up to date with <span class="hljs-string">'origin/develop'</span>.<br>Already up to date.<br>Deleted branch feature/home (was 61ec91a).<br><br>Summary of actions:<br>- The feature branch <span class="hljs-string">'feature/home'</span> was merged into <span class="hljs-string">'develop'</span><br>- Feature branch <span class="hljs-string">'feature/home'</span> has been locally deleted<br>- You are now on branch <span class="hljs-string">'develop'</span><br></code></pre></td></tr></table></figure>
+
+<p>git flow 将分支合并后，会将<code>feature/home</code>分支删除。这时分支会切换到<code>develop</code>。<strong>注意，这时候的代码还没有提交到远端！</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash">➜  git-flow-test git:(develop) ✗ git add .<br>➜  git-flow-test git:(develop) ✗ git commit -m <span class="hljs-string">"添加新的功能"</span><br>[develop 9ca31f9] 添加新的功能<br> 1 file changed, 12 insertions(+)<br> create mode 100644 index.html<br>➜  git-flow-test git:(develop) ✗ git push<br>Counting objects: 3, <span class="hljs-keyword">done</span>.<br>Delta compression using up to 4 threads.<br>Compressing objects: 100% (3/3), <span class="hljs-keyword">done</span>.<br>Writing objects: 100% (3/3), 482 bytes | 482.00 KiB/s, <span class="hljs-keyword">done</span>.<br>Total 3 (delta 0), reused 0 (delta 0)<br>To github.com:anran758/git-flow-test.git<br>   61ec91a..9ca31f9  develop -&gt; develop<br></code></pre></td></tr></table></figure>
+
+<h2 id="正式发布"><a href="#正式发布" class="headerlink" title="正式发布"></a>正式发布</h2><p>好啦，当我们开发的差不多了，bug都修完并且都测试过了，这时就可以考虑部署一版了。这时我们可以使用<code>git flow release start &lt;version number&gt;</code>进入发布的状态。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash">➜  git-flow-test git:(develop) ✗ git flow release start 1.0.0<br>Switched to a new branch <span class="hljs-string">'release/1.0.0'</span><br><br>Summary of actions:<br>- A new branch <span class="hljs-string">'release/1.0.0'</span> was created, based on <span class="hljs-string">'develop'</span><br>- You are now on branch <span class="hljs-string">'release/1.0.0'</span><br><br>Follow-up actions:<br>- Bump the version number now!<br>- Start committing last-minute fixes <span class="hljs-keyword">in</span> preparing your release<br>- When <span class="hljs-keyword">done</span>, run:<br><br>     git flow release finish <span class="hljs-string">'1.0.0'</span><br></code></pre></td></tr></table></figure>
+
+<p>git flow 基于<code>develop</code>创建了一个新的分支，同时切换到新分支<code>release/1.0.0</code>上了。</p>
+<p>这时我们可以进入最后的准备啦~比如我们一般发布都需要写版本信息，说明这版本都做了什么？新加了哪些功能？修了哪些bug等信息。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs bash">➜  git-flow-test git:(release/1.0.0) ✗ touch changelog.md<br>➜  git-flow-test git:(release/1.0.0) ✗ vim changelog.md<br><br>----<br><br><span class="hljs-comment"># item name</span><br><br><span class="hljs-comment">## v1.0.0 2018/04/23</span><br><br>* 基础功能完善<br>* 完成巴拉巴拉功能<br>~<br>~<br>~<br><span class="hljs-string">"changelog.md"</span> 6L, 83C<br><br>----<br><br>➜  git-flow-test git:(release/1.0.0) ✗ git add changelog.md<br>➜  git-flow-test git:(release/1.0.0) ✗ git commit -m <span class="hljs-string">"增加版本号信息"</span><br>[release/1.0.0 f8464d6] 修改版本号信息<br> 1 file changed, 6 insertions(+)<br> create mode 100644 changelog.md<br></code></pre></td></tr></table></figure>
+
+<p>这时暂时先不用push，不过这里值得注意的是，<strong>一般来说，我们只有两个长期分支，一个 develop，另一个是 master分支。例如release 、feature等分支一般不会出现在远程的分支中。这是以为当我们做完这些工作流后，这些分支都会合并删除了。</strong></p>
+<p>等完成这些工作后，我们把发布流程结束，在命令行输入: <code>git flow release finish 1.0.0</code>。git flow将会做以下几个步骤：</p>
+<ul>
+<li><p>pull代码，以确保本地分支的代码都是最新的版本。</p>
+</li>
+<li><p>然后，release 的内容会被合并到 “master” 和 “develop” 两个分支中去，这样不仅产品代码为最新的版本，而且新的功能分支也将基于最新代码。<br>这时命令行会进入vim编辑器里的合并信息页，默认会以<code>Merge branch &#39;release/1.0.0&#39;</code>作为 commit<br>信息提交。我们也可以自己输入一些信息进行描述。(vim编辑器状态下，输入<code>a</code>则进入编辑状态，使用<code>:q</code>为不保存信息退出编辑器，<code>:wq</code>为保存信息并退出vim)。</p>
+</li>
+</ul>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs vim">Merge branch <span class="hljs-string">'release/1.0.0'</span><br><br><br># Please enter <span class="hljs-keyword">a</span> commit message <span class="hljs-keyword">to</span> explain why this merge <span class="hljs-keyword">is</span> necessary,<br># especially <span class="hljs-keyword">if</span> it merges <span class="hljs-keyword">an</span> updated upstream into <span class="hljs-keyword">a</span> topic branch.<br>#<br># Lines starting with <span class="hljs-string">'#'</span> will <span class="hljs-keyword">be</span> ignored, <span class="hljs-built_in">and</span> <span class="hljs-keyword">an</span> <span class="hljs-built_in">empty</span> message aborts<br># the commit.<br>~<br>~<br>~<br><span class="hljs-string">"~/MyProject/git-flow-test/.git/MERGE_MSG"</span> <span class="hljs-number">7</span>L, <span class="hljs-number">256</span>C<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>保存后又会进入另一个信息，这次这个是确定版本号信息。我们将<code>v1.0.0</code>前面的<code>#</code>去掉，让其作为tag，<code>v</code>是一开头初始化所用的前缀，而<code>1.0.0</code>则是我们这次发布的名称（版本号）。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#</span><br><span class="hljs-comment"># Write a message for tag:</span><br><span class="hljs-comment">#   v1.0.0</span><br><span class="hljs-comment"># Lines starting with '#' will be ignored.</span><br>~<br>~<br>~<br><span class="hljs-string">"~/MyProject/git-flow-test/.git/TAG_EDITMSG"</span> 5L, 84C<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>为便于识别和做历史参考，release 提交会被标记上这个 release 的名字。</li>
+<li>清理操作，版本分支会被删除，并且回到 “develop”。</li>
+</ul>
+<h2 id="hotfix"><a href="#hotfix" class="headerlink" title="hotfix"></a>hotfix</h2><p>上线后，在进行测试时会可能会发现之前没有留意到的小bug，比如展示的数据调错了字段，当bug修复后，这时就可以使用git flow 里的<code>hotfix</code>，用来表示bug的修复。值得注意的是，<code>hotfix</code>与之前两个分支有些不同，<code>hotfix</code>是基于<code>master</code>主分支的修复，而前面两者是基于<code>develop</code>分支。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash">➜  git-flow-test git:(master) git flow hotfix start v1.0.1hotfix<br>Switched to a new branch <span class="hljs-string">'hotfix/v1.0.1hotfix'</span><br><br>Summary of actions:<br>- A new branch <span class="hljs-string">'hotfix/v1.0.1hotfix'</span> was created, based on <span class="hljs-string">'master'</span><br>- You are now on branch <span class="hljs-string">'hotfix/v1.0.1hotfix'</span><br><br>Follow-up actions:<br>- Start committing your hot fixes<br>- Bump the version number now!<br>- When <span class="hljs-keyword">done</span>, run:<br><br>     git flow hotfix finish <span class="hljs-string">'fixShoppingCart'</span><br></code></pre></td></tr></table></figure>
+
+<p>然后你会看到git flow会提示你：</p>
+<ul>
+<li>开始修复你bug</li>
+<li>修复bug也是需要影响版本号的</li>
+<li>完成上述工作后就可以结束这个补丁啦~</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs bash">➜  git-flow-test git:(hotfix/v1.0.1hotfix) vim index.html<br>➜  git-flow-test git:(hotfix/v1.0.1hotfix) ✗ vim changelog.md<br>➜  git-flow-test git:(hotfix/v1.0.1hotfix) ✗ git add .<br>➜  git-flow-test git:(hotfix/v1.0.1hotfix) ✗ git commit -m <span class="hljs-string">"fixed shopping cart bug"</span><br>[hotfix/v1.0.1hotfix 1506b7f] fixed shopping cart bug<br> 2 files changed, 4 insertions(+), 2 deletions(-)<br>➜  git-flow-test git:(hotfix/v1.0.1hotfix) git flow hotfix finish v1.0.1hotfix<br>Switched to branch <span class="hljs-string">'master'</span><br>Merge made by the <span class="hljs-string">'recursive'</span> strategy.<br> changelog.md | 2 ++<br> index.html   | 4 ++--<br> 2 files changed, 4 insertions(+), 2 deletions(-)<br>Switched to branch <span class="hljs-string">'develop'</span><br>Your branch is up to date with <span class="hljs-string">'origin/develop'</span>.<br>Merge made by the <span class="hljs-string">'recursive'</span> strategy.<br> changelog.md | 8 ++++++++<br> index.html   | 4 ++--<br> 2 files changed, 10 insertions(+), 2 deletions(-)<br> create mode 100644 changelog.md<br>Deleted branch hotfix/v1.0.1hotfix (was 1506b7f).<br><br>Summary of actions:<br>- Hotfix branch <span class="hljs-string">'hotfix/v1.0.1hotfix'</span> has been merged into <span class="hljs-string">'master'</span><br>- The hotfix was tagged <span class="hljs-string">'vv1.0.1hotfix'</span><br>- Hotfix tag <span class="hljs-string">'vv1.0.1hotfix'</span> has been back-merged into <span class="hljs-string">'develop'</span><br>- Hotfix branch <span class="hljs-string">'hotfix/v1.0.1hotfix'</span> has been locally deleted<br>- You are now on branch <span class="hljs-string">'develop'</span><br></code></pre></td></tr></table></figure>
+
+<p>我们使用<code>git flow hotfix finish v1.0.1hotfix</code>结束工作流后，跟之前那样会出现合并的信息，如果需要的话，就添加相应秒速信息，再保存退出即可。</p>
+<p>这时会将修复的部分同时合并到<code>master</code>和<code>develop</code>分支上，同时会为这次hotfix打上 tag。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p><code>bugfix</code>，它也是修复bug分支。看到这里就会有同学会疑问了：“啥？又改bug，这和之前那个又有啥区别？”。</p>
+<p>原来它与<code>hotbug</code>不同的是，它是基于<code>develop</code>分支的。事实上这一个工作流在笔者的日常开发中用的比较少，似乎有些gif flow 的模型中都没有这个工作流，不过我也没有深入的去考证~因为目前没有遇到碰到这个的场景，了解的同学不妨留言讨论分享一下。</p>
+<p>除此之外还有一个<code>support</code>的功能，是想用来支持以前的版本产品，这是一个实验性的功能，不太建议使用这个。</p>
+<p>如果你偏爱于可视化的git的话，如同 sourcetree 之类的 Git GUI 也内置有git flow。</p>
+<img data-src="/blog/2018/04/23/git-flow/img-1.png" class="" title="Mac下的SourceTree">
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>git flow实际上就一连串命令的组合，我们也可以单个单个的输入命令达到同样的效果。虽说git flow统一了工作流程，但并不是适用于全部的场景。项目中只有一个人时却反而会显得有点繁琐了。我们应该根据实际项目去选择符合项目的工作流。</p>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+        <div class="popular-posts-date">2017-12-31</div>
+      <div class="popular-posts-title"><a href="/blog/2017/12/31/Git-emoji使用指南/" rel="bookmark">Git emoji使用指南</a></div>
+    </li>
+    <li class="popular-posts-item">
+        <div class="popular-posts-date">2017-12-18</div>
+      <div class="popular-posts-title"><a href="/blog/2017/12/18/git-pull远程仓库代码冲突/" rel="bookmark">git pull远程仓库代码冲突</a></div>
+    </li>
+    <li class="popular-posts-item">
+        <div class="popular-posts-date">2019-11-02</div>
+      <div class="popular-posts-title"><a href="/blog/2019/11/02/hexo-blog-upgrade-and-version-control/" rel="bookmark">Hexo blog 的升级与同步方案</a></div>
+    </li>
+    <li class="popular-posts-item">
+        <div class="popular-posts-date">2017-11-03</div>
+      <div class="popular-posts-title"><a href="/blog/2017/11/03/use-sourcetree-association/" rel="bookmark">【git】使用 sourcetree 实现远程仓库与本地仓库关联</a></div>
+    </li>
+  </ul>
+
+        <div class="reward-container">
+  <div></div>
+    <div style="color: grey;">「请笔者喝杯奶茶支持一下创作~」</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/blog/images/qrcode/wechatpay.png" alt="anran758 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/blog/images/qrcode/alipay.png" alt="anran758 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>anran758
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://anran758.github.io/blog/2018/04/23/git-flow/" title="git-flow 练习笔记">https://anran758.github.io/blog/2018/04/23/git-flow/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://zhuanlan.zhihu.com/c_1147180666474176512">
+            <span class="icon">
+              <i class="fab fa-zhihu"></i>
+            </span>
+
+            <span class="label">知乎专栏</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://jq.qq.com/?_wv=1027&k=5baKrwL">
+            <span class="icon">
+              <i class="fab fa-qq"></i>
+            </span>
+
+            <span class="label">鸽子的聚会</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/git/" rel="tag"># git</a>
+              <a href="/blog/tags/github/" rel="tag"># github</a>
+              <a href="/blog/tags/git-flow/" rel="tag"># git flow</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/2018/04/06/URL-to-browser/" rel="prev" title="初识网络原理: 从浏览器地址栏输入 URL 到页面渲染之间都经历了什么">
+      <i class="fa fa-chevron-left"></i> 初识网络原理: 从浏览器地址栏输入 URL 到页面渲染之间都经历了什么
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/2018/05/06/%E8%B0%88%E8%B0%88CSS3-Matrix-%E7%9A%84%E7%90%86%E8%A7%A3/" rel="next" title="浅谈CSS3 Matrix 的使用">
+      浅谈CSS3 Matrix 的使用 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-disqus">disqus</a></li>
+            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane disqus" id="comment-disqus">
+              
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+            </div>
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
+        </div>
+      </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化"><span class="nav-number">1.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#功能分支"><span class="nav-number">2.</span> <span class="nav-text">功能分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正式发布"><span class="nav-number">3.</span> <span class="nav-text">正式发布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hotfix"><span class="nav-number">4.</span> <span class="nav-text">hotfix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">5.</span> <span class="nav-text">其他</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="anran758"
+      src="https://avatars3.githubusercontent.com/u/23024075?s=96&v=4">
+  <p class="site-author-name" itemprop="name">anran758</p>
+  <div class="site-description" itemprop="description">web 开发的碎碎念</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+          
+        <span class="site-state-item-count">82</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/anran758" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;anran758" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/3833726651" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;3833726651" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://segmentfault.com/u/anran758" title="Segmentfault → https:&#x2F;&#x2F;segmentfault.com&#x2F;u&#x2F;anran758" rel="noopener" target="_blank"><i class="fab fa-skype fa-fw"></i>Segmentfault</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/blog/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      推荐阅读
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.zhangxinxu.com/" title="http:&#x2F;&#x2F;www.zhangxinxu.com&#x2F;" rel="noopener" target="_blank">张鑫旭</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://tan90qian.github.io/blog/" title="https:&#x2F;&#x2F;tan90qian.github.io&#x2F;blog&#x2F;" rel="noopener" target="_blank">Tan90Qian's blog</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://www.alloyteam.com/" title="http:&#x2F;&#x2F;www.alloyteam.com&#x2F;" rel="noopener" target="_blank">Alloyteam</a>
+        </li>
+    </ul>
+  </div>
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-wikipedia-w"></i>
+      常用网站
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item" style="display: block">
+          <a href="https://caniuse.com/" title="https:&#x2F;&#x2F;caniuse.com&#x2F;" rel="noopener" target="_blank">Caniuse(CSS兼容性)</a>
+        </li>
+        <li class="links-of-blogroll-item" style="display: block">
+          <a href="https://developer.mozilla.org/zh-CN/" title="https:&#x2F;&#x2F;developer.mozilla.org&#x2F;zh-CN&#x2F;" rel="noopener" target="_blank">MDN(web 文档)</a>
+        </li>
+        <li class="links-of-blogroll-item" style="display: block">
+          <a href="https://codepen.io/" title="https:&#x2F;&#x2F;codepen.io&#x2F;" rel="noopener" target="_blank">codepen</a>
+        </li>
+        <li class="links-of-blogroll-item" style="display: block">
+          <a href="https://tinypng.com/" title="https:&#x2F;&#x2F;tinypng.com&#x2F;" rel="noopener" target="_blank">Tinypng(图片压缩)</a>
+        </li>
+    </ul>
+  </div>
+
+
+        
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">anran758</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">93k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">1:25</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=5d560b378f0db5fa" async="async"></script>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</div>
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"pzA3EVFcmmGjhOfofaeSXDdr-MdYXbMMI","app_key":"YQgLRTjAQ5uE0S4T6dKqeS8U","server_url":null,"security":true};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+
+<script src="/blog/js/utils.js"></script>
+
+
+<script src="/blog/js/schemes/muse.js"></script>
+
+
+<script src="/blog/js/next-boot.js"></script>
+
+<script src="/blog/js/bookmark.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id    : 20378,
+      el    : 'wpac-rating',
+      color : 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+  
+<script src="/blog/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://anran758.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://anran758.github.io/blog/2018/04/23/git-flow/";
+    this.page.identifier = "2018/04/23/git-flow/";
+    this.page.title = "git-flow 练习笔记";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://anran758.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'a35e4aa0db5b5a7bcc2f',
+      clientSecret: 'a19ef2a9debab8747a6e723c1eff1141213fe101',
+      repo        : 'gitment-comments',
+      owner       : 'anran758',
+      admin       : ['anran758'],
+      id          : '367d3e97675534abbae08fa7716f9f63',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

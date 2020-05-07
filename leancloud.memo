@@ -51,4 +51,5 @@
 {"title":"Hexo blog 的升级与同步方案","url":"/blog/2019/11/02/hexo-blog-upgrade-and-version-control/"},
 {"title":"Flexbox 布局入门","url":"/blog/2020/02/05/css-getting-started-with-flexbox/"},
 {"title":"Flexbox 布局实际用例","url":"/blog/2020/02/22/flexbox-use-cases/"},
+{"title":"webpack 构建示例","url":"/blog/2020/05/04/webpack-example/"},
 ]

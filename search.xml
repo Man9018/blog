@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>test</title>
+      <link href="/blog/2020/05/07/test/"/>
+      <url>/blog/2020/05/07/test/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>webpack 构建示例</title>
       <link href="/blog/2020/05/04/webpack-example/"/>
       <url>/blog/2020/05/04/webpack-example/</url>
@@ -17,6 +30,16 @@
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> javascript </tag>
+            
+            <tag> webpack </tag>
+            
+            <tag> 脚手架 </tag>
+            
+        </tags>
       
     </entry>
     
@@ -205,11 +228,11 @@
       
         <tags>
             
-            <tag> HTTP </tag>
-            
             <tag> ant design pro </tag>
             
             <tag> react </tag>
+            
+            <tag> HTTP </tag>
             
         </tags>
       
@@ -265,9 +288,9 @@
       
         <tags>
             
-            <tag> 小程序开发 </tag>
-            
             <tag> UI组件 </tag>
+            
+            <tag> 小程序开发 </tag>
             
         </tags>
       
