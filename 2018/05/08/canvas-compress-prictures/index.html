@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 4.2.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
@@ -24,7 +24,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"anran758.github.io","root":"/blog/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"manual"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"anran758.github.io","root":"/blog/","scheme":"Muse","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"manual"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="在做 H5 开发时，难免会遇到有需要上传图片的需求。这种需要我们去引入一些库，或者自己来实现这么个功能。那么一般是如何去处理压缩图片的需求呢？这里简要的概述一下实现原理~">
@@ -116,9 +116,9 @@
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
 
@@ -137,7 +137,6 @@
     </div>
   </div>
 </div>
-
 
 
 
@@ -165,7 +164,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>时间轴</a>
+    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -328,17 +327,17 @@
 <hr>
 <p>第二种就是使用<code>canvas</code>提供的另一个接口：<code>canvas.toDataURL(type, encoderOptions)</code>。这是浏览器原生提供可以压缩图片的方法，该方法返回一个包含图片展示的<code>data URI</code>(也就是我们常说的base64)。</p>
 <p>它接受两个可选参数，我们可以使用<code>type</code>参数指定其类型，默认为<code>PNG</code>格式。<code>encoderOptions</code>则是压缩图片质量参数，区间在 0~1 之间。值得注意的是，<strong>压缩图片质量这个参数只对<code>image/jpeg</code>或<code>image/webp</code>有效</strong>。所幸的是，其他格式用不了压缩图片的参数，但浏览器还是会对图片进行压缩处理，剔除对 web 展示没啥用的元数据(虽然可能会涉及到版权纠纷的问题)。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> canvas = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"canvas"</span>);<br><span class="hljs-comment">// 中间处理的过程省略 ...</span><br><span class="hljs-keyword">var</span> fullQuality = canvas.toDataURL(<span class="hljs-string">"image/jpeg"</span>, <span class="hljs-number">0.8</span>);<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">"canvas"</span>);</span><br><span class="line"><span class="comment">// 中间处理的过程省略 ...</span></span><br><span class="line"><span class="keyword">var</span> fullQuality = canvas.toDataURL(<span class="string">"image/jpeg"</span>, <span class="number">0.8</span>);</span><br></pre></td></tr></table></figure>
 
 <p>但单单是转为 base64 是不能满足我们一些需求的，这时我们可能会想要让它再转为对服务端友好的<code>blob</code>类型。<br>这时我们就需要用到<code>window.atob()</code>, 将已经编译成 base64 的字符串解码为二进制。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> type = fullQuality.split(<span class="hljs-string">','</span>)[<span class="hljs-number">0</span>].split(<span class="hljs-string">':'</span>)[<span class="hljs-number">1</span>].split(<span class="hljs-string">';'</span>)[<span class="hljs-number">0</span>];<br><br><span class="hljs-comment">// 解码为二进制</span><br><span class="hljs-keyword">var</span> binStr = atob(fullQuality.split(<span class="hljs-string">','</span>)[<span class="hljs-number">1</span>]);<br><span class="hljs-keyword">var</span> length = binStr.length;<br><br><span class="hljs-comment">// 创建一个缓存区，容器大小可以容纳 binStr.</span><br><span class="hljs-comment">// 这个缓存区我们是不能直接操作的。</span><br><span class="hljs-keyword">var</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>(binStr);<br><br><span class="hljs-comment">// 建立`Uint8Array`类型数组</span><br><span class="hljs-comment">// 这样我们就可以通过对象的方法或者数组索引读写里面的数据啦</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">// var buff = new ArrayBuffer(4);   =&gt; ArrayBuffer(4) &#123;&#125;</span><br><span class="hljs-comment">// var arr = new Uint8Array(buff);  =&gt; Uint8Array(4) [0, 0, 0, 0]</span><br><span class="hljs-comment">// arr[2] = 8;</span><br><span class="hljs-comment">// console.log(buff)    =&gt; 缓存区和 Uint8Array 同时被修改了</span><br><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>(buffer);<br><br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; length; i++) &#123;<br>  <span class="hljs-comment">// 逐个查询 binStr 里的二进制 Unicode 编码，并存入类型数组中</span><br>  arr[i] = binStr.charCodeAt(i);<br>&#125;<br><br><span class="hljs-keyword">var</span> blob = <span class="hljs-keyword">new</span> Blob([buffer],&#123; <span class="hljs-attr">type</span>: type &#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> type = fullQuality.split(<span class="string">','</span>)[<span class="number">0</span>].split(<span class="string">':'</span>)[<span class="number">1</span>].split(<span class="string">';'</span>)[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 解码为二进制</span></span><br><span class="line"><span class="keyword">var</span> binStr = atob(fullQuality.split(<span class="string">','</span>)[<span class="number">1</span>]);</span><br><span class="line"><span class="keyword">var</span> length = binStr.length;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个缓存区，容器大小可以容纳 binStr.</span></span><br><span class="line"><span class="comment">// 这个缓存区我们是不能直接操作的。</span></span><br><span class="line"><span class="keyword">var</span> buffer = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(binStr);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 建立`Uint8Array`类型数组</span></span><br><span class="line"><span class="comment">// 这样我们就可以通过对象的方法或者数组索引读写里面的数据啦</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// var buff = new ArrayBuffer(4);   =&gt; ArrayBuffer(4) &#123;&#125;</span></span><br><span class="line"><span class="comment">// var arr = new Uint8Array(buff);  =&gt; Uint8Array(4) [0, 0, 0, 0]</span></span><br><span class="line"><span class="comment">// arr[2] = 8;</span></span><br><span class="line"><span class="comment">// console.log(buff)    =&gt; 缓存区和 Uint8Array 同时被修改了</span></span><br><span class="line"><span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(buffer);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; length; i++) &#123;</span><br><span class="line">  <span class="comment">// 逐个查询 binStr 里的二进制 Unicode 编码，并存入类型数组中</span></span><br><span class="line">  arr[i] = binStr.charCodeAt(i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> blob = <span class="keyword">new</span> Blob([buffer],&#123; <span class="attr">type</span>: type &#125;</span><br></pre></td></tr></table></figure>
 
 <p>如果是想转为<code>File</code>类型的话，和上面的方法实现的也一致..</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// https://developer.mozilla.org/en-US/docs/Web/API/File/File</span><br><span class="hljs-comment">// 第一个参数传入 ArrayBuffer 也行，blob 也行..</span><br><span class="hljs-keyword">var</span> file = <span class="hljs-keyword">new</span> File([buff], <span class="hljs-string">"img.jpg"</span>, &#123; <span class="hljs-attr">type</span>: type &#125;);<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://developer.mozilla.org/en-US/docs/Web/API/File/File</span></span><br><span class="line"><span class="comment">// 第一个参数传入 ArrayBuffer 也行，blob 也行..</span></span><br><span class="line"><span class="keyword">var</span> file = <span class="keyword">new</span> File([buff], <span class="string">"img.jpg"</span>, &#123; <span class="attr">type</span>: type &#125;);</span><br></pre></td></tr></table></figure>
 
 <p>哇，转个类型都看起来好像挺麻烦的样子呢…那么有没有内置的方法呀？答案是有，canvas 里有个<code>toBlob(callback, type, encoderOptions)</code>的方法, 它接受三个参数，一个是将canvas转为<code>blob</code>后接受的回调函数、一个是指定的图片格式、另一个是图片质量，区间也在 0~1 之间。</p>
 <p>看起来这个方法似乎比上面那个更好用呢..然而残念的是，这货还受着兼容性影响，不在乎的兼容性的话倒是可以使用… 不然就需要上一种polyfill 的方式来实现~</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs javascript">canvas.toBlob(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">blob</span>) </span>&#123;<br>  <span class="hljs-comment">// 接收转换后的 blob 类型</span><br>  <span class="hljs-comment">// 此时可以在函数里发起请求</span><br>  $.ajax(&#123;<br>    url: baseURL + <span class="hljs-string">'/uploader/'</span>,<br>    data: &#123; <span class="hljs-attr">act_id</span>: actID, <span class="hljs-attr">pic_1</span>: blob &#125;,<br>    type: <span class="hljs-string">'POST'</span>,<br>    success: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">data</span>) </span>&#123;<br>      <span class="hljs-comment">// success</span><br>    &#125;<br>  &#125;);<br>&#125;, <span class="hljs-string">'image/png'</span>);<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">canvas.toBlob(<span class="function"><span class="keyword">function</span> (<span class="params">blob</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 接收转换后的 blob 类型</span></span><br><span class="line">  <span class="comment">// 此时可以在函数里发起请求</span></span><br><span class="line">  $.ajax(&#123;</span><br><span class="line">    url: baseURL + <span class="string">'/uploader/'</span>,</span><br><span class="line">    data: &#123; <span class="attr">act_id</span>: actID, <span class="attr">pic_1</span>: blob &#125;,</span><br><span class="line">    type: <span class="string">'POST'</span>,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">      <span class="comment">// success</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;, <span class="string">'image/png'</span>);</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -364,9 +363,9 @@
 
         <div class="reward-container">
   <div></div>
-    <div style="color: grey;">「请笔者喝杯奶茶支持一下创作~」</div>
+    <div style="color: grey;">「请笔者喝杯奶茶鼓励一下」</div>
   <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
-    Donate
+    赞助
   </button>
   <div id="qr" style="display: none;">
       
@@ -571,7 +570,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/blog/tags/">
           
-        <span class="site-state-item-count">82</span>
+        <span class="site-state-item-count">83</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -609,28 +608,24 @@
     </ul>
   </div>
   <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title">
-      <i class="fa fa-fw fa-wikipedia-w"></i>
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
       常用网站
     </div>
     <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item" style="display: block">
+        <li class="links-of-blogroll-item">
           <a href="https://caniuse.com/" title="https:&#x2F;&#x2F;caniuse.com&#x2F;" rel="noopener" target="_blank">Caniuse(CSS兼容性)</a>
         </li>
-        <li class="links-of-blogroll-item" style="display: block">
+        <li class="links-of-blogroll-item">
           <a href="https://developer.mozilla.org/zh-CN/" title="https:&#x2F;&#x2F;developer.mozilla.org&#x2F;zh-CN&#x2F;" rel="noopener" target="_blank">MDN(web 文档)</a>
         </li>
-        <li class="links-of-blogroll-item" style="display: block">
+        <li class="links-of-blogroll-item">
           <a href="https://codepen.io/" title="https:&#x2F;&#x2F;codepen.io&#x2F;" rel="noopener" target="_blank">codepen</a>
         </li>
-        <li class="links-of-blogroll-item" style="display: block">
+        <li class="links-of-blogroll-item">
           <a href="https://tinypng.com/" title="https:&#x2F;&#x2F;tinypng.com&#x2F;" rel="noopener" target="_blank">Tinypng(图片压缩)</a>
         </li>
     </ul>
   </div>
-
-
-        
 
       </div>
 
@@ -669,7 +664,7 @@
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     <span title="站点阅读时长">1:25</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
   <div class="addthis_inline_share_toolbox">
     <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=5d560b378f0db5fa" async="async"></script>

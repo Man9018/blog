@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 4.2.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
@@ -24,7 +24,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"anran758.github.io","root":"/blog/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"manual"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"anran758.github.io","root":"/blog/","scheme":"Muse","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"manual"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="【多图长文预警，建议先码】在浏览器地址栏输入 URL 到页面渲染之间都经历了什么？这是一道很经典的问题，可以很全面的考验面试者对于网络知识的理解。这之间的过程是一环套一环，下面笔者通过这题来科普一下基础的网络知识。">
@@ -37,7 +37,16 @@
 <meta property="og:image" content="https://anran758.github.io/blog/2018/04/06/URL-to-browser/search-word.png">
 <meta property="og:image" content="https://anran758.github.io/blog/2018/04/06/URL-to-browser/url-example.png">
 <meta property="og:image" content="https://anran758.github.io/blog/2018/04/06/URL-to-browser/dog_say.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/04/06/URL-to-browser/firefox-dns.png">
 <meta property="og:image" content="https://oldj.github.io/SwitchHosts/images/sh_light.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/04/06/URL-to-browser/dns-message.jpg">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/04/06/URL-to-browser/dns-capture-1.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/04/06/URL-to-browser/dns-res.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/04/06/URL-to-browser/dns-other-info.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/04/06/URL-to-browser/dns-queries.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/04/06/URL-to-browser/dns-table-class.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/04/06/URL-to-browser/dns-table-type.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2018/04/06/URL-to-browser/dns-res-answers.png">
 <meta property="og:image" content="https://anran758.github.io/blog/2018/04/06/URL-to-browser/tcp-1.png">
 <meta property="og:image" content="https://anran758.github.io/blog/2018/04/06/URL-to-browser/tls-1.png">
 <meta property="og:image" content="https://anran758.github.io/blog/2018/04/06/URL-to-browser/tls-2.png">
@@ -129,9 +138,9 @@
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
 
@@ -150,7 +159,6 @@
     </div>
   </div>
 </div>
-
 
 
 
@@ -178,7 +186,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>时间轴</a>
+    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -357,20 +365,20 @@
 <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p>经常上网的朋友经常能听说 <code>URL</code> 这个名词，那么它具体是干嘛用的呢？</p>
 <p><code>URL</code> 全称为<strong>统一资源定位系统(uniform resource locator)</strong>，用于表示一个因特网(Internet)上标准的资源的地址。就像每户人家都会有个门牌地址一样。维基百科对 <code>URL</code> 的术语上是这样解释：</p>
 <p>每个 <code>HTTP URL</code> 都符合通用 <code>URI</code> 的语法(关于 <code>URL</code> 与 <code>URI</code> 的差别参请看下文的列参考资料)。<code>URI</code> 一般语法由五个的分层序列的组分：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs example">URI &#x3D; scheme:[&#x2F;&#x2F;authority]path[?query][#fragment]<br><br>URI &#x3D; 方案:[&#x2F;&#x2F;授权]路径[?查询][#片段ID]<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">URI &#x3D; scheme:[&#x2F;&#x2F;authority]path[?query][#fragment]</span><br><span class="line"></span><br><span class="line">URI &#x3D; 方案:[&#x2F;&#x2F;授权]路径[?查询][#片段ID]</span><br></pre></td></tr></table></figure>
 
 <p>权限组件 (authority) 又分为三个子组件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs example">authority &#x3D; [userinfo@]host[:port]<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">authority &#x3D; [userinfo@]host[:port]</span><br></pre></td></tr></table></figure>
 
 <p>它在语法图表示为：</p>
 <img data-src="/blog/2018/04/06/URL-to-browser/url-example.png" class="">
 
 <p>从术语上看好像有点抽象？没有关系，我们通过浏览器内部提供的 <code>location</code> 的接口来辅助理解，该接口表示其链接到的对象的位置（URL）。</p>
 <p>我们另开一个标签页，随便打开一个较为复杂的 URL，如:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs example">https:&#x2F;&#x2F;github.com&#x2F;anran758&#x2F;Front-End-Lab&#x2F;tree&#x2F;master&#x2F;css?name&#x3D;anran758&amp;uid&#x3D;234098&amp;shareId&#x3D;456#layout<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;github.com&#x2F;anran758&#x2F;Front-End-Lab&#x2F;tree&#x2F;master&#x2F;css?name&#x3D;anran758&amp;uid&#x3D;234098&amp;shareId&#x3D;456#layout</span><br></pre></td></tr></table></figure>
 
 <p>接着在控制台的 <code>Console</code> 面板中直接输入 <code>location</code> 并敲下回车，它会输出一个对象，该对象内包含当前页面上的 URL 信息。</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<br>  <span class="hljs-attr">"href"</span>: <span class="hljs-string">"https://github.com/anran758/Front-End-Lab/tree/master/css?name=anran758&amp;uid=234098&amp;shareId=456#layout"</span>,<br>  <span class="hljs-attr">"ancestorOrigins"</span>: &#123;&#125;,<br>  <span class="hljs-attr">"origin"</span>: <span class="hljs-string">"https://github.com"</span>,<br>  <span class="hljs-attr">"protocol"</span>: <span class="hljs-string">"https:"</span>,<br>  <span class="hljs-attr">"host"</span>: <span class="hljs-string">"github.com"</span>,<br>  <span class="hljs-attr">"hostname"</span>: <span class="hljs-string">"github.com"</span>,<br>  <span class="hljs-attr">"port"</span>: <span class="hljs-string">""</span>,<br>  <span class="hljs-attr">"pathname"</span>: <span class="hljs-string">"/anran758/Front-End-Lab/tree/master/css"</span>,<br>  <span class="hljs-attr">"search"</span>: <span class="hljs-string">"?name=anran758&amp;uid=234098&amp;shareId=456"</span>,<br>  <span class="hljs-attr">"hash"</span>: <span class="hljs-string">"#layout"</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"href"</span>: <span class="string">"https://github.com/anran758/Front-End-Lab/tree/master/css?name=anran758&amp;uid=234098&amp;shareId=456#layout"</span>,</span><br><span class="line">  <span class="attr">"ancestorOrigins"</span>: &#123;&#125;,</span><br><span class="line">  <span class="attr">"origin"</span>: <span class="string">"https://github.com"</span>,</span><br><span class="line">  <span class="attr">"protocol"</span>: <span class="string">"https:"</span>,</span><br><span class="line">  <span class="attr">"host"</span>: <span class="string">"github.com"</span>,</span><br><span class="line">  <span class="attr">"hostname"</span>: <span class="string">"github.com"</span>,</span><br><span class="line">  <span class="attr">"port"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="attr">"pathname"</span>: <span class="string">"/anran758/Front-End-Lab/tree/master/css"</span>,</span><br><span class="line">  <span class="attr">"search"</span>: <span class="string">"?name=anran758&amp;uid=234098&amp;shareId=456"</span>,</span><br><span class="line">  <span class="attr">"hash"</span>: <span class="string">"#layout"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>我们拿这个对象与 URL 的属于一一对应，就可以清晰看出他们之间的对应关系:</p>
 <table>
@@ -418,13 +426,13 @@
 <p>这是因为如果我们访问的 <code>URL</code> 使用的是以 <code>https</code> 开头的协议，那么 <code>HTTPS</code> 协议的默认的端口就是 <code>443</code>。即便我们特意补全这个端口号，浏览器还是默认会将该端口隐去。</p>
 <p>同理，我们访问的是 <code>http</code> 协议，他的默认端口是 <code>80</code> 端口，也会自动隐藏掉。只有当我们访问与该协议默认端口不一致时，浏览器才会显示出来。比如 <code>http://localhost:8000/analysis/project</code> 就能看到它能在地址栏上正确的显示出来(笔者这里是以 <code>chrome</code> 浏览器为例，不同浏览器可能有不同的行为)。</p>
 <p>完整的 <code>URL</code> 例子可以参见维基百科给出的示例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs example">        userinfo       host      port<br>        ┌──┴───┐ ┌──────┴──────┐ ┌┴┐<br>https:&#x2F;&#x2F;john.doe@www.example.com:123&#x2F;forum&#x2F;questions&#x2F;?tag&#x3D;networking&amp;order&#x3D;newest#top<br> └─┬─┘  └───────────┬──────────────┘└───────┬───────┘ └───────────┬─────────────┘ └┬┘<br>scheme          authority                  path                 query           fragment<br><br>ldap:&#x2F;&#x2F;[2001:db8::7]&#x2F;c&#x3D;GB?objectClass?one<br>└┬─┘   └─────┬─────┘└─┬─┘ └──────┬──────┘<br>scheme   authority   path      query<br><br>mailto:John.Doe@example.com<br>└─┬──┘ └────┬─────────────┘<br>scheme     path<br><br>news:comp.infosystems.www.servers.unix<br>└┬─┘ └─────────────┬─────────────────┘<br>scheme            path<br><br>tel:+1-816-555-1212<br>└┬┘ └──────┬──────┘<br>scheme    path<br><br>telnet:&#x2F;&#x2F;192.0.2.16:80&#x2F;<br>└─┬──┘   └─────┬─────┘│<br>scheme     authority  path<br><br>urn:oasis:names:specification:docbook:dtd:xml:4.1.2<br>└┬┘ └──────────────────────┬──────────────────────┘<br>scheme                    path<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">        userinfo       host      port</span><br><span class="line">        ┌──┴───┐ ┌──────┴──────┐ ┌┴┐</span><br><span class="line">https:&#x2F;&#x2F;john.doe@www.example.com:123&#x2F;forum&#x2F;questions&#x2F;?tag&#x3D;networking&amp;order&#x3D;newest#top</span><br><span class="line"> └─┬─┘  └───────────┬──────────────┘└───────┬───────┘ └───────────┬─────────────┘ └┬┘</span><br><span class="line">scheme          authority                  path                 query           fragment</span><br><span class="line"></span><br><span class="line">ldap:&#x2F;&#x2F;[2001:db8::7]&#x2F;c&#x3D;GB?objectClass?one</span><br><span class="line">└┬─┘   └─────┬─────┘└─┬─┘ └──────┬──────┘</span><br><span class="line">scheme   authority   path      query</span><br><span class="line"></span><br><span class="line">mailto:John.Doe@example.com</span><br><span class="line">└─┬──┘ └────┬─────────────┘</span><br><span class="line">scheme     path</span><br><span class="line"></span><br><span class="line">news:comp.infosystems.www.servers.unix</span><br><span class="line">└┬─┘ └─────────────┬─────────────────┘</span><br><span class="line">scheme            path</span><br><span class="line"></span><br><span class="line">tel:+1-816-555-1212</span><br><span class="line">└┬┘ └──────┬──────┘</span><br><span class="line">scheme    path</span><br><span class="line"></span><br><span class="line">telnet:&#x2F;&#x2F;192.0.2.16:80&#x2F;</span><br><span class="line">└─┬──┘   └─────┬─────┘│</span><br><span class="line">scheme     authority  path</span><br><span class="line"></span><br><span class="line">urn:oasis:names:specification:docbook:dtd:xml:4.1.2</span><br><span class="line">└┬┘ └──────────────────────┬──────────────────────┘</span><br><span class="line">scheme                    path</span><br></pre></td></tr></table></figure>
 
 <hr>
 <p>接着浏览器分析 URL 信息后，会从 URL 取出方案(协议类型)。这个方案可以是常见的 <code>http:</code>，也可以像 chrome 内置协议 <code>chrome:</code>。再根据不同的协议进行不同的解析。</p>
 <p>我们在地址栏上输入的是 <code>zhihu.com</code>，没有指定要使用哪个协议，那这个这个判断的权利交给了浏览器，浏览器通过内置的方案来决定对 <code>URL</code> 信息进行补全。比如 <code>chrome</code> 可能会对该链接补全为 <code>https://www.zhihu.com</code>。</p>
 <p>接着浏览器从 <code>URL</code> 中提取出主机名(<code>host</code>)信息。它可能是一个 IP 地址，也可以可能是一个域名地址。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs example">              host    port<br>        ┌──────┴────┐ ┌┴┐<br>https:&#x2F;&#x2F;www.zhihu.com:443&#x2F;<br>└─┬─┘ └────────┬────────┘<br>scheme     authority<br><br>            host     port<br>       ┌─────┴─────┐ ┌┴─┐<br>http:&#x2F;&#x2F;192.168.6.106:8000&#x2F;<br>└─┬─┘ └────────┬────────┘<br>scheme     authority<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">              host    port</span><br><span class="line">        ┌──────┴────┐ ┌┴┐</span><br><span class="line">https:&#x2F;&#x2F;www.zhihu.com:443&#x2F;</span><br><span class="line">└─┬─┘ └────────┬────────┘</span><br><span class="line">scheme     authority</span><br><span class="line"></span><br><span class="line">            host     port</span><br><span class="line">       ┌─────┴─────┐ ┌┴─┐</span><br><span class="line">http:&#x2F;&#x2F;192.168.6.106:8000&#x2F;</span><br><span class="line">└─┬─┘ └────────┬────────┘</span><br><span class="line">scheme     authority</span><br></pre></td></tr></table></figure>
 
 <p>下面来了解一下关于 <code>IP 地址</code>和<code>域名</code>这两个概念。</p>
 <p><strong>本章参考资料:</strong></p>
@@ -548,10 +556,10 @@
 <p><code>IPv6</code> 地址的出现不仅解决了 IPv4 地址空间不够的问题，还实现了 IPv4 中不存在的功能。</p>
 <p>在 IPv6 中，地址大小从 IPv4 中的 32 位增加到 128 位，从而提供了多达 2128 个（大约 <code>3.403 × 10^38</code>）地址。这个数字什么概念呢？我们以维基百科统计的世界人口来对比。截止至 2019.05，世界人口约为 77 亿人(7.7 × 10^9）。因此在可预见的未来里，这被认为是够用了的。</p>
 <p><code>IPv6</code> 地址为 128 位元长，但通常写作 8 组，每组 4 个<strong>十六进制数</strong>的形式。如果四个数字都是 0，可以被省略。例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs example">2001:0db8:85a3:0000:1319:8a2e:0370:7344<br><br># 上面的 IPv6 等价于下面这条。注意双冒号<br>2001:0db8:85a3::1319:8a2e:0370:7344<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">2001:0db8:85a3:0000:1319:8a2e:0370:7344</span><br><span class="line"></span><br><span class="line"># 上面的 IPv6 等价于下面这条。注意双冒号</span><br><span class="line">2001:0db8:85a3::1319:8a2e:0370:7344</span><br></pre></td></tr></table></figure>
 
 <p>为避免 <code>IPv6</code> 地址的冒号与方案的冒号冲突，在 <code>IPv6</code> 地址在 URL 上是通过中括号包裹，以百度的 IPv6 地址为例:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs example">http:&#x2F;&#x2F;[2400:da00:2::29]&#x2F;<br><br># 等价于<br>http:&#x2F;&#x2F;ipv6.baidu.com&#x2F;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;[2400:da00:2::29]&#x2F;</span><br><span class="line"></span><br><span class="line"># 等价于</span><br><span class="line">http:&#x2F;&#x2F;ipv6.baidu.com&#x2F;</span><br></pre></td></tr></table></figure>
 
 <p>目前我们见到更多的是 <code>IPv4</code> 地址。IPv6 是未来的主流，目前仍然在部署中。国内的部署情况可以在百度百科《<a href="https://baike.baidu.com/item/IPv6/172297?fr=aladdin#1" target="_blank" rel="noopener">IPv6</a>》的发展历史中能找到相关的描述:</p>
 <blockquote>
@@ -570,7 +578,7 @@
 <hr>
 <h2 id="域名系统-DNS"><a href="#域名系统-DNS" class="headerlink" title="域名系统(DNS)"></a>域名系统(DNS)</h2><p>理论上我们直接使用 IP 地址就可以访问资源了。但直接通过 IP 地址来访问会存在一个问题，那就是 IP 地址不便于人类记忆。考虑以下场景对话:</p>
 <p>“嘿朋友。最近我做了个主页，有空来我留言板踩踩呗？”，”没问题呀，那么地址是什么呢？”。(以下弹出一个选项框)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs example">选项A: http:&#x2F;&#x2F;[2400:da00:2::29]&#x2F;<br>选项B: http:&#x2F;&#x2F;183.232.231.174&#x2F;<br>选项C: http:&#x2F;&#x2F;www.baidu.com&#x2F;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">选项A: http:&#x2F;&#x2F;[2400:da00:2::29]&#x2F;</span><br><span class="line">选项B: http:&#x2F;&#x2F;183.232.231.174&#x2F;</span><br><span class="line">选项C: http:&#x2F;&#x2F;www.baidu.com&#x2F;</span><br></pre></td></tr></table></figure>
 
 <p>将上面三个选项进行对比就能发现：如果我们十分硬核的选择了 A、B 两项，那你的朋友可能会给你翻个白眼。这样的地址谁想记呀！！即便是朋友愿意记下你的 IP 地址，但把该网站的定位转为商业网站后，显然这就有点为难用户了。</p>
 <blockquote>
@@ -584,7 +592,7 @@
 <p><code>DNS</code> 是互联网上重要的基础应用程序，它作为一个分布式数据库，域名服务器分布在世界各地，储存着域名与 IP 地址的映射关系，每个域名服务器上值存储了部分域名信息。因此为了完成域名解析，通过需要在多个域名服务器之间进行查询。</p>
 <p><code>DNS</code> 为了实现域名的有效管理与高效的查询，它是按层级结构进行组织的，并且该层次结构与域名的结构( <code>.</code> 分隔)相对应，每个以点分隔的为 标签(<code>label</code>)。它所使用的所有名称集合构成了 DNS <strong>名称空间(name space)</strong>。</p>
 <p>当前的名称空间是一棵域名树结构，位于顶部的树根(<code>root</code>, 通常为我们称之为根域名服务器)为命名。树第一层为<strong>顶级域名(Top level Domian, TDL)</strong>，TDL 再往下就是子域名。域名的层级是从右往左看:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs example">三级域名.二级域名.顶级域名.根域名<br><br>三级域名    顶级域名<br>  ┌┴┐       ┌┴┐<br>  www.zhihu.com<br>      └─┬─┘<br>     二级域名<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">三级域名.二级域名.顶级域名.根域名</span><br><span class="line"></span><br><span class="line">三级域名    顶级域名</span><br><span class="line">  ┌┴┐       ┌┴┐</span><br><span class="line">  www.zhihu.com</span><br><span class="line">      └─┬─┘</span><br><span class="line">     二级域名</span><br></pre></td></tr></table></figure>
 
 <p>因此 <code>www.zhihu.com</code> 完整的域名应该是 <code>www.zhihu.com.</code>。后面的 <code>.</code> 相当于 <code>.root</code>，由于每个域名的根节点都是 <code>root</code>，因此 <code>.root</code> 就被省略为 <code>.</code>。我们直接访问 <code>zhihu.com.</code> 是能正确的打开知乎首页的。</p>
 <hr>
@@ -593,45 +601,45 @@
 <p><strong>顶级域名服务器</strong>负责管理在该顶级域名服务器注册的所有二级域名。顶级域名服务器的名称对应着域名的最后一个名称。如 <code>www.zhihu.com</code> 的顶级域名服务器名称是 <code>com</code>。</p>
 <p><strong>权威域名服务器</strong>，负责一个区的域名服务器，保存该区中的所有主机的域名到 IP 地址的映射。任何一个拥有域名的主机，其域名与 IP 地址的映射关系等信息都存储在所在网络的权威域名服务器上。在进行域名解析时，只要找到被查询域名主机注册的权威域名服务器，就可以获得该域名对应的 IP 地址信息。</p>
 <h3 id="本地-DNS"><a href="#本地-DNS" class="headerlink" title="本地 DNS"></a>本地 DNS</h3><p>任何一台主机(PC、手机等)在网络地址配置时，都会配置一个 DNS 服务器作为默认域名服务器，这样这台主机在任何时候需要进行域名解析，都会将域名查询发送给该服务器，这个默认服务器我们称之为本地域名服务器。在 MacOS 环境下可以输入以下命令来查看 DNS 的配置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs log">➜  blog git:(master) ✗ scutil --dns<br>DNS configuration<br><br>resolver #1<br>  nameserver[0] : 172.20.10.1<br>  if_index : 5 (en0)<br>  flags    : Request A records<br>  reach    : 0x00020002 (Reachable,Directly Reachable Address)<br><br>resolver #2<br>  domain   : local<br>  options  : mdns<br>  timeout  : 5<br>  flags    : Request A records<br>  reach    : 0x00000000 (Not Reachable)<br>  order    : 300000<br><br>resolver #3<br>  domain   : 254.169.in-addr.arpa<br>  options  : mdns<br>  timeout  : 5<br>  flags    : Request A records<br>  reach    : 0x00000000 (Not Reachable)<br>  order    : 300200<br><br>resolver #4<br>  domain   : 8.e.f.ip6.arpa<br>  options  : mdns<br>  timeout  : 5<br>  flags    : Request A records<br>  reach    : 0x00000000 (Not Reachable)<br>  order    : 300400<br><br># 省略其他配置信息..<br><br>DNS configuration (for scoped queries)<br><br>resolver #1<br>  nameserver[0] : 172.20.10.1<br>  if_index : 5 (en0)<br>  flags    : Scoped, Request A records<br>  reach    : 0x00020002 (Reachable,Directly Reachable Address)<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">➜  blog git:(master) ✗ scutil --dns</span><br><span class="line">DNS configuration</span><br><span class="line"></span><br><span class="line">resolver #1</span><br><span class="line">  nameserver[0] : 172.20.10.1</span><br><span class="line">  if_index : 5 (en0)</span><br><span class="line">  flags    : Request A records</span><br><span class="line">  reach    : 0x00020002 (Reachable,Directly Reachable Address)</span><br><span class="line"></span><br><span class="line">resolver #2</span><br><span class="line">  domain   : local</span><br><span class="line">  options  : mdns</span><br><span class="line">  timeout  : 5</span><br><span class="line">  flags    : Request A records</span><br><span class="line">  reach    : 0x00000000 (Not Reachable)</span><br><span class="line">  order    : 300000</span><br><span class="line"></span><br><span class="line">resolver #3</span><br><span class="line">  domain   : 254.169.in-addr.arpa</span><br><span class="line">  options  : mdns</span><br><span class="line">  timeout  : 5</span><br><span class="line">  flags    : Request A records</span><br><span class="line">  reach    : 0x00000000 (Not Reachable)</span><br><span class="line">  order    : 300200</span><br><span class="line"></span><br><span class="line">resolver #4</span><br><span class="line">  domain   : 8.e.f.ip6.arpa</span><br><span class="line">  options  : mdns</span><br><span class="line">  timeout  : 5</span><br><span class="line">  flags    : Request A records</span><br><span class="line">  reach    : 0x00000000 (Not Reachable)</span><br><span class="line">  order    : 300400</span><br><span class="line"></span><br><span class="line"># 省略其他配置信息..</span><br><span class="line"></span><br><span class="line">DNS configuration (for scoped queries)</span><br><span class="line"></span><br><span class="line">resolver #1</span><br><span class="line">  nameserver[0] : 172.20.10.1</span><br><span class="line">  if_index : 5 (en0)</span><br><span class="line">  flags    : Scoped, Request A records</span><br><span class="line">  reach    : 0x00020002 (Reachable,Directly Reachable Address)</span><br></pre></td></tr></table></figure>
 
 <p>从缓存的角度来看，有分 DNS 服务器缓存和应用级 DNS 缓存。</p>
 <p>浏览器向 DNS 服务器发起请求，DNS 会从自己的缓存中读取记录，如没有结果才向上一层请求，这是属于应用级缓存。<code>chrome</code> 早期可以通过访问 <code>chrome://net-internals/#dns</code> 来查看浏览器缓存的 DNS 记录，但不知什么原因现在把查看 DNS 信息的页面给砍掉了，只留清除 DNS 缓存的功能。而 <code>Firefox</code> 可以直接访问 <code>about:networking#dns</code> 查看对应的域名映射。</p>
-{% asset_img firefox-dns.png %}
+<img data-src="/blog/2018/04/06/URL-to-browser/firefox-dns.png" class="">
 
 <h3 id="hosts"><a href="#hosts" class="headerlink" title="hosts"></a>hosts</h3><p>除了 DNS 服务器与 DNS 缓存外，其实还有一种途径能读取域名映射，那就是 <code>hosts</code> 文件。</p>
 <p><code>hosts</code> 文件是纯文本文件。从历史的角度看，<code>hosts</code> 文件出现的比 DNS 服务器还早。最初在 Internet 的前身 ARPANET 中，其成员 SRI International 手动维护并分享的一个名为 HOSTS.TXT 的文件。它负责将主机名称映射到相应的 IP 地址。</p>
 <p>由于个人网络不断庞大之后，对 hosts 文件进行管理的难度也越来越大，于是在 1983 年 DNS 系统开始开发，1984 年得到了发展。并且随着网络的发展，DNS 可以自动提供动态的主机名解析，因此 <code>hosts</code> 成为了一个可以作为备用手段的名称解析机制。</p>
 <p>与 DNS 不同的是，hosts 文件是可以由用户改写的，是属于操作系统级别的 IP 地址映射。同时在一些操作系统上，hosts 文件可能会比其他域名解析器(如 DNS 服务器)会具有更高的优先级。</p>
 <p>hosts 文件在不同操作系统下路径是不一样的。以下给出常见的操作系统路径：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text"># win7 +, %SystemRoot%\ 系统根路径默认为 c 盘，也就是 c:\<br>%SystemRoot%\System32\drivers\etc\hosts<br><br># Unix、类Unix系统（例如 Linux、MacOs 等）<br>&#x2F;etc&#x2F;hosts<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># win7 +, %SystemRoot%\ 系统根路径默认为 c 盘，也就是 c:\</span><br><span class="line">%SystemRoot%\System32\drivers\etc\hosts</span><br><span class="line"></span><br><span class="line"># Unix、类Unix系统（例如 Linux、MacOs 等）</span><br><span class="line">&#x2F;etc&#x2F;hosts</span><br></pre></td></tr></table></figure>
 
 <p>hosts 文件内容由第一行文本字段中的 IP 地址和<strong>一个或多个主机名</strong>组成的文本行。每个字段都用空格隔开(出于历史原因，通常首选使用 Linux 上的 hosts 直接复制到 window 上可能不会生效)。井号(#) 后文字为注释信息，文件中的完全空白行将被忽略。典型的主机文件可能包含以下内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs hosts">127.0.0.1       localhost<br>::1             localhost<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1       localhost</span><br><span class="line">::1             localhost</span><br></pre></td></tr></table></figure>
 
 <p>除此之外，hosts 文件还可以做其他用途。</p>
 <p>比如原本我们开发环境的 URL 可能是 <code>192.168.6.106:8000</code>, 现在页面上有一个强依赖于当前 URL 域名的功能或校验。但我们得要完成测试开发，这怎么办呢？总不能先部署上线再测试吧，这多麻烦呀..</p>
 <p>这里就可以通过修改本地的 hosts 文件，将 <code>192.168.6.106</code> 映射 <code>www.example.com</code>，然后我们直接访问 <code>www.example.com:8000</code> 进行测试即可。</p>
 <p>再比如，我们浏览器可能会装有广告拦截插件，但总有一些漏网之鱼怎么办？没有关系，我们直接在浏览器控制台打开 <code>Network</code>, 找到广告的地址，将该域名映射为本地专用网络 <code>127.0.0.1</code> 上。那该页面发起的广告请求将不能正常的获取到资源，也是一种屏蔽广告的好方法。</p>
 <p>可以做一个简单的测试。打开 <code>hosts</code> 文件，修改以下映射(需要管理员权限)，再打开匿名模式访问百度首页，然后会发现浏览器提示: <code>无法访问此网站 baidu.com 拒绝了我们的连接请求。</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs hosts">127.0.0.1       localhost baidu.com<br>::1             localhost<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1       localhost baidu.com</span><br><span class="line">::1             localhost</span><br></pre></td></tr></table></figure>
 
 <p>修改 hosts 文件能我们提供一些便利，但同时也要防止有人恶意篡改我们的 hosts 文件(通过病毒等途径)，引导至诈骗网站。</p>
 <p>hosts 文件是系统文件，直接通过路径找 hosts 文件对于一些朋友来说感觉会有点繁琐。因此在不同操作系统下有开发者开发了这方面的便捷工具，如 MacOS 上可以下载 <a href="https://oldj.github.io/SwitchHosts/" target="_blank" rel="noopener">SwitchHosts</a> 来辅助修改，也可以在其官网上查看它提供了哪些功能。</p>
 <p><img data-src="https://oldj.github.io/SwitchHosts/images/sh_light.png" alt="SwitchHosts Preview"></p>
 <h3 id="域名解析"><a href="#域名解析" class="headerlink" title="域名解析"></a>域名解析</h3><p>现在我们回归主线，对以上本地 DNS 解析的优先级做一个梳理：</p>
 <p>在地址栏输入 URL 的主机名是域名的话，那么浏览器将会调用域名解析器。这个域名解析器的优先级可能根据操作系统的不同会有所差异：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs example">浏览器 DNS 缓存 &gt; hosts 文件(或 hosts 文件 &gt; 浏览器 DNS 缓存) &gt; 本地 DNS 服务器 &gt; ISP(因特网提供商) DNS 服务器<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">浏览器 DNS 缓存 &gt; hosts 文件(或 hosts 文件 &gt; 浏览器 DNS 缓存) &gt; 本地 DNS 服务器 &gt; ISP(因特网提供商) DNS 服务器</span><br></pre></td></tr></table></figure>
 
 <p>现在我们假设浏览器缓存会被最先查找，正式来了解域名解析的过程:</p>
 <p><strong>一、</strong> 首先浏览器从 URL 提取出主机名，从浏览器 DNS 缓存中查找是否有对应的记录。</p>
 <p><strong>二、</strong> 应用缓存中没有找到记录的话，会进一步查找 hosts 文件是否有记录映射关系，有则停止下一步查找，并返回结果。</p>
 <p><strong>三、</strong> 如果前两步骤都没有找到对应的映射地址的话，将会向本地 DNS 服务器发送请求。以下对本步骤进行详细讲解：</p>
 <p>要了解 DNS 查询细节的话，那得先学习一下 DNS 的信息格式，然后我们可以安装 <a href="https://www.wireshark.org/" target="_blank" rel="noopener">Wireshark</a> 捕获请求分组来辅助学习：</p>
-{% asset_img dns-message.jpg dns message %}
+<img data-src="/blog/2018/04/06/URL-to-browser/dns-message.jpg" class="" title="dns message">
 
 <p>安装该软件后，点击<strong>开始捕获分组</strong>并在过滤器上输入 <code>dns</code> 后敲回车。接着在浏览器上访问 <code>zhihu.com</code> 捕获到如下数据：</p>
-{% asset_img dns-capture-1.png %}
+<img data-src="/blog/2018/04/06/URL-to-browser/dns-capture-1.png" class="">
 
 <p>从上图选中数据报的头部可以看出，这是是一个 <code>UDP/IPv4</code> 数据报，同时数据报带有 DNS 头部信息。</p>
 <p>这是一个标准的 DNS 查询，发送端 IP 地址是 <code>172.20.10.7</code>, 端口号为临时分配的 <code>49246</code>。这个数据报发往本地 DNS 服务器 <code>172.20.10.1</code>，端口号为知名 DNS 端口 <code>53</code>.</p>
@@ -640,7 +648,7 @@
 <blockquote>
 <p>Tips: DNS 协议分请求报文和响应报文。在面板上的 <code>No.</code> 一栏中两个箭头代表着查询发出与响应返回，具有对应关系。<br>在 Wireshark 面板下，Flags 内每一行代表着一个属性说明，看上去还是挺工整的。</p>
 </blockquote>
-{% asset_img dns-res.png %}
+<img data-src="/blog/2018/04/06/URL-to-browser/dns-res.png" class="">
 
 <ul>
 <li>第一个标志 <code>QR(Query / Response)</code> 占 1 个位，代表本条消息是查询(query, 0), 还是响应(response, 1)。</li>
@@ -655,18 +663,18 @@
 <li>第十个标志位 <code>RCODE(Response Code)</code> 占 4 位，表示响应的状态码，全零意味着没有错误(Not Error)。</li>
 </ul>
 <p>除了 <code>flags</code> 外，下面还有请求数(<code>Questions</code>)、回答记录数(DNS 消息格式示意图中的 <code>ANCOUNT</code>，Wireshark 上的 <code>Answer RRs</code>。其中 <code>RRs</code> 全称为 <code>Resource Records</code>，也就是资源记录)、授权记录数(<code>Authority RRs</code>)、其他额外信息数(<code>Additional RRs</code>)，这些都是字面意思，不过多解释。</p>
-{% asset_img dns-other-info.png %}
+<img data-src="/blog/2018/04/06/URL-to-browser/dns-other-info.png" class="">
 
 <p>在查询与响应中，我们可以看到有相同的 <code>Queries</code>，<code>Queries</code> 中有一个询问(<code>Querie</code>)。对于 DNS 查询意味着 DNS 客户端问 DNS 服务端问题，期望从它那边得到 <code>www.zhihu.com</code> 的 IP 地址。要求去 <code>IN(互联网)</code> 类中找到 <code>A 类型(IPv4 地址记录)</code> 的信息。对于 DNS 响应来说，这只是从查询那里拷贝过来的副本。</p>
-{% asset_img dns-queries.png %}
+<img data-src="/blog/2018/04/06/URL-to-browser/dns-queries.png" class="">
 
 <p>关于 <code>class</code> 可以在下表中找到对应的含义。<code>type</code> 类型略庞大，笔者仅从维基百科截取其中一部分:</p>
-{% asset_img dns-table-class.png %}
+<img data-src="/blog/2018/04/06/URL-to-browser/dns-table-class.png" class="">
 
-{% asset_img dns-table-type.png %}
+<img data-src="/blog/2018/04/06/URL-to-browser/dns-table-type.png" class="">
 
 <p>DNS 响应中还会有 <code>Answers</code> 这个属性，代表着它对 <code>Queries</code> 给出的答案:</p>
-{% asset_img dns-res-answers.png %}
+<img data-src="/blog/2018/04/06/URL-to-browser/dns-res-answers.png" class="">
 
 <p>在 <code>Answers</code> 中有三个域名、多条记录。</p>
 <ul>
@@ -685,10 +693,10 @@
 <p>下例将通过 <code>dig</code> 命令来查找 DNS，使用 <code>+trace</code> 参数指定从根名称服务器的委派路径到 <code>www.zhihu.com</code> 的跟踪。此例中发起查询请求的是本地 DNS 服务器(<code>172.20.10.1</code>)，但在实际域名解析中可能是由本地 DNS 服务器发送给 ISP DNS 服务器，再由 ISP DNS 服务器去向外查找。</p>
 <p>顺带一提，<code>dig</code> 命令还可以使用 <code>@DNS服务器</code> 指定 DNS 服务器来做进行查询解析，如指定 google 的 DNS 服务器可以添加参数 <code>@8.8.8.8</code>。</p>
 <p>下面还是以默认的 DNS 服务器进行解析，<code>dig</code> 命令在 unix 上是读取 <code>/etc/resolv.conf</code> 上的配置:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><code class="hljs log"># 若想指定谷歌的 DNS 服务器，那就在命令行输入:<br># dig @8.8.8.8 +trace www.zhihu.com<br><br>➜  blog git:(master) ✗ dig +trace www.zhihu.com<br><br>; &lt;&lt;&gt;&gt; DiG 9.10.6 &lt;&lt;&gt;&gt; +trace www.zhihu.com<br>;; global options: +cmd<br>.                       2364    IN      NS      k.root-servers.net.<br>.                       2364    IN      NS      l.root-servers.net.<br>.                       2364    IN      NS      c.root-servers.net.<br>.                       2364    IN      NS      m.root-servers.net.<br>.                       2364    IN      NS      i.root-servers.net.<br>.                       2364    IN      NS      j.root-servers.net.<br>.                       2364    IN      NS      h.root-servers.net.<br>.                       2364    IN      NS      b.root-servers.net.<br>.                       2364    IN      NS      f.root-servers.net.<br>.                       2364    IN      NS      g.root-servers.net.<br>.                       2364    IN      NS      e.root-servers.net.<br>.                       2364    IN      NS      a.root-servers.net.<br>.                       2364    IN      NS      d.root-servers.net.<br>;; Received 239 bytes from 172.20.10.1#53(172.20.10.1) in 5 ms<br><br>com.                    172800  IN      NS      l.gtld-servers.net.<br>com.                    172800  IN      NS      b.gtld-servers.net.<br>com.                    172800  IN      NS      c.gtld-servers.net.<br>com.                    172800  IN      NS      d.gtld-servers.net.<br>com.                    172800  IN      NS      e.gtld-servers.net.<br>com.                    172800  IN      NS      f.gtld-servers.net.<br>com.                    172800  IN      NS      g.gtld-servers.net.<br>com.                    172800  IN      NS      a.gtld-servers.net.<br>com.                    172800  IN      NS      h.gtld-servers.net.<br>com.                    172800  IN      NS      i.gtld-servers.net.<br>com.                    172800  IN      NS      j.gtld-servers.net.<br>com.                    172800  IN      NS      k.gtld-servers.net.<br>com.                    172800  IN      NS      m.gtld-servers.net.<br>com.                    86400   IN      DS      30909 8 2 E2D3C916F6DEEAC73294E8268FB5885044A833FC5459588F4A9184CF C41A5766<br>com.                    86400   IN      RRSIG   DS 8 1 86400 20191213050000 20191130040000 22545 . BIozVERNebmR+7eHRoc&#x2F;OdIMRMWX54unL5wW9wP6t16pfJ+CKswMl8cv YFVeJv0wBBDEbh9mKan5iJqDaWzEm&#x2F;ovgHWTJpP5EIuWJiV+Mi+LIhCI nw0zKYEL5QcPTIB3p6lxC5U7ngakgj4LX7eJZ8kIYocyBTZBKZHSCQh6 GCXAX6zJihuRDiFoC3OtXdhVGlrEIYeRX8FY+CUsPMLbGg4&#x2F;JSeTNMH8 cFFFqw&#x2F;4fbcKxq8xstRO5H40TKfFl7DtESDBahf2mjC9byjdpU5vteoH rIez3APISqKq2HJ9fBqDTkkjwkFMDy264MnGQjSSyZ3kvL&#x2F;DYvV0qios 6pQVLw&#x3D;&#x3D;<br>;; Received 1173 bytes from 192.5.5.241#53(f.root-servers.net) in 91 ms<br><br>zhihu.com.              172800  IN      NS      ns3.dnsv5.com.<br>zhihu.com.              172800  IN      NS      ns4.dnsv5.com.<br>CK0POJMG874LJREF7EFN8430QVIT8BSM.com. 86400 IN NSEC3 1 1 0 - CK0Q1GIN43N1ARRC9OSM6QPQR81H5M9A  NS SOA RRSIG DNSKEY NSEC3PARAM<br>CK0POJMG874LJREF7EFN8430QVIT8BSM.com. 86400 IN RRSIG NSEC3 8 2 86400 20191205054917 20191128043917 12163 com. ieaNZWBhpQYmsLR87RZURry7wNE+u9MlGQCA0q70qKsEWyDZ9QLQeB5f YO+KOK5xFOs6wKSYBAOg+rM+E4xKQZpg3&#x2F;bBy5JSJVz1Pb6vfR1KHipW Zpqe5j0ehBJHOzTiLCauoSztU02rMIEr857hOWRzqapxZ0HKri8nm62l 1LRCrw&#x2F;NMajpndWovkdqb9tMkibas&#x2F;REg5yGShiFf&#x2F;H3fw&#x3D;&#x3D;<br>5NHJE6K0NQHV1589FOR75DMTDH32O109.com. 86400 IN NSEC3 1 1 0 - 5NHJVBH070QGDCJIE8E8GBT5KO0AER7R  NS DS RRSIG<br>5NHJE6K0NQHV1589FOR75DMTDH32O109.com. 86400 IN RRSIG NSEC3 8 2 86400 20191204062552 20191127051552 12163 com. bS8kkx0QB2FpCHxscssiDYzIOgwj1ff1mN3+whV9CR1hWZnBWiZ51NW1 vVVBrkdOipkAkqS1mBXqQ&#x2F;3FMzjhyS7BJxu3VTv83IPCh5VHi3GahGsQ xpRaMJy07bJ94jnL85U260Etzqwp6Lh&#x2F;uk2lIaa39searrlHj7mz1dvr zB8zW+yfnIN3cQYVSPc+7CToo4ALJg0i9KC8aanCnHc38g&#x3D;&#x3D;<br>;; Received 969 bytes from 192.12.94.30#53(e.gtld-servers.net) in 568 ms<br><br>www.zhihu.com.          600     IN      CNAME   www.zhihu.com.dsa.dnsv1.com.<br>zhihu.com.              86400   IN      NS      ns3.dnsv5.com.<br>zhihu.com.              86400   IN      NS      ns4.dnsv5.com.<br>;; Received 137 bytes from 182.254.20.44#53(ns4.dnsv5.com) in 68 ms<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"># 若想指定谷歌的 DNS 服务器，那就在命令行输入:</span><br><span class="line"># dig @8.8.8.8 +trace www.zhihu.com</span><br><span class="line"></span><br><span class="line">➜  blog git:(master) ✗ dig +trace www.zhihu.com</span><br><span class="line"></span><br><span class="line">; &lt;&lt;&gt;&gt; DiG 9.10.6 &lt;&lt;&gt;&gt; +trace www.zhihu.com</span><br><span class="line">;; global options: +cmd</span><br><span class="line">.                       2364    IN      NS      k.root-servers.net.</span><br><span class="line">.                       2364    IN      NS      l.root-servers.net.</span><br><span class="line">.                       2364    IN      NS      c.root-servers.net.</span><br><span class="line">.                       2364    IN      NS      m.root-servers.net.</span><br><span class="line">.                       2364    IN      NS      i.root-servers.net.</span><br><span class="line">.                       2364    IN      NS      j.root-servers.net.</span><br><span class="line">.                       2364    IN      NS      h.root-servers.net.</span><br><span class="line">.                       2364    IN      NS      b.root-servers.net.</span><br><span class="line">.                       2364    IN      NS      f.root-servers.net.</span><br><span class="line">.                       2364    IN      NS      g.root-servers.net.</span><br><span class="line">.                       2364    IN      NS      e.root-servers.net.</span><br><span class="line">.                       2364    IN      NS      a.root-servers.net.</span><br><span class="line">.                       2364    IN      NS      d.root-servers.net.</span><br><span class="line">;; Received 239 bytes from 172.20.10.1#53(172.20.10.1) in 5 ms</span><br><span class="line"></span><br><span class="line">com.                    172800  IN      NS      l.gtld-servers.net.</span><br><span class="line">com.                    172800  IN      NS      b.gtld-servers.net.</span><br><span class="line">com.                    172800  IN      NS      c.gtld-servers.net.</span><br><span class="line">com.                    172800  IN      NS      d.gtld-servers.net.</span><br><span class="line">com.                    172800  IN      NS      e.gtld-servers.net.</span><br><span class="line">com.                    172800  IN      NS      f.gtld-servers.net.</span><br><span class="line">com.                    172800  IN      NS      g.gtld-servers.net.</span><br><span class="line">com.                    172800  IN      NS      a.gtld-servers.net.</span><br><span class="line">com.                    172800  IN      NS      h.gtld-servers.net.</span><br><span class="line">com.                    172800  IN      NS      i.gtld-servers.net.</span><br><span class="line">com.                    172800  IN      NS      j.gtld-servers.net.</span><br><span class="line">com.                    172800  IN      NS      k.gtld-servers.net.</span><br><span class="line">com.                    172800  IN      NS      m.gtld-servers.net.</span><br><span class="line">com.                    86400   IN      DS      30909 8 2 E2D3C916F6DEEAC73294E8268FB5885044A833FC5459588F4A9184CF C41A5766</span><br><span class="line">com.                    86400   IN      RRSIG   DS 8 1 86400 20191213050000 20191130040000 22545 . BIozVERNebmR+7eHRoc&#x2F;OdIMRMWX54unL5wW9wP6t16pfJ+CKswMl8cv YFVeJv0wBBDEbh9mKan5iJqDaWzEm&#x2F;ovgHWTJpP5EIuWJiV+Mi+LIhCI nw0zKYEL5QcPTIB3p6lxC5U7ngakgj4LX7eJZ8kIYocyBTZBKZHSCQh6 GCXAX6zJihuRDiFoC3OtXdhVGlrEIYeRX8FY+CUsPMLbGg4&#x2F;JSeTNMH8 cFFFqw&#x2F;4fbcKxq8xstRO5H40TKfFl7DtESDBahf2mjC9byjdpU5vteoH rIez3APISqKq2HJ9fBqDTkkjwkFMDy264MnGQjSSyZ3kvL&#x2F;DYvV0qios 6pQVLw&#x3D;&#x3D;</span><br><span class="line">;; Received 1173 bytes from 192.5.5.241#53(f.root-servers.net) in 91 ms</span><br><span class="line"></span><br><span class="line">zhihu.com.              172800  IN      NS      ns3.dnsv5.com.</span><br><span class="line">zhihu.com.              172800  IN      NS      ns4.dnsv5.com.</span><br><span class="line">CK0POJMG874LJREF7EFN8430QVIT8BSM.com. 86400 IN NSEC3 1 1 0 - CK0Q1GIN43N1ARRC9OSM6QPQR81H5M9A  NS SOA RRSIG DNSKEY NSEC3PARAM</span><br><span class="line">CK0POJMG874LJREF7EFN8430QVIT8BSM.com. 86400 IN RRSIG NSEC3 8 2 86400 20191205054917 20191128043917 12163 com. ieaNZWBhpQYmsLR87RZURry7wNE+u9MlGQCA0q70qKsEWyDZ9QLQeB5f YO+KOK5xFOs6wKSYBAOg+rM+E4xKQZpg3&#x2F;bBy5JSJVz1Pb6vfR1KHipW Zpqe5j0ehBJHOzTiLCauoSztU02rMIEr857hOWRzqapxZ0HKri8nm62l 1LRCrw&#x2F;NMajpndWovkdqb9tMkibas&#x2F;REg5yGShiFf&#x2F;H3fw&#x3D;&#x3D;</span><br><span class="line">5NHJE6K0NQHV1589FOR75DMTDH32O109.com. 86400 IN NSEC3 1 1 0 - 5NHJVBH070QGDCJIE8E8GBT5KO0AER7R  NS DS RRSIG</span><br><span class="line">5NHJE6K0NQHV1589FOR75DMTDH32O109.com. 86400 IN RRSIG NSEC3 8 2 86400 20191204062552 20191127051552 12163 com. bS8kkx0QB2FpCHxscssiDYzIOgwj1ff1mN3+whV9CR1hWZnBWiZ51NW1 vVVBrkdOipkAkqS1mBXqQ&#x2F;3FMzjhyS7BJxu3VTv83IPCh5VHi3GahGsQ xpRaMJy07bJ94jnL85U260Etzqwp6Lh&#x2F;uk2lIaa39searrlHj7mz1dvr zB8zW+yfnIN3cQYVSPc+7CToo4ALJg0i9KC8aanCnHc38g&#x3D;&#x3D;</span><br><span class="line">;; Received 969 bytes from 192.12.94.30#53(e.gtld-servers.net) in 568 ms</span><br><span class="line"></span><br><span class="line">www.zhihu.com.          600     IN      CNAME   www.zhihu.com.dsa.dnsv1.com.</span><br><span class="line">zhihu.com.              86400   IN      NS      ns3.dnsv5.com.</span><br><span class="line">zhihu.com.              86400   IN      NS      ns4.dnsv5.com.</span><br><span class="line">;; Received 137 bytes from 182.254.20.44#53(ns4.dnsv5.com) in 68 ms</span><br></pre></td></tr></table></figure>
 
 <p>在上面的日志可以看出，名称解析是从右向左进行解析的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs log">now location: www.zhihu.com.<br>                           ^<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">now location: www.zhihu.com.</span><br><span class="line">                           ^</span><br></pre></td></tr></table></figure>
 
 <p>最先查找的是根名称服务器。<code>172.20.10.1</code> (本地 DNS 服务器)逐个询问根域名服务器(根名称服务器地址全球只有 13 个)：“朋友，你知道 <code>www.zhihu.com</code> 的 IP 地址是什么？”。根名称服务器收到该询问后，若它自己不知道关于 <code>www.zhihu.com</code> 的相关信息，它直接告诉发起查询请求的 <code>172.20.10.1</code> 说它不清楚。那 <code>172.20.10.1</code> 就会询问下一个根名称服务器。这一个查询过程就由递归解析变为了迭代解析。</p>
 <p>在不断的根域名迭代查询后，终于有根域名服务器知道我们想要查询域名的信息：</p>
@@ -696,7 +704,7 @@
 <li><code>172.20.10.1</code>: “朋友，你知道 <code>www.zhihu.com</code> 的 IP 地址是什么？”</li>
 <li><code>f.root-servers.net</code>: “虽然我不知道具体地址映射，但你可以从 <code>COM TLD</code> 找到相关的线索。我有 <code>COM TLD</code> 的地址，你可以去问问他们”</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs log">now location: www.zhihu.com.<br>                        ^^^^<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">now location: www.zhihu.com.</span><br><span class="line">                        ^^^^</span><br></pre></td></tr></table></figure>
 
 <p><code>172.20.10.1</code> 在跟域名服务器(<code>f.root-servers.net</code>)上拿到了 <code>gTLD</code> 服务器信息，这些服务器的名称都是像 <code>l.gtld-servers.net.</code>、<code>b.gtld-servers.net.</code> 的格式。</p>
 <p><code>172.20.10.1</code> 为了得到满足我们的需求还是得逐个拜访这些顶级域名服务器(os: 没办法，托人办事就是这样的)。询问的方式跟上面访问根域名服务器类似，直到问到了合适的人(<code>e.gtld-servers.net</code>)。</p>
@@ -704,12 +712,12 @@
 <li><code>172.20.10.1</code>: “朋友，你知道 <code>www.zhihu.com</code> 的 IP 地址是什么？”</li>
 <li><code>e.gtld-servers.net</code> : “我这边有 <code>zhihu.com.</code> 的记录，我把它的联系方式给你，你问问它”。</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs log">now location: www.zhihu.com.<br>                  ^^^^^^^^^^<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">now location: www.zhihu.com.</span><br><span class="line">                  ^^^^^^^^^^</span><br></pre></td></tr></table></figure>
 
 <p>从 <code>e.gtld-servers.net</code> 返回了 <code>zhihu.com.</code> 的相关消息。但还得继续迭代查询 <code>www.zhihu.com.</code> 的消息，最终在 <code>ns4.dnsv5.com</code> 找到了我们的目标信息。</p>
 <p>虽然 <code>172.20.10.1</code> 拿到了 <code>www.zhihu.com.</code> 的信息，但它发现这是一条 <code>CNAME</code> 记录，它被映射到了 <code>www.zhihu.com.dsa.dnsv1.com.</code> 域名上。这意味着如果 <code>www.zhihu.com.dsa.dnsv1.com.</code> 没有再通过 CNAME 映射到别的域名上的话，那 <code>172.20.10.1</code> 想要找的 IP 地址就是 <code>www.zhihu.com.dsa.dnsv1.com.</code> 的 IP 地址。若有再映射，就继续查找，直到找到没有再被映射的域名，最后再将该结果返回。</p>
 <p>至于为什么会映射到 <code>www.zhihu.com.dsa.dnsv1.com.</code>，前文已经讲解过，此处就不再重复赘述。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs log">now location: www.zhihu.com.<br>              ^^^^^^^^^^^^^^<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">now location: www.zhihu.com.</span><br><span class="line">              ^^^^^^^^^^^^^^</span><br></pre></td></tr></table></figure>
 
 <p>从上面的几个大步骤可以看出：从客户端与本地 DNS 服务器的查询是属于递归查询，而 ISP DNS 服务器与外部 DNS 服务器之间的查询一般都是迭代查询。</p>
 <p><strong>本章参考资料:</strong></p>
@@ -980,9 +988,9 @@
 
         <div class="reward-container">
   <div></div>
-    <div style="color: grey;">「请笔者喝杯奶茶支持一下创作~」</div>
+    <div style="color: grey;">「请笔者喝杯奶茶鼓励一下」</div>
   <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
-    Donate
+    赞助
   </button>
   <div id="qr" style="display: none;">
       
@@ -1188,7 +1196,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/blog/tags/">
           
-        <span class="site-state-item-count">82</span>
+        <span class="site-state-item-count">83</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1226,28 +1234,24 @@
     </ul>
   </div>
   <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title">
-      <i class="fa fa-fw fa-wikipedia-w"></i>
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
       常用网站
     </div>
     <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item" style="display: block">
+        <li class="links-of-blogroll-item">
           <a href="https://caniuse.com/" title="https:&#x2F;&#x2F;caniuse.com&#x2F;" rel="noopener" target="_blank">Caniuse(CSS兼容性)</a>
         </li>
-        <li class="links-of-blogroll-item" style="display: block">
+        <li class="links-of-blogroll-item">
           <a href="https://developer.mozilla.org/zh-CN/" title="https:&#x2F;&#x2F;developer.mozilla.org&#x2F;zh-CN&#x2F;" rel="noopener" target="_blank">MDN(web 文档)</a>
         </li>
-        <li class="links-of-blogroll-item" style="display: block">
+        <li class="links-of-blogroll-item">
           <a href="https://codepen.io/" title="https:&#x2F;&#x2F;codepen.io&#x2F;" rel="noopener" target="_blank">codepen</a>
         </li>
-        <li class="links-of-blogroll-item" style="display: block">
+        <li class="links-of-blogroll-item">
           <a href="https://tinypng.com/" title="https:&#x2F;&#x2F;tinypng.com&#x2F;" rel="noopener" target="_blank">Tinypng(图片压缩)</a>
         </li>
     </ul>
   </div>
-
-
-        
 
       </div>
 
@@ -1286,7 +1290,7 @@
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     <span title="站点阅读时长">1:25</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
   <div class="addthis_inline_share_toolbox">
     <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=5d560b378f0db5fa" async="async"></script>

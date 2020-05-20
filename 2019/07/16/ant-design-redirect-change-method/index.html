@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 4.2.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
@@ -24,7 +24,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"anran758.github.io","root":"/blog/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"manual"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"anran758.github.io","root":"/blog/","scheme":"Muse","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"manual"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="最近在 ant design pro 的项目遇到了一个奇怪的问题，在输入命令行npm run start:no-mock后，发现预期发出POST请求变成了GET请求，状态码是301永久重定向。而在使用mock数据中不会出现这种问题。">
@@ -37,9 +37,9 @@
 <meta property="article:published_time" content="2019-07-16T13:37:01.000Z">
 <meta property="article:modified_time" content="2019-08-19T05:14:46.000Z">
 <meta property="article:author" content="anran758">
+<meta property="article:tag" content="HTTP">
 <meta property="article:tag" content="ant design pro">
 <meta property="article:tag" content="react">
-<meta property="article:tag" content="HTTP">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://anran758.github.io/blog/2019/07/16/ant-design-redirect-change-method/">
@@ -114,9 +114,9 @@
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
 
@@ -135,7 +135,6 @@
     </div>
   </div>
 </div>
-
 
 
 
@@ -163,7 +162,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>时间轴</a>
+    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -319,7 +318,7 @@
 <p>因此使用断点调试，经过一番尝试，逐步检查函数的调用及传参问题，最后也将此问题排除掉了。</p>
 <p>随后想到问题是不是出现在类库身上，接口是基于<code>dva/fetch</code>进行封装的，而<code>dva/fetch</code>又是基于浏览器原生(<code>native code</code>)的<code>fetch</code>进行封装. 使用断点并没有进入<code>fetch</code>内部。</p>
 <p>为了缩小范围，将发出请求的参数和方法从<code>Network</code>中拷贝下来，使用<code>fetch</code>直接调用，发现只要不经过<code>umi</code>类处理就不会出现这种现象。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 通过 dva/fetch</span><br><span class="hljs-comment">// request('/api/login', &#123; method: 'POST', body: &#123;username, password&#125; &#125;)</span><br><br><span class="hljs-comment">// 直接调用原生 fetch</span><br>request(<span class="hljs-string">'https://zzz.xxx.com/api/login'</span>, &#123; <span class="hljs-attr">method</span>: <span class="hljs-string">'POST'</span>, <span class="hljs-attr">body</span>: &#123;username, password&#125; &#125;)<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过 dva/fetch</span></span><br><span class="line"><span class="comment">// request('/api/login', &#123; method: 'POST', body: &#123;username, password&#125; &#125;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 直接调用原生 fetch</span></span><br><span class="line">request(<span class="string">'https://zzz.xxx.com/api/login'</span>, &#123; <span class="attr">method</span>: <span class="string">'POST'</span>, <span class="attr">body</span>: &#123;username, password&#125; &#125;)</span><br></pre></td></tr></table></figure>
 
 <p>随后在<code>network</code>上我注意到，通过<code>umi</code>处理后的请求<code>URL</code>有点奇怪:</p>
 <p>虽然我没有研究过<code>umi</code>的具体实现细节，但可以推测出<code>umi</code>是通过<code>config</code>拿到<code>proxy.target</code>作为<code>base url</code>. 但项目中<code>target</code>使用的协议是<code>http</code>协议，在实际的<code>network</code>中被转换为了<code>https</code>. </p>
@@ -328,7 +327,7 @@
 <p>从网络原理来考虑，这种情况应该是在客户端发生的，为了排除服务端重定向的嫌疑，使用了抓包查看了没有经过浏览器格式的报文信息，确定了是客户端的问题。接着去看了部分源码也没有看到相关的逻辑。</p>
 <p>最后近期业务量还挺重的，因此在此文记录一下，后序会继续关注一下这个问题，了解到原因再回来补充。</p>
 <p>由于项目是运行在内网中，因此没有升级<code>umi</code>最新版本(内网可能没有最新的版本的镜像), 也有可能在最新版已经修复但没有继续尝试了。如果有遇到相同问题的同学可以了解一下这个情况。</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs JSON">&#123;<br>    <span class="hljs-attr">"umi"</span>: <span class="hljs-string">"^2.0.1"</span>,<br>    <span class="hljs-attr">"umi-plugin-react"</span>: <span class="hljs-string">"^1.0.1"</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"umi"</span>: <span class="string">"^2.0.1"</span>,</span><br><span class="line">    <span class="attr">"umi-plugin-react"</span>: <span class="string">"^1.0.1"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -350,9 +349,9 @@
 
         <div class="reward-container">
   <div></div>
-    <div style="color: grey;">「请笔者喝杯奶茶支持一下创作~」</div>
+    <div style="color: grey;">「请笔者喝杯奶茶鼓励一下」</div>
   <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
-    Donate
+    赞助
   </button>
   <div id="qr" style="display: none;">
       
@@ -428,9 +427,9 @@
 
       <footer class="post-footer">
           <div class="post-tags">
+              <a href="/blog/tags/HTTP/" rel="tag"># HTTP</a>
               <a href="/blog/tags/ant-design-pro/" rel="tag"># ant design pro</a>
               <a href="/blog/tags/react/" rel="tag"># react</a>
-              <a href="/blog/tags/HTTP/" rel="tag"># HTTP</a>
           </div>
 
         
@@ -557,7 +556,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/blog/tags/">
           
-        <span class="site-state-item-count">82</span>
+        <span class="site-state-item-count">83</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -595,28 +594,24 @@
     </ul>
   </div>
   <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title">
-      <i class="fa fa-fw fa-wikipedia-w"></i>
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
       常用网站
     </div>
     <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item" style="display: block">
+        <li class="links-of-blogroll-item">
           <a href="https://caniuse.com/" title="https:&#x2F;&#x2F;caniuse.com&#x2F;" rel="noopener" target="_blank">Caniuse(CSS兼容性)</a>
         </li>
-        <li class="links-of-blogroll-item" style="display: block">
+        <li class="links-of-blogroll-item">
           <a href="https://developer.mozilla.org/zh-CN/" title="https:&#x2F;&#x2F;developer.mozilla.org&#x2F;zh-CN&#x2F;" rel="noopener" target="_blank">MDN(web 文档)</a>
         </li>
-        <li class="links-of-blogroll-item" style="display: block">
+        <li class="links-of-blogroll-item">
           <a href="https://codepen.io/" title="https:&#x2F;&#x2F;codepen.io&#x2F;" rel="noopener" target="_blank">codepen</a>
         </li>
-        <li class="links-of-blogroll-item" style="display: block">
+        <li class="links-of-blogroll-item">
           <a href="https://tinypng.com/" title="https:&#x2F;&#x2F;tinypng.com&#x2F;" rel="noopener" target="_blank">Tinypng(图片压缩)</a>
         </li>
     </ul>
   </div>
-
-
-        
 
       </div>
 
@@ -655,7 +650,7 @@
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     <span title="站点阅读时长">1:25</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
   <div class="addthis_inline_share_toolbox">
     <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=5d560b378f0db5fa" async="async"></script>

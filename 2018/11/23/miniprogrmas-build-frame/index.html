@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 4.2.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
@@ -24,7 +24,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"anran758.github.io","root":"/blog/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"manual"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"anran758.github.io","root":"/blog/","scheme":"Muse","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"manual"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="在工作中也做了好几个小程序项目了，正好抽空将小程序开发的一些知识重新整理一下~">
@@ -116,9 +116,9 @@
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
 
@@ -137,7 +137,6 @@
     </div>
   </div>
 </div>
-
 
 
 
@@ -165,7 +164,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>时间轴</a>
+    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -336,34 +335,34 @@
 <li><code>app.json</code> 小程序进行全局配置，决定页面文件的路径、窗口表现、设置网络超时时间、设置多 tab 等。</li>
 <li><code>app.wxss</code>  全局样式，作用于每一个页面。但注意的是<code>app.wxss</code>写的全局样式不会影响组件内的样式。</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs plain">├── app.js<br>├── app.json<br>├── app.wxss<br>└── project.config.json<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">├── app.js</span><br><span class="line">├── app.json</span><br><span class="line">├── app.wxss</span><br><span class="line">└── project.config.json</span><br></pre></td></tr></table></figure>
 
 <h3 id="页面"><a href="#页面" class="headerlink" title="页面"></a>页面</h3><p>小程序是由许多页面组成的，因此我们需要一个目录来存放页面, 我们通常把这个文件夹命名为<code>/pages/</code>。<code>app.json</code>的<code>pages</code>是一个数组，数组的每一项是用来指定页面的路径，框架会根据路径自动去寻找相对位置的四类文件(小程序的代码构成)。数组第一项为小程序入口页面。</p>
 <p>每个页面为单独的一个目录, 页面的四类文件使用统一的名称。这里我们跟官方同步，四类文件跟随目录的名称走:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs plain">├── pages<br>│   │── home<br>│   │   ├── home.wxml<br>│   │   ├── home.js<br>│   │   ├── home.json<br>│   │   └── home.wxss<br>│   └── user<br>│       ├── user.wxml<br>│       └── user.js<br>├── ...<br>└── project.config.json<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">├── pages</span><br><span class="line">│   │── home</span><br><span class="line">│   │   ├── home.wxml</span><br><span class="line">│   │   ├── home.js</span><br><span class="line">│   │   ├── home.json</span><br><span class="line">│   │   └── home.wxss</span><br><span class="line">│   └── user</span><br><span class="line">│       ├── user.wxml</span><br><span class="line">│       └── user.js</span><br><span class="line">├── ...</span><br><span class="line">└── project.config.json</span><br></pre></td></tr></table></figure>
 
 <p>除此之外，在开发小程序时，页面是会分主要页面和次要页面(子页)，子页通常是一些列表页详情页的东西。理论上只会有一个入口能跳的过去那种二级页面。如果这样的子页一多，然后全都放在了<code>/pages/</code>目录下，就会导致目录列表变得庞大，会比较难找…</p>
 <p>这时可以考虑换一种方式储存，在页面文件夹里再加一个文件夹, 名为<code>subpage</code>。把子页放在这个文件夹内，这样层级关系就清晰了，缺点就是不适合套太深。或者说一个产品也不应该把页面藏得太深让用户找不到…</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs plain">├── pages<br>│   └── home<br>│       ├── subpage<br>│       │   └── detail<br>│       │       ├── index.wxml<br>│       │       └── ...<br>│       ├── home.wxml<br>│       └── ...<br>├── ...<br>└── project.config.json<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">├── pages</span><br><span class="line">│   └── home</span><br><span class="line">│       ├── subpage</span><br><span class="line">│       │   └── detail</span><br><span class="line">│       │       ├── index.wxml</span><br><span class="line">│       │       └── ...</span><br><span class="line">│       ├── home.wxml</span><br><span class="line">│       └── ...</span><br><span class="line">├── ...</span><br><span class="line">└── project.config.json</span><br></pre></td></tr></table></figure>
 
 <p>至于项目简单一些的话前者会好一点(子页命名参照<code>master-description</code>的格式)，页面太过复杂的话可能会比较推荐使用后者的方式。</p>
 <h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p>既然有了页面，那么页面必不可免会需要引用到图片。图片大致可以分为<strong>业务类</strong>和<strong>公共类</strong>。一些可以复用的图片我们可以放在同一个地方统一管理。而业务类则放在对应的页面目录下, 命名格式推荐为<code>dir@description</code>:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs plain">├── iamges (公共图片)<br>│   │── icon<br>│   │   ├── icon@download.png<br>│   │   └── icon@cancel.png<br>|   └── ...<br>├── pages<br>│   └── index<br>│       ├── images<br>│       |   └── index@bg.png<br>│       |   └── index@video.png<br>│       ├── index.wxml<br>│       ├── index.js<br>│       ├── index.json<br>│       └── index.wxss<br>├── ...<br>└── project.config.json<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">├── iamges (公共图片)</span><br><span class="line">│   │── icon</span><br><span class="line">│   │   ├── icon@download.png</span><br><span class="line">│   │   └── icon@cancel.png</span><br><span class="line">|   └── ...</span><br><span class="line">├── pages</span><br><span class="line">│   └── index</span><br><span class="line">│       ├── images</span><br><span class="line">│       |   └── index@bg.png</span><br><span class="line">│       |   └── index@video.png</span><br><span class="line">│       ├── index.wxml</span><br><span class="line">│       ├── index.js</span><br><span class="line">│       ├── index.json</span><br><span class="line">│       └── index.wxss</span><br><span class="line">├── ...</span><br><span class="line">└── project.config.json</span><br></pre></td></tr></table></figure>
 
 <p>但值得注意的是，在<strong>js</strong>中使用<code>import</code>引入图片时不能通过根目录进行查找，而<code>wxml</code>则没有这种限制。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-comment">&lt;!-- 绝对路径 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">images</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/images/icon@download.png"</span> /&gt;</span><br><br><span class="hljs-comment">&lt;!-- 相对路径 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">images</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"./images/index@video.png"</span> /&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 绝对路径 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">images</span> <span class="attr">src</span>=<span class="string">"/images/icon@download.png"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 相对路径 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">images</span> <span class="attr">src</span>=<span class="string">"./images/index@video.png"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 会报错</span><br><span class="hljs-keyword">import</span> iconDownload <span class="hljs-keyword">from</span> <span class="hljs-string">'/images/icon@download.png'</span><br><span class="hljs-comment">// 只能使用相对路径</span><br><span class="hljs-keyword">import</span> iconDownload <span class="hljs-keyword">from</span> <span class="hljs-string">'/../../icon@download.png'</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 会报错</span></span><br><span class="line"><span class="keyword">import</span> iconDownload <span class="keyword">from</span> <span class="string">'/images/icon@download.png'</span></span><br><span class="line"><span class="comment">// 只能使用相对路径</span></span><br><span class="line"><span class="keyword">import</span> iconDownload <span class="keyword">from</span> <span class="string">'/../../icon@download.png'</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="样式"><a href="#样式" class="headerlink" title="样式"></a>样式</h3><p>写完页面后自然需要给页面润色, 我们可以通过在页面的<code>.wxss</code>来写局部样式，这没问题。但在我们完成一个又一个页面后，这时你可能会发现有些页面的样式<strong>重复性</strong>太高了。</p>
 <p>因为一个成熟的设计师，在设计每一个产品时，大多会有一套设计风格或者称之为主题的东西。这些元素大量重复在各个页面中，我们重复写这些样式实际上代码是有点冗余的。</p>
 <img data-src="/blog/2018/11/23/miniprogrmas-build-frame/button.png" class="" title="主题按钮">
 
 <p>这时有经验的开发者很自然就会想到将重复性的代码抽出来，所幸微信提供了<code>@import</code>语句可以导入外联样式表。而这些通用的样式可以放在<code>/style/</code>目录下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs plain">├── style<br>│   ├── button.wxss<br>│   └── ...<br>├── ...<br>└── project.config.json<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">├── style</span><br><span class="line">│   ├── button.wxss</span><br><span class="line">│   └── ...</span><br><span class="line">├── ...</span><br><span class="line">└── project.config.json</span><br></pre></td></tr></table></figure>
 
 <p>直接在<code>.wxss</code>的顶层引入即可复用。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-keyword">@improt</span> <span class="hljs-string">'/style/button.wxss'</span>;<br><br><span class="hljs-comment">/* other code */</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@improt</span> <span class="string">'/style/button.wxss'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* other code */</span></span><br></pre></td></tr></table></figure>
 
 <p>至于是为何不在<code>app.json</code>中设定全局样式而单独抽出来的原因也是前文所提及的问题————组件中默认情况下不受全局样式影响的，理论上组件也不该受到外部样式的”无意“的影响。<br>但<code>app.json</code>中的样式只需要加载一次就全局可用，外部样式就不一定了(因为没有实际的调研过)，而且还需要额外的去做引入的那一步。具体用哪一种方式还是要看具体情况来自己斟酌啦~</p>
 <p>还有一些方法，比如使用<code>scss</code>、<code>less</code>之类的预处理之类的方案，也是可以，只不过超出了本文的讨论范围，不展开讲。</p>
@@ -371,19 +370,19 @@
 <p>全局性是指那种封装了登录、弹框、动画组件等等之类的组件，局部的大多是减轻一个页面内的复杂度，通过模块”搭积木”的方式来组成一个页面。即使某个功能砍了也能对页面减少牵连。</p>
 <p>我们习惯于将全局性的东西放在源码的根目录上，因此会在根目录上创建<code>/components</code>文件夹，里面存放全局性的组件。<br>其中全局性的组件有不少会有同等类型的组件，因为可以再进一步的分类，如动画类组件存放为一个文件夹内。<br>再利用编辑器的文件名排序的特性，可以加上<code>@</code>提前组件集合。</p>
 <p>组件下的四类文件按照<code>componment/index</code>的方式命名与<code>page</code>区分。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs plain">├── componments (公共组件)<br>│   │── anima<br>│   │   ├── coin<br>│   |   |   ├── index.js<br>│   |   |   └── ...<br>│   │   └── liquid<br>│   |       └── ...<br>|   └── ...<br>├── pages<br>│   └── home<br>│       ├── componments<br>│       |   └── goods<br>│       |     ├── index.wxml<br>│       |     └── ...<br>│       ├── home.wxml<br>│       ├── home.js<br>│       ├── home.json<br>│       └── home.wxss<br>├── ...<br>└── project.config.json<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">├── componments (公共组件)</span><br><span class="line">│   │── anima</span><br><span class="line">│   │   ├── coin</span><br><span class="line">│   |   |   ├── index.js</span><br><span class="line">│   |   |   └── ...</span><br><span class="line">│   │   └── liquid</span><br><span class="line">│   |       └── ...</span><br><span class="line">|   └── ...</span><br><span class="line">├── pages</span><br><span class="line">│   └── home</span><br><span class="line">│       ├── componments</span><br><span class="line">│       |   └── goods</span><br><span class="line">│       |     ├── index.wxml</span><br><span class="line">│       |     └── ...</span><br><span class="line">│       ├── home.wxml</span><br><span class="line">│       ├── home.js</span><br><span class="line">│       ├── home.json</span><br><span class="line">│       └── home.wxss</span><br><span class="line">├── ...</span><br><span class="line">└── project.config.json</span><br></pre></td></tr></table></figure>
 
 <h3 id="utils"><a href="#utils" class="headerlink" title="utils"></a>utils</h3><p>在原生小程序开发中，一般在源码的根目录下，都会有一个<code>utils</code>文件夹，专门来干杂七杂八的脏话累活。其中包含工具类函数、<code>API</code>的管理、配置信息等。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs plain">├── utils (工具集)<br>│   │── api<br>│   │   └── ...<br>|   ├── ... (其他工具类)<br>|   ├── config.js<br>|   └── local.config.js (本地配置，git忽略)<br>├── ...<br>└── project.config.json<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">├── utils (工具集)</span><br><span class="line">│   │── api</span><br><span class="line">│   │   └── ...</span><br><span class="line">|   ├── ... (其他工具类)</span><br><span class="line">|   ├── config.js</span><br><span class="line">|   └── local.config.js (本地配置，git忽略)</span><br><span class="line">├── ...</span><br><span class="line">└── project.config.json</span><br></pre></td></tr></table></figure>
 
 <h3 id="分包"><a href="#分包" class="headerlink" title="分包"></a>分包</h3><p>当小程序的资源大小超过了<code>2M</code>时，进行预览调试时就会报文件过大的错误，这时你可能就需要进行分包，将资源分开加载。小程序文档给出的目录结构是:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs plain">├── app.js<br>├── app.json<br>├── app.wxss<br>├── packageA<br>│   └── pages<br>│       ├── cat<br>│       └── dog<br>├── packageB<br>│   └── pages<br>│       ├── apple<br>│       └── banana<br>├── pages<br>│   ├── index<br>│   └── user<br>└── utils<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">├── app.js</span><br><span class="line">├── app.json</span><br><span class="line">├── app.wxss</span><br><span class="line">├── packageA</span><br><span class="line">│   └── pages</span><br><span class="line">│       ├── cat</span><br><span class="line">│       └── dog</span><br><span class="line">├── packageB</span><br><span class="line">│   └── pages</span><br><span class="line">│       ├── apple</span><br><span class="line">│       └── banana</span><br><span class="line">├── pages</span><br><span class="line">│   ├── index</span><br><span class="line">│   └── user</span><br><span class="line">└── utils</span><br></pre></td></tr></table></figure>
 
 <p>但经过我们在项目中尝试，我们发现通过编辑器的字符串排序后，会破坏目录结构的清晰度，所以推荐将分包放置到一个文件夹内。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs plain">├── subpackages (分包)<br>│   │── news<br>│   │   └── ...<br>|   └── store<br>│       └── ...<br>├── ...<br>└── project.config.json<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">├── subpackages (分包)</span><br><span class="line">│   │── news</span><br><span class="line">│   │   └── ...</span><br><span class="line">|   └── store</span><br><span class="line">│       └── ...</span><br><span class="line">├── ...</span><br><span class="line">└── project.config.json</span><br></pre></td></tr></table></figure>
 
 <h2 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h2><p>最后的一个小程序项目主体结构大致是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs plain">├── components (公共组件目录)<br>│   ├── @anima (动画组件)<br>│   └── ...<br>├── images（公共图片）<br>│   └── icon<br>│      ├── icon@download.png<br>│      └── icon@cancel.png<br>├── pages（主包目录）<br>│   └── home (app.json 设置的入口页)<br>│       ├── home.wxml<br>│       ├── home.js<br>│       ├── home.json<br>│       └── home.wxss<br>├── style（公用样式目录）<br>├── subpackages（分包目录）<br>│   │── news<br>|   └── store<br>├── utils（公共模块，工具类）<br>│   ├── config.js（项目配置）<br>│   └── local.config.js (本地配置，git忽略)<br>├── .editorconfig<br>├── .gitignore<br>├── app.js<br>├── app.json<br>├── app.wxss<br>├── project.config.json<br>└── README.md<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">├── components (公共组件目录)</span><br><span class="line">│   ├── @anima (动画组件)</span><br><span class="line">│   └── ...</span><br><span class="line">├── images（公共图片）</span><br><span class="line">│   └── icon</span><br><span class="line">│      ├── icon@download.png</span><br><span class="line">│      └── icon@cancel.png</span><br><span class="line">├── pages（主包目录）</span><br><span class="line">│   └── home (app.json 设置的入口页)</span><br><span class="line">│       ├── home.wxml</span><br><span class="line">│       ├── home.js</span><br><span class="line">│       ├── home.json</span><br><span class="line">│       └── home.wxss</span><br><span class="line">├── style（公用样式目录）</span><br><span class="line">├── subpackages（分包目录）</span><br><span class="line">│   │── news</span><br><span class="line">|   └── store</span><br><span class="line">├── utils（公共模块，工具类）</span><br><span class="line">│   ├── config.js（项目配置）</span><br><span class="line">│   └── local.config.js (本地配置，git忽略)</span><br><span class="line">├── .editorconfig</span><br><span class="line">├── .gitignore</span><br><span class="line">├── app.js</span><br><span class="line">├── app.json</span><br><span class="line">├── app.wxss</span><br><span class="line">├── project.config.json</span><br><span class="line">└── README.md</span><br></pre></td></tr></table></figure>
 
 <p>以上是从原生小程序开发的角度来对项目结构的设计进行一个思路总结，没有过多的讲更深入的东西。下一期想整理一下关于<code>API</code>封装和管理，欢迎指导~</p>
 
@@ -403,9 +402,9 @@
 
         <div class="reward-container">
   <div></div>
-    <div style="color: grey;">「请笔者喝杯奶茶支持一下创作~」</div>
+    <div style="color: grey;">「请笔者喝杯奶茶鼓励一下」</div>
   <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
-    Donate
+    赞助
   </button>
   <div id="qr" style="display: none;">
       
@@ -610,7 +609,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/blog/tags/">
           
-        <span class="site-state-item-count">82</span>
+        <span class="site-state-item-count">83</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -648,28 +647,24 @@
     </ul>
   </div>
   <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title">
-      <i class="fa fa-fw fa-wikipedia-w"></i>
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
       常用网站
     </div>
     <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item" style="display: block">
+        <li class="links-of-blogroll-item">
           <a href="https://caniuse.com/" title="https:&#x2F;&#x2F;caniuse.com&#x2F;" rel="noopener" target="_blank">Caniuse(CSS兼容性)</a>
         </li>
-        <li class="links-of-blogroll-item" style="display: block">
+        <li class="links-of-blogroll-item">
           <a href="https://developer.mozilla.org/zh-CN/" title="https:&#x2F;&#x2F;developer.mozilla.org&#x2F;zh-CN&#x2F;" rel="noopener" target="_blank">MDN(web 文档)</a>
         </li>
-        <li class="links-of-blogroll-item" style="display: block">
+        <li class="links-of-blogroll-item">
           <a href="https://codepen.io/" title="https:&#x2F;&#x2F;codepen.io&#x2F;" rel="noopener" target="_blank">codepen</a>
         </li>
-        <li class="links-of-blogroll-item" style="display: block">
+        <li class="links-of-blogroll-item">
           <a href="https://tinypng.com/" title="https:&#x2F;&#x2F;tinypng.com&#x2F;" rel="noopener" target="_blank">Tinypng(图片压缩)</a>
         </li>
     </ul>
   </div>
-
-
-        
 
       </div>
 
@@ -708,7 +703,7 @@
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     <span title="站点阅读时长">1:25</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
   <div class="addthis_inline_share_toolbox">
     <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=5d560b378f0db5fa" async="async"></script>

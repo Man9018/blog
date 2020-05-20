@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 4.2.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
@@ -24,7 +24,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"anran758.github.io","root":"/blog/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"manual"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"anran758.github.io","root":"/blog/","scheme":"Muse","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"manual"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="生活中常常会遇到一些繁琐重复而又没有意义的东西, 所以常有人说, 作为一个程序员, 应该避免做重复没意义的事, 我们学习编程最终的目的之一无非也是偷懒….. 能让自动的就坚决不手动. 当然, 除了在学习中自己造一些有意义的轮子除外. 今天就利用一些自己所学的知识去解决生活上的一些麻烦. 比如..自动删光微博黑历史~">
@@ -118,9 +118,9 @@
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
 
@@ -139,7 +139,6 @@
     </div>
   </div>
 </div>
-
 
 
 
@@ -167,7 +166,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>时间轴</a>
+    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -334,7 +333,7 @@
 
 
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>一般网站都会限制用户频繁操作, 这里我们使用<code>setTimeout</code>, 测试一个weibo能够容忍的一个操作频率(可能还跟网速有关).</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-built_in">window</span>.onload = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-comment">// 经测试, 750ms是一个较快较稳定的频率, 效率过快会弹警告.</span><br>  <span class="hljs-keyword">var</span> timer = setTimeout(Delete, <span class="hljs-number">750</span>);<br>  <span class="hljs-keyword">var</span> item = <span class="hljs-number">0</span>;<br><br>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Delete</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-comment">/* 这里需要停止定时器等待加载, 请求XHR进行加载剩余微博.</span><br><span class="hljs-comment">     * 这里是微博的一个限制, 当页面中不存在相应的DOM, 就进行页面刷新.</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">if</span> (item &gt; <span class="hljs-number">15</span>) &#123;<br>      item = <span class="hljs-number">0</span>;<br>      clearTimeout(timer);<br>      <span class="hljs-keyword">return</span> timer = setTimeout(Delete, <span class="hljs-number">15000</span>);<br>    &#125;<br><br>    <span class="hljs-comment">// 模拟点击</span><br>    <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'a[action-type="fl_menu"]'</span>).click();<br>    <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'a[action-type="feed_list_delete"]'</span>).click();<br>    <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'a[action-type="ok"]'</span>).click();<br><br>    ++item;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`已成功删除了<span class="hljs-subst">$&#123;item&#125;</span>项`</span>);<br>    timer = setTimeout(Delete, <span class="hljs-number">750</span>);<br>  &#125;<br>&#125;)();<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 经测试, 750ms是一个较快较稳定的频率, 效率过快会弹警告.</span></span><br><span class="line">  <span class="keyword">var</span> timer = setTimeout(Delete, <span class="number">750</span>);</span><br><span class="line">  <span class="keyword">var</span> item = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">Delete</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">/* 这里需要停止定时器等待加载, 请求XHR进行加载剩余微博.</span></span><br><span class="line"><span class="comment">     * 这里是微博的一个限制, 当页面中不存在相应的DOM, 就进行页面刷新.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">if</span> (item &gt; <span class="number">15</span>) &#123;</span><br><span class="line">      item = <span class="number">0</span>;</span><br><span class="line">      clearTimeout(timer);</span><br><span class="line">      <span class="keyword">return</span> timer = setTimeout(Delete, <span class="number">15000</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 模拟点击</span></span><br><span class="line">    <span class="built_in">document</span>.querySelector(<span class="string">'a[action-type="fl_menu"]'</span>).click();</span><br><span class="line">    <span class="built_in">document</span>.querySelector(<span class="string">'a[action-type="feed_list_delete"]'</span>).click();</span><br><span class="line">    <span class="built_in">document</span>.querySelector(<span class="string">'a[action-type="ok"]'</span>).click();</span><br><span class="line"></span><br><span class="line">    ++item;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`已成功删除了<span class="subst">$&#123;item&#125;</span>项`</span>);</span><br><span class="line">    timer = setTimeout(Delete, <span class="number">750</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
 
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这样我们想要的效果就实现了.省去了一条一条删的人力, 又能运用到自己所学的知识. 其实代码代码也很简单, 无非是用到了<code>setTimeout</code>重复去递归调用而已. 要注意的是<code>querySelector</code>, 和<code>querySelector</code>都是IE9+的API, 在这里没有去考虑对IE的兼容, 并且也没有必要.</p>
 
@@ -370,9 +369,9 @@
 
         <div class="reward-container">
   <div></div>
-    <div style="color: grey;">「请笔者喝杯奶茶支持一下创作~」</div>
+    <div style="color: grey;">「请笔者喝杯奶茶鼓励一下」</div>
   <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
-    Donate
+    赞助
   </button>
   <div id="qr" style="display: none;">
       
@@ -577,7 +576,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/blog/tags/">
           
-        <span class="site-state-item-count">82</span>
+        <span class="site-state-item-count">83</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -615,28 +614,24 @@
     </ul>
   </div>
   <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title">
-      <i class="fa fa-fw fa-wikipedia-w"></i>
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
       常用网站
     </div>
     <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item" style="display: block">
+        <li class="links-of-blogroll-item">
           <a href="https://caniuse.com/" title="https:&#x2F;&#x2F;caniuse.com&#x2F;" rel="noopener" target="_blank">Caniuse(CSS兼容性)</a>
         </li>
-        <li class="links-of-blogroll-item" style="display: block">
+        <li class="links-of-blogroll-item">
           <a href="https://developer.mozilla.org/zh-CN/" title="https:&#x2F;&#x2F;developer.mozilla.org&#x2F;zh-CN&#x2F;" rel="noopener" target="_blank">MDN(web 文档)</a>
         </li>
-        <li class="links-of-blogroll-item" style="display: block">
+        <li class="links-of-blogroll-item">
           <a href="https://codepen.io/" title="https:&#x2F;&#x2F;codepen.io&#x2F;" rel="noopener" target="_blank">codepen</a>
         </li>
-        <li class="links-of-blogroll-item" style="display: block">
+        <li class="links-of-blogroll-item">
           <a href="https://tinypng.com/" title="https:&#x2F;&#x2F;tinypng.com&#x2F;" rel="noopener" target="_blank">Tinypng(图片压缩)</a>
         </li>
     </ul>
   </div>
-
-
-        
 
       </div>
 
@@ -675,7 +670,7 @@
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     <span title="站点阅读时长">1:25</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
   <div class="addthis_inline_share_toolbox">
     <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=5d560b378f0db5fa" async="async"></script>

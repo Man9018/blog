@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 4.2.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
@@ -24,7 +24,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"anran758.github.io","root":"/blog/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"manual"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"anran758.github.io","root":"/blog/","scheme":"Muse","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"manual"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="互联网早期实现布局是需要通过多种不同属性组合才能实现我们想要的布局。 比如常见的垂直居中，刚接触 css 的朋友看到 vertical-align: middle; 这个属性可能就会认为它就是用于垂直居中的，但实际上并没有那么简单。如果想要通过该属性来实现垂直居中，还需要其他小伙伴配合。 1234567891011121314151617181920212223.container &amp;#123;">
@@ -36,10 +36,18 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://anran758.github.io/blog/2020/02/05/css-getting-started-with-flexbox/flex-direction-terms.svg">
 <meta property="og:image" content="https://anran758.github.io/blog/2020/02/05/css-getting-started-with-flexbox/flex-direction-terms-tra-cn.svg">
+<meta property="og:image" content="https://anran758.github.io/blog/2020/02/05/css-getting-started-with-flexbox/flex-direction-row.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2020/02/05/css-getting-started-with-flexbox/flex-direction-row-reverse.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2020/02/05/css-getting-started-with-flexbox/flex-direction-column.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2020/02/05/css-getting-started-with-flexbox/flex-direction-column-reverse.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2020/02/05/css-getting-started-with-flexbox/flex-direction-dir.png">
 <meta property="og:image" content="https://anran758.github.io/blog/2020/02/05/css-getting-started-with-flexbox/flex-wrap.png">
 <meta property="og:image" content="https://anran758.github.io/blog/2020/02/05/css-getting-started-with-flexbox/flex-wrap-diff-reverse.png">
 <meta property="og:image" content="https://anran758.github.io/blog/2020/02/05/css-getting-started-with-flexbox/justify-content-position.png">
 <meta property="og:image" content="https://anran758.github.io/blog/2020/02/05/css-getting-started-with-flexbox/justify-content-distribution.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2020/02/05/css-getting-started-with-flexbox/align-items-normal.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2020/02/05/css-getting-started-with-flexbox/align-items-position.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2020/02/05/css-getting-started-with-flexbox/align-items-baseline.png">
 <meta property="og:image" content="https://anran758.github.io/blog/2020/02/05/css-getting-started-with-flexbox/align-content-normal.png">
 <meta property="og:image" content="https://anran758.github.io/blog/2020/02/05/css-getting-started-with-flexbox/align-content-flex-position.png">
 <meta property="og:image" content="https://anran758.github.io/blog/2020/02/05/css-getting-started-with-flexbox/align-content-space.png">
@@ -47,8 +55,10 @@
 <meta property="og:image" content="https://anran758.github.io/blog/2020/02/05/css-getting-started-with-flexbox/flex-shrink-3.png">
 <meta property="og:image" content="https://anran758.github.io/blog/2020/02/05/css-getting-started-with-flexbox/flex-basis.png">
 <meta property="og:image" content="https://anran758.github.io/blog/2020/02/05/css-getting-started-with-flexbox/flex-flex.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2020/02/05/css-getting-started-with-flexbox/align-self.png">
+<meta property="og:image" content="https://anran758.github.io/blog/2020/02/05/css-getting-started-with-flexbox/flex-order.png">
 <meta property="article:published_time" content="2020-02-05T13:36:54.000Z">
-<meta property="article:modified_time" content="2020-02-26T03:38:45.057Z">
+<meta property="article:modified_time" content="2020-05-19T21:02:22.441Z">
 <meta property="article:author" content="anran758">
 <meta property="article:tag" content="css">
 <meta property="article:tag" content="layout">
@@ -128,9 +138,9 @@
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
 
@@ -149,7 +159,6 @@
     </div>
   </div>
 </div>
-
 
 
 
@@ -177,7 +186,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>时间轴</a>
+    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -269,7 +278,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-26 11:38:45" itemprop="dateModified" datetime="2020-02-26T11:38:45+08:00">2020-02-26</time>
+                <time title="修改时间：2020-05-20 05:02:22" itemprop="dateModified" datetime="2020-05-20T05:02:22+08:00">2020-05-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -308,7 +317,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>5.9k</span>
+              <span>5.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -329,26 +338,22 @@
       
         <p>互联网早期实现布局是需要通过多种不同属性组合才能实现我们想要的布局。</p>
 <p>比如常见的垂直居中，刚接触 css 的朋友看到 <code>vertical-align: middle;</code> 这个属性可能就会认为它就是用于垂直居中的，但实际上并没有那么简单。如果想要通过该属性来实现垂直居中，还需要其他小伙伴配合。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;<br>  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">6px</span>;<br>  <span class="hljs-attribute">text-align</span>: center;<br>  <span class="hljs-attribute">color</span>: <span class="hljs-number">#fff</span>;<br>  <span class="hljs-attribute">background</span>: <span class="hljs-number">#e44b27</span>;<br>  <span class="hljs-attribute">white-space</span>: nowrap;<br>&#125;<br><br><span class="hljs-comment">/* 该伪类是实现垂直居中关键 */</span><br><span class="hljs-selector-class">.container</span><span class="hljs-selector-pseudo">:after</span> &#123;<br>  <span class="hljs-attribute">content</span>: <span class="hljs-string">''</span>;<br>  <span class="hljs-attribute">display</span>: inline-block;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;<br>  <span class="hljs-attribute">vertical-align</span>: middle;<br>&#125;<br><span class="hljs-selector-class">.content</span> &#123;<br>  <span class="hljs-attribute">display</span>: inline-block;<br>  <span class="hljs-attribute">white-space</span>: normal;<br>  <span class="hljs-attribute">vertical-align</span>: middle;<br>  <span class="hljs-attribute">text-align</span>: left;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">6px</span>;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#e44b27</span>;</span><br><span class="line">  <span class="attribute">white-space</span>: nowrap;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 该伪类是实现垂直居中关键 */</span></span><br><span class="line"><span class="selector-class">.container</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">vertical-align</span>: middle;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.content</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">white-space</span>: normal;</span><br><span class="line">  <span class="attribute">vertical-align</span>: middle;</span><br><span class="line">  <span class="attribute">text-align</span>: left;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container"</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"content"</span>&gt;</span>我想居中！<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span>我想居中！<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>这样看来，为了实现垂直居中布局，我们还得打一套组合拳才能出来才行，是不是看起来有点麻烦的样子？</p>
 <p>W3C 在 2009 年提出的 <code>Fiexbox(flex)</code> 布局<a href="https://www.w3.org/TR/2009/WD-css3-flexbox-20090723/" target="_blank" rel="noopener">草案</a>，就是针对用户界面设计优化的 CSS 盒模型。如果使用 flex 布局来实现上面的垂直居中布局的话，可以简化为：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;<br>  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">6px</span>;<br>  <span class="hljs-attribute">color</span>: <span class="hljs-number">#fff</span>;<br>  <span class="hljs-attribute">background</span>: <span class="hljs-number">#e44b27</span>;<br><br>  <span class="hljs-comment">/* 使用 flex 布局 */</span><br>  <span class="hljs-attribute">display</span>: flex;<br>  <span class="hljs-attribute">justify-content</span>: center;<br>  <span class="hljs-attribute">align-items</span>: center;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">6px</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#e44b27</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 使用 flex 布局 */</span></span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-{% codeblock lang:html %}
-<div class="container">
-  <div>我想居中！</div>
-</div>
-{% endcodeblock %}
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>我想居中！<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>修改后的代码就显得更精简了，也不需要其他小伙伴来搭把手。布局的事情就让 flex 家族自己来解决即可。</p>
 <a id="more"></a>
 
 <hr>
 <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>应用 flex 布局的容器我们通常称为 <strong>弹性盒子/容器(flex container)</strong>。弹性容器可以由 <code>display: flex</code> 或 <code>display: inline-flex</code> 生成。弹性盒子的子项常称为 <strong>弹性元素/项目(flex items)</strong>，它以 flex 布局模型进行布局。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">display</span>: flex | inline-flex;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex | inline-flex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>如果想要学习 flex 布局的工作方式，最先需要学习的是它自身的术语。下面直接引用 flex 草案中术语的介绍图:</p>
 <img data-src="/blog/2020/02/05/css-getting-started-with-flexbox/flex-direction-terms.svg" class="" title="术语介绍图(en)">
@@ -372,13 +377,13 @@
 <p>目前有个新规范(<a href="https://drafts.csswg.org/css-align-3/#propdef-justify-content" target="_blank" rel="noopener">CSS Box Alignment Module Level 3</a>)正处于工作草案的状态中，对一些属性添加新值，如 <code>[first|last]? baseline</code>、<code>self-start</code>、<code>self-end</code>、<code>start</code>、<code>end</code>、<code>left</code>、<code>right</code>、<code>unsafe | safe</code>。</p>
 <p>这些新值多数浏览器都没实现，为了便于演示，此处仅讲解初始版本的值。<code>Firefox</code> 浏览器对新值实现的比较超前，也建议通过使用 <code>Firefox</code> 浏览器来查看 demo。</p>
 <h3 id="flex-direction"><a href="#flex-direction" class="headerlink" title="flex-direction"></a>flex-direction</h3><p><code>flex-direction</code> 指示内部元素如何在 flex 容器中布局。可以简单的理解为 flex 容器的布局方向。其默认值为 <code>row</code>，可选语法如下：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* 常用属性 */</span><br>flex-direction: row | row-reverse | column | column-reverse;<br></code></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 常用属性 */</span></span><br><span class="line">flex-direction: row | row-reverse | column | column-reverse;</span><br></pre></td></tr></table></figure>
 
-<!-- {% asset_img flex-direction-row.png flex-direction-row 示例 %} -->
-<!-- {% asset_img flex-direction-row-reverse.png flex-direction-row-reverse 示例 %} -->
-<!-- {% asset_img flex-direction-column.png flex-direction-column 示例图 %} -->
-<!-- {% asset_img flex-direction-column-reverse.png flex-direction-column-reverse 示例图 %} -->
-<!-- {% asset_img flex-direction-dir.png flex-direction dir 效果示例图 %} -->
+<!-- <img data-src="/blog/2020/02/05/css-getting-started-with-flexbox/flex-direction-row.png" class="" title="flex-direction-row 示例"> -->
+<!-- <img data-src="/blog/2020/02/05/css-getting-started-with-flexbox/flex-direction-row-reverse.png" class="" title="flex-direction-row-reverse 示例"> -->
+<!-- <img data-src="/blog/2020/02/05/css-getting-started-with-flexbox/flex-direction-column.png" class="" title="flex-direction-column 示例图"> -->
+<!-- <img data-src="/blog/2020/02/05/css-getting-started-with-flexbox/flex-direction-column-reverse.png" class="" title="flex-direction-column-reverse 示例图"> -->
+<!-- <img data-src="/blog/2020/02/05/css-getting-started-with-flexbox/flex-direction-dir.png" class="" title="flex-direction dir 效果示例图"> -->
 
 <ul>
 <li><code>row</code>: <strong>主轴起点和主轴终点与内容方向相同</strong>。简而言之就是内容从左到右进行布局。</li>
@@ -395,7 +400,7 @@
 </iframe>
 
 <h3 id="flex-wrap"><a href="#flex-wrap" class="headerlink" title="flex-wrap"></a>flex-wrap</h3><p><code>flex-wrap</code> 指定 flex 元素单行显示还是多行显示 。如果可以换行，你甚至还可以通过该属性控制行的堆叠方向。它的取值如下所示:</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">flex-wrap: nowrap(默认值) | wrap | wrap-reverse;<br></code></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flex-wrap: nowrap(默认值) | wrap | wrap-reverse;</span><br></pre></td></tr></table></figure>
 
 <p>可以通过本例 demo 右上角的按钮来修改元素的数量，观察三个值之间的变化:</p>
 <!-- <img data-src="/blog/2020/02/05/css-getting-started-with-flexbox/flex-wrap.png" class="" title="flex-wrap 示例图"> -->
@@ -414,10 +419,10 @@
 <!-- **本例 codepen demo: [[vue demo] flex-wrap](https://codepen.io/anran758/pen/OJPexQp?editors=1100)** -->
 
 <h3 id="flex-flow"><a href="#flex-flow" class="headerlink" title="flex-flow"></a>flex-flow</h3><p><code>flex-flow</code> 属性是 <a href="#flex-direction">flex-direction</a> 和 <a href="#flex-wrap">flex-wrap</a> 的简写。这个没啥好说的，也就不额外写 demo 了。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* 语法 */</span><br>flex-flow: &lt;flex-direction&gt; || &lt;flex-wrap&gt;;<br><br><span class="hljs-comment">/* 单独设置 flex-direction 的属性 */</span><br><span class="hljs-selector-tag">flex-flow</span>: <span class="hljs-selector-tag">row</span>;<br><span class="hljs-selector-tag">flex-flow</span>: <span class="hljs-selector-tag">column</span>;<br><br><span class="hljs-comment">/* 单独设置 flex-wrap 的属性 */</span><br><span class="hljs-selector-tag">flex-flow</span>: <span class="hljs-selector-tag">nowrap</span>;<br><span class="hljs-selector-tag">flex-flow</span>: <span class="hljs-selector-tag">wrap</span>;<br><br><span class="hljs-comment">/* 同时设置两种属性，建议按照语法顺序进行书写 */</span><br><span class="hljs-selector-tag">flex-flow</span>: <span class="hljs-selector-tag">row</span> <span class="hljs-selector-tag">nowrap</span>;<br><span class="hljs-selector-tag">flex-flow</span>: <span class="hljs-selector-tag">column</span> <span class="hljs-selector-tag">wrap</span>;<br></code></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 语法 */</span></span><br><span class="line">flex-flow: &lt;flex-direction&gt; || &lt;flex-wrap&gt;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 单独设置 flex-direction 的属性 */</span></span><br><span class="line"><span class="selector-tag">flex-flow</span>: <span class="selector-tag">row</span>;</span><br><span class="line"><span class="selector-tag">flex-flow</span>: <span class="selector-tag">column</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 单独设置 flex-wrap 的属性 */</span></span><br><span class="line"><span class="selector-tag">flex-flow</span>: <span class="selector-tag">nowrap</span>;</span><br><span class="line"><span class="selector-tag">flex-flow</span>: <span class="selector-tag">wrap</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 同时设置两种属性，建议按照语法顺序进行书写 */</span></span><br><span class="line"><span class="selector-tag">flex-flow</span>: <span class="selector-tag">row</span> <span class="selector-tag">nowrap</span>;</span><br><span class="line"><span class="selector-tag">flex-flow</span>: <span class="selector-tag">column</span> <span class="selector-tag">wrap</span>;</span><br></pre></td></tr></table></figure>
 
 <h3 id="justify-content"><a href="#justify-content" class="headerlink" title="justify-content"></a>justify-content</h3><p><code>justify-content</code> 属性定义了容器主轴中各 flex 元素之间的对齐方式。这是 flex 布局中常用的属性之一。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">justify-content: normal |<br>                 space-between | space-around | space-evenly |<br>                 center | flex-start | flex-end<br></code></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">justify-content: normal |</span><br><span class="line">                 space-between | space-around | space-evenly |</span><br><span class="line">                 center | flex-start | flex-end</span><br></pre></td></tr></table></figure>
 
 <p>在初始版本中，<code>justify-content</code> 的默认值为 <code>flex-start</code>。但在最新版本中的 chrome 浏览器被修改为了 <code>normal</code>。</p>
 <p>为了对比属性之间的差异，本例 demo 将元素的两侧 <code>margin</code> 清空:</p>
@@ -444,27 +449,27 @@
 <!-- **本例 codepen demo: [[vue demo] justify-content](https://codepen.io/anran758/pen/mdyZZWM?editors=1100)** -->
 
 <h3 id="align-items"><a href="#align-items" class="headerlink" title="align-items"></a>align-items</h3><p><code>align-items</code> 属性除了可以在 flex 布局中有效，还可以在 <code>grid(网格)</code> 布局中应用。在 flex 布局中它的作用是<strong>决定交叉轴的对齐方式</strong>。这也是 flex</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* 主流浏览器已经实现的值 */</span><br>align-items: normal | flex-start | flex-end | center | baseline | stretch<br><br><span class="hljs-comment">/* 新草案添加的值 */</span><br>align-items:  | start | end | [ first | last ]baseline | left | right<br></code></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 主流浏览器已经实现的值 */</span></span><br><span class="line">align-items: normal | flex-start | flex-end | center | baseline | stretch</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 新草案添加的值 */</span></span><br><span class="line">align-items:  | start | end | [ first | last ]baseline | left | right</span><br></pre></td></tr></table></figure>
 
 <iframe height="420" style="width: 100%;" scrolling="no" title="[vue demo] align-items" src="https://codepen.io/anran758/embed/qBEeNjb?height=420&theme-id=32168&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href='https://codepen.io/anran758/pen/qBEeNjb' target="_blank" rel="noopener">[vue demo] align-items</a> by anran758
   (<a href='https://codepen.io/anran758' target="_blank" rel="noopener">@anran758</a>) on <a href='https://codepen.io' target="_blank" rel="noopener">CodePen</a>.
 </iframe>
 
-<!-- {% asset_img align-items-normal.png %} -->
+<!-- <img data-src="/blog/2020/02/05/css-getting-started-with-flexbox/align-items-normal.png" class=""> -->
 
 <ul>
 <li><code>normal</code>: 在 flex 布局中 <code>normal</code> 的表现效果如同 <code>stretch</code> 一样。</li>
 <li><code>stretch</code>: 弹性元素被在交叉轴轴方向被拉伸到与容器相同的高度或宽度。若容器没有设置高度，则取当前行中最高元素的高度，如本例中<strong>元素 4</strong> 是第一行中最高的元素，那第一行中的高度都被拉伸到与最高元素相同的高度。第二行中<strong>最高的元素是元素 2</strong>，因此第二行高度都取至元素 2。</li>
 </ul>
-<!-- {% asset_img align-items-position.png %} -->
+<!-- <img data-src="/blog/2020/02/05/css-getting-started-with-flexbox/align-items-position.png" class=""> -->
 
 <ul>
 <li><code>flex-start</code>: 元素向交叉轴起点对齐。</li>
 <li><code>flex-end</code>: 元素向交叉轴终点对齐。</li>
 <li><code>center</code>: 元素在交叉轴居中。</li>
 </ul>
-{% asset_img align-items-baseline.png %}
+<img data-src="/blog/2020/02/05/css-getting-started-with-flexbox/align-items-baseline.png" class="">
 
 <ul>
 <li><code>baseline</code>: 所有元素向基线对齐。侧轴起点到元素基线距离最大的元素将会于侧轴起点对齐以确定基线。<strong>在例子中放大元素 6 的 <code>font-size</code>, 与 <code>center</code> 进行对比就能看到差异了。</strong></li>
@@ -472,7 +477,7 @@
 <!-- **本例 codepen demo: [[vue demo] align-items](https://codepen.io/anran758/pen/qBEeNjb)** -->
 
 <h3 id="align-content"><a href="#align-content" class="headerlink" title="align-content"></a>align-content</h3><p><code>justify-content</code> 是作用于主轴上，而 <code>align-content</code> 则是用于定义交叉轴的对齐方式。值得注意的是，若 <strong>flex 容器内只有一根轴线，该属性将不起作用</strong>。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* 主流浏览器已经实现的值 */</span><br>align-content: normal | space-between | space-around | space-evenly | stretch |  center | flex-start | flex-end<br><br><span class="hljs-comment">/* 主流浏览器多数未实现的值 */</span><br><span class="hljs-selector-tag">align-content</span>: <span class="hljs-selector-attr">[first|last]</span>? <span class="hljs-selector-tag">baseline</span>, <span class="hljs-selector-tag">start</span>, <span class="hljs-selector-tag">end</span>, <span class="hljs-selector-tag">left</span>, <span class="hljs-selector-tag">right</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 主流浏览器已经实现的值 */</span></span><br><span class="line">align-content: normal | space-between | space-around | space-evenly | stretch |  center | flex-start | flex-end</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 主流浏览器多数未实现的值 */</span></span><br><span class="line"><span class="selector-tag">align-content</span>: <span class="selector-attr">[first|last]</span>? <span class="selector-tag">baseline</span>, <span class="selector-tag">start</span>, <span class="selector-tag">end</span>, <span class="selector-tag">left</span>, <span class="selector-tag">right</span></span><br></pre></td></tr></table></figure>
 
 <p>父容器设置了 flex 布局后，若子元素没有设定 <code>height</code> 属性的话，默认会将容器内的子元素进行拉伸。</p>
 <p>为了便于观察两者的差异，笔者在 demo 中新增一列进行对比。左列的 flex 元素使用 <code>height</code> 属性，右列使用 <code>min-height</code> 属性。同时将 flex 容器高度设置为 <code>400px</code>:</p>
@@ -508,7 +513,7 @@
 <li>order</li>
 </ul>
 <h3 id="flex-grow"><a href="#flex-grow" class="headerlink" title="flex-grow"></a>flex-grow</h3><p><code>flex-grow</code> 属性用于定义元素所占有的比例，它接受一个正整数，默认值为 <code>0</code>。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">flex-grow</span>: &lt;<span class="hljs-selector-tag">number</span>&gt;<br><br><span class="hljs-comment">/* 例子: 仅接受正数的值 */</span><br><span class="hljs-selector-tag">flex-grow</span>: 1;<br></code></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">flex-grow</span>: &lt;<span class="selector-tag">number</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 例子: 仅接受正数的值 */</span></span><br><span class="line"><span class="selector-tag">flex-grow</span>: 1;</span><br></pre></td></tr></table></figure>
 
 <!--  -->
 
@@ -520,7 +525,7 @@
 <!-- **本例 codepen demo: [align-content](https://codepen.io/anran758/pen/OJPKWyj)** -->
 
 <h3 id="flex-shrink"><a href="#flex-shrink" class="headerlink" title="flex-shrink"></a>flex-shrink</h3><p>与 <code>flex-grow</code> 相反，<code>flex-shrink</code> 属性处理元素收缩的问题，默认为 <code>1</code>，意味着元素默认会随着容器缩小而等比例缩小。当值为 <code>0</code> 时则不缩放。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">flex-shrink</span>: &lt;<span class="hljs-selector-tag">number</span>&gt;<br><br><span class="hljs-comment">/* 例子: 默认缩放 */</span><br><span class="hljs-selector-tag">flex-shrink</span>: 1;<br><br><span class="hljs-comment">/* 例子: 使元素不缩放 */</span><br><span class="hljs-selector-tag">flex-shrink</span>: 0;<br></code></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">flex-shrink</span>: &lt;<span class="selector-tag">number</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 例子: 默认缩放 */</span></span><br><span class="line"><span class="selector-tag">flex-shrink</span>: 1;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 例子: 使元素不缩放 */</span></span><br><span class="line"><span class="selector-tag">flex-shrink</span>: 0;</span><br></pre></td></tr></table></figure>
 
 <p>在以下 demo 中，各 flex 项目的宽高相等。当父容器有足够的空间时，元素不需要紧衣缩食，因此 <code>flex-shrink</code> 也没有机会表现出它的作用。</p>
 <!--  -->
@@ -534,7 +539,7 @@
 <img data-src="/blog/2020/02/05/css-getting-started-with-flexbox/flex-shrink-3.png" class="">
 
 <h3 id="flex-basis"><a href="#flex-basis" class="headerlink" title="flex-basis"></a>flex-basis</h3><p><code>flex-basis</code> 指定了 flex 元素在主轴空间(main size)所占的初始大小。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">flex-basis:  &lt;'width'&gt;<br></code></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flex-basis:  &lt;'width'&gt;</span><br></pre></td></tr></table></figure>
 
 <p>当一个元素同时被设置了 <code>flex-basis</code> (值为 <code>auto</code> 除外)和 <code>width</code> 属性时，<code>flex-basis</code> 具有更高的优先级。</p>
 <img data-src="/blog/2020/02/05/css-getting-started-with-flexbox/flex-basis.png" class="">
@@ -546,7 +551,7 @@
 </iframe>
 
 <h3 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h3><p><code>flex</code> 属性是 <code>flex-grow</code>、<code>flex-shrink</code>、<code>flex-basis</code> 的简写，规定了弹性元素如何伸缩以适应 flex 容器中的可用空间，默认值为 <code>0 1 auto</code>。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">flex: none | [ &lt;'flex-grow'&gt; &lt;'flex-shrink'&gt;? || &lt;'flex-basis'&gt; ]<br></code></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flex: none | [ &lt;'flex-grow'&gt; &lt;'flex-shrink'&gt;? || &lt;'flex-basis'&gt; ]</span><br></pre></td></tr></table></figure>
 
 <p><code>flex</code> 属性可以指定 1 个，2 个或 3 个值。</p>
 <p><strong>单值语法</strong>: 值必须为以下其中之一:</p>
@@ -575,7 +580,7 @@
 </iframe>
 
 <h3 id="align-self"><a href="#align-self" class="headerlink" title="align-self"></a>align-self</h3><p><code>align-self</code> 属性在 flex 布局中作用于单个 flex 元素上，它将控制指定元素在交叉轴上的位置。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css">align-self: auto | normal | stretch | center | flex-start | flex-end;<br><br><span class="hljs-comment">/* 多数浏览器未实现的功能 */</span><br>align-self: start | end | self-start | self-end | [first | last]? baseline;<br></code></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">align-self: auto | normal | stretch | center | flex-start | flex-end;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 多数浏览器未实现的功能 */</span></span><br><span class="line">align-self: start | end | self-start | self-end | [first | last]? baseline;</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li><code>auto</code>: 设置为父元素的 align-items 值，如果该元素没有父元素的话，就设置为 <code>stretch</code>。</li>
@@ -585,7 +590,7 @@
 <li><code>flex-start</code>: flex 元素会对齐到 cross-axis 的首端。</li>
 <li><code>flex-end</code>: flex 元素会对齐到 cross-axis 的尾端。</li>
 </ul>
-<!-- {% asset_img align-self.png %} -->
+<!-- <img data-src="/blog/2020/02/05/css-getting-started-with-flexbox/align-self.png" class=""> -->
 
 <iframe height="762" style="width: 100%;" scrolling="no" title="[vue] align-self" src="https://codepen.io/anran758/embed/mdJbyKz?height=762&theme-id=32168&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href='https://codepen.io/anran758/pen/mdJbyKz' target="_blank" rel="noopener">[vue] align-self</a> by anran758
@@ -593,12 +598,10 @@
 </iframe>
 
 <h3 id="order"><a href="#order" class="headerlink" title="order"></a>order</h3><p><code>order</code> 属性用于设置指定 flex 元素在容器中的顺序。容器中的 flex 元素按升序值排序，若值相同则按其源代码出现的顺序进行排序，默认值为 <code>0</code>。它接受一个整数值(integer)，如 <code>-2</code>、<code>0</code>、<code>3</code> 等。</p>
-{% codeblock lang:css %}
-order: <integer>
-{% endcodeblock %}
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">order</span>: &lt;<span class="selector-tag">integer</span>&gt;</span><br></pre></td></tr></table></figure>
 
 <p>我们可以操作下面的 demo 来控制元素的顺序，比如将第三项元素通过 <code>order</code> 在移动到第一位。</p>
-{% asset_img flex-order.png %}
+<img data-src="/blog/2020/02/05/css-getting-started-with-flexbox/flex-order.png" class="">
 
 <iframe height="863" style="width: 100%;" scrolling="no" title="[vue] order" src="https://codepen.io/anran758/embed/wvawEbL?height=863&theme-id=32168&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href='https://codepen.io/anran758/pen/wvawEbL' target="_blank" rel="noopener">[vue] order</a> by anran758
@@ -606,12 +609,12 @@ order: <integer>
 </iframe>
 
 <hr>
-<h2 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h2>{% caniuse flexbox @ future_3,current,past_1,past_2 %}
+<h2 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h2><iframe data-feature="flexbox" src="https://caniuse.bitsofco.de/embed/index.html?feat=flexbox&periods=future_3,current,past_1,past_2&accessible-colours=false" frameborder="0" width="100%" height="400px"></iframe>
 
 <p>要将学到的新东西应用到实际项目中就不得不考虑其兼容性了。通过 <a href="https://caniuse.com/#feat=flexbox" target="_blank" rel="noopener">caniuse</a> 我们可以看到：flex 布局经过多年的发展，主流浏览器都已经对 flex 布局基本模块都实现完毕了。</p>
 <p><code>PC</code> 端需要考虑的是要不要兼容 <code>IE</code>，移动端最低兼容为 <code>ios 3.2+</code>、<code>Android 2.1+</code>。如果你需要开发微信小程序，那么小程序官方就推荐使用 flex 布局。</p>
 <p>早期 flex 布局是通过 <code>display: box;</code> 来申明，这是使用了旧的规范，后来该值被 <code>flex</code> 给替换掉了。还有一些很低版本的浏览器或许还需要添加浏览器前缀才能使用 flex 布局。因此你在某处看到如下代码也不用感到奇怪，这是开发者在给布局做兼容呢:</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.flex-center</span> &#123;<br>  <span class="hljs-attribute">display</span>: -webkit-box;<br>  <span class="hljs-attribute">display</span>: -webkit-flex;<br>  <span class="hljs-attribute">display</span>: -moz-box;<br>  <span class="hljs-attribute">display</span>: -ms-flexbox;<br>  <span class="hljs-attribute">display</span>: flex;<br>  <span class="hljs-attribute">-webkit-box-pack</span>: center;<br>  <span class="hljs-attribute">-webkit-justify-content</span>: center;<br>     <span class="hljs-attribute">-moz-box-pack</span>: center;<br>      <span class="hljs-attribute">-ms-flex-pack</span>: center;<br>          <span class="hljs-attribute">justify-content</span>: center;<br>  <span class="hljs-attribute">-webkit-box-align</span>: center;<br>  <span class="hljs-attribute">-webkit-align-items</span>: center;<br>     <span class="hljs-attribute">-moz-box-align</span>: center;<br>      <span class="hljs-attribute">-ms-flex-align</span>: center;<br>          <span class="hljs-attribute">align-items</span>: center;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.flex-center</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: -webkit-box;</span><br><span class="line">  <span class="attribute">display</span>: -webkit-flex;</span><br><span class="line">  <span class="attribute">display</span>: -moz-box;</span><br><span class="line">  <span class="attribute">display</span>: -ms-flexbox;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">-webkit-box-pack</span>: center;</span><br><span class="line">  <span class="attribute">-webkit-justify-content</span>: center;</span><br><span class="line">     <span class="attribute">-moz-box-pack</span>: center;</span><br><span class="line">      <span class="attribute">-ms-flex-pack</span>: center;</span><br><span class="line">          <span class="attribute">justify-content</span>: center;</span><br><span class="line">  <span class="attribute">-webkit-box-align</span>: center;</span><br><span class="line">  <span class="attribute">-webkit-align-items</span>: center;</span><br><span class="line">     <span class="attribute">-moz-box-align</span>: center;</span><br><span class="line">      <span class="attribute">-ms-flex-align</span>: center;</span><br><span class="line">          <span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>但如果要我们在开发时手动写这种兼容好像不是很靠谱，兼容又冗余。所幸现在的前端开发都会使用脚手架，这些脚手架一般都会内置 <code>postcss</code> 和 <code>autoprefix</code> 之类的插件来帮助我们完成这些事。</p>
 <p>还有一些朋友可能会说，我们老项目还是得要兼容 <code>IE 8+</code> 呀，是不是意味着跟 flex 布局无缘了？其实不是的，github 上有一个叫 <a href="https://github.com/jonathantneal/flexibility" target="_blank" rel="noopener">flexibility</a> 的 <code>polyfill</code> 可以让 <code>IE8 +</code> 也实现 flex 布局效果.</p>
@@ -645,9 +648,9 @@ order: <integer>
 
         <div class="reward-container">
   <div></div>
-    <div style="color: grey;">「请笔者喝杯奶茶支持一下创作~」</div>
+    <div style="color: grey;">「请笔者喝杯奶茶鼓励一下」</div>
   <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
-    Donate
+    赞助
   </button>
   <div id="qr" style="display: none;">
       
@@ -853,7 +856,7 @@ order: <integer>
       <div class="site-state-item site-state-tags">
             <a href="/blog/tags/">
           
-        <span class="site-state-item-count">82</span>
+        <span class="site-state-item-count">83</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -891,28 +894,24 @@ order: <integer>
     </ul>
   </div>
   <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title">
-      <i class="fa fa-fw fa-wikipedia-w"></i>
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
       常用网站
     </div>
     <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item" style="display: block">
+        <li class="links-of-blogroll-item">
           <a href="https://caniuse.com/" title="https:&#x2F;&#x2F;caniuse.com&#x2F;" rel="noopener" target="_blank">Caniuse(CSS兼容性)</a>
         </li>
-        <li class="links-of-blogroll-item" style="display: block">
+        <li class="links-of-blogroll-item">
           <a href="https://developer.mozilla.org/zh-CN/" title="https:&#x2F;&#x2F;developer.mozilla.org&#x2F;zh-CN&#x2F;" rel="noopener" target="_blank">MDN(web 文档)</a>
         </li>
-        <li class="links-of-blogroll-item" style="display: block">
+        <li class="links-of-blogroll-item">
           <a href="https://codepen.io/" title="https:&#x2F;&#x2F;codepen.io&#x2F;" rel="noopener" target="_blank">codepen</a>
         </li>
-        <li class="links-of-blogroll-item" style="display: block">
+        <li class="links-of-blogroll-item">
           <a href="https://tinypng.com/" title="https:&#x2F;&#x2F;tinypng.com&#x2F;" rel="noopener" target="_blank">Tinypng(图片压缩)</a>
         </li>
     </ul>
   </div>
-
-
-        
 
       </div>
 
@@ -951,7 +950,7 @@ order: <integer>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     <span title="站点阅读时长">1:25</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
   <div class="addthis_inline_share_toolbox">
     <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=5d560b378f0db5fa" async="async"></script>

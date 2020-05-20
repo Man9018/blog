@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 4.2.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
@@ -24,7 +24,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"anran758.github.io","root":"/blog/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"manual"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"anran758.github.io","root":"/blog/","scheme":"Muse","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"manual"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="跨域是前端工程中一个很常见的问题啦. 今天就来聊一聊跨域, 以及常见的处理方式和原理.">
@@ -116,9 +116,9 @@
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
 
@@ -137,7 +137,6 @@
     </div>
   </div>
 </div>
-
 
 
 
@@ -165,7 +164,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>时间轴</a>
+    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -322,11 +321,11 @@
 <h3 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h3><p>前文我们说过, 产生跨域的原因之一XHR请求, 但是<code>script</code>发出的请求类型(type)并不是<code>xhr</code>, 因此可以解决跨域的问题.</p>
 <p>JSONP 由回调函数和数据组成的, 实现方式就是动态创建一个<code>&lt;script&gt;</code>标签, 然后设置<code>src</code>属性指向的跨域的URL(包涵请求参数). 来向服务端请求数据.</p>
 <p>比如我们要查询小明的信息, 这时我们得知它的<code>userID</code>为 1150, 同时我们都知道GET请求可以通过url进行传参, 因此我们向服务器发起请求:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> script = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'script'</span>)<br>script.src = <span class="hljs-string">"https://www.example.com/users?user_id=1150"</span><br><span class="hljs-built_in">document</span>.body.appendChild(script)<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>)</span><br><span class="line">script.src = <span class="string">"https://www.example.com/users?user_id=1150"</span></span><br><span class="line"><span class="built_in">document</span>.body.appendChild(script)</span><br></pre></td></tr></table></figure>
 
 <p>在插入<code>&lt;script&gt;</code>标签到<code>&lt;body&gt;</code>后, 浏览器立马就去请求服务器的资源. 值得注意的是, 使用<code>jsonp</code>也需要服务端的配合. 因此必须通过某种方式来告知服务端, 我们正在通过<code>&lt;script&gt;</code>标签调用请求, 必须返回一个JSONP响应, 而不应该是普通JSON响应.</p>
 <p>至于什么叫<code>jsonp</code>响应呢? 这里其实很好理解.. 假设后端发回来的是<code>json</code>格式的数据, 我们也用不了呀, 数据还是数据, 不会做任何变化.. 为了让浏览器可以在<code>&lt;script&gt;</code>标签里直接使用, 我们需要让服务端返回一段js代码 —— 用函数包装的json的形式(这也jsonp中”P(padding)”的含义). 这个函数名前后端可约定. 如下:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 服务端返回 js 代码到 &lt;script&gt;里</span><br>userData(&#123;<span class="hljs-string">'naem'</span>:<span class="hljs-string">'小明'</span>,<span class="hljs-string">'id'</span>:<span class="hljs-number">1150</span>,<span class="hljs-string">'level'</span>:<span class="hljs-string">'中等'</span>&#125;)<br><br><span class="hljs-comment">// 前端定义函数</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">userData</span>(<span class="hljs-params">data</span>) </span>&#123;<br>  <span class="hljs-comment">// 当 jsonp 请求成功后, 将json传入函数并调用, 我们拿到 json 后就可以做一些其他的事</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 服务端返回 js 代码到 &lt;script&gt;里</span></span><br><span class="line">userData(&#123;<span class="string">'naem'</span>:<span class="string">'小明'</span>,<span class="string">'id'</span>:<span class="number">1150</span>,<span class="string">'level'</span>:<span class="string">'中等'</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 前端定义函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">userData</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 当 jsonp 请求成功后, 将json传入函数并调用, 我们拿到 json 后就可以做一些其他的事</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>我们来拿B站为例. 打开chrome下的network, 上图就是<code>jsonp</code>的应用, 服务端返回的js脚本. 下图可以发现, 我们发出去的请求类型是<code>script</code>,  验证了前文所说的<code>&lt;script&gt;</code>不受同源策略影响的.</p>
 <img data-src="/blog/2018/03/04/%E8%81%8A%E8%81%8A%E5%B8%B8%E8%A7%81%E7%9A%84%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/img-1.jpg" class="">
@@ -366,10 +365,10 @@
 <li>Access-Control-Request-Header: 自定义头部信息, 多个头部以逗号分隔(可选, 看请求时有没有定义请求头)</li>
 </ul>
 <p>举个栗子, 我们用JQuery发送一段JSON格式的请求做演示:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> result;<br><br>$.ajax(&#123;<br>  type : <span class="hljs-string">"post"</span>,<br>  url: <span class="hljs-string">"https://www.example/api/rank"</span>,<br>  contentType : <span class="hljs-string">"application/json;charset=utf-8"</span>,<br>  data: <span class="hljs-built_in">JSON</span>.stringify(&#123;<span class="hljs-attr">name</span>: <span class="hljs-string">"something"</span>&#125;),<br>  success: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">json</span>)</span>&#123;<br>    result = json;<br>  &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> result;</span><br><span class="line"></span><br><span class="line">$.ajax(&#123;</span><br><span class="line">  type : <span class="string">"post"</span>,</span><br><span class="line">  url: <span class="string">"https://www.example/api/rank"</span>,</span><br><span class="line">  contentType : <span class="string">"application/json;charset=utf-8"</span>,</span><br><span class="line">  data: <span class="built_in">JSON</span>.stringify(&#123;<span class="attr">name</span>: <span class="string">"something"</span>&#125;),</span><br><span class="line">  success: <span class="function"><span class="keyword">function</span>(<span class="params">json</span>)</span>&#123;</span><br><span class="line">    result = json;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <p>这时请求头(Request Headers)信息如下:</p>
-<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs http"><span class="hljs-attribute">Accept</span>: */*<br><span class="hljs-attribute">Accept-Encoding</span>: gzip, deflate, br<br><span class="hljs-attribute">Accept-Language</span>: zh-CN,zh;q=0.9<br><span class="hljs-attribute">Access-Control-Request-Header</span>: content-type<br><span class="hljs-attribute">Access-Control-Request-Methods</span>: POST<br><span class="hljs-attribute">Connection:keep-alive</span><br><span class="hljs-attribute">Host</span>: https://www.example.com<br><span class="hljs-attribute">origin</span>: localhost:8080<br><span class="hljs-attribute">User-Agent</span>: Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1<br></code></pre></td></tr></table></figure>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Accept</span>: */*</span><br><span class="line"><span class="attribute">Accept-Encoding</span>: gzip, deflate, br</span><br><span class="line"><span class="attribute">Accept-Language</span>: zh-CN,zh;q=0.9</span><br><span class="line"><span class="attribute">Access-Control-Request-Header</span>: content-type</span><br><span class="line"><span class="attribute">Access-Control-Request-Methods</span>: POST</span><br><span class="line"><span class="attribute">Connection:keep-alive</span></span><br><span class="line"><span class="attribute">Host</span>: https://www.example.com</span><br><span class="line"><span class="attribute">origin</span>: localhost:8080</span><br><span class="line"><span class="attribute">User-Agent</span>: Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1</span><br></pre></td></tr></table></figure>
 
 <p>服务端接收到预检请求后, 判断是否允许这种类型的请求. 在响应头(Response Header)上返回如下头部与浏览器进行交流:</p>
 <ul>
@@ -379,7 +378,7 @@
 </ul>
 <p>当预检请求被通过后, 我们原本想要发送的请求才会发送出去.</p>
 <p>另外, 细心的你或许已经注意到了, 非简单请求这一来一回需要发送两次请求, 如果频率高的情况下岂不是很费性能又影响效率? 所幸的是HTTP协议新增(IE10+)了一个响应头用于缓存预检请求. 服务端在响应头添加如下字段:</p>
-<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs http"><span class="hljs-attribute">Access-Control-Max-Age</span>: 3600<br></code></pre></td></tr></table></figure>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Access-Control-Max-Age</span>: 3600</span><br></pre></td></tr></table></figure>
 
 <p>这个响应头表示这个预检请求可以缓存多长时间, 单位为秒. 这里3600s = 1h, 也就是说一个小时内可以不用再发预检命令了.</p>
 <h4 id="带-cookie-的跨域请求"><a href="#带-cookie-的跨域请求" class="headerlink" title="带 cookie 的跨域请求"></a>带 cookie 的跨域请求</h4><p>默认情况下, 跨域请求是不带上 cookie 的. 前端需要将<code>withCredentials</code>属性设置为<code>true</code>, 同时还需要服务端设置<code>Access-Control-Allow-Credentials</code>为<code>true</code>启动 cookie. 如果在发送 cookie 的时候, 浏览器检测到服务端响应头没有这个头部, 那么就会在控制台抛出一个错误.</p>
@@ -398,9 +397,9 @@
 
         <div class="reward-container">
   <div></div>
-    <div style="color: grey;">「请笔者喝杯奶茶支持一下创作~」</div>
+    <div style="color: grey;">「请笔者喝杯奶茶鼓励一下」</div>
   <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
-    Donate
+    赞助
   </button>
   <div id="qr" style="display: none;">
       
@@ -601,7 +600,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/blog/tags/">
           
-        <span class="site-state-item-count">82</span>
+        <span class="site-state-item-count">83</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -639,28 +638,24 @@
     </ul>
   </div>
   <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title">
-      <i class="fa fa-fw fa-wikipedia-w"></i>
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
       常用网站
     </div>
     <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item" style="display: block">
+        <li class="links-of-blogroll-item">
           <a href="https://caniuse.com/" title="https:&#x2F;&#x2F;caniuse.com&#x2F;" rel="noopener" target="_blank">Caniuse(CSS兼容性)</a>
         </li>
-        <li class="links-of-blogroll-item" style="display: block">
+        <li class="links-of-blogroll-item">
           <a href="https://developer.mozilla.org/zh-CN/" title="https:&#x2F;&#x2F;developer.mozilla.org&#x2F;zh-CN&#x2F;" rel="noopener" target="_blank">MDN(web 文档)</a>
         </li>
-        <li class="links-of-blogroll-item" style="display: block">
+        <li class="links-of-blogroll-item">
           <a href="https://codepen.io/" title="https:&#x2F;&#x2F;codepen.io&#x2F;" rel="noopener" target="_blank">codepen</a>
         </li>
-        <li class="links-of-blogroll-item" style="display: block">
+        <li class="links-of-blogroll-item">
           <a href="https://tinypng.com/" title="https:&#x2F;&#x2F;tinypng.com&#x2F;" rel="noopener" target="_blank">Tinypng(图片压缩)</a>
         </li>
     </ul>
   </div>
-
-
-        
 
       </div>
 
@@ -699,7 +694,7 @@
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     <span title="站点阅读时长">1:25</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
   <div class="addthis_inline_share_toolbox">
     <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=5d560b378f0db5fa" async="async"></script>

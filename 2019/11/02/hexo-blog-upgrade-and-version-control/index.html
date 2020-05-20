@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 4.2.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
@@ -24,7 +24,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"anran758.github.io","root":"/blog/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"manual"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"anran758.github.io","root":"/blog/","scheme":"Muse","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"manual"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="前一篇我们介绍了如何使用 Hexo 框架及 Next 主题搭建博客。这次来聊聊如何安全的更新博客与主题的版本。">
@@ -117,9 +117,9 @@
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
 
@@ -138,7 +138,6 @@
     </div>
   </div>
 </div>
-
 
 
 
@@ -166,7 +165,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>时间轴</a>
+    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -335,22 +334,22 @@
 <li><p>找到对应的平台，创建私人仓库(注意是 <strong>Private</strong>，不要将自己的私人配置也开源咯)。</p>
 </li>
 <li><p>仓库创建完毕后，得到仓库的地址。打开命令行，进入 <code>/blog</code> 目录下并输入命令:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 初始化 git 项目</span><br>git init<br><br><span class="hljs-comment"># 添加一个名为 origin 的 remote</span><br><span class="hljs-comment"># your_repo_path 是你创建仓库得到的仓库地址</span><br>git remote add origin your_repo_path<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化 git 项目</span></span><br><span class="line">git init</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加一个名为 origin 的 remote</span></span><br><span class="line"><span class="comment"># your_repo_path 是你创建仓库得到的仓库地址</span></span><br><span class="line">git remote add origin your_repo_path</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>由于 <code>/theme/next</code> 本身也是一个仓库，<code>git</code> 无法提交嵌套仓库的文件夹，因此需要在 <code>.gitignore</code> 添加配置，忽略该文件夹</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 其他忽略规则...</span><br>themes/next/<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 其他忽略规则...</span></span><br><span class="line">themes/next/</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>提交代码</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 提交代码</span><br>git add .<br>git commit -m <span class="hljs-string">"new: blog 数据开始进行版本控制"</span><br><br><span class="hljs-comment"># 设置上游(-u)并推送至远程的 master 分支</span><br>git push -u origin master<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 提交代码</span></span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">"new: blog 数据开始进行版本控制"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置上游(-u)并推送至远程的 master 分支</span></span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>这样我们就完成了博客的源码托管。</p>
 </li>
 </ol>
 <h2 id="主题托管"><a href="#主题托管" class="headerlink" title="主题托管"></a>主题托管</h2><p><code>Next theme</code> 官网介绍的安装方式如下:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 进入 blog 目录</span><br><span class="hljs-built_in">cd</span> blog<br><br><span class="hljs-comment"># 言下之意就是将该库克隆到 themes 目录下的 next 文件夹中</span><br>git <span class="hljs-built_in">clone</span> https://github.com/theme-next/hexo-theme-next themes/next<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入 blog 目录</span></span><br><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line"></span><br><span class="line"><span class="comment"># 言下之意就是将该库克隆到 themes 目录下的 next 文件夹中</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
 
 <p>在 <code>Next theme 7.0+</code> 版本中，主题嵌入了检查版本更新的代码，每当运行本地服务器时，都会进行检查版本号的更新。当有新的版本发布时会在命令行输出警告:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">WARN  Your theme NexT is outdated. Current version: v7.4.2, latest version: v7.5.0<br>WARN  Visit https://github.com/theme-next/hexo-theme-next/releases <span class="hljs-keyword">for</span> more information.<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">WARN  Your theme NexT is outdated. Current version: v7.4.2, latest version: v7.5.0</span><br><span class="line">WARN  Visit https://github.com/theme-next/hexo-theme-next/releases <span class="keyword">for</span> more information.</span><br></pre></td></tr></table></figure>
 
 <p>这时你想体验 <code>Next</code> 的新特性的话可能会有点麻烦，因为原先我们在旧版本上修改了配置，或添加了一些自定义的布局。这将会造成代码冲突。</p>
 <p>因此我们需要独立开两条分支:</p>
@@ -359,27 +358,27 @@
 <li>另一条是我们自己创建的新分支，笔者命名为 <code>customize</code>, 言下之意为该分支含有我们自定义的修改，包括私人配置等。</li>
 </ul>
 <p>除此之外，由于主题配置文件(<code>theme/next/_config.yml</code>)中含有某些应用的 <code>appid</code> 或者 <code>secret</code>，这些配置不应该被其他人随意看到以防冒名滥用。因此我们应该将该项目额外添加一个 <code>remote</code> 来保存我们的私人配置。 具体操作如下:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 此时已经下载到了主题文件夹</span><br><br><span class="hljs-comment"># 创建并切换新分支</span><br>git checkout -B customize<br><br><span class="hljs-comment"># 进行主题配置或其他修改操作</span><br><br><span class="hljs-comment"># 提交改动(未推送)</span><br>git add .<br>git commit -m <span class="hljs-string">"chg: 修改为自定义配置"</span><br><br><span class="hljs-comment"># 添加一个名为 userRepo(名字可以自己定义，只要自己能搞清是哪个来源即可) 的新 remote，</span><br>git remote add userRepo git@github.com:anran758/hexo-xxx-next.git<br><br><span class="hljs-comment"># 设置上游(即以后使用 git pull/status 时默认拉取 userRepo 源的 customize 分支)，并推送指定 remote</span><br>git push -u userRepo customize<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 此时已经下载到了主题文件夹</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建并切换新分支</span></span><br><span class="line">git checkout -B customize</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进行主题配置或其他修改操作</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 提交改动(未推送)</span></span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">"chg: 修改为自定义配置"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加一个名为 userRepo(名字可以自己定义，只要自己能搞清是哪个来源即可) 的新 remote，</span></span><br><span class="line">git remote add userRepo git@github.com:anran758/hexo-xxx-next.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置上游(即以后使用 git pull/status 时默认拉取 userRepo 源的 customize 分支)，并推送指定 remote</span></span><br><span class="line">git push -u userRepo customize</span><br></pre></td></tr></table></figure>
 
 <p>如此就完成了代码的追踪，以后使用 <code>next</code> 主题就不是从 <code>hexo-theme-next</code> 中获取了，而是我们自己的私人仓库 <code>hexo-xxx-next</code> 中获取，安装方式是一样的。</p>
 <h2 id="版本升级"><a href="#版本升级" class="headerlink" title="版本升级"></a>版本升级</h2><h3 id="Next"><a href="#Next" class="headerlink" title="Next"></a>Next</h3><p>前文说过我们将源码托管的需求之一就是为了解决代码合并的问题，为了体验新版本的特性，我们需要将新版本的代码合并进我们的分支：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 从 origin/master 获取最新版本的代码</span><br><span class="hljs-comment"># 理论上我们不修改 master 分支的代码不会发生冲突</span><br>git fetch origin<br>git pull --no-commit origin master<br><br><span class="hljs-comment"># 切换至 customize 分支</span><br>git checkout customize<br><br><span class="hljs-comment"># 检查本地是否有文件改动，有的话需要进行 commit 提交或者使用 git stash 藏起来</span><br>git status<br><br><span class="hljs-comment"># 合并代码</span><br>git merge master<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 从 origin/master 获取最新版本的代码</span></span><br><span class="line"><span class="comment"># 理论上我们不修改 master 分支的代码不会发生冲突</span></span><br><span class="line">git fetch origin</span><br><span class="line">git pull --no-commit origin master</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换至 customize 分支</span></span><br><span class="line">git checkout customize</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查本地是否有文件改动，有的话需要进行 commit 提交或者使用 git stash 藏起来</span></span><br><span class="line">git status</span><br><span class="line"></span><br><span class="line"><span class="comment"># 合并代码</span></span><br><span class="line">git merge master</span><br></pre></td></tr></table></figure>
 
 <p>我们最起码修改过 _config.yml，因此会发生冲突也不奇怪，有冲突咱们就解决冲突。</p>
 <p>如果你使用 vscode 进行编码，侧边栏有一个源代码管理，打开它可以看到冲突的文件。</p>
 <p>打开冲突的文件，判断冲突项确定要保留(删除)的代码，解决冲突后，提交到缓存区(git add .(file))。缓冲区有本次升级所涉及的代码，可以大致预览一下本次的更新都做了什么事</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 将缓冲区的文件提交至 commit</span><br>git commit -m <span class="hljs-string">"Merge release v(version) into customize branch"</span><br><br><span class="hljs-comment"># 提交代码</span><br>git push<br><span class="hljs-comment"># Counting objects: 99, done.</span><br><span class="hljs-comment"># Delta compression using up to 4 threads.</span><br><span class="hljs-comment"># Compressing objects: 100% (57/57), done.</span><br><span class="hljs-comment"># Writing objects: 100% (99/99), 12.86 KiB | 346.00 KiB/s, done.</span><br><span class="hljs-comment"># Total 99 (delta 71), reused 64 (delta 42)</span><br><span class="hljs-comment"># remote: Resolving deltas: 100% (71/71), completed with 41 local objects.</span><br><span class="hljs-comment"># To github.com:anran758/hexo-xxx-next.git</span><br><span class="hljs-comment">#    4a70c18..54805a2  customize -&gt; customize</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将缓冲区的文件提交至 commit</span></span><br><span class="line">git commit -m <span class="string">"Merge release v(version) into customize branch"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 提交代码</span></span><br><span class="line">git push</span><br><span class="line"><span class="comment"># Counting objects: 99, done.</span></span><br><span class="line"><span class="comment"># Delta compression using up to 4 threads.</span></span><br><span class="line"><span class="comment"># Compressing objects: 100% (57/57), done.</span></span><br><span class="line"><span class="comment"># Writing objects: 100% (99/99), 12.86 KiB | 346.00 KiB/s, done.</span></span><br><span class="line"><span class="comment"># Total 99 (delta 71), reused 64 (delta 42)</span></span><br><span class="line"><span class="comment"># remote: Resolving deltas: 100% (71/71), completed with 41 local objects.</span></span><br><span class="line"><span class="comment"># To github.com:anran758/hexo-xxx-next.git</span></span><br><span class="line"><span class="comment">#    4a70c18..54805a2  customize -&gt; customize</span></span><br></pre></td></tr></table></figure>
 
 <p>升级完后运行本地服务器最后会输出一条：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">INFO  Congratulations! Your are using the latest version of theme NexT.<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INFO  Congratulations! Your are using the latest version of theme NexT.</span><br></pre></td></tr></table></figure>
 
 <h3 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h3><p>若最新版本的 <code>Hexo</code> 引入了你想要的新功能，你想更新 <code>Hexo</code> 版本的话，首先确定版本号变动的是哪一位。</p>
 <p><code>package.json</code> 的版本号格式是数字由点分隔，如 <code>主版本号.功能版本号.补丁版本号</code>。若更新是主(大)版本号的话，则需要先修改 <code>dependencies</code> 依赖中 <code>hexo</code> 的主版本号，再输入 <code>npm update</code>。</p>
 <p>以下是 <code>hexo@v3</code> 更新为 <code>hexo@v4</code> 的示例:</p>
-<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs diff">&#123;<br>   // ...<br>   "dependencies": &#123;<br><span class="hljs-addition">+    "hexo": "^4.0.0",</span><br><span class="hljs-deletion">-    "hexo": "^3.9.0",</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   // ...</span><br><span class="line">   "dependencies": &#123;</span><br><span class="line"><span class="addition">+    "hexo": "^4.0.0",</span></span><br><span class="line"><span class="deletion">-    "hexo": "^3.9.0",</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>命令行输入:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> npx hexo -v</span><br>hexo: 3.9.0<br>hexo-cli: 2.0.0<br>os: Darwin 17.7.0 darwin x64<br>node: 12.13.1<br>v8: 7.7.299.13-node.16<br>uv: 1.33.1<br>zlib: 1.2.11<br>brotli: 1.0.7<br>ares: 1.15.0<br>modules: 72<br>nghttp2: 1.39.2<br>napi: 5<br>llhttp: 1.1.4<br>http_parser: 2.8.0<br>openssl: 1.1.1d<br>cldr: 35.1<br>icu: 64.2<br>tz: 2019c<br>unicode: 12.1<br><br><span class="hljs-meta">$</span><span class="bash"> npm update</span><br>+ hexo@4.2.0<br>added 71 packages from 90 contributors, updated 14 packages and moved 5 packages in 12.513s<br><br><span class="hljs-meta">$</span><span class="bash"> npx hexo -v</span><br>hexo: 4.2.0<br>hexo-cli: 3.1.0<br>os: Darwin 17.7.0 darwin x64<br>node: 12.13.1<br>v8: 7.7.299.13-node.16<br>uv: 1.33.1<br>zlib: 1.2.11<br>brotli: 1.0.7<br>ares: 1.15.0<br>modules: 72<br>nghttp2: 1.39.2<br>napi: 5<br>llhttp: 1.1.4<br>http_parser: 2.8.0<br>openssl: 1.1.1d<br>cldr: 35.1<br>icu: 64.2<br>tz: 2019c<br>unicode: 12.1<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npx hexo -v</span></span><br><span class="line">hexo: 3.9.0</span><br><span class="line">hexo-cli: 2.0.0</span><br><span class="line">os: Darwin 17.7.0 darwin x64</span><br><span class="line">node: 12.13.1</span><br><span class="line">v8: 7.7.299.13-node.16</span><br><span class="line">uv: 1.33.1</span><br><span class="line">zlib: 1.2.11</span><br><span class="line">brotli: 1.0.7</span><br><span class="line">ares: 1.15.0</span><br><span class="line">modules: 72</span><br><span class="line">nghttp2: 1.39.2</span><br><span class="line">napi: 5</span><br><span class="line">llhttp: 1.1.4</span><br><span class="line">http_parser: 2.8.0</span><br><span class="line">openssl: 1.1.1d</span><br><span class="line">cldr: 35.1</span><br><span class="line">icu: 64.2</span><br><span class="line">tz: 2019c</span><br><span class="line">unicode: 12.1</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> npm update</span></span><br><span class="line">+ hexo@4.2.0</span><br><span class="line">added 71 packages from 90 contributors, updated 14 packages and moved 5 packages in 12.513s</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> npx hexo -v</span></span><br><span class="line">hexo: 4.2.0</span><br><span class="line">hexo-cli: 3.1.0</span><br><span class="line">os: Darwin 17.7.0 darwin x64</span><br><span class="line">node: 12.13.1</span><br><span class="line">v8: 7.7.299.13-node.16</span><br><span class="line">uv: 1.33.1</span><br><span class="line">zlib: 1.2.11</span><br><span class="line">brotli: 1.0.7</span><br><span class="line">ares: 1.15.0</span><br><span class="line">modules: 72</span><br><span class="line">nghttp2: 1.39.2</span><br><span class="line">napi: 5</span><br><span class="line">llhttp: 1.1.4</span><br><span class="line">http_parser: 2.8.0</span><br><span class="line">openssl: 1.1.1d</span><br><span class="line">cldr: 35.1</span><br><span class="line">icu: 64.2</span><br><span class="line">tz: 2019c</span><br><span class="line">unicode: 12.1</span><br></pre></td></tr></table></figure>
 
 <p>若只是后面两位版本号有变更的话，仅需输入 <code>npm update</code> 即可。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>单单从升级版本来合并代码的角度来看，实际上本地 commit 也可以做这种事，将 <code>commit</code> 储存在本地(<code>.git</code>)中不提交远端也是没有问题的，<code>OneDrive</code>也可以完成同步。</p>
@@ -428,9 +427,9 @@
 
         <div class="reward-container">
   <div></div>
-    <div style="color: grey;">「请笔者喝杯奶茶支持一下创作~」</div>
+    <div style="color: grey;">「请笔者喝杯奶茶鼓励一下」</div>
   <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
-    Donate
+    赞助
   </button>
   <div id="qr" style="display: none;">
       
@@ -637,7 +636,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/blog/tags/">
           
-        <span class="site-state-item-count">82</span>
+        <span class="site-state-item-count">83</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -675,28 +674,24 @@
     </ul>
   </div>
   <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title">
-      <i class="fa fa-fw fa-wikipedia-w"></i>
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
       常用网站
     </div>
     <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item" style="display: block">
+        <li class="links-of-blogroll-item">
           <a href="https://caniuse.com/" title="https:&#x2F;&#x2F;caniuse.com&#x2F;" rel="noopener" target="_blank">Caniuse(CSS兼容性)</a>
         </li>
-        <li class="links-of-blogroll-item" style="display: block">
+        <li class="links-of-blogroll-item">
           <a href="https://developer.mozilla.org/zh-CN/" title="https:&#x2F;&#x2F;developer.mozilla.org&#x2F;zh-CN&#x2F;" rel="noopener" target="_blank">MDN(web 文档)</a>
         </li>
-        <li class="links-of-blogroll-item" style="display: block">
+        <li class="links-of-blogroll-item">
           <a href="https://codepen.io/" title="https:&#x2F;&#x2F;codepen.io&#x2F;" rel="noopener" target="_blank">codepen</a>
         </li>
-        <li class="links-of-blogroll-item" style="display: block">
+        <li class="links-of-blogroll-item">
           <a href="https://tinypng.com/" title="https:&#x2F;&#x2F;tinypng.com&#x2F;" rel="noopener" target="_blank">Tinypng(图片压缩)</a>
         </li>
     </ul>
   </div>
-
-
-        
 
       </div>
 
@@ -735,7 +730,7 @@
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     <span title="站点阅读时长">1:25</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
   <div class="addthis_inline_share_toolbox">
     <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=5d560b378f0db5fa" async="async"></script>
