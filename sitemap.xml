@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://anran758.github.io/blog/2020/05/04/webpack-example/</loc>
+    
+    <lastmod>2020-05-22T05:26:24.083Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://anran758.github.io/blog/2019/08/24/js-%25E5%25B0%2586JSON%25E6%2595%25B0%25E6%258D%25AE%25E6%25A0%25BC%25E5%25BC%258F%25E8%25BE%2593%25E5%2587%25BA%25E8%2587%25B3%25E9%25A1%25B5%25E9%259D%25A2%25E4%25B8%258A/</loc>
     
     <lastmod>2020-05-21T01:19:54.985Z</lastmod>
@@ -33,13 +40,6 @@
     <loc>https://anran758.github.io/blog/2017/12/18/git-pull%25E8%25BF%259C%25E7%25A8%258B%25E4%25BB%2593%25E5%25BA%2593%25E4%25BB%25A3%25E7%25A0%2581%25E5%2586%25B2%25E7%25AA%2581/</loc>
     
     <lastmod>2020-05-20T13:20:45.274Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://anran758.github.io/blog/2020/05/04/webpack-example/</loc>
-    
-    <lastmod>2020-05-20T13:17:50.315Z</lastmod>
     
   </url>
   

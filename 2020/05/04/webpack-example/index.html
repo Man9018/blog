@@ -37,7 +37,7 @@
 <meta property="og:image" content="https://anran758.github.io/blog/2020/05/04/webpack-example/banner.png">
 <meta property="og:image" content="https://anran758.github.io/blog/2020/05/04/webpack-example/example-1.png">
 <meta property="article:published_time" content="2020-05-04T14:58:56.000Z">
-<meta property="article:modified_time" content="2020-05-20T13:17:50.315Z">
+<meta property="article:modified_time" content="2020-05-22T05:26:24.083Z">
 <meta property="article:author" content="anran758">
 <meta property="article:tag" content="环境搭建">
 <meta property="article:tag" content="webpack">
@@ -257,7 +257,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-20 21:17:50" itemprop="dateModified" datetime="2020-05-20T21:17:50+08:00">2020-05-20</time>
+                <time title="修改时间：2020-05-22 13:26:24" itemprop="dateModified" datetime="2020-05-22T13:26:24+08:00">2020-05-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -296,14 +296,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>12k</span>
+              <span>14k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>15 mins</span>
+              <span>18 mins</span>
             </span>
 
         </div>
@@ -437,7 +437,40 @@
 </details>
 
 <p>接着修改 webpack 配置，引入 <code>css-loader</code> 和 <code>mini-css-extract-plugin</code>，同时将输出目录也进行分类整理:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>);</span><br><span class="line"><span class="keyword">const</span> MiniCssExtractPlugin = <span class="built_in">require</span>(<span class="string">'mini-css-extract-plugin'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">// 起点或是应用程序的起点入口</span></span><br><span class="line">  entry: <span class="string">"./src/js/index"</span>,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 输出配置</span></span><br><span class="line">  output: &#123;</span><br><span class="line">    <span class="comment">// 编译后的输出路径</span></span><br><span class="line">    <span class="comment">// 注意此处必须是绝对路径，不然 webpack 将会抛错（使用 Node.js 的 path 模块）</span></span><br><span class="line">    path: path.resolve(__dirname, <span class="string">"dist"</span>),</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 输出 bundle 的名称</span></span><br><span class="line">    filename: <span class="string">"js/bundle.js"</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.css$/i</span>,</span><br><span class="line">        use: [MiniCssExtractPlugin.loader, <span class="string">'css-loader'</span>],</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="comment">// html-webpack-plugin</span></span><br><span class="line">    <span class="comment">// https://github.com/jantimon/html-webpack-plugin#configuration</span></span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">      title: <span class="string">'Test Configuration'</span>,</span><br><span class="line">      template: path.resolve(__dirname, <span class="string">"./src/index.html"</span>),</span><br><span class="line">    &#125;),</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 提取 css 到单独的文件</span></span><br><span class="line">    <span class="comment">// https://github.com/webpack-contrib/mini-css-extract-plugin</span></span><br><span class="line">    <span class="keyword">new</span> MiniCssExtractPlugin(&#123;</span><br><span class="line">      <span class="comment">// 选项类似于 webpackOptions.output 中的相同选项，该选项是可选的</span></span><br><span class="line">      filename: <span class="string">'css/index.css'</span>,</span><br><span class="line">    &#125;)</span><br><span class="line">  ],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><figcaption><span>/webpack.config.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">const path = require('path');</span><br><span class="line"><span class="addition">+ const HtmlWebpackPlugin = require('html-webpack-plugin');</span></span><br><span class="line"><span class="addition">+ const MiniCssExtractPlugin = require('mini-css-extract-plugin');</span></span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  // 起点或是应用程序的起点入口</span><br><span class="line">  entry: "./src/js/index",</span><br><span class="line"></span><br><span class="line">  // 输出配置</span><br><span class="line">  output: &#123;</span><br><span class="line">    // 编译后的输出路径</span><br><span class="line">    // 注意此处必须是绝对路径，不然 webpack 将会抛错（使用 Node.js 的 path 模块）</span><br><span class="line">    path: path.resolve(__dirname, "dist"),</span><br><span class="line"></span><br><span class="line">    // 输出 bundle 的名称</span><br><span class="line"><span class="deletion">-    filename: "bundle.js",</span></span><br><span class="line"><span class="addition">+    filename: "js/bundle.js",</span></span><br><span class="line"><span class="addition">+  &#125;,</span></span><br><span class="line"><span class="addition">+  module: &#123;</span></span><br><span class="line"><span class="addition">+    rules: [</span></span><br><span class="line"><span class="addition">+      &#123;</span></span><br><span class="line"><span class="addition">+        test: /\.css$/i,</span></span><br><span class="line"><span class="addition">+        use: [MiniCssExtractPlugin.loader, 'css-loader'],</span></span><br><span class="line"><span class="addition">+      &#125;,</span></span><br><span class="line"><span class="addition">+    ],</span></span><br><span class="line"><span class="addition">+  &#125;,</span></span><br><span class="line">  plugins: [</span><br><span class="line">    // html-webpack-plugin</span><br><span class="line">    // https://github.com/jantimon/html-webpack-plugin#configuration</span><br><span class="line">    new HtmlWebpackPlugin(&#123;</span><br><span class="line">      title: 'Test Configuration',</span><br><span class="line"><span class="deletion">-      template: path.resolve(__dirname, "./index.html"),</span></span><br><span class="line"><span class="addition">+      template: path.resolve(__dirname, "./src/index.html"),</span></span><br><span class="line"><span class="addition">+    &#125;),</span></span><br><span class="line"><span class="addition">+</span></span><br><span class="line"><span class="addition">+    // 提取 css 到单独的文件</span></span><br><span class="line"><span class="addition">+    // https://github.com/webpack-contrib/mini-css-extract-plugin</span></span><br><span class="line"><span class="addition">+    new MiniCssExtractPlugin(&#123;</span></span><br><span class="line"><span class="addition">+      // 选项类似于 webpackOptions.output 中的相同选项，该选项是可选的</span></span><br><span class="line"><span class="addition">+      filename: 'css/index.css',</span></span><br><span class="line"><span class="addition">+    &#125;)</span></span><br><span class="line">  ],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在我们通过上面的配置来学习一下 <code>loader</code> 的使用。</p>
+<p>在上面的配置中，<a href="https://webpack.js.org/configuration/module/" target="_blank" rel="noopener">module</a> 是规定了如何处理项目中的不同类型的模块，<a href="https://webpack.js.org/configuration/module/#modulerules" target="_blank" rel="noopener">rules</a> 是创建模块时，匹配请求的 <code>rule(规则)</code> 数组。<code>rule</code> 是一个对象，其中最常见的属性就是 <a href="https://webpack.js.org/configuration/module/#ruletest" target="_blank" rel="noopener">test</a> 、 <a href="https://webpack.js.org/configuration/module/#ruleuse" target="_blank" rel="noopener">use</a> 和 <a href="https://webpack.js.org/configuration/module/#ruleloader" target="_blank" rel="noopener">loader</a>。</p>
+<p><code>rule.test</code> 是匹配条件，通常会给它提供一个正则表达式或正则表达式的数组。如果配置了 <code>test</code> 属性，那该 <code>rule</code> 匹配给定条件。比如匹配条件写为 <code>test: /\.css$/i</code>，这意味着给后缀为 <code>css</code> 的文件使用 <code>loader</code>。</p>
+<p><code>rule.use</code> 顾名思义就是给符合匹配的文件使用 <code>loader</code>。它可以接收一个字符串，这个字符串会通过 webpack 的 <a href="https://webpack.js.org/configuration/resolve/#resolveloader" target="_blank" rel="noopener">resolveLoader</a> 选项进行解析。该选项目前不需要我们额外配置，它内置有解析规则，比如下例中默认会去找 <code>node_modules</code>:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use: <span class="string">'css-loader'</span></span><br></pre></td></tr></table></figure>
+
+<p><code>rule.use</code> 还可是应用于模块的 <a href="https://webpack.js.org/configuration/module/#useentry" target="_blank" rel="noopener">UseEntry</a> 对象。<code>UseEntry</code> 对象内主要有 <code>loader</code> 和 <code>options</code> 两个属性。</p>
+<p>如果对象内只设 <code>loader</code> 属性，那它与单传的字符串的作用一样。<code>options</code> 则是传递给 <code>loader</code> 的配置项，不同 <code>loader</code> 会提供有不同的 <code>options</code>。</p>
+<p>注意，如果是以对象形式传入，<code>loader</code> 属性是必填的，<code>options</code> 是可选的:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// use 传入 UseEntry 类型的对象</span></span><br><span class="line">use: &#123;</span><br><span class="line">  <span class="comment">// 必选项，要告诉 webpack 使用什么 loader</span></span><br><span class="line">  loader: <span class="string">'css-loader'</span>,</span><br><span class="line">  <span class="comment">// 可选项，传递给 loader 选项</span></span><br><span class="line">  options: &#123;</span><br><span class="line">    modules: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p><code>rule.use</code> 还可以是一个函数，函数接收描述正在加载的模块的对象参数，最终会返回 <code>UseEntry</code> 对象或数组:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">use: <span class="function">(<span class="params">info</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(info);</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">   loader: <span class="string">'svgo-loader'</span>,</span><br><span class="line">   options: &#123;</span><br><span class="line">     plugins: [&#123;</span><br><span class="line">       cleanupIDs: &#123; <span class="attr">prefix</span>: basename(info.resource) &#125;</span><br><span class="line">     &#125;]</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>若打印出函数的形参 <code>info</code> 的话，可以看到该对象拥有以下属性:</p>
+<ul>
+<li><code>compiler</code>: 当前的 webpack 编译器（可以未定义）</li>
+<li><code>issuer</code>: 导入正在加载的模块的模块的路径</li>
+<li><code>realResource</code>: 始终是要加载的模块的路径</li>
+<li><code>resource</code>: 要加载的模块的路径。通常等于 <code>realResource</code> 除非通过 <code>!=!</code> 请求字符串中的资源名称覆盖</li>
+</ul>
+<p>由此可以看出函数方式可用于按模块更改加载程序选项。</p>
+<p><code>use</code> 最常见的使用方法是提供一个数组，数组中每项可以是字符串、<code>UseEntry</code> 对象、<code>UseEntry</code> 函数。也是一个套娃的过程:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use: [&#123; <span class="attr">loader</span>: MiniCssExtractPlugin.loader &#125;, <span class="string">'css-loader'</span>],</span><br></pre></td></tr></table></figure>
+
+<p>值得注意的是，在一个 <code>rule</code> 中使用多个 <code>loader</code> 要注意其顺序。使用数组方式的话，<code>loader</code>将会<strong>从右到左应用</strong>。</p>
+<p>比如上例中最先通过 <code>css-loader</code> 来处理 <code>.css</code> 文件的引入问题，再通过 <code>MiniCssExtractPlugin.loader</code> (tips: 打印该值可以发现这是 <code>loader</code> 的绝对路径)来提取出文件。如果反过来应用就会出问题了，<code>webpack</code> 都不知道如何引用 <code>css</code> 文件，自然提取不了文件。</p>
+<p><code>rule.loader</code> 是 <code>rule.use</code> 的缩写，等价于 <code>rule.use: [{ loader }]</code>。webpack 像这样简写的配置还有很多，减少了配置的层级，显得比较灵活。另一方面由于属性简错综复杂的关系又显得配置有点很复杂。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="comment">// 匹配文件规则</span></span><br><span class="line">  test: <span class="regexp">/\.css$/i</span>,</span><br><span class="line">  <span class="comment">// rule.use 简写形式</span></span><br><span class="line">  loader: <span class="string">'css-loader'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接下来回归正题。重新编译 webpack，编译后的目录结构如下:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── dist</span><br><span class="line">│   ├── css</span><br><span class="line">│   │   └── index.css</span><br><span class="line">│   ├── index.html</span><br><span class="line">│   └── js</span><br><span class="line">│       └── bundle.js</span><br><span class="line">├── package.json</span><br><span class="line">├── src</span><br><span class="line">│   ├── css</span><br><span class="line">│   │   └── style.css</span><br><span class="line">│   ├── index.html</span><br><span class="line">│   └── js</span><br><span class="line">│       ├── index.js</span><br><span class="line">│       └── log.js</span><br><span class="line">└── webpack.config.js</span><br></pre></td></tr></table></figure>
 
 <hr>
 <p>考虑 webpack 篇幅问题，接下来笔者将按节更新，每一节都存有独立的 demo，可以在 github 的 <a href="https://github.com/anran758/webpack-example" target="_blank" rel="noopener">webpack-example</a> 找到对应的示例。</p>
@@ -574,13 +607,10 @@
           
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
-            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
             <li class="tab"><a href="#comment-disqus">disqus</a></li>
+            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
         </ul>
         <div class="tab-content">
-            <div class="tab-pane gitalk" id="comment-gitalk">
-              <div class="comments" id="gitalk-container"></div>
-            </div>
             <div class="tab-pane disqus" id="comment-disqus">
               
   <div class="comments">
@@ -589,6 +619,9 @@
     </div>
   </div>
   
+            </div>
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
             </div>
         </div>
       </div>
@@ -753,13 +786,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">195k</span>
+    <span title="站点总字数">197k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">4:04</span>
+    <span title="站点阅读时长">4:06</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
@@ -940,26 +973,6 @@
 
   
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
-
-<script>
-NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
-    var gitalk = new Gitalk({
-      clientID    : 'a35e4aa0db5b5a7bcc2f',
-      clientSecret: 'a19ef2a9debab8747a6e723c1eff1141213fe101',
-      repo        : 'gitment-comments',
-      owner       : 'anran758',
-      admin       : ['anran758'],
-      id          : 'a98a4879555b31f38a92bb50a75a3169',
-        language: '',
-      distractionFreeMode: true
-    });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
-});
-</script>
-
 <script>
   function loadCount() {
     var d = document, s = d.createElement('script');
@@ -989,6 +1002,26 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       (d.head || d.body).appendChild(s);
     }
   });
+</script>
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'a35e4aa0db5b5a7bcc2f',
+      clientSecret: 'a19ef2a9debab8747a6e723c1eff1141213fe101',
+      repo        : 'gitment-comments',
+      owner       : 'anran758',
+      admin       : ['anran758'],
+      id          : 'a98a4879555b31f38a92bb50a75a3169',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
 </script>
 
 </body>
