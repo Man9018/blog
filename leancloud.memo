@@ -53,5 +53,6 @@
 {"title":"Flexbox 布局入门","url":"/blog/2020/02/05/css-getting-started-with-flexbox/"},
 {"title":"Flexbox 布局实际用例","url":"/blog/2020/02/22/flexbox-use-cases/"},
 {"title":"webpack 构建示例","url":"/blog/2020/05/04/webpack-example/"},
+{"title":"webpack 构建示例(基础篇)","url":"/blog/2020/05/04/webpack-example/"},
 {"title":"test","url":"/blog/2020/05/07/test/"},
 ]
