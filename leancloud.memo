@@ -54,5 +54,6 @@
 {"title":"Flexbox 布局实际用例","url":"/blog/2020/02/22/flexbox-use-cases/"},
 {"title":"webpack 构建示例","url":"/blog/2020/05/04/webpack-example/"},
 {"title":"webpack 构建示例(基础篇)","url":"/blog/2020/05/04/webpack-example/"},
+{"title":"从零构建 webpack 脚手架(基础篇)","url":"/blog/2020/05/04/webpack-example/"},
 {"title":"test","url":"/blog/2020/05/07/test/"},
 ]
