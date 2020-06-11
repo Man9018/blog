@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://anran758.github.io/blog/2020/06/06/webpack-example-development/</loc>
+    
+    <lastmod>2020-06-11T01:04:54.551Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://anran758.github.io/blog/2020/05/04/webpack-example/</loc>
+    
+    <lastmod>2020-06-06T03:08:17.860Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://anran758.github.io/blog/about/</loc>
     
     <lastmod>2020-06-02T08:13:55.381Z</lastmod>
@@ -19,13 +33,6 @@
     <loc>https://anran758.github.io/blog/2017/12/16/%25E4%25BD%25BF%25E7%2594%25A8%25E5%2591%25BD%25E4%25BB%25A4%25E8%25A1%258C%25E5%2588%259B%25E5%25BB%25BA-gitkeep%25E6%2596%2587%25E4%25BB%25B6/</loc>
     
     <lastmod>2020-06-02T06:44:33.346Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://anran758.github.io/blog/2020/05/04/webpack-example/</loc>
-    
-    <lastmod>2020-06-02T03:21:39.530Z</lastmod>
     
   </url>
   
@@ -240,14 +247,14 @@
   </url>
   
   <url>
-    <loc>https://anran758.github.io/blog/2018/01/10/%25E6%25B7%25B1%25E5%2585%25A5%25E5%25AD%25A6%25E4%25B9%25A0%25E4%25B9%258B%25E6%258E%2592%25E5%25BA%258F%25E4%25BA%258C%25E5%258F%2589%25E6%25A0%2591/</loc>
+    <loc>https://anran758.github.io/blog/2017/11/27/%25E8%25B0%2588%25E8%25B0%2588npm%25E5%258C%2585%25E9%2587%258C%25E7%259A%2584%2520install%2520--save%2520%25E5%2592%258C%2520install%2520--save-dev%25E4%25B9%258B%25E9%2597%25B4%25E7%259A%2584%25E5%258C%25BA%25E5%2588%25AB/</loc>
     
     <lastmod>2019-08-21T13:59:27.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://anran758.github.io/blog/2017/11/27/%25E8%25B0%2588%25E8%25B0%2588npm%25E5%258C%2585%25E9%2587%258C%25E7%259A%2584%2520install%2520--save%2520%25E5%2592%258C%2520install%2520--save-dev%25E4%25B9%258B%25E9%2597%25B4%25E7%259A%2584%25E5%258C%25BA%25E5%2588%25AB/</loc>
+    <loc>https://anran758.github.io/blog/2018/01/10/%25E6%25B7%25B1%25E5%2585%25A5%25E5%25AD%25A6%25E4%25B9%25A0%25E4%25B9%258B%25E6%258E%2592%25E5%25BA%258F%25E4%25BA%258C%25E5%258F%2589%25E6%25A0%2591/</loc>
     
     <lastmod>2019-08-21T13:59:27.000Z</lastmod>
     
@@ -296,14 +303,14 @@
   </url>
   
   <url>
-    <loc>https://anran758.github.io/blog/2017/12/15/Vue%25E9%25A1%25B9%25E7%259B%25AE%25E4%25B8%25ADAxios%25E6%258A%25A5%25E9%2594%2599Pomise%25E6%259C%25AA%25E5%25AE%259A%25E4%25B9%2589%25E5%258F%258AIE10%25E6%258A%25A5%25E8%25AF%25AD%25E6%25B3%2595%25E9%2594%2599%25E8%25AF%25AF%25E7%259A%2584%25E8%25A7%25A3%25E5%2586%25B3%25E6%2596%25B9%25E6%25A1%2588/</loc>
+    <loc>https://anran758.github.io/blog/2019/07/16/ant-design-redirect-change-method/</loc>
     
     <lastmod>2019-08-19T05:14:46.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://anran758.github.io/blog/2019/07/16/ant-design-redirect-change-method/</loc>
+    <loc>https://anran758.github.io/blog/2017/12/15/Vue%25E9%25A1%25B9%25E7%259B%25AE%25E4%25B8%25ADAxios%25E6%258A%25A5%25E9%2594%2599Pomise%25E6%259C%25AA%25E5%25AE%259A%25E4%25B9%2589%25E5%258F%258AIE10%25E6%258A%25A5%25E8%25AF%25AD%25E6%25B3%2595%25E9%2594%2599%25E8%25AF%25AF%25E7%259A%2584%25E8%25A7%25A3%25E5%2586%25B3%25E6%2596%25B9%25E6%25A1%2588/</loc>
     
     <lastmod>2019-08-19T05:14:46.000Z</lastmod>
     

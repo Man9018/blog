@@ -5,10 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.2.1">
-  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon/favicon-16x16.png">
+  <link rel="mask-icon" href="/blog/images/favicon/logo.svg" color="#222">
+  <link rel="manifest" href="/blog/images/favicon/site.webmanifest">
   <meta http-equiv="Cache-Control" content="no-transform">
   <meta http-equiv="Cache-Control" content="no-siteapp">
   <meta name="google-site-verification" content="hfSxUMVDQ0d4JZmyWsUce4uMULHxHXQxxCLYVk3cIbs">
@@ -396,9 +397,14 @@
 <li>可以在编写代码时根据触发回流重绘的特点有意的控制代码的编写。</li>
 <li>可以通过 chrome devtools 的 rendering 面板进行渲染性能分析</li>
 </ol>
-<div class="note primary">
-            <p><strong>参考资料:</strong></p><ul><li><a href="http://www.aoao.org.cn/blog/2008/05/reflow/" target="_blank" rel="noopener">形象化的reflow</a></li><li><a href="http://www.planabc.net/2009/04/13/reflow/" target="_blank" rel="noopener">影响 reflow 的因素及其优化</a></li><li><a href="https://www.youtube.com/watch?v=ZTnIxIA5KGw" target="_blank" rel="noopener">Gecko Reflow Visualization - mozilla.org</a></li><li><a href="http://www.zhangxinxu.com/wordpress/2010/01/%E5%9B%9E%E6%B5%81%E4%B8%8E%E9%87%8D%E7%BB%98%EF%BC%9Acss%E6%80%A7%E8%83%BD%E8%AE%A9javascript%E5%8F%98%E6%85%A2%EF%BC%9F/" target="_blank" rel="noopener">回流与重绘: CSS性能让JavaScript变慢?</a></li></ul>
-          </div>
+<div class="note primary"><p><strong>参考资料:</strong></p>
+<ul>
+<li><a href="http://www.aoao.org.cn/blog/2008/05/reflow/" target="_blank" rel="noopener">形象化的reflow</a></li>
+<li><a href="http://www.planabc.net/2009/04/13/reflow/" target="_blank" rel="noopener">影响 reflow 的因素及其优化</a></li>
+<li><a href="https://www.youtube.com/watch?v=ZTnIxIA5KGw" target="_blank" rel="noopener">Gecko Reflow Visualization - mozilla.org</a></li>
+<li><a href="http://www.zhangxinxu.com/wordpress/2010/01/%E5%9B%9E%E6%B5%81%E4%B8%8E%E9%87%8D%E7%BB%98%EF%BC%9Acss%E6%80%A7%E8%83%BD%E8%AE%A9javascript%E5%8F%98%E6%85%A2%EF%BC%9F/" target="_blank" rel="noopener">回流与重绘: CSS性能让JavaScript变慢?</a></li>
+</ul>
+</div>
 
     </div>
 
@@ -548,13 +554,10 @@
           
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
-            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
             <li class="tab"><a href="#comment-disqus">disqus</a></li>
+            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
         </ul>
         <div class="tab-content">
-            <div class="tab-pane gitalk" id="comment-gitalk">
-              <div class="comments" id="gitalk-container"></div>
-            </div>
             <div class="tab-pane disqus" id="comment-disqus">
               
   <div class="comments">
@@ -563,6 +566,9 @@
     </div>
   </div>
   
+            </div>
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
             </div>
         </div>
       </div>
@@ -628,7 +634,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-count">49</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -914,26 +920,6 @@
 
   
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
-
-<script>
-NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
-    var gitalk = new Gitalk({
-      clientID    : 'a35e4aa0db5b5a7bcc2f',
-      clientSecret: 'a19ef2a9debab8747a6e723c1eff1141213fe101',
-      repo        : 'gitment-comments',
-      owner       : 'anran758',
-      admin       : ['anran758'],
-      id          : 'b84e2701ecd4bc1a516428256ab2320b',
-        language: '',
-      distractionFreeMode: true
-    });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
-});
-</script>
-
 <script>
   function loadCount() {
     var d = document, s = d.createElement('script');
@@ -963,6 +949,26 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       (d.head || d.body).appendChild(s);
     }
   });
+</script>
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'a35e4aa0db5b5a7bcc2f',
+      clientSecret: 'a19ef2a9debab8747a6e723c1eff1141213fe101',
+      repo        : 'gitment-comments',
+      owner       : 'anran758',
+      admin       : ['anran758'],
+      id          : 'b84e2701ecd4bc1a516428256ab2320b',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
 </script>
 
 </body>
