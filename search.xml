@@ -4,35 +4,6 @@
   
     
     <entry>
-      <title>从零构建 webpack 脚手架(开发篇)</title>
-      <link href="/blog/2020/06/06/webpack-example-development/"/>
-      <url>/blog/2020/06/06/webpack-example-development/</url>
-      
-        <content type="html"><![CDATA[<p><a href="https://cloud.tencent.com/developer/section/1490280" target="_blank" rel="noopener">https://cloud.tencent.com/developer/section/1490280</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> webpack </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 环境搭建 </tag>
-            
-            <tag> webpack </tag>
-            
-            <tag> 脚手架 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>从零构建 webpack 脚手架(基础篇)</title>
       <link href="/blog/2020/05/04/webpack-example/"/>
       <url>/blog/2020/05/04/webpack-example/</url>
@@ -49,11 +20,11 @@
       
         <tags>
             
-            <tag> 环境搭建 </tag>
-            
             <tag> webpack </tag>
             
             <tag> 脚手架 </tag>
+            
+            <tag> 环境搭建 </tag>
             
         </tags>
       
@@ -250,11 +221,11 @@
       
         <tags>
             
+            <tag> HTTP </tag>
+            
             <tag> ant design pro </tag>
             
             <tag> react </tag>
-            
-            <tag> HTTP </tag>
             
         </tags>
       
