@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>使用 Travis CI 持续集成自动部署 webpack 应用</title>
+      <link href="/blog/2020/06/08/github-travis-build/"/>
+      <url>/blog/2020/06/08/github-travis-build/</url>
+      
+        <content type="html"><![CDATA[<p>当我们完成项目开发后，想将页面部署到 <strong><a href="https://pages.github.com/" target="_blank" rel="noopener">Github Pages</a></strong> 时，该要怎么操作呢？</p><p>我们知道 <strong>Github Pages</strong> 是 Github 免费提供给用户展示页面的一项服务。我们需要将展示的页面放到指定分支中，也就是源码与编译后的静态资源分离。</p><p>传统的做法是手动运行编译命令，编译后再复制到指定分支中。这样操作很繁琐，若使用 <code>Travis CI</code> 持续集成服务的话就可以自动完成这些事了。</p><a id="more"></a><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>既然我们要使用 <code>Travis CI</code>，那得先了解一下人家具体是干嘛的吧？</p><p><code>Travis CI</code> 是一个 <strong>持续集成(Continuous integration, CI)</strong>，每当增量提交较小代码的改动后，它将自动运行构建与测试。若运行结果符合预期，才将新代码集成到 <strong>主流(mainline)</strong> 中，这样会使应用更加健壮。</p><p>运行构建时，Travis CI 将 GitHub 存储库克隆到全新的虚拟环境中，并执行一系列任务来构建和测试代码。如果这些任务中的一项或多项失败，则将构建视为已损坏。如果所有任务均未失败，则认为构建已通过，并且 Travis CI 可以将代码部署到 Web 服务器或应用程序主机(在本文中是指 <code>Github Pages</code>)。</p><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>在使用之前，我们需要有一个 <strong>Github</strong> 的账号，因为 <code>Travis CI</code> 与 Github 是有绑定关系的。</p><ol><li>接着通过 Github 的账号登录 <a href="https://travis-ci.com/signin" target="_blank" rel="noopener">Travis CI</a>，点击 <code>SIGN IN WITH GITHUB</code>。</li><li>点击后会被重定向到 Github 进行授权。<img data-src="/blog/2020/06/08/github-travis-build/travis-1.png" class=""></li><li>授权后，若是第一次登录的话会被重定向至引导页：<img data-src="/blog/2020/06/08/github-travis-build/travis-2.png" class=""></li></ol><!--是只要代码有变更，就自动运行构建和测试，反馈运行结果。确保符合预期以后，再将新代码"集成"到主干。经常合并小的代码更改的实践，而不是在开发周期结束时合并大的更改。目的是通过以较小的增量开发和测试来构建更健康的软件Travis CIhttps://cloud.tencent.com/developer/section/1490280https://docs.travis-ci.com/user/deployment/pages/---辅助工程[githooks](https://git-scm.com/docs/githooks)[husky](https://github.com/typicode/husky) -> npm上可用的便捷git hook帮助程序。[commitlint](https://commitlint.js.org/#/) -> commitlint检查您的提交消息是否符合[常规的提交格式](https://www.conventionalcommits.org/zh-hans/v1.0.0-beta.4/)。[commitizen](https://github.com/commitizen/cz-cli#optional-install-and-run-commitizen-locally) -> 与Commitizen一起提交时，系统会提示您在提交时填写所有必需的提交字段 -->]]></content>
+      
+      
+      <categories>
+          
+          <category> 环境搭建 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> webpack </tag>
+            
+            <tag> 环境搭建 </tag>
+            
+            <tag> CI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>从零构建 webpack 脚手架(基础篇)</title>
       <link href="/blog/2020/05/04/webpack-example/"/>
       <url>/blog/2020/05/04/webpack-example/</url>
