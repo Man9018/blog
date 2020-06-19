@@ -4,7 +4,14 @@
   <url>
     <loc>https://anran758.github.io/blog/2020/06/08/github-travis-build/</loc>
     
-    <lastmod>2020-06-18T10:09:10.961Z</lastmod>
+    <lastmod>2020-06-19T09:49:27.788Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://anran758.github.io/blog/2019/07/26/configuring-mac-front-end-development-env-from-zero/</loc>
+    
+    <lastmod>2020-06-19T03:57:04.474Z</lastmod>
     
   </url>
   
@@ -54,13 +61,6 @@
     <loc>https://anran758.github.io/blog/2018/04/23/git-flow/</loc>
     
     <lastmod>2020-05-20T13:20:45.289Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://anran758.github.io/blog/2019/07/26/configuring-mac-front-end-development-env-from-zero/</loc>
-    
-    <lastmod>2020-05-20T13:20:45.277Z</lastmod>
     
   </url>
   
@@ -212,13 +212,6 @@
   </url>
   
   <url>
-    <loc>https://anran758.github.io/blog/2018/01/23/JavaScript-%25E4%25BD%25A0%25E4%25B8%25BA%25E4%25BB%2580%25E4%25B9%2588%25E4%25BC%259A%25E6%2594%25BE%25E5%25BC%2583JQuery%25E8%2580%258C%25E9%2580%2589%25E7%2594%25A8Vue-React-Angular%25E8%25BF%259B%25E8%25A1%258C%25E5%25BC%2580%25E5%258F%2591/</loc>
-    
-    <lastmod>2019-08-21T13:59:27.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://anran758.github.io/blog/2018/06/09/javascript-position-navigation/</loc>
     
     <lastmod>2019-08-21T13:59:27.000Z</lastmod>
@@ -227,6 +220,13 @@
   
   <url>
     <loc>https://anran758.github.io/blog/2018/01/25/web-%25E8%25B5%25B0%25E8%25BF%259Bweb%25E7%25A7%25BB%25E5%258A%25A8%25E5%25BC%2580%25E5%258F%2591/</loc>
+    
+    <lastmod>2019-08-21T13:59:27.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://anran758.github.io/blog/2018/01/23/JavaScript-%25E4%25BD%25A0%25E4%25B8%25BA%25E4%25BB%2580%25E4%25B9%2588%25E4%25BC%259A%25E6%2594%25BE%25E5%25BC%2583JQuery%25E8%2580%258C%25E9%2580%2589%25E7%2594%25A8Vue-React-Angular%25E8%25BF%259B%25E8%25A1%258C%25E5%25BC%2580%25E5%258F%2591/</loc>
     
     <lastmod>2019-08-21T13:59:27.000Z</lastmod>
     
@@ -282,14 +282,14 @@
   </url>
   
   <url>
-    <loc>https://anran758.github.io/blog/2018/01/05/%25E6%25B5%2585%25E8%25B0%2588%25E5%25AF%25B9MVC%25E4%25B8%258EMVVM%25E7%259A%2584%25E7%2590%2586%25E8%25A7%25A3/</loc>
+    <loc>https://anran758.github.io/blog/2017/12/05/%25E6%25B5%2585%25E8%25B0%2588%25E5%2589%258D%25E7%25AB%25AF%25E6%2589%2580%25E8%2583%25BD%25E5%2581%259A%25E7%259A%2584SEO/</loc>
     
     <lastmod>2019-08-19T05:14:47.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://anran758.github.io/blog/2017/12/05/%25E6%25B5%2585%25E8%25B0%2588%25E5%2589%258D%25E7%25AB%25AF%25E6%2589%2580%25E8%2583%25BD%25E5%2581%259A%25E7%259A%2584SEO/</loc>
+    <loc>https://anran758.github.io/blog/2018/01/05/%25E6%25B5%2585%25E8%25B0%2588%25E5%25AF%25B9MVC%25E4%25B8%258EMVVM%25E7%259A%2584%25E7%2590%2586%25E8%25A7%25A3/</loc>
     
     <lastmod>2019-08-19T05:14:47.000Z</lastmod>
     
@@ -303,14 +303,14 @@
   </url>
   
   <url>
-    <loc>https://anran758.github.io/blog/2017/12/15/Vue%25E9%25A1%25B9%25E7%259B%25AE%25E4%25B8%25ADAxios%25E6%258A%25A5%25E9%2594%2599Pomise%25E6%259C%25AA%25E5%25AE%259A%25E4%25B9%2589%25E5%258F%258AIE10%25E6%258A%25A5%25E8%25AF%25AD%25E6%25B3%2595%25E9%2594%2599%25E8%25AF%25AF%25E7%259A%2584%25E8%25A7%25A3%25E5%2586%25B3%25E6%2596%25B9%25E6%25A1%2588/</loc>
+    <loc>https://anran758.github.io/blog/2019/07/16/ant-design-redirect-change-method/</loc>
     
     <lastmod>2019-08-19T05:14:46.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://anran758.github.io/blog/2019/07/16/ant-design-redirect-change-method/</loc>
+    <loc>https://anran758.github.io/blog/2017/12/15/Vue%25E9%25A1%25B9%25E7%259B%25AE%25E4%25B8%25ADAxios%25E6%258A%25A5%25E9%2594%2599Pomise%25E6%259C%25AA%25E5%25AE%259A%25E4%25B9%2589%25E5%258F%258AIE10%25E6%258A%25A5%25E8%25AF%25AD%25E6%25B3%2595%25E9%2594%2599%25E8%25AF%25AF%25E7%259A%2584%25E8%25A7%25A3%25E5%2586%25B3%25E6%2596%25B9%25E6%25A1%2588/</loc>
     
     <lastmod>2019-08-19T05:14:46.000Z</lastmod>
     
